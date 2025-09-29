@@ -78,11 +78,13 @@ function lildice() {
   const [mythosQuestion, setMythosQuestion] = useSyncedState("mythosQuestion", "")
   const [mythosAttention, setMythosAttention] = useSyncedState("mythosAttention", [false, false, false, false, false])
   const [mythosFade, setMythosFade] = useSyncedState("mythosFade", [false, false, false])
+  const [mythosValue, setMythosValue] = useSyncedState("mythosValue", 0)
   const [logosName, setLogosName] = useSyncedState("logosName", "")
   const [logosConcept, setLogosConcept] = useSyncedState("logosConcept", "")
   const [logosStatement, setLogosStatement] = useSyncedState("logosStatement", "")
   const [logosAttention, setLogosAttention] = useSyncedState("logosAttention", [false, false, false, false, false])
   const [logosCrack, setLogosCrack] = useSyncedState("logosCrack", [false, false, false])
+  const [logosValue, setLogosValue] = useSyncedState("logosValue", 0)
 
   // Snapshot of modifiers used in the last roll
   const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
@@ -181,7 +183,38 @@ function lildice() {
         </AutoLayout>
         <AutoLayout direction="horizontal" spacing={16} padding={16} width="fill-parent" fill="#FFFFFF">
           <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <Text fontSize={20} fontWeight={700}>Mythos</Text>
+            <AutoLayout
+                onClick={() => {
+                  const mythosRoll = {
+                    name: "+Mythos",
+                    description: "",
+                    "13+": "Critical Success",
+                    "10+": "Great Success",
+                    "7-9": "Partial Success",
+                    "6-": "Failure"
+                  }
+                  roll(mythosValue, "+Mythos", mythosRoll)
+                }}
+                fill="#333333"
+                padding={8}
+                cornerRadius={4}
+                horizontalAlignItems="start"
+                spacing={6}
+                width={150}
+            >
+              <Frame width={27} height={27} fill="#FFFFFF" cornerRadius={4}>
+                <AutoLayout
+                    horizontalAlignItems="center"
+                    verticalAlignItems="center"
+                    width={27}
+                    height={27}
+                    padding={6}
+                >
+                  <Grid sides={6} size={4.5} fill="#333333" spacing={3} />
+                </AutoLayout>
+              </Frame>
+              <Text fontSize={24} fontWeight={700} fill="#FFFFFF">+Mythos</Text>
+            </AutoLayout>
             <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
               <Text fontSize={16} width={100}>Name:</Text>
               <Input
@@ -264,7 +297,38 @@ function lildice() {
             </AutoLayout>
           </AutoLayout>
           <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <Text fontSize={20} fontWeight={700}>Logos</Text>
+            <AutoLayout
+                onClick={() => {
+                  const logosRoll = {
+                    name: "+Logos",
+                    description: "",
+                    "13+": "Critical Success",
+                    "10+": "Great Success",
+                    "7-9": "Partial Success",
+                    "6-": "Failure"
+                  }
+                  roll(logosValue, "+Logos", logosRoll)
+                }}
+                fill="#333333"
+                padding={8}
+                cornerRadius={4}
+                horizontalAlignItems="start"
+                spacing={6}
+                width={150}
+            >
+              <Frame width={27} height={27} fill="#FFFFFF" cornerRadius={4}>
+                <AutoLayout
+                    horizontalAlignItems="center"
+                    verticalAlignItems="center"
+                    width={27}
+                    height={27}
+                    padding={6}
+                >
+                  <Grid sides={6} size={4.5} fill="#333333" spacing={3} />
+                </AutoLayout>
+              </Frame>
+              <Text fontSize={24} fontWeight={700} fill="#FFFFFF">+Logos</Text>
+            </AutoLayout>
             <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
               <Text fontSize={16} width={100}>Name:</Text>
               <Input
