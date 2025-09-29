@@ -56,6 +56,9 @@ function lildice() {
   const [sides2, setSides2] = useSyncedState("side2", null)
   const [modifier, setModifier] = useSyncedState("modifier", 0)
   const [modifierName, setModifierName] = useSyncedState("modifierName", "")
+  const [forward, setForward] = useSyncedState("forward", 0)
+  const [ongoing, setOngoing] = useSyncedState("ongoing", 0)
+  const [characterName, setCharacterName] = useSyncedState("characterName", "Character Name")
 
   // Initialize attribute values as an object
   const initialAttributeValues = {}
@@ -63,31 +66,17 @@ function lildice() {
     initialAttributeValues[attr] = 0
   })
   const [attributeValues, setAttributeValues] = useSyncedState("attributeValues", initialAttributeValues)
-  usePropertyMenu(
-      [
-        {
-          tooltip: 'Roll',
-          propertyName: 'roll',
-          itemType: 'action',
-        },
-      ],
-
-      async ({ propertyName }) => {
-        if (propertyName === 'roll') {
-          roll(0, "")
-        }
-      },
-  )
 
   let roll = (mod, name) => {
     let number1 = Math.floor(Math.random() * 6) + 1
     let number2 = Math.floor(Math.random() * 6) + 1
+    let total = number1 + number2 + mod + forward + ongoing
     setSides1(number1)
     setSides2(number2)
     setModifier(mod)
     setModifierName(name)
-    console.log(number1, number2, mod)
-    figma.notify('You rolled a ' + number1 + ' and a ' + number2 + ' (total: ' + (number1 + number2 + mod) + ')')
+    console.log(number1, number2, mod, forward, ongoing)
+    figma.notify('You rolled a ' + number1 + ' and a ' + number2 + ' (total: ' + total + ')')
   }
 
   useEffect(() => {
@@ -102,8 +91,19 @@ function lildice() {
   })
 
   return (
-      <AutoLayout direction="vertical" spacing={24} horizontalAlignItems="center">
-        <AutoLayout direction="horizontal" spacing={24}>
+      <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={600}>
+        <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF">
+          <Text fontSize={40} fontWeight={700}>Character: </Text>
+          <Input
+              value={characterName}
+              onTextEditEnd={(e) => setCharacterName(e.characters)}
+              fontSize={40}
+              fontWeight={700}
+              placeholder="Character Name"
+              width="fill-parent"
+          />
+        </AutoLayout>
+        <AutoLayout direction="horizontal" spacing={24} padding={24}>
           <AutoLayout direction="vertical" spacing={24}>
             <Frame
               fill="#FFFFFF"
@@ -240,11 +240,106 @@ function lildice() {
             ))}
           </AutoLayout>
         </AutoLayout>
+        <AutoLayout spacing={12} horizontalAlignItems="center" fill="#E8E8E8" padding={24} width="fill-parent" stroke="#333333" strokeWidth={2}>
+          <AutoLayout
+              fill="#4CAF50"
+              padding={16}
+              cornerRadius={8}
+              onClick={() => roll(0, "")}
+          >
+            <Text fontSize={20} fontWeight={700} fill="#FFFFFF">Roll</Text>
+          </AutoLayout>
+          <AutoLayout
+              fill="#FFFFFF"
+              padding={12}
+              cornerRadius={8}
+              spacing={12}
+              verticalAlignItems="center"
+          >
+            <AutoLayout direction="vertical" spacing={4}>
+              <AutoLayout
+                  fill="#E6E6E6"
+                  padding={4}
+                  cornerRadius={4}
+                  width={24}
+                  horizontalAlignItems="center"
+                  onClick={() => setForward(Math.min(5, forward + 1))}
+              >
+                <Text fontSize={12} fontWeight={600}>+</Text>
+              </AutoLayout>
+              <AutoLayout
+                  fill="#E6E6E6"
+                  padding={4}
+                  cornerRadius={4}
+                  width={24}
+                  horizontalAlignItems="center"
+                  onClick={() => setForward(Math.max(-5, forward - 1))}
+              >
+                <Text fontSize={12} fontWeight={600}>-</Text>
+              </AutoLayout>
+            </AutoLayout>
+            <Input
+                value={(forward >= 0 ? '+' : '') + String(forward)}
+                onTextEditEnd={(e) => {
+                  let val = parseInt(e.characters)
+                  if (!isNaN(val)) {
+                    setForward(Math.max(-5, Math.min(5, val)))
+                  }
+                }}
+                fontSize={16}
+                width={40}
+                horizontalAlignText="center"
+            />
+            <Text fontSize={16} fontWeight={600}>Forward</Text>
+          </AutoLayout>
+          <AutoLayout
+              fill="#FFFFFF"
+              padding={12}
+              cornerRadius={8}
+              spacing={12}
+              verticalAlignItems="center"
+          >
+            <AutoLayout direction="vertical" spacing={4}>
+              <AutoLayout
+                  fill="#E6E6E6"
+                  padding={4}
+                  cornerRadius={4}
+                  width={24}
+                  horizontalAlignItems="center"
+                  onClick={() => setOngoing(Math.min(5, ongoing + 1))}
+              >
+                <Text fontSize={12} fontWeight={600}>+</Text>
+              </AutoLayout>
+              <AutoLayout
+                  fill="#E6E6E6"
+                  padding={4}
+                  cornerRadius={4}
+                  width={24}
+                  horizontalAlignItems="center"
+                  onClick={() => setOngoing(Math.max(-5, ongoing - 1))}
+              >
+                <Text fontSize={12} fontWeight={600}>-</Text>
+              </AutoLayout>
+            </AutoLayout>
+            <Input
+                value={(ongoing >= 0 ? '+' : '') + String(ongoing)}
+                onTextEditEnd={(e) => {
+                  let val = parseInt(e.characters)
+                  if (!isNaN(val)) {
+                    setOngoing(Math.max(-5, Math.min(5, val)))
+                  }
+                }}
+                fontSize={16}
+                width={40}
+                horizontalAlignText="center"
+            />
+            <Text fontSize={16} fontWeight={600}>Ongoing</Text>
+          </AutoLayout>
+        </AutoLayout>
         {sides1 && sides2 ?
             <AutoLayout
-                fill="#FFFFFF"
+                fill="#E8E8E8"
                 padding={16}
-                cornerRadius={8}
                 width="fill-parent"
                 spacing={8}
             >
@@ -252,10 +347,10 @@ function lildice() {
                 Roll:
               </Text>
               <Text fontSize={32} fontWeight={700} fill="#FF0000">
-                {sides1 + sides2 + modifier}
+                {sides1 + sides2 + modifier + forward + ongoing}
               </Text>
-              <Text fontSize={32} fontWeight={700}>
-                = [({sides1} + {sides2}) {modifier >= 0 ? ' + ' + modifier : ' - ' + Math.abs(modifier)}{modifierName ? ' (' + modifierName + ')' : ''}]
+              <Text fontSize={32} fontWeight={700} width="fill-parent">
+                = [({sides1} + {sides2}) {modifier >= 0 ? ' +' + modifier : ' -' + Math.abs(modifier)}{modifierName ? ' (' + modifierName + ')' : ''}]{forward !== 0 ? (forward >= 0 ? ' +' + forward : ' -' + Math.abs(forward)) + ' (Forward)' : ''}{ongoing !== 0 ? (ongoing >= 0 ? ' +' + ongoing : ' -' + Math.abs(ongoing)) + ' (Ongoing)' : ''}
               </Text>
             </AutoLayout>
             : null}
