@@ -72,6 +72,16 @@ function lildice() {
   const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
   const [attributesLocked, setAttributesLocked] = useSyncedState("attributesLocked", false)
 
+  // Mythos and Logos fields
+  const [mythosName, setMythosName] = useSyncedState("mythosName", "")
+  const [mythosConcept, setMythosConcept] = useSyncedState("mythosConcept", "")
+  const [mythosQuestion, setMythosQuestion] = useSyncedState("mythosQuestion", "")
+  const [mythosAttention, setMythosAttention] = useSyncedState("mythosAttention", "")
+  const [logosName, setLogosName] = useSyncedState("logosName", "")
+  const [logosConcept, setLogosConcept] = useSyncedState("logosConcept", "")
+  const [logosStatement, setLogosStatement] = useSyncedState("logosStatement", "")
+  const [logosAttention, setLogosAttention] = useSyncedState("logosAttention", "")
+
   // Snapshot of modifiers used in the last roll
   const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
   const [rolledOngoing, setRolledOngoing] = useSyncedState("rolledOngoing", 0)
@@ -166,6 +176,94 @@ function lildice() {
               placeholder="Character Name"
               width="fill-parent"
           />
+        </AutoLayout>
+        <AutoLayout direction="horizontal" spacing={16} padding={16} width="fill-parent" fill="#FFFFFF">
+          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
+            <Text fontSize={20} fontWeight={700}>Mythos</Text>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Name:</Text>
+              <Input
+                  value={mythosName}
+                  onTextEditEnd={(e) => setMythosName(e.characters)}
+                  fontSize={16}
+                  placeholder="Mythos Name"
+                  width="fill-parent"
+              />
+            </AutoLayout>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Concept:</Text>
+              <Input
+                  value={mythosConcept}
+                  onTextEditEnd={(e) => setMythosConcept(e.characters)}
+                  fontSize={16}
+                  placeholder="Mythos Concept"
+                  width="fill-parent"
+              />
+            </AutoLayout>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Question:</Text>
+              <Input
+                  value={mythosQuestion}
+                  onTextEditEnd={(e) => setMythosQuestion(e.characters)}
+                  fontSize={16}
+                  placeholder="Mythos Question"
+                  width="fill-parent"
+              />
+            </AutoLayout>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Attention:</Text>
+              <Input
+                  value={mythosAttention}
+                  onTextEditEnd={(e) => setMythosAttention(e.characters)}
+                  fontSize={16}
+                  placeholder="Mythos Attention"
+                  width="fill-parent"
+              />
+            </AutoLayout>
+          </AutoLayout>
+          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
+            <Text fontSize={20} fontWeight={700}>Logos</Text>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Name:</Text>
+              <Input
+                  value={logosName}
+                  onTextEditEnd={(e) => setLogosName(e.characters)}
+                  fontSize={16}
+                  placeholder="Logos Name"
+                  width="fill-parent"
+              />
+            </AutoLayout>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Concept:</Text>
+              <Input
+                  value={logosConcept}
+                  onTextEditEnd={(e) => setLogosConcept(e.characters)}
+                  fontSize={16}
+                  placeholder="Logos Concept"
+                  width="fill-parent"
+              />
+            </AutoLayout>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Statement:</Text>
+              <Input
+                  value={logosStatement}
+                  onTextEditEnd={(e) => setLogosStatement(e.characters)}
+                  fontSize={16}
+                  placeholder="Logos Statement"
+                  width="fill-parent"
+              />
+            </AutoLayout>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Attention:</Text>
+              <Input
+                  value={logosAttention}
+                  onTextEditEnd={(e) => setLogosAttention(e.characters)}
+                  fontSize={16}
+                  placeholder="Logos Attention"
+                  width="fill-parent"
+              />
+            </AutoLayout>
+          </AutoLayout>
         </AutoLayout>
         <AutoLayout direction="horizontal" spacing={24} padding={24}>
           <AutoLayout direction="vertical" spacing={8}>
