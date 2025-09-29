@@ -168,6 +168,7 @@ function lildice() {
   const [characterName, setCharacterName] = useSyncedState("characterName", "Character Name")
   const [selectedMove, setSelectedMove] = useSyncedState("selectedMove", null)
   const [moveHistory, setMoveHistory] = useSyncedState("moveHistory", [])
+  const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
 
   // Snapshot of modifiers used in the last roll
   const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
@@ -182,7 +183,7 @@ function lildice() {
   })
   const [attributeValues, setAttributeValues] = useSyncedState("attributeValues", initialAttributeValues)
 
-  let roll = (mod, name) => {
+  let roll = (mod, name, moveData = null) => {
     let number1 = Math.floor(Math.random() * 6) + 1
     let number2 = Math.floor(Math.random() * 6) + 1
     let total = number1 + number2 + mod + forward + ongoing
@@ -209,10 +210,10 @@ function lildice() {
     setRolledOngoing(ongoing)
     setRollText(rollTextStr)
 
-    // Add to move history if a move was selected
-    if (selectedMove) {
+    // Add to move history if a move was passed directly
+    if (moveData) {
       const historyEntry = {
-        move: selectedMove.move,
+        move: moveData,
         total: total,
         dice: [number1, number2],
         modifier: mod,
@@ -263,7 +264,10 @@ function lildice() {
               width={192}
               height={192}
               cornerRadius={32}
-              onClick={() => roll(0, "")}
+              onClick={() => {
+                setSelectedMove(null)
+                roll(0, "")
+              }}
               effect={[
                 {
                   type: 'drop-shadow',
@@ -298,7 +302,10 @@ function lildice() {
               width={192}
               height={192}
               cornerRadius={32}
-              onClick={() => roll(0, "")}
+              onClick={() => {
+                setSelectedMove(null)
+                roll(0, "")
+              }}
               effect={[
                 {
                   type: 'drop-shadow',
@@ -389,7 +396,10 @@ function lildice() {
                     horizontalAlignText="center"
                 />
                 <AutoLayout
-                    onClick={() => roll(attributeValues[attr], "+" + attr)}
+                    onClick={() => {
+                      setSelectedMove(null)
+                      roll(attributeValues[attr], "+" + attr)
+                    }}
                     fill="#333333"
                     padding={8}
                     cornerRadius={4}
@@ -417,8 +427,7 @@ function lildice() {
                         padding={8}
                         cornerRadius={4}
                         onClick={() => {
-                          setSelectedMove({ attribute: attr, move: move })
-                          roll(attributeValues[attr], "+" + attr)
+                          roll(attributeValues[attr], "+" + attr, move)
                         }}
                         spacing={6}
                     >
@@ -446,7 +455,10 @@ function lildice() {
               fill="#4CAF50"
               padding={16}
               cornerRadius={8}
-              onClick={() => roll(0, "")}
+              onClick={() => {
+                setSelectedMove(null)
+                roll(0, "")
+              }}
           >
             <Text fontSize={20} fontWeight={700} fill="#FFFFFF">Roll</Text>
           </AutoLayout>
@@ -566,41 +578,79 @@ function lildice() {
           padding={16}
           spacing={16}
       >
-        <Text fontSize={20} fontWeight={700}>Move History</Text>
+        <AutoLayout width="fill-parent" spacing={12} verticalAlignItems="center">
+          <Text fontSize={20} fontWeight={700}>Move History</Text>
+          {moveHistory.length > 0 && (
+            <AutoLayout
+                fill="#FF5555"
+                padding={8}
+                cornerRadius={4}
+                onClick={() => {
+                  setMoveHistory([])
+                  setHistoryPage(0)
+                }}
+            >
+              <Text fontSize={14} fontWeight={600} fill="#FFFFFF">Clear All</Text>
+            </AutoLayout>
+          )}
+        </AutoLayout>
         {moveHistory.length === 0 ? (
           <Text fontSize={16}>Roll a move to see outcomes</Text>
         ) : (
-          <AutoLayout direction="vertical" spacing={12} width="fill-parent">
-            {moveHistory.map((entry, idx) => {
-              let outcomeText = ""
-              if (entry.move["13+"] && entry.total >= 13) {
-                outcomeText = `13+: ${entry.move["13+"]}`
-              } else if (entry.total >= 10) {
-                outcomeText = `10+: ${entry.move["10+"]}`
-              } else if (entry.total >= 7) {
-                outcomeText = `7-9: ${entry.move["7-9"]}`
-              } else if (entry.move["6-"]) {
-                outcomeText = `6-: ${entry.move["6-"]}`
-              }
+          <>
+            <AutoLayout direction="vertical" spacing={12} width="fill-parent">
+              {moveHistory.slice(historyPage * 5, (historyPage * 5) + 5).map((entry, idx) => {
+                let outcomeText = ""
+                if (entry.move["13+"] && entry.total >= 13) {
+                  outcomeText = `13+: ${entry.move["13+"]}`
+                } else if (entry.total >= 10) {
+                  outcomeText = `10+: ${entry.move["10+"]}`
+                } else if (entry.total >= 7) {
+                  outcomeText = `7-9: ${entry.move["7-9"]}`
+                } else if (entry.move["6-"]) {
+                  outcomeText = `6-: ${entry.move["6-"]}`
+                }
 
-              return (
+                return (
+                  <AutoLayout
+                      key={idx}
+                      direction="vertical"
+                      fill="#FFFFFF"
+                      padding={12}
+                      cornerRadius={4}
+                      width="fill-parent"
+                      spacing={8}
+                  >
+                    <Text fontSize={18} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
+                    <Text fontSize={16} fontWeight={600} width="fill-parent">Roll: {entry.rollText}</Text>
+                    <Text fontSize={14} width="fill-parent">{entry.move.description}</Text>
+                    <Text fontSize={14} fontWeight={600} width="fill-parent">{outcomeText}</Text>
+                  </AutoLayout>
+                )
+              })}
+            </AutoLayout>
+            {moveHistory.length > 5 && (
+              <AutoLayout spacing={12} horizontalAlignItems="center" width="fill-parent">
                 <AutoLayout
-                    key={idx}
-                    direction="vertical"
-                    fill="#FFFFFF"
-                    padding={12}
+                    fill={historyPage > 0 ? "#333333" : "#CCCCCC"}
+                    padding={8}
                     cornerRadius={4}
-                    width="fill-parent"
-                    spacing={8}
+                    onClick={() => historyPage > 0 && setHistoryPage(historyPage - 1)}
                 >
-                  <Text fontSize={18} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
-                  <Text fontSize={16} fontWeight={600} width="fill-parent">Roll: {entry.rollText}</Text>
-                  <Text fontSize={14} width="fill-parent">{entry.move.description}</Text>
-                  <Text fontSize={14} fontWeight={600} width="fill-parent">{outcomeText}</Text>
+                  <Text fontSize={14} fontWeight={600} fill="#FFFFFF">← Previous</Text>
                 </AutoLayout>
-              )
-            })}
-          </AutoLayout>
+                <Text fontSize={14}>Page {historyPage + 1} of {Math.ceil(moveHistory.length / 5)}</Text>
+                <AutoLayout
+                    fill={historyPage < Math.ceil(moveHistory.length / 5) - 1 ? "#333333" : "#CCCCCC"}
+                    padding={8}
+                    cornerRadius={4}
+                    onClick={() => historyPage < Math.ceil(moveHistory.length / 5) - 1 && setHistoryPage(historyPage + 1)}
+                >
+                  <Text fontSize={14} fontWeight={600} fill="#FFFFFF">Next →</Text>
+                </AutoLayout>
+              </AutoLayout>
+            )}
+          </>
         )}
       </AutoLayout>
       </AutoLayout>
