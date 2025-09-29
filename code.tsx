@@ -1,9 +1,10 @@
 const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
-import moves from './moves.json'
+import movesData from './moves.json'
 
-// Build attributes array dynamically from moves keys
+// Build attributes array dynamically from AttributeMoves keys
+const moves = movesData.AttributeMoves
 const attributes = Object.keys(moves)
 
 function Dot(props) {
