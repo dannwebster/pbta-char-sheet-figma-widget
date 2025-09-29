@@ -103,8 +103,9 @@ function lildice() {
 
   return (
       <AutoLayout direction="vertical" spacing={24} horizontalAlignItems="center">
-        <AutoLayout spacing={24}>
-          <Frame
+        <AutoLayout direction="horizontal" spacing={24}>
+          <AutoLayout direction="vertical" spacing={24}>
+            <Frame
               fill="#FFFFFF"
               width={192}
               height={192}
@@ -172,6 +173,7 @@ function lildice() {
                 </AutoLayout>
                 : null}
           </Frame>
+          </AutoLayout>
           <AutoLayout direction="vertical" spacing={8}>
             {attributes.map(attr => (
               <AutoLayout
@@ -180,9 +182,44 @@ function lildice() {
                   padding={12}
                   cornerRadius={8}
                   spacing={12}
+                  verticalAlignItems="center"
               >
+                <AutoLayout direction="vertical" spacing={4}>
+                  <AutoLayout
+                      fill="#E6E6E6"
+                      padding={4}
+                      cornerRadius={4}
+                      width={24}
+                      horizontalAlignItems="center"
+                      onClick={() => {
+                        const newVal = Math.min(5, attributeValues[attr] + 1)
+                        setAttributeValues({
+                          ...attributeValues,
+                          [attr]: newVal
+                        })
+                      }}
+                  >
+                    <Text fontSize={12} fontWeight={600}>+</Text>
+                  </AutoLayout>
+                  <AutoLayout
+                      fill="#E6E6E6"
+                      padding={4}
+                      cornerRadius={4}
+                      width={24}
+                      horizontalAlignItems="center"
+                      onClick={() => {
+                        const newVal = Math.max(-5, attributeValues[attr] - 1)
+                        setAttributeValues({
+                          ...attributeValues,
+                          [attr]: newVal
+                        })
+                      }}
+                  >
+                    <Text fontSize={12} fontWeight={600}>-</Text>
+                  </AutoLayout>
+                </AutoLayout>
                 <Input
-                    value={String(attributeValues[attr])}
+                    value={(attributeValues[attr] >= 0 ? '+' : '') + String(attributeValues[attr])}
                     onTextEditEnd={(e) => {
                       let val = parseInt(e.characters)
                       if (!isNaN(val)) {
@@ -194,6 +231,7 @@ function lildice() {
                     }}
                     fontSize={16}
                     width={40}
+                    horizontalAlignText="center"
                 />
                 <AutoLayout onClick={() => roll(attributeValues[attr], "+" + attr)}>
                   <Text fontSize={16} fontWeight={600}>+{attr}</Text>
