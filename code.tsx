@@ -168,84 +168,6 @@ function lildice() {
           />
         </AutoLayout>
         <AutoLayout direction="horizontal" spacing={24} padding={24}>
-          <AutoLayout direction="vertical" spacing={24}>
-            <Frame
-              fill="#FFFFFF"
-              width={192}
-              height={192}
-              cornerRadius={32}
-              onClick={() => {
-                setSelectedMove(null)
-                roll(0, "")
-              }}
-              effect={[
-                {
-                  type: 'drop-shadow',
-                  color: { r: 0, g: 0, b: 0, a: 0.08 },
-                  offset: { x: 0, y: 24 },
-                  blur: 40,
-                  spread: 0,
-                },
-                {
-                  type: 'drop-shadow',
-                  color: { r: 0, g: 0, b: 0, a: 0.12 },
-                  offset: { x: 0, y: 2 },
-                  blur: 8,
-                  spread: 0,
-                },
-              ]}
-          >
-            {sides1 ?
-                <AutoLayout
-                    horizontalAlignItems="center"
-                    verticalAlignItems="center"
-                    width={192}
-                    height={192}
-                    padding={48}
-                >
-                  <Grid sides={sides1} />
-                </AutoLayout>
-                : null}
-          </Frame>
-          <Frame
-              fill="#FFFFFF"
-              width={192}
-              height={192}
-              cornerRadius={32}
-              onClick={() => {
-                setSelectedMove(null)
-                roll(0, "")
-              }}
-              effect={[
-                {
-                  type: 'drop-shadow',
-                  color: { r: 0, g: 0, b: 0, a: 0.08 },
-                  offset: { x: 0, y: 24 },
-                  blur: 40,
-                  spread: 0,
-                },
-                {
-                  type: 'drop-shadow',
-                  color: { r: 0, g: 0, b: 0, a: 0.12 },
-                  offset: { x: 0, y: 2 },
-                  blur: 8,
-                  spread: 0,
-                },
-              ]}
-          >
-            {sides2 ?
-                <AutoLayout
-                    horizontalAlignItems="center"
-                    verticalAlignItems="center"
-                    width={192}
-                    height={192}
-                    padding={48}
-                >
-                  <Grid sides={sides2} />
-                </AutoLayout>
-                : null}
-          </Frame>
-          </AutoLayout>
           <AutoLayout direction="vertical" spacing={8}>
             {attributes.map(attr => (
               <AutoLayout
@@ -328,6 +250,7 @@ function lildice() {
                     cornerRadius={4}
                     horizontalAlignItems="start"
                     spacing={6}
+                    width={150}
                 >
                   <Frame width={27} height={27} fill="#FFFFFF" cornerRadius={4}>
                     <AutoLayout
@@ -337,7 +260,7 @@ function lildice() {
                         height={27}
                         padding={6}
                     >
-                      <Grid sides={6} size={3} fill="#333333" spacing={3} />
+                      <Grid sides={6} size={4.5} fill="#333333" spacing={3} />
                     </AutoLayout>
                   </Frame>
                   <Text fontSize={24} fontWeight={700} fill="#FFFFFF">+{attr}</Text>
@@ -353,6 +276,7 @@ function lildice() {
                           roll(attributeValues[attr], "+" + attr, move)
                         }}
                         spacing={6}
+                        width={350}
                     >
                       <Text fontSize={18} fontWeight={600}>{move.name}</Text>
                       <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
@@ -363,7 +287,7 @@ function lildice() {
                             height={18}
                             padding={4}
                         >
-                          <Grid sides={6} size={2} fill="#FFFFFF" spacing={2} />
+                          <Grid sides={6} size={3} fill="#FFFFFF" spacing={2} />
                         </AutoLayout>
                       </Frame>
                     </AutoLayout>
@@ -500,7 +424,7 @@ function lildice() {
       </AutoLayout>
       <AutoLayout
           direction="vertical"
-          width={400}
+          width={600}
           fill="#F5F5F5"
           stroke="#333333"
           strokeWidth={2}
@@ -509,7 +433,7 @@ function lildice() {
           spacing={16}
       >
         <AutoLayout width="fill-parent" spacing={12} verticalAlignItems="center">
-          <Text fontSize={20} fontWeight={700}>Move History</Text>
+          <Text fontSize={25} fontWeight={700}>Move History</Text>
           {moveHistory.length > 0 && (
             <AutoLayout
                 fill="#FF5555"
@@ -520,12 +444,12 @@ function lildice() {
                   setHistoryPage(0)
                 }}
             >
-              <Text fontSize={14} fontWeight={600} fill="#FFFFFF">Clear All</Text>
+              <Text fontSize={17.5} fontWeight={600} fill="#FFFFFF">Clear All</Text>
             </AutoLayout>
           )}
         </AutoLayout>
         {moveHistory.length === 0 ? (
-          <Text fontSize={16}>Roll a move to see outcomes</Text>
+          <Text fontSize={20}>Roll a move to see outcomes</Text>
         ) : (
           <>
             <AutoLayout direction="vertical" spacing={12} width="fill-parent">
@@ -552,14 +476,26 @@ function lildice() {
                       width="fill-parent"
                       spacing={8}
                   >
-                    <Text fontSize={18} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
-                    <Text fontSize={16} fontWeight={600} width="fill-parent">Roll: {entry.rollText}</Text>
-                    <Text fontSize={14} width="fill-parent">{entry.move.description}</Text>
-                    <Text fontSize={14} fontWeight={600} width="fill-parent">{outcomeText}</Text>
+                    <AutoLayout spacing={8} verticalAlignItems="center" width="fill-parent">
+                      <Frame width={20} height={20} fill="#333333" cornerRadius={2}>
+                        <AutoLayout horizontalAlignItems="center" verticalAlignItems="center" width={20} height={20} padding={2}>
+                          <Grid sides={entry.dice[0]} size={3} fill="#FFFFFF" spacing={2} />
+                        </AutoLayout>
+                      </Frame>
+                      <Frame width={20} height={20} fill="#333333" cornerRadius={2}>
+                        <AutoLayout horizontalAlignItems="center" verticalAlignItems="center" width={20} height={20} padding={2}>
+                          <Grid sides={entry.dice[1]} size={3} fill="#FFFFFF" spacing={2} />
+                        </AutoLayout>
+                      </Frame>
+                      <Text fontSize={22.5} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
+                    </AutoLayout>
+                    <Text fontSize={20} fontWeight={600} width="fill-parent">Roll: {entry.rollText}</Text>
+                    <Text fontSize={17.5} width="fill-parent">{entry.move.description}</Text>
+                    <Text fontSize={17.5} fontWeight={600} width="fill-parent">{outcomeText}</Text>
                     {holdOptions.length > 0 && (
                       <AutoLayout direction="vertical" spacing={4} width="fill-parent">
                         {holdOptions.map((option, optIdx) => (
-                          <Text key={optIdx} fontSize={14} width="fill-parent">• {option}</Text>
+                          <Text key={optIdx} fontSize={17.5} width="fill-parent">• {option}</Text>
                         ))}
                       </AutoLayout>
                     )}
@@ -575,16 +511,16 @@ function lildice() {
                     cornerRadius={4}
                     onClick={() => historyPage > 0 && setHistoryPage(historyPage - 1)}
                 >
-                  <Text fontSize={14} fontWeight={600} fill="#FFFFFF">← Previous</Text>
+                  <Text fontSize={17.5} fontWeight={600} fill="#FFFFFF">← Previous</Text>
                 </AutoLayout>
-                <Text fontSize={14}>Page {historyPage + 1} of {Math.ceil(moveHistory.length / 5)}</Text>
+                <Text fontSize={17.5}>Page {historyPage + 1} of {Math.ceil(moveHistory.length / 5)}</Text>
                 <AutoLayout
                     fill={historyPage < Math.ceil(moveHistory.length / 5) - 1 ? "#333333" : "#CCCCCC"}
                     padding={8}
                     cornerRadius={4}
                     onClick={() => historyPage < Math.ceil(moveHistory.length / 5) - 1 && setHistoryPage(historyPage + 1)}
                 >
-                  <Text fontSize={14} fontWeight={600} fill="#FFFFFF">Next →</Text>
+                  <Text fontSize={17.5} fontWeight={600} fill="#FFFFFF">Next →</Text>
                 </AutoLayout>
               </AutoLayout>
             )}
