@@ -1,5 +1,4 @@
 const { widget } = figma
-k,, 
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse } = widget
 
 function Dot(props) {
@@ -51,7 +50,8 @@ function Grid(props) {
 
 function lildice() {
   const [initialized, setInitialized] = useSyncedState("initialized", false)
-  const [sides, setSides] = useSyncedState("side", null)
+  const [sides1, setSides1] = useSyncedState("side1", null)
+  const [sides2, setSides2] = useSyncedState("side2", null)
   usePropertyMenu(
       [
         {
@@ -69,10 +69,12 @@ function lildice() {
   )
 
   let roll = () => {
-    let number = Math.floor(Math.random() * 6) + 1
-    setSides(number)
-    console.log(number)
-    figma.notify('You rolled a ' + number)
+    let number1 = Math.floor(Math.random() * 6) + 1
+    let number2 = Math.floor(Math.random() * 6) + 1
+    setSides1(number1)
+    setSides2(number2)
+    console.log(number1, number2)
+    figma.notify('You rolled a ' + number1 + ' and a ' + number2 + ' (total: ' + (number1 + number2) + ')')
   }
 
   useEffect(() => {
@@ -87,40 +89,76 @@ function lildice() {
   })
 
   return (
-      <Frame
-          fill="#FFFFFF"
-          width={192}
-          height={192}
-          cornerRadius={32}
-          effect={[
-            {
-              type: 'drop-shadow',
-              color: { r: 0, g: 0, b: 0, a: 0.08 },
-              offset: { x: 0, y: 24 },
-              blur: 40,
-              spread: 0,
-            },
-            {
-              type: 'drop-shadow',
-              color: { r: 0, g: 0, b: 0, a: 0.12 },
-              offset: { x: 0, y: 2 },
-              blur: 8,
-              spread: 0,
-            },
-          ]}
-      >
-        {sides ?
-            <AutoLayout
-                horizontalAlignItems="center"
-                verticalAlignItems="center"
-                width={192}
-                height={192}
-                padding={48}
-            >
-              <Grid sides={sides} />
-            </AutoLayout>
-            : null}
-      </Frame>
+      <AutoLayout spacing={24}>
+        <Frame
+            fill="#FFFFFF"
+            width={192}
+            height={192}
+            cornerRadius={32}
+            effect={[
+              {
+                type: 'drop-shadow',
+                color: { r: 0, g: 0, b: 0, a: 0.08 },
+                offset: { x: 0, y: 24 },
+                blur: 40,
+                spread: 0,
+              },
+              {
+                type: 'drop-shadow',
+                color: { r: 0, g: 0, b: 0, a: 0.12 },
+                offset: { x: 0, y: 2 },
+                blur: 8,
+                spread: 0,
+              },
+            ]}
+        >
+          {sides1 ?
+              <AutoLayout
+                  horizontalAlignItems="center"
+                  verticalAlignItems="center"
+                  width={192}
+                  height={192}
+                  padding={48}
+              >
+                <Grid sides={sides1} />
+              </AutoLayout>
+              : null}
+        </Frame>
+        <Frame
+            fill="#FFFFFF"
+            width={192}
+            height={192}
+            cornerRadius={32}
+            effect={[
+              {
+                type: 'drop-shadow',
+                color: { r: 0, g: 0, b: 0, a: 0.08 },
+                offset: { x: 0, y: 24 },
+                blur: 40,
+                spread: 0,
+              },
+              {
+                type: 'drop-shadow',
+                color: { r: 0, g: 0, b: 0, a: 0.12 },
+                offset: { x: 0, y: 2 },
+                blur: 8,
+                spread: 0,
+              },
+            ]}
+        >
+          {sides2 ?
+              <AutoLayout
+                  horizontalAlignItems="center"
+                  verticalAlignItems="center"
+                  width={192}
+                  height={192}
+                  padding={48}
+              >
+                <Grid sides={sides2} />
+              </AutoLayout>
+              : null}
+        </Frame>
+      </AutoLayout>
   )
 }
 widget.register(lildice)
