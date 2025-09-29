@@ -60,6 +60,11 @@ function lildice() {
   const [ongoing, setOngoing] = useSyncedState("ongoing", 0)
   const [characterName, setCharacterName] = useSyncedState("characterName", "Character Name")
 
+  // Snapshot of modifiers used in the last roll
+  const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
+  const [rolledOngoing, setRolledOngoing] = useSyncedState("rolledOngoing", 0)
+  const [rolledModifier, setRolledModifier] = useSyncedState("rolledModifier", 0)
+
   // Initialize attribute values as an object
   const initialAttributeValues = {}
   attributes.forEach(attr => {
@@ -71,10 +76,18 @@ function lildice() {
     let number1 = Math.floor(Math.random() * 6) + 1
     let number2 = Math.floor(Math.random() * 6) + 1
     let total = number1 + number2 + mod + forward + ongoing
+
+    // Save snapshot of modifiers used in this roll
     setSides1(number1)
     setSides2(number2)
-    setModifier(mod)
+    setRolledModifier(mod)
     setModifierName(name)
+    setRolledForward(forward)
+    setRolledOngoing(ongoing)
+
+    // Reset forward after roll
+    setForward(0)
+
     console.log(number1, number2, mod, forward, ongoing)
     figma.notify('You rolled a ' + number1 + ' and a ' + number2 + ' (total: ' + total + ')')
   }
@@ -240,7 +253,7 @@ function lildice() {
             ))}
           </AutoLayout>
         </AutoLayout>
-        <AutoLayout spacing={12} horizontalAlignItems="center" fill="#E8E8E8" padding={24} width="fill-parent" stroke="#333333" strokeWidth={2}>
+        <AutoLayout spacing={12} verticalAlignItems="center" fill="#E8E8E8" padding={24} width="fill-parent" stroke="#333333" strokeWidth={2}>
           <AutoLayout
               fill="#4CAF50"
               padding={16}
@@ -347,10 +360,10 @@ function lildice() {
                 Roll:
               </Text>
               <Text fontSize={32} fontWeight={700} fill="#FF0000">
-                {sides1 + sides2 + modifier + forward + ongoing}
+                {sides1 + sides2 + rolledModifier + rolledForward + rolledOngoing}
               </Text>
               <Text fontSize={32} fontWeight={700} width="fill-parent">
-                = [({sides1} + {sides2}) {modifier >= 0 ? ' +' + modifier : ' -' + Math.abs(modifier)}{modifierName ? ' (' + modifierName + ')' : ''}]{forward !== 0 ? (forward >= 0 ? ' +' + forward : ' -' + Math.abs(forward)) + ' (Forward)' : ''}{ongoing !== 0 ? (ongoing >= 0 ? ' +' + ongoing : ' -' + Math.abs(ongoing)) + ' (Ongoing)' : ''}
+                = [({sides1} + {sides2}) {rolledModifier >= 0 ? ' +' + rolledModifier : ' -' + Math.abs(rolledModifier)}{modifierName ? ' (' + modifierName + ')' : ''}]{rolledForward !== 0 ? (rolledForward >= 0 ? ' +' + rolledForward : ' -' + Math.abs(rolledForward)) + ' (Forward)' : ''}{rolledOngoing !== 0 ? (rolledOngoing >= 0 ? ' +' + rolledOngoing : ' -' + Math.abs(rolledOngoing)) + ' (Ongoing)' : ''}
               </Text>
             </AutoLayout>
             : null}
