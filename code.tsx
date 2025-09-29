@@ -1,8 +1,6 @@
 const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
-const attributes = ["Muscle", "Finesse", "Grit", "Moxie", "Smarts", "Coin"]
-
 const moves = {
   "Muscle": [
     {
@@ -104,6 +102,9 @@ const moves = {
     }
   ]
 }
+
+// Build attributes array dynamically from moves keys
+const attributes = Object.keys(moves)
 
 function Dot(props) {
   let visible = props.visible
