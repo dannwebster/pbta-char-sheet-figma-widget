@@ -397,8 +397,15 @@ function lildice() {
                 />
                 <AutoLayout
                     onClick={() => {
-                      setSelectedMove(null)
-                      roll(attributeValues[attr], "+" + attr)
+                      const attributeRoll = {
+                        name: "+" + attr,
+                        description: "",
+                        "13+": "Critical Success",
+                        "10+": "Great Success",
+                        "7-9": "Partial Success",
+                        "6-": "Failure"
+                      }
+                      roll(attributeValues[attr], "+" + attr, attributeRoll)
                     }}
                     fill="#333333"
                     padding={8}
