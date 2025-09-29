@@ -216,5 +216,47 @@
         }
       ]
     }
+  ],
+  "ClockMoves": [
+    {
+      "name": "Take Fade",
+      "clock": "mythosFade",
+      "action": "advance"
+    },
+    {
+      "name": "Heal Fade",
+      "clock": "mythosFade",
+      "action": "rollback"
+    },
+    {
+      "name": "Take Crack",
+      "clock": "logosCrack",
+      "action": "advance"
+    },
+    {
+      "name": "Heal Crack",
+      "clock": "logosCrack",
+      "action": "rollback"
+    },
+    {
+      "name": "Take Mythos Attention",
+      "clock": "mythosAttention",
+      "action": "advance"
+    },
+    {
+      "name": "Heal Mythos Attention",
+      "clock": "mythosAttention",
+      "action": "rollback"
+    },
+    {
+      "name": "Take Logos Attention",
+      "clock": "logosAttention",
+      "action": "advance"
+    },
+    {
+      "name": "Heal Logos Attention",
+      "clock": "logosAttention",
+      "action": "rollback"
+    }
   ]
 }

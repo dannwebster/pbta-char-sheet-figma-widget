@@ -150,6 +150,70 @@ function lildice() {
     figma.notify('You rolled a ' + number1 + ' and a ' + number2 + ' (total: ' + total + ')')
   }
 
+  // Clock registry - maps clock names to their state, setter, and size
+  const clocks = {
+    'mythosFade': { state: mythosFade, setter: setMythosFade, size: 3 },
+    'logosCrack': { state: logosCrack, setter: setLogosCrack, size: 3 },
+    'mythosAttention': { state: mythosAttention, setter: setMythosAttention, size: 5 },
+    'logosAttention': { state: logosAttention, setter: setLogosAttention, size: 5 }
+  }
+
+  // Fix corrupted clock states
+  useEffect(() => {
+    Object.entries(clocks).forEach(([name, clock]) => {
+      if (clock.state.length !== clock.size) {
+        console.log(`Fixing ${name} length from ${clock.state.length} to ${clock.size}`)
+        clock.setter(Array(clock.size).fill(false))
+      }
+    })
+  })
+
+  const handleClockMove = (clockName, action) => {
+    console.log('handleClockMove called:', clockName, action)
+    const clock = clocks[clockName]
+    console.log('clock:', clock)
+    if (!clock) {
+      console.log('No clock found for:', clockName)
+      return
+    }
+    if (!Array.isArray(clock.state)) {
+      console.log('Clock state is not an array:', clock.state)
+      return
+    }
+
+    const currentState = clock.state
+    console.log('currentState:', currentState)
+
+    if (action === 'advance') {
+      // Find first unchecked box
+      let firstUnchecked = -1
+      for (let i = 0; i < currentState.length; i++) {
+        console.log('Checking index', i, ':', currentState[i], 'type:', typeof currentState[i])
+        if (currentState[i] === false) {
+          firstUnchecked = i
+          break
+        }
+      }
+      console.log('firstUnchecked:', firstUnchecked)
+      if (firstUnchecked !== -1) {
+        const newClock = [...currentState]
+        newClock[firstUnchecked] = true
+        console.log('Setting new clock state:', newClock)
+        clock.setter(newClock)
+      }
+    } else if (action === 'rollback') {
+      // Find last checked box
+      for (let i = currentState.length - 1; i >= 0; i--) {
+        if (currentState[i] === true) {
+          const newClock = [...currentState]
+          newClock[i] = false
+          clock.setter(newClock)
+          break
+        }
+      }
+    }
+  }
+
   useEffect(() => {
     figma.widget.waitForTask(new Promise(async resolve => {
       if (!initialized) {
@@ -590,6 +654,24 @@ function lildice() {
                 ))}
               </AutoLayout>
             ))}
+            <AutoLayout direction="vertical" spacing={8} padding={12} fill="#FFFFFF" cornerRadius={8}>
+              <Text fontSize={24} fontWeight={700}>Clock Moves</Text>
+              {movesData.ClockMoves.map((clockMove, idx) => (
+                <AutoLayout
+                    key={idx}
+                    fill="#E6E6E6"
+                    padding={8}
+                    cornerRadius={4}
+                    onClick={() => {
+                      handleClockMove(clockMove.clock, clockMove.action)
+                    }}
+                    spacing={6}
+                    width={350}
+                >
+                  <Text fontSize={18} fontWeight={600}>{clockMove.name}</Text>
+                </AutoLayout>
+              ))}
+            </AutoLayout>
           </AutoLayout>
         </AutoLayout>
         <AutoLayout spacing={12} verticalAlignItems="center" fill="#E8E8E8" padding={24} width="fill-parent" stroke="#333333" strokeWidth={2}>
