@@ -88,6 +88,32 @@ function lildice() {
   const [logosCrack, setLogosCrack] = useSyncedState("logosCrack", [false, false, false])
   const [logosValue, setLogosValue] = useSyncedState("logosValue", 0)
 
+  // Harm and Stress tracking
+  const harmLevels = [
+    { name: "Healthy", symbol: "", modifier: "" },
+    { name: "Marked", symbol: "", modifier: "" },
+    { name: "Injured", symbol: "", modifier: "" },
+    { name: "Wounded", symbol: "", modifier: "" },
+    { name: "Gasping", symbol: "", modifier: "" },
+    { name: "Out of It", symbol: "", modifier: "" },
+    { name: "Dying", symbol: "", modifier: "" }
+  ]
+  const stressLevels = [
+    { name: "Grounded", symbol: "", modifier: "" },
+    { name: "Shaken", symbol: "", modifier: "" },
+    { name: "Disturbed", symbol: "", modifier: "" },
+    { name: "Unraveled", symbol: "", modifier: "" },
+    { name: "Haunted", symbol: "", modifier: "" },
+    { name: "Broken", symbol: "", modifier: "" },
+    { name: "Shattered", symbol: "", modifier: "" }
+  ]
+  const [harmChecked, setHarmChecked] = useSyncedState("harmChecked", Array(7).fill(false))
+  const [stressChecked, setStressChecked] = useSyncedState("stressChecked", Array(7).fill(false))
+  const [harmSymbols, setHarmSymbols] = useSyncedState("harmSymbols", Array(7).fill(""))
+  const [stressSymbols, setStressSymbols] = useSyncedState("stressSymbols", Array(7).fill(""))
+  const [harmModifiers, setHarmModifiers] = useSyncedState("harmModifiers", Array(7).fill(""))
+  const [stressModifiers, setStressModifiers] = useSyncedState("stressModifiers", Array(7).fill(""))
+
   // Snapshot of modifiers used in the last roll
   const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
   const [rolledOngoing, setRolledOngoing] = useSyncedState("rolledOngoing", 0)
@@ -797,6 +823,113 @@ function lildice() {
               </Text>
             </>
             : null}
+        </AutoLayout>
+      </AutoLayout>
+      <AutoLayout direction="vertical" spacing={16} padding={16} width={600} fill="#F5F5F5" stroke="#333333" strokeWidth={2} cornerRadius={8}>
+        <Text fontSize={24} fontWeight={700}>Clocks</Text>
+        <AutoLayout direction="horizontal" spacing={16} width="fill-parent">
+          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
+            <Text fontSize={20} fontWeight={700}>Harm</Text>
+            {harmLevels.map((level, idx) => (
+              <AutoLayout key={idx} spacing={8} verticalAlignItems="center" width="fill-parent">
+                <AutoLayout
+                    width={20}
+                    height={20}
+                    fill={harmChecked[idx] ? "#333333" : "#FFFFFF"}
+                    stroke="#333333"
+                    strokeWidth={2}
+                    cornerRadius={4}
+                    horizontalAlignItems="center"
+                    verticalAlignItems="center"
+                    onClick={() => {
+                      const newChecked = [...harmChecked]
+                      newChecked[idx] = !newChecked[idx]
+                      setHarmChecked(newChecked)
+                    }}
+                >
+                  {harmChecked[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
+                </AutoLayout>
+                <Input
+                    value={harmSymbols[idx]}
+                    onTextEditEnd={(e) => {
+                      const newSymbols = [...harmSymbols]
+                      newSymbols[idx] = e.characters
+                      setHarmSymbols(newSymbols)
+                    }}
+                    fontSize={14}
+                    placeholder="Sym"
+                    width={40}
+                />
+                <Text fontSize={14} width={80}>{level.name}</Text>
+                <Input
+                    value={harmModifiers[idx]}
+                    onTextEditEnd={(e) => {
+                      const newModifiers = [...harmModifiers]
+                      newModifiers[idx] = e.characters
+                      setHarmModifiers(newModifiers)
+                    }}
+                    fontSize={14}
+                    placeholder="Mod"
+                    width={40}
+                />
+              </AutoLayout>
+            ))}
+          </AutoLayout>
+          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
+            <Text fontSize={20} fontWeight={700}>Stress</Text>
+            {stressLevels.map((level, idx) => (
+              <AutoLayout key={idx} spacing={8} verticalAlignItems="center" width="fill-parent">
+                <AutoLayout
+                    width={20}
+                    height={20}
+                    fill={stressChecked[idx] ? "#333333" : "#FFFFFF"}
+                    stroke="#333333"
+                    strokeWidth={2}
+                    cornerRadius={4}
+                    horizontalAlignItems="center"
+                    verticalAlignItems="center"
+                    onClick={() => {
+                      const newChecked = [...stressChecked]
+                      newChecked[idx] = !newChecked[idx]
+                      setStressChecked(newChecked)
+                    }}
+                >
+                  {stressChecked[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
+                </AutoLayout>
+                <Input
+                    value={stressSymbols[idx]}
+                    onTextEditEnd={(e) => {
+                      const newSymbols = [...stressSymbols]
+                      newSymbols[idx] = e.characters
+                      setStressSymbols(newSymbols)
+                    }}
+                    fontSize={14}
+                    placeholder="Sym"
+                    width={40}
+                />
+                <Text fontSize={14} width={80}>{level.name}</Text>
+                <Input
+                    value={stressModifiers[idx]}
+                    onTextEditEnd={(e) => {
+                      const newModifiers = [...stressModifiers]
+                      newModifiers[idx] = e.characters
+                      setStressModifiers(newModifiers)
+                    }}
+                    fontSize={14}
+                    placeholder="Mod"
+                    width={40}
+                />
+              </AutoLayout>
+            ))}
+          </AutoLayout>
+        </AutoLayout>
+        <AutoLayout direction="vertical" spacing={16} width="fill-parent">
+          <Text fontSize={24} fontWeight={700}>Contacts</Text>
+          <Text fontSize={16}>(Coming soon)</Text>
+        </AutoLayout>
+        <AutoLayout direction="vertical" spacing={16} width="fill-parent">
+          <Text fontSize={24} fontWeight={700}>Equipment</Text>
+          <Text fontSize={16}>(Coming soon)</Text>
         </AutoLayout>
       </AutoLayout>
       <AutoLayout
