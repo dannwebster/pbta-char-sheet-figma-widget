@@ -166,27 +166,55 @@
       }
     ]
   },
-  "GlobalMoves": [
+  "MultiAttributeMoves": [
     {
-      "name": "Change the Game",
-      "description": "When you modify the situation to generate a bonus for yourself or a hindrance for your opponent, describe the outcome you want. Then roll +the most relevant attribute (MC's decision)",
-      "13+": "Take 2 Juice and juice may also be spent to: Give +1 ongoing to yourself or one of your crew, Complete a Clock, Reset a Clock",
-      "10+": "Take 2 Juice. Exchange Juice 1-for-1 to:",
-      "hold": [
-        "Give a +1 forward to yourself or one of your Crew",
-        "Advance a Clock",
-        "Roll back a Clock",
-        "Inflict 1 Stress on a target"
-      ],
-      "7-9": "Take 1 Juice",
-      "6-": "It backfires. You take -1 forward, 1 Harm, or 1 Stress"
+      "Name": "Global Moves",
+      "Attributes": ["Muscle", "Finesse", "Grit", "Moxie", "Smarts", "Coin"],
+      "Moves": [
+        {
+          "name": "Change the Game",
+          "description": "When you modify the situation to generate a bonus for yourself or a hindrance for your opponent, describe the outcome you want. Then roll +the most relevant attribute (MC's decision)",
+          "13+": "Take 2 Juice and juice may also be spent to: Give +1 ongoing to yourself or one of your crew, Complete a Clock, Reset a Clock",
+          "10+": "Take 2 Juice. Exchange Juice 1-for-1 to:",
+          "hold": [
+            "Give a +1 forward to yourself or one of your Crew",
+            "Advance a Clock",
+            "Roll back a Clock",
+            "Inflict 1 Stress on a target"
+          ],
+          "7-9": "Take 1 Juice",
+          "6-": "It backfires. You take -1 forward, 1 Harm, or 1 Stress"
+        },
+        {
+          "name": "Take the Risk",
+          "description": "When you do something risky that is not covered by another move, describe the outcome you want. Then roll +the most relevant attribute (MC's decision)",
+          "10+": "It goes off without a hitch",
+          "7-9": "It works, but with a side-effect, cost, or hard choice",
+          "6-": "Something goes wrong. The MC will make a move against you"
+        }
+      ]
     },
     {
-      "name": "Take the Risk",
-      "description": "When you do something risky that is not covered by another move, describe the outcome you want. Then roll +the most relevant attribute (MC's decision)",
-      "10+": "It goes off without a hitch",
-      "7-9": "It works, but with a side-effect, cost, or hard choice",
-      "6-": "Something goes wrong. The MC will make a move against you"
+      "Name": "Mythos/Logos Moves",
+      "Attributes": ["Mythos", "Logos"],
+      "Moves": [
+        {
+          "name": "Explore Mythos/Logos Lore",
+          "description": "",
+          "13+": "",
+          "10+": "",
+          "7-9": "",
+          "6-": ""
+        },
+        {
+          "name": "Cultivate a Mythos/Logos Contact",
+          "description": "",
+          "13+": "",
+          "10+": "",
+          "7-9": "",
+          "6-": ""
+        }
+      ]
     }
   ]
 }

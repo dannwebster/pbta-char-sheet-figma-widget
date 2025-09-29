@@ -72,7 +72,7 @@ function lildice() {
   const [moveHistory, setMoveHistory] = useSyncedState("moveHistory", [])
   const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
   const [attributesLocked, setAttributesLocked] = useSyncedState("attributesLocked", false)
-  const [pendingGlobalMove, setPendingGlobalMove] = useSyncedState("pendingGlobalMove", null)
+  const [pendingMultiAttributeMove, setPendingMultiAttributeMove] = useSyncedState("pendingMultiAttributeMove", null)
 
   // Mythos and Logos fields
   const [mythosName, setMythosName] = useSyncedState("mythosName", "")
@@ -558,32 +558,36 @@ function lildice() {
               </AutoLayout>
             ))}
           </AutoLayout>
-          <AutoLayout direction="vertical" spacing={8} padding={12} fill="#FFFFFF" cornerRadius={8}>
-            <Text fontSize={24} fontWeight={700}>Global Moves</Text>
-            {movesData.GlobalMoves.map((move, idx) => (
-              <AutoLayout
-                  key={idx}
-                  fill="#E6E6E6"
-                  padding={8}
-                  cornerRadius={4}
-                  onClick={() => {
-                    setPendingGlobalMove(move)
-                  }}
-                  spacing={6}
-                  width={350}
-              >
-                <Text fontSize={18} fontWeight={600}>{move.name}</Text>
-                <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
+          <AutoLayout direction="vertical" spacing={8}>
+            {movesData.MultiAttributeMoves.map((section, sectionIdx) => (
+              <AutoLayout key={sectionIdx} direction="vertical" spacing={8} padding={12} fill="#FFFFFF" cornerRadius={8}>
+                <Text fontSize={24} fontWeight={700}>{section.Name}</Text>
+                {section.Moves.map((move, idx) => (
                   <AutoLayout
-                      horizontalAlignItems="center"
-                      verticalAlignItems="center"
-                      width={18}
-                      height={18}
-                      padding={4}
+                      key={idx}
+                      fill="#E6E6E6"
+                      padding={8}
+                      cornerRadius={4}
+                      onClick={() => {
+                        setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
+                      }}
+                      spacing={6}
+                      width={350}
                   >
-                    <Grid sides={6} size={3} fill="#FFFFFF" spacing={2} />
+                    <Text fontSize={18} fontWeight={600}>{move.name}</Text>
+                    <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
+                      <AutoLayout
+                          horizontalAlignItems="center"
+                          verticalAlignItems="center"
+                          width={18}
+                          height={18}
+                          padding={4}
+                      >
+                        <Grid sides={6} size={3} fill="#FFFFFF" spacing={2} />
+                      </AutoLayout>
+                    </Frame>
                   </AutoLayout>
-                </Frame>
+                ))}
               </AutoLayout>
             ))}
           </AutoLayout>
@@ -818,7 +822,7 @@ function lildice() {
           </>
         )}
       </AutoLayout>
-      {pendingGlobalMove && (
+      {pendingMultiAttributeMove && (
         <AutoLayout
             positioning="absolute"
             x={300}
@@ -841,17 +845,17 @@ function lildice() {
             ]}
         >
           <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <Text fontSize={24} fontWeight={700}>Select Attribute for {pendingGlobalMove.name}</Text>
+            <Text fontSize={24} fontWeight={700}>Select Attribute for {pendingMultiAttributeMove.move.name}</Text>
             <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-              {attributes.map(attr => (
+              {pendingMultiAttributeMove.attributes.map(attr => (
                 <AutoLayout
                     key={attr}
                     fill="#333333"
                     padding={12}
                     cornerRadius={4}
                     onClick={() => {
-                      roll(attributeValues[attr], "+" + attr, pendingGlobalMove)
-                      setPendingGlobalMove(null)
+                      roll(attributeValues[attr], "+" + attr, pendingMultiAttributeMove.move)
+                      setPendingMultiAttributeMove(null)
                     }}
                     width="fill-parent"
                     horizontalAlignItems="center"
@@ -859,38 +863,42 @@ function lildice() {
                   <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+{attr} ({(attributeValues[attr] >= 0 ? '+' : '') + attributeValues[attr]})</Text>
                 </AutoLayout>
               ))}
-              <AutoLayout
-                  fill="#333333"
-                  padding={12}
-                  cornerRadius={4}
-                  onClick={() => {
-                    roll(mythosValue, "+Mythos", pendingGlobalMove)
-                    setPendingGlobalMove(null)
-                  }}
-                  width="fill-parent"
-                  horizontalAlignItems="center"
-              >
-                <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+Mythos ({(mythosValue >= 0 ? '+' : '') + mythosValue})</Text>
-              </AutoLayout>
-              <AutoLayout
-                  fill="#333333"
-                  padding={12}
-                  cornerRadius={4}
-                  onClick={() => {
-                    roll(logosValue, "+Logos", pendingGlobalMove)
-                    setPendingGlobalMove(null)
-                  }}
-                  width="fill-parent"
-                  horizontalAlignItems="center"
-              >
-                <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+Logos ({(logosValue >= 0 ? '+' : '') + logosValue})</Text>
-              </AutoLayout>
+              {pendingMultiAttributeMove.attributes.includes("Mythos") && (
+                <AutoLayout
+                    fill="#333333"
+                    padding={12}
+                    cornerRadius={4}
+                    onClick={() => {
+                      roll(mythosValue, "+Mythos", pendingMultiAttributeMove.move)
+                      setPendingMultiAttributeMove(null)
+                    }}
+                    width="fill-parent"
+                    horizontalAlignItems="center"
+                >
+                  <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+Mythos ({(mythosValue >= 0 ? '+' : '') + mythosValue})</Text>
+                </AutoLayout>
+              )}
+              {pendingMultiAttributeMove.attributes.includes("Logos") && (
+                <AutoLayout
+                    fill="#333333"
+                    padding={12}
+                    cornerRadius={4}
+                    onClick={() => {
+                      roll(logosValue, "+Logos", pendingMultiAttributeMove.move)
+                      setPendingMultiAttributeMove(null)
+                    }}
+                    width="fill-parent"
+                    horizontalAlignItems="center"
+                >
+                  <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+Logos ({(logosValue >= 0 ? '+' : '') + logosValue})</Text>
+                </AutoLayout>
+              )}
             </AutoLayout>
             <AutoLayout
                 fill="#FF5555"
                 padding={12}
                 cornerRadius={4}
-                onClick={() => setPendingGlobalMove(null)}
+                onClick={() => setPendingMultiAttributeMove(null)}
                 width="fill-parent"
                 horizontalAlignItems="center"
             >
