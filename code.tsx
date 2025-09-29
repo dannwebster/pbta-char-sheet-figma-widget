@@ -456,8 +456,15 @@ function lildice() {
               padding={16}
               cornerRadius={8}
               onClick={() => {
-                setSelectedMove(null)
-                roll(0, "")
+                const basicRoll = {
+                  name: "Roll",
+                  description: "",
+                  "13+": "Critical Success",
+                  "10+": "Great Success",
+                  "7-9": "Partial Success",
+                  "6-": "Failure"
+                }
+                roll(0, "", basicRoll)
               }}
           >
             <Text fontSize={20} fontWeight={700} fill="#FFFFFF">Roll</Text>
