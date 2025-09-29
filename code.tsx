@@ -76,11 +76,13 @@ function lildice() {
   const [mythosName, setMythosName] = useSyncedState("mythosName", "")
   const [mythosConcept, setMythosConcept] = useSyncedState("mythosConcept", "")
   const [mythosQuestion, setMythosQuestion] = useSyncedState("mythosQuestion", "")
-  const [mythosAttention, setMythosAttention] = useSyncedState("mythosAttention", "")
+  const [mythosAttention, setMythosAttention] = useSyncedState("mythosAttention", [false, false, false, false, false])
+  const [mythosFade, setMythosFade] = useSyncedState("mythosFade", [false, false, false])
   const [logosName, setLogosName] = useSyncedState("logosName", "")
   const [logosConcept, setLogosConcept] = useSyncedState("logosConcept", "")
   const [logosStatement, setLogosStatement] = useSyncedState("logosStatement", "")
-  const [logosAttention, setLogosAttention] = useSyncedState("logosAttention", "")
+  const [logosAttention, setLogosAttention] = useSyncedState("logosAttention", [false, false, false, false, false])
+  const [logosCrack, setLogosCrack] = useSyncedState("logosCrack", [false, false, false])
 
   // Snapshot of modifiers used in the last roll
   const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
@@ -212,13 +214,53 @@ function lildice() {
             </AutoLayout>
             <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
               <Text fontSize={16} width={100}>Attention:</Text>
-              <Input
-                  value={mythosAttention}
-                  onTextEditEnd={(e) => setMythosAttention(e.characters)}
-                  fontSize={16}
-                  placeholder="Mythos Attention"
-                  width="fill-parent"
-              />
+              <AutoLayout spacing={8} direction="horizontal">
+                {[0, 1, 2, 3, 4].map((idx) => (
+                  <AutoLayout
+                      key={idx}
+                      width={18}
+                      height={18}
+                      fill={mythosAttention[idx] ? "#333333" : "#FFFFFF"}
+                      stroke="#333333"
+                      strokeWidth={2}
+                      cornerRadius={4}
+                      horizontalAlignItems="center"
+                      verticalAlignItems="center"
+                      onClick={() => {
+                        const newAttention = [...mythosAttention]
+                        newAttention[idx] = !newAttention[idx]
+                        setMythosAttention(newAttention)
+                      }}
+                  >
+                    {mythosAttention[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
+                  </AutoLayout>
+                ))}
+              </AutoLayout>
+            </AutoLayout>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Fade:</Text>
+              <AutoLayout spacing={8} direction="horizontal">
+                {[0, 1, 2].map((idx) => (
+                  <AutoLayout
+                      key={idx}
+                      width={18}
+                      height={18}
+                      fill={mythosFade[idx] ? "#333333" : "#FFFFFF"}
+                      stroke="#333333"
+                      strokeWidth={2}
+                      cornerRadius={4}
+                      horizontalAlignItems="center"
+                      verticalAlignItems="center"
+                      onClick={() => {
+                        const newFade = [...mythosFade]
+                        newFade[idx] = !newFade[idx]
+                        setMythosFade(newFade)
+                      }}
+                  >
+                    {mythosFade[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
+                  </AutoLayout>
+                ))}
+              </AutoLayout>
             </AutoLayout>
           </AutoLayout>
           <AutoLayout direction="vertical" spacing={8} width="fill-parent">
@@ -255,13 +297,53 @@ function lildice() {
             </AutoLayout>
             <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
               <Text fontSize={16} width={100}>Attention:</Text>
-              <Input
-                  value={logosAttention}
-                  onTextEditEnd={(e) => setLogosAttention(e.characters)}
-                  fontSize={16}
-                  placeholder="Logos Attention"
-                  width="fill-parent"
-              />
+              <AutoLayout spacing={8} direction="horizontal">
+                {[0, 1, 2, 3, 4].map((idx) => (
+                  <AutoLayout
+                      key={idx}
+                      width={18}
+                      height={18}
+                      fill={logosAttention[idx] ? "#333333" : "#FFFFFF"}
+                      stroke="#333333"
+                      strokeWidth={2}
+                      cornerRadius={4}
+                      horizontalAlignItems="center"
+                      verticalAlignItems="center"
+                      onClick={() => {
+                        const newAttention = [...logosAttention]
+                        newAttention[idx] = !newAttention[idx]
+                        setLogosAttention(newAttention)
+                      }}
+                  >
+                    {logosAttention[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
+                  </AutoLayout>
+                ))}
+              </AutoLayout>
+            </AutoLayout>
+            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
+              <Text fontSize={16} width={100}>Crack:</Text>
+              <AutoLayout spacing={8} direction="horizontal">
+                {[0, 1, 2].map((idx) => (
+                  <AutoLayout
+                      key={idx}
+                      width={18}
+                      height={18}
+                      fill={logosCrack[idx] ? "#333333" : "#FFFFFF"}
+                      stroke="#333333"
+                      strokeWidth={2}
+                      cornerRadius={4}
+                      horizontalAlignItems="center"
+                      verticalAlignItems="center"
+                      onClick={() => {
+                        const newCrack = [...logosCrack]
+                        newCrack[idx] = !newCrack[idx]
+                        setLogosCrack(newCrack)
+                      }}
+                  >
+                    {logosCrack[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
+                  </AutoLayout>
+                ))}
+              </AutoLayout>
             </AutoLayout>
           </AutoLayout>
         </AutoLayout>
