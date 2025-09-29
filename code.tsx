@@ -367,11 +367,11 @@ function lildice() {
                     setOngoing(Math.max(-5, Math.min(5, val)))
                   }
                 }}
-                fontSize={16}
-                width={40}
+                fontSize={24}
+                width={60}
                 horizontalAlignText="center"
             />
-            <Text fontSize={16} fontWeight={600}>Ongoing</Text>
+            <Text fontSize={24} fontWeight={600}>Ongoing</Text>
           </AutoLayout>
         </AutoLayout>
         <AutoLayout
