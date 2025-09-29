@@ -167,11 +167,13 @@ function lildice() {
   const [ongoing, setOngoing] = useSyncedState("ongoing", 0)
   const [characterName, setCharacterName] = useSyncedState("characterName", "Character Name")
   const [selectedMove, setSelectedMove] = useSyncedState("selectedMove", null)
+  const [moveHistory, setMoveHistory] = useSyncedState("moveHistory", [])
 
   // Snapshot of modifiers used in the last roll
   const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
   const [rolledOngoing, setRolledOngoing] = useSyncedState("rolledOngoing", 0)
   const [rolledModifier, setRolledModifier] = useSyncedState("rolledModifier", 0)
+  const [rollText, setRollText] = useSyncedState("rollText", "")
 
   // Initialize attribute values as an object
   const initialAttributeValues = {}
@@ -185,6 +187,19 @@ function lildice() {
     let number2 = Math.floor(Math.random() * 6) + 1
     let total = number1 + number2 + mod + forward + ongoing
 
+    // Build roll text
+    let rollTextStr = `${total} = [(${number1} + ${number2})`
+    if (name) {
+      rollTextStr += modifierName && mod !== 0 ? (mod >= 0 ? ' +' + mod : ' -' + Math.abs(mod)) + ' (' + name + ')' : mod === 0 ? ' +' + mod + ' (' + name + ')' : ''
+    }
+    rollTextStr += ']'
+    if (forward !== 0) {
+      rollTextStr += (forward >= 0 ? ' +' + forward : ' -' + Math.abs(forward)) + ' (Forward)'
+    }
+    if (ongoing !== 0) {
+      rollTextStr += (ongoing >= 0 ? ' +' + ongoing : ' -' + Math.abs(ongoing)) + ' (Ongoing)'
+    }
+
     // Save snapshot of modifiers used in this roll
     setSides1(number1)
     setSides2(number2)
@@ -192,6 +207,22 @@ function lildice() {
     setModifierName(name)
     setRolledForward(forward)
     setRolledOngoing(ongoing)
+    setRollText(rollTextStr)
+
+    // Add to move history if a move was selected
+    if (selectedMove) {
+      const historyEntry = {
+        move: selectedMove.move,
+        total: total,
+        dice: [number1, number2],
+        modifier: mod,
+        forward: forward,
+        ongoing: ongoing,
+        rollText: rollTextStr,
+        timestamp: Date.now()
+      }
+      setMoveHistory([historyEntry, ...moveHistory])
+    }
 
     // Reset forward after roll
     setForward(0)
@@ -212,6 +243,7 @@ function lildice() {
   })
 
   return (
+      <AutoLayout direction="horizontal" spacing={0}>
       <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={800}>
         <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF">
           <Text fontSize={40} fontWeight={700}>Character: </Text>
@@ -517,15 +549,60 @@ function lildice() {
               <Text fontSize={32} fontWeight={700}>
                 Roll:
               </Text>
-              <Text fontSize={32} fontWeight={700} fill="#FF0000">
-                {sides1 + sides2 + rolledModifier + rolledForward + rolledOngoing}
-              </Text>
               <Text fontSize={32} fontWeight={700} width="fill-parent">
-                = [({sides1} + {sides2}){modifierName && rolledModifier !== 0 ? (rolledModifier >= 0 ? ' +' + rolledModifier : ' -' + Math.abs(rolledModifier)) + ' (' + modifierName + ')' : modifierName && rolledModifier === 0 ? ' +' + rolledModifier + ' (' + modifierName + ')' : ''}]{rolledForward !== 0 ? (rolledForward >= 0 ? ' +' + rolledForward : ' -' + Math.abs(rolledForward)) + ' (Forward)' : ''}{rolledOngoing !== 0 ? (rolledOngoing >= 0 ? ' +' + rolledOngoing : ' -' + Math.abs(rolledOngoing)) + ' (Ongoing)' : ''}
+                {rollText}
               </Text>
             </>
             : null}
         </AutoLayout>
+      </AutoLayout>
+      <AutoLayout
+          direction="vertical"
+          width={400}
+          fill="#F5F5F5"
+          stroke="#333333"
+          strokeWidth={2}
+          cornerRadius={8}
+          padding={16}
+          spacing={16}
+      >
+        <Text fontSize={20} fontWeight={700}>Move History</Text>
+        {moveHistory.length === 0 ? (
+          <Text fontSize={16}>Roll a move to see outcomes</Text>
+        ) : (
+          <AutoLayout direction="vertical" spacing={12} width="fill-parent">
+            {moveHistory.map((entry, idx) => {
+              let outcomeText = ""
+              if (entry.move["13+"] && entry.total >= 13) {
+                outcomeText = `13+: ${entry.move["13+"]}`
+              } else if (entry.total >= 10) {
+                outcomeText = `10+: ${entry.move["10+"]}`
+              } else if (entry.total >= 7) {
+                outcomeText = `7-9: ${entry.move["7-9"]}`
+              } else if (entry.move["6-"]) {
+                outcomeText = `6-: ${entry.move["6-"]}`
+              }
+
+              return (
+                <AutoLayout
+                    key={idx}
+                    direction="vertical"
+                    fill="#FFFFFF"
+                    padding={12}
+                    cornerRadius={4}
+                    width="fill-parent"
+                    spacing={8}
+                >
+                  <Text fontSize={18} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
+                  <Text fontSize={16} fontWeight={600} width="fill-parent">Roll: {entry.rollText}</Text>
+                  <Text fontSize={14} width="fill-parent">{entry.move.description}</Text>
+                  <Text fontSize={14} fontWeight={600} width="fill-parent">{outcomeText}</Text>
+                </AutoLayout>
+              )
+            })}
+          </AutoLayout>
+        )}
+      </AutoLayout>
       </AutoLayout>
   )
 }
