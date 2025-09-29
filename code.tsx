@@ -147,10 +147,10 @@ function Grid(props) {
         <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
       </AutoLayout>
     case 6:
-      return <AutoLayout {...attrs}>
-        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
-        <AutoLayout horizontalAlignItems="center" width="fill-parent"><Dot visible={false} size={dotSize} fill={dotFill} /></AutoLayout>
-        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
+      return <AutoLayout direction="horizontal" spacing={dotSpacing} height="fill-parent">
+        <AutoLayout direction="vertical" spacing="auto" height="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
+        <AutoLayout verticalAlignItems="center" height="fill-parent"><Dot visible={false} size={dotSize} fill={dotFill} /></AutoLayout>
+        <AutoLayout direction="vertical" spacing="auto" height="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
       </AutoLayout>
     default:
       return <Dot visible={true} size={dotSize} fill={dotFill} />
@@ -212,7 +212,7 @@ function lildice() {
   })
 
   return (
-      <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={600}>
+      <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={800}>
         <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF">
           <Text fontSize={40} fontWeight={700}>Character: </Text>
           <Input
@@ -376,6 +376,34 @@ function lildice() {
                     </AutoLayout>
                   </Frame>
                   <Text fontSize={24} fontWeight={700} fill="#FFFFFF">+{attr}</Text>
+                </AutoLayout>
+                <AutoLayout direction="vertical" spacing={4}>
+                  {moves[attr].map((move, idx) => (
+                    <AutoLayout
+                        key={`${attr}-${idx}`}
+                        fill="#E6E6E6"
+                        padding={8}
+                        cornerRadius={4}
+                        onClick={() => {
+                          setSelectedMove({ attribute: attr, move: move })
+                          roll(attributeValues[attr], "+" + attr)
+                        }}
+                        spacing={6}
+                    >
+                      <Text fontSize={18} fontWeight={600}>{move.name}</Text>
+                      <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
+                        <AutoLayout
+                            horizontalAlignItems="center"
+                            verticalAlignItems="center"
+                            width={18}
+                            height={18}
+                            padding={4}
+                        >
+                          <Grid sides={6} size={2} fill="#FFFFFF" spacing={2} />
+                        </AutoLayout>
+                      </Frame>
+                    </AutoLayout>
+                  ))}
                 </AutoLayout>
               </AutoLayout>
             ))}
