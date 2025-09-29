@@ -3,6 +3,7 @@
     {
       "name": "Go Toe To Toe",
       "description": "When you use your abilities to overcome someone or something in a struggle for control, state what your goal is. Your opponent can describe how they respond, at their option. Roll+Muscle.",
+      "13+": "Choose all 3.",
       "10+": "Choose 2:",
       "hold": [
         "You manage to achieve your goal, e.g., take something they hold.",
@@ -15,6 +16,7 @@
     {
       "name": "Hit With All You've Got",
       "description": "When you have a clear shot and you use your strength to hit someone or something with all you've got, roll+Muscle. On a hit, you give Harm to your opponent as established.",
+      "13+": "Choose 3.",
       "10+": "Choose 2:",
       "hold": [
         "You take cover or secure a superior position. If you don't choose this, they can give you Harm",
@@ -31,6 +33,7 @@
     {
       "name": "Sneak Around",
       "description": "When you use your agility to act secretly or deceptively, roll+Finesse.",
+      "13+": "Everyone that should fall for it falls for it, and you get a little something extra. Take 1 Juice.",
       "10+": "Everyone that should fall for it falls for it.",
       "7-9": "As above, but it's complicated. The MC chooses 1:",
       "hold": [
@@ -43,10 +46,11 @@
     {
       "name": "Take The Shot",
       "description": "When you take aim and shoot at an enemy at range (close or far), roll +Finesse.",
+      "13+": "You deal damage and choose 2:",
       "10+": "You deal damage and choose 1:",
       "hold": [
         "You keep your position for another shot",
-        "You create an advantage (create a tag)",
+        "You create an advantage. Take 1 Juice",
         "Do 1 more harm"
       ],
       "7-9": "You deal damage but lose your position; you must move to take another shot.",
@@ -94,6 +98,7 @@
     {
       "name": "Draw Them Out",
       "description": "Use your charisma to get information from a target. When you try to charm answers from a target, roll+Moxie:",
+      "13+": "Hold 3, and you can Ask Any Question instead of just those listed",
       "10+": "Hold 3: Spend your hold 1-for-1 to ask one of the following questions, and the MC will answer truthfully:",
       "hold": [
         "What do you or an associate want?",
@@ -109,16 +114,20 @@
   "Smarts": [
     {
       "name": "Investigate a Mystery",
-      "description": "You may go to each Contact for help for help once per job during the Legwork Phase, roll +the contact rating of the NPC.",
-      "10+": "You get what you want and a little something extra (choose either Secrets or Gear).",
-      "7-9": "You get what you want, but choose 2 from the list below:",
+      "description": "When you investigate a mystery, roll +Smarts.",
+      "13+": "Hold 2. You can ask any Question, not just the listed ones",
+      "10+": "Hold 2. Hold can be spent 1 for 1 to ask Keeper one of the following questions",
+      "7-9": "Hold 1. Hold can be spent 1 for 1 to ask Keeper one of the following questions",
       "hold": [
-        "Your request is going to cost you extra. Mark 1 Loot",
-        "Your request is going to attract unwanted attention, complications, consequences, or take extra time",
-        "Your contact needs you to help them out with something. If you turn them down, take -1 to their contact rating until you make it right",
-        "They give you what you think you should want"
+        "What happened here?",
+        "What sort of entity is it?",
+        "What are it's powers?",
+        "What are it's weaknesses?",
+        "Where did it go?",
+        "What was it going to do?",
+        "What is being concealed here?"
       ],
-      "6-": "You get what they think you should want and Advance the Legwork Clock"
+      "6-": "Hold 1, and the MC will give you an answer you don't want to hear."
     },
     {
       "name": "Read a Bad Situation",

@@ -516,22 +516,13 @@ function lildice() {
             <AutoLayout direction="vertical" spacing={12} width="fill-parent">
               {moveHistory.slice(historyPage * 5, (historyPage * 5) + 5).map((entry, idx) => {
                 let outcomeText = ""
-                let holdOptions = []
+                let holdOptions = entry.move.hold || []
                 if (entry.move["13+"] && entry.total >= 13) {
                   outcomeText = `13+: ${entry.move["13+"]}`
-                  if (entry.move.hold) {
-                    holdOptions = entry.move.hold
-                  }
                 } else if (entry.total >= 10) {
                   outcomeText = `10+: ${entry.move["10+"]}`
-                  if (entry.move.hold) {
-                    holdOptions = entry.move.hold
-                  }
                 } else if (entry.total >= 7) {
                   outcomeText = `7-9: ${entry.move["7-9"]}`
-                  if (entry.move.hold) {
-                    holdOptions = entry.move.hold
-                  }
                 } else if (entry.move["6-"]) {
                   outcomeText = `6-: ${entry.move["6-"]}`
                 }
