@@ -72,6 +72,7 @@ function lildice() {
   const [moveHistory, setMoveHistory] = useSyncedState("moveHistory", [])
   const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
   const [attributesLocked, setAttributesLocked] = useSyncedState("attributesLocked", false)
+  const [pendingGlobalMove, setPendingGlobalMove] = useSyncedState("pendingGlobalMove", null)
 
   // Mythos and Logos fields
   const [mythosName, setMythosName] = useSyncedState("mythosName", "")
@@ -162,7 +163,7 @@ function lildice() {
 
   return (
       <AutoLayout direction="horizontal" spacing={0}>
-      <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={800}>
+      <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={1200}>
         <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF" spacing={16}>
           <AutoLayout
               fill={attributesLocked ? "#FF5555" : "#55FF55"}
@@ -412,7 +413,7 @@ function lildice() {
             </AutoLayout>
           </AutoLayout>
         </AutoLayout>
-        <AutoLayout direction="horizontal" spacing={24} padding={24}>
+        <AutoLayout direction="horizontal" spacing={24} padding={24} horizontalAlignItems="start">
           <AutoLayout direction="vertical" spacing={8}>
             {attributes.map(attr => (
               <AutoLayout
@@ -554,6 +555,35 @@ function lildice() {
                     </AutoLayout>
                   ))}
                 </AutoLayout>
+              </AutoLayout>
+            ))}
+          </AutoLayout>
+          <AutoLayout direction="vertical" spacing={8} padding={12} fill="#FFFFFF" cornerRadius={8}>
+            <Text fontSize={24} fontWeight={700}>Global Moves</Text>
+            {movesData.GlobalMoves.map((move, idx) => (
+              <AutoLayout
+                  key={idx}
+                  fill="#E6E6E6"
+                  padding={8}
+                  cornerRadius={4}
+                  onClick={() => {
+                    setPendingGlobalMove(move)
+                  }}
+                  spacing={6}
+                  width={350}
+              >
+                <Text fontSize={18} fontWeight={600}>{move.name}</Text>
+                <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
+                  <AutoLayout
+                      horizontalAlignItems="center"
+                      verticalAlignItems="center"
+                      width={18}
+                      height={18}
+                      padding={4}
+                  >
+                    <Grid sides={6} size={3} fill="#FFFFFF" spacing={2} />
+                  </AutoLayout>
+                </Frame>
               </AutoLayout>
             ))}
           </AutoLayout>
@@ -788,6 +818,87 @@ function lildice() {
           </>
         )}
       </AutoLayout>
+      {pendingGlobalMove && (
+        <AutoLayout
+            positioning="absolute"
+            x={300}
+            y={300}
+            fill="#FFFFFF"
+            stroke="#333333"
+            strokeWidth={3}
+            cornerRadius={8}
+            padding={24}
+            direction="vertical"
+            spacing={16}
+            effect={[
+              {
+                type: 'drop-shadow',
+                color: { r: 0, g: 0, b: 0, a: 0.5 },
+                offset: { x: 0, y: 4 },
+                blur: 20,
+                spread: 0,
+              },
+            ]}
+        >
+          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
+            <Text fontSize={24} fontWeight={700}>Select Attribute for {pendingGlobalMove.name}</Text>
+            <AutoLayout direction="vertical" spacing={8} width="fill-parent">
+              {attributes.map(attr => (
+                <AutoLayout
+                    key={attr}
+                    fill="#333333"
+                    padding={12}
+                    cornerRadius={4}
+                    onClick={() => {
+                      roll(attributeValues[attr], "+" + attr, pendingGlobalMove)
+                      setPendingGlobalMove(null)
+                    }}
+                    width="fill-parent"
+                    horizontalAlignItems="center"
+                >
+                  <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+{attr} ({(attributeValues[attr] >= 0 ? '+' : '') + attributeValues[attr]})</Text>
+                </AutoLayout>
+              ))}
+              <AutoLayout
+                  fill="#333333"
+                  padding={12}
+                  cornerRadius={4}
+                  onClick={() => {
+                    roll(mythosValue, "+Mythos", pendingGlobalMove)
+                    setPendingGlobalMove(null)
+                  }}
+                  width="fill-parent"
+                  horizontalAlignItems="center"
+              >
+                <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+Mythos ({(mythosValue >= 0 ? '+' : '') + mythosValue})</Text>
+              </AutoLayout>
+              <AutoLayout
+                  fill="#333333"
+                  padding={12}
+                  cornerRadius={4}
+                  onClick={() => {
+                    roll(logosValue, "+Logos", pendingGlobalMove)
+                    setPendingGlobalMove(null)
+                  }}
+                  width="fill-parent"
+                  horizontalAlignItems="center"
+              >
+                <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+Logos ({(logosValue >= 0 ? '+' : '') + logosValue})</Text>
+              </AutoLayout>
+            </AutoLayout>
+            <AutoLayout
+                fill="#FF5555"
+                padding={12}
+                cornerRadius={4}
+                onClick={() => setPendingGlobalMove(null)}
+                width="fill-parent"
+                horizontalAlignItems="center"
+            >
+              <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Cancel</Text>
+            </AutoLayout>
+          </AutoLayout>
+        </AutoLayout>
+      )}
       </AutoLayout>
   )
 }
