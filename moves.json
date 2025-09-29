@@ -3,14 +3,28 @@
     {
       "name": "Go Toe To Toe",
       "description": "When you use your abilities to overcome someone or something in a struggle for control, state what your goal is. Your opponent can describe how they respond, at their option. Roll+Muscle.",
-      "10+": "Choose 2:\n• You manage to achieve your goal, e.g., take something they hold.\n• You get them good, giving your opponent harm as established by your attacks\n• You block, dodge, or counter their best attempts.(If you don't choose this, they will do Harm to you as established).",
-      "7-9": "Choose 1:\n• You manage to achieve your goal, e.g., take something they hold.\n• You get them good, giving your opponent harm as established by your attacks\n• You block, dodge, or counter their best attempts.(If you don't choose this, they will do Harm to you as established)."
+      "10+": "Choose 2:",
+      "hold": [
+        "You manage to achieve your goal, e.g., take something they hold.",
+        "You get them good, giving your opponent harm as established by your attacks",
+        "You block, dodge, or counter their best attempts.(If you don't choose this, they will do Harm to you as established)."
+      ],
+      "7-9": "Choose 1:",
+      "6-": "You fail to accomplish your goal, and take Harm or Stress as established"
     },
     {
       "name": "Hit With All You've Got",
       "description": "When you have a clear shot and you use your strength to hit someone or something with all you've got, roll+Muscle. On a hit, you give Harm to your opponent as established.",
-      "10+": "Choose 2:\n• You take cover or secure a superior position. If you don't choose this, they can give you Harm\n• You get them good (+1 Harm).\n• You control the collateral damage.\n• You hold the target's attention, if possible.\n• You gain the upper hand. Take 1 Juice.",
-      "7-9": "Choose 1:\n• You take cover or secure a superior position. If you don't choose this, they can give you Harm\n• You get them good (+1 Harm).\n• You control the collateral damage.\n• You hold the target's attention, if possible.\n• You gain the upper hand. Take 1 Juice."
+      "10+": "Choose 2:",
+      "hold": [
+        "You take cover or secure a superior position. If you don't choose this, they can give you Harm",
+        "You get them good (+1 Harm).",
+        "You control the collateral damage.",
+        "You hold the target's attention, if possible.",
+        "You gain the upper hand. Take 1 Juice."
+      ],
+      "7-9": "Choose 1:",
+      "6-": "You fail to hit them and, and take Harm or Stress as established"
     }
   ],
   "Finesse": [
@@ -18,12 +32,23 @@
       "name": "Sneak Around",
       "description": "When you use your agility to act secretly or deceptively, roll+Finesse.",
       "10+": "Everyone that should fall for it falls for it.",
-      "7-9": "As above, but it's complicated. The MC chooses 1:\n• Someone unimportant noticed you, but that just made them important, right?\n• You are perceived only by a secondary sense (someone picks up your scent while you're stalking them; you're seen whispering a message but the message is not heard).\n• You must leave something important behind or be discovered"
+      "7-9": "As above, but it's complicated. The MC chooses 1:",
+      "hold": [
+        "Someone unimportant noticed you, but that just made them important, right?",
+        "You are perceived only by a secondary sense (someone picks up your scent while you're stalking them; you're seen whispering a message but the message is not heard).",
+        "You must leave something important behind or be discovered"
+      ],
+      "6-": "You are noticed, but still have a chance to escape"
     },
     {
       "name": "Take The Shot",
       "description": "When you take aim and shoot at an enemy at range (close or far), roll +Finesse.",
-      "10+": "You deal damage and choose 1:\n• You keep your position for another shot\n• You create an advantage (create a tag)\n• Do 1 more harm",
+      "10+": "You deal damage and choose 1:",
+      "hold": [
+        "You keep your position for another shot",
+        "You create an advantage (create a tag)",
+        "Do 1 more harm"
+      ],
       "7-9": "You deal damage but lose your position; you must move to take another shot.",
       "6-": "You miss and the MC makes a move against you"
     }
@@ -33,7 +58,12 @@
       "name": "To Protect and Serve",
       "description": "When you stand in defense of another person, an item, or a location under attack, roll +Grit.",
       "13+": "As for 10+, and inflict 1 Harm or Stress on the attacker",
-      "10+": "Hold 3. Spend your hold, 1-for-1, to:\n• Redirect an attack to yourself\n• Reduce the Harm or Stress of the attack by 1\n• Create an advantage. Create 1 Juice",
+      "10+": "Hold 3. Spend your hold, 1-for-1, to:",
+      "hold": [
+        "Redirect an attack to yourself",
+        "Reduce the Harm or Stress of the attack by 1",
+        "Create an advantage. Create 1 Juice"
+      ],
       "7-9": "Hold 1",
       "6-": "The original target takes harm as established, and your attempts backfires. You take -1 forward, 1 Harm, or 1 Stress, or the target takes 1 more Harm or Stress"
     },
@@ -51,14 +81,27 @@
       "name": "Talk Them Into It",
       "description": "When you use your abilities to talk, threaten, or seduce someone into doing something, roll+Moxie.",
       "13+": "Hold 3, and you may turn them into a +0 Contact",
-      "10+": "Hold 3: Spend your hold 1-for-1 to:\n• Change the target's agenda 1-for-1 to your agena\n• Inflict 1 Stress on the target\n• Have the target comply without questions or a need for reassurance, payment, or coercion\n• Have them comply without eliciting suspicion from those around you",
+      "10+": "Hold 3: Spend your hold 1-for-1 to:",
+      "hold": [
+        "Change the target's agenda 1-for-1 to your agena",
+        "Inflict 1 Stress on the target",
+        "Have the target comply without questions or a need for reassurance, payment, or coercion",
+        "Have them comply without eliciting suspicion from those around you"
+      ],
       "7-9": "Hold 2",
       "6-": "Hold 1, but the target becomes hostile"
     },
     {
       "name": "Draw Them Out",
       "description": "Use your charisma to get information from a target. When you try to charm answers from a target, roll+Moxie:",
-      "10+": "Hold 3: Spend your hold 1-for-1 to ask one of the following questions, and the MC will answer truthfully:\n• What do you or an associate want?\n• What do you or an associate plan to do?\n• What are you or an associate hiding?\n• What is you or an associate's greatest power?\n• What is you or an associate's greatest weakness",
+      "10+": "Hold 3: Spend your hold 1-for-1 to ask one of the following questions, and the MC will answer truthfully:",
+      "hold": [
+        "What do you or an associate want?",
+        "What do you or an associate plan to do?",
+        "What are you or an associate hiding?",
+        "What is you or an associate's greatest power?",
+        "What is you or an associate's greatest weakness"
+      ],
       "7-9": "Hold 1",
       "6-": "Hold 1, but the target becomes hostile, or the MC will answer give you an answer that you wish wasn't true"
     }
@@ -68,14 +111,28 @@
       "name": "Investigate a Mystery",
       "description": "You may go to each Contact for help for help once per job during the Legwork Phase, roll +the contact rating of the NPC.",
       "10+": "You get what you want and a little something extra (choose either Secrets or Gear).",
-      "7-9": "You get what you want, but choose 2 from the list below:\n• Your request is going to cost you extra. Mark 1 Loot\n• Your request is going to attract unwanted attention, complications, consequences, or take extra time\n• Your contact needs you to help them out with something. If you turn them down, take -1 to their contact rating until you make it right\n• They give you what you think you should want",
+      "7-9": "You get what you want, but choose 2 from the list below:",
+      "hold": [
+        "Your request is going to cost you extra. Mark 1 Loot",
+        "Your request is going to attract unwanted attention, complications, consequences, or take extra time",
+        "Your contact needs you to help them out with something. If you turn them down, take -1 to their contact rating until you make it right",
+        "They give you what you think you should want"
+      ],
       "6-": "You get what they think you should want and Advance the Legwork Clock"
     },
     {
       "name": "Read a Bad Situation",
       "description": "When you look around and read a bad situation, roll +Smarts.",
       "13+": "Hold 3. You can ask any Question, not just the listed ones",
-      "10+": "Hold 3. Hold can be spent 1 for 1 to ask Keeper one of the following questions. If you act on the answers, you get +1 ongoing while the information is relevant:\n• What's my best way in?\n• What's my best way out?\n• Are there any dangers we haven't noticed?\n• What's the biggest threat?\n• What's most vulnerable to me?\n• What's the best way to protect the Victims?",
+      "10+": "Hold 3. Hold can be spent 1 for 1 to ask Keeper one of the following questions. If you act on the answers, you get +1 ongoing while the information is relevant:",
+      "hold": [
+        "What's my best way in?",
+        "What's my best way out?",
+        "Are there any dangers we haven't noticed?",
+        "What's the biggest threat?",
+        "What's most vulnerable to me?",
+        "What's the best way to protect the Victims?"
+      ],
       "7-9": "Hold 1",
       "6-": "Hold 1, and the MC will give you an answer you don't want to hear."
     }
