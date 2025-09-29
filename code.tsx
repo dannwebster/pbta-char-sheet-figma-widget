@@ -70,6 +70,7 @@ function lildice() {
   const [selectedMove, setSelectedMove] = useSyncedState("selectedMove", null)
   const [moveHistory, setMoveHistory] = useSyncedState("moveHistory", [])
   const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
+  const [attributesLocked, setAttributesLocked] = useSyncedState("attributesLocked", false)
 
   // Snapshot of modifiers used in the last roll
   const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
@@ -147,7 +148,15 @@ function lildice() {
   return (
       <AutoLayout direction="horizontal" spacing={0}>
       <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={800}>
-        <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF">
+        <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF" spacing={16}>
+          <AutoLayout
+              fill={attributesLocked ? "#FF5555" : "#55FF55"}
+              padding={12}
+              cornerRadius={8}
+              onClick={() => setAttributesLocked(!attributesLocked)}
+          >
+            <Text fontSize={32} fontWeight={700}>{attributesLocked ? "🔒" : "🔓"}</Text>
+          </AutoLayout>
           <Text fontSize={40} fontWeight={700}>Character: </Text>
           <Input
               value={characterName}
@@ -249,47 +258,53 @@ function lildice() {
               >
                 <AutoLayout direction="vertical" spacing={4}>
                   <AutoLayout
-                      fill="#E6E6E6"
+                      fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
                       padding={4}
                       cornerRadius={4}
                       width={24}
                       horizontalAlignItems="center"
                       onClick={() => {
-                        const newVal = Math.min(5, attributeValues[attr] + 1)
-                        setAttributeValues({
-                          ...attributeValues,
-                          [attr]: newVal
-                        })
+                        if (!attributesLocked) {
+                          const newVal = Math.min(5, attributeValues[attr] + 1)
+                          setAttributeValues({
+                            ...attributeValues,
+                            [attr]: newVal
+                          })
+                        }
                       }}
                   >
-                    <Text fontSize={12} fontWeight={600}>+</Text>
+                    <Text fontSize={12} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>+</Text>
                   </AutoLayout>
                   <AutoLayout
-                      fill="#E6E6E6"
+                      fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
                       padding={4}
                       cornerRadius={4}
                       width={24}
                       horizontalAlignItems="center"
                       onClick={() => {
-                        const newVal = Math.max(-5, attributeValues[attr] - 1)
-                        setAttributeValues({
-                          ...attributeValues,
-                          [attr]: newVal
-                        })
+                        if (!attributesLocked) {
+                          const newVal = Math.max(-5, attributeValues[attr] - 1)
+                          setAttributeValues({
+                            ...attributeValues,
+                            [attr]: newVal
+                          })
+                        }
                       }}
                   >
-                    <Text fontSize={12} fontWeight={600}>-</Text>
+                    <Text fontSize={12} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>-</Text>
                   </AutoLayout>
                 </AutoLayout>
                 <Input
                     value={(attributeValues[attr] >= 0 ? '+' : '') + String(attributeValues[attr])}
                     onTextEditEnd={(e) => {
-                      let val = parseInt(e.characters)
-                      if (!isNaN(val)) {
-                        setAttributeValues({
-                          ...attributeValues,
-                          [attr]: Math.max(-5, Math.min(5, val))
-                        })
+                      if (!attributesLocked) {
+                        let val = parseInt(e.characters)
+                        if (!isNaN(val)) {
+                          setAttributeValues({
+                            ...attributeValues,
+                            [attr]: Math.max(-5, Math.min(5, val))
+                          })
+                        }
                       }
                     }}
                     fontSize={24}
