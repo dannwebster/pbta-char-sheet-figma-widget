@@ -5,48 +5,53 @@ const attributes = ["Muscle", "Finesse", "Grit", "Moxie", "Smarts", "Coin"]
 
 function Dot(props) {
   let visible = props.visible
+  let size = props.size || 24
+  let fill = props.fill || "#333333"
   return (
       <Ellipse
           opacity={visible ? 1 : 0}
-          width={24}
-          height={24}
-          fill="#333333"
+          width={size}
+          height={size}
+          fill={fill}
       ></Ellipse>
   )
 }
 
 function Grid(props) {
   let sides = props.sides
+  let dotSize = props.size || 24
+  let dotFill = props.fill || "#333333"
+  let dotSpacing = props.spacing || 12
   let attrs = {
     direction: "vertical" as const,
-    spacing: 12,
+    spacing: dotSpacing,
     width: "fill-parent" as const
   }
   switch(sides) {
     case 1:
-      return <Dot visible={true} />
+      return <Dot visible={true} size={dotSize} fill={dotFill} />
     case 2:
     case 3:
       return <AutoLayout {...attrs}>
-        <AutoLayout horizontalAlignItems="start" width="fill-parent"><Dot visible={true} /></AutoLayout>
-        <AutoLayout horizontalAlignItems="center" width="fill-parent"><Dot visible={sides == 2 ? false : true} /></AutoLayout>
-        <AutoLayout horizontalAlignItems="end" width="fill-parent"><Dot visible={true} /></AutoLayout>
+        <AutoLayout horizontalAlignItems="start" width="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
+        <AutoLayout horizontalAlignItems="center" width="fill-parent"><Dot visible={sides == 2 ? false : true} size={dotSize} fill={dotFill} /></AutoLayout>
+        <AutoLayout horizontalAlignItems="end" width="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
       </AutoLayout>
     case 4:
     case 5:
       return <AutoLayout {...attrs}>
-        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} /><Dot visible={true} /></AutoLayout>
-        <AutoLayout horizontalAlignItems="center" width="fill-parent"><Dot visible={sides == 4 ? false : true} /></AutoLayout>
-        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} /><Dot visible={true} /></AutoLayout>
+        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
+        <AutoLayout horizontalAlignItems="center" width="fill-parent"><Dot visible={sides == 4 ? false : true} size={dotSize} fill={dotFill} /></AutoLayout>
+        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
       </AutoLayout>
     case 6:
       return <AutoLayout {...attrs}>
-        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} /><Dot visible={true} /><Dot visible={true} /></AutoLayout>
-        <AutoLayout horizontalAlignItems="center" width="fill-parent"><Dot visible={false} /></AutoLayout>
-        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} /><Dot visible={true} /><Dot visible={true} /></AutoLayout>
+        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
+        <AutoLayout horizontalAlignItems="center" width="fill-parent"><Dot visible={false} size={dotSize} fill={dotFill} /></AutoLayout>
+        <AutoLayout spacing="auto" width="fill-parent"><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /><Dot visible={true} size={dotSize} fill={dotFill} /></AutoLayout>
       </AutoLayout>
     default:
-      return <Dot visible={true} />
+      return <Dot visible={true} size={dotSize} fill={dotFill} />
   }
 }
 
@@ -123,6 +128,7 @@ function lildice() {
               width={192}
               height={192}
               cornerRadius={32}
+              onClick={() => roll(0, "")}
               effect={[
                 {
                   type: 'drop-shadow',
@@ -157,6 +163,7 @@ function lildice() {
               width={192}
               height={192}
               cornerRadius={32}
+              onClick={() => roll(0, "")}
               effect={[
                 {
                   type: 'drop-shadow',
@@ -242,12 +249,30 @@ function lildice() {
                         })
                       }
                     }}
-                    fontSize={16}
-                    width={40}
+                    fontSize={24}
+                    width={60}
                     horizontalAlignText="center"
                 />
-                <AutoLayout onClick={() => roll(attributeValues[attr], "+" + attr)}>
-                  <Text fontSize={16} fontWeight={600}>+{attr}</Text>
+                <AutoLayout
+                    onClick={() => roll(attributeValues[attr], "+" + attr)}
+                    fill="#333333"
+                    padding={8}
+                    cornerRadius={4}
+                    horizontalAlignItems="start"
+                    spacing={6}
+                >
+                  <Frame width={27} height={27} fill="#FFFFFF" cornerRadius={4}>
+                    <AutoLayout
+                        horizontalAlignItems="center"
+                        verticalAlignItems="center"
+                        width={27}
+                        height={27}
+                        padding={6}
+                    >
+                      <Grid sides={6} size={3} fill="#333333" spacing={3} />
+                    </AutoLayout>
+                  </Frame>
+                  <Text fontSize={24} fontWeight={700} fill="#FFFFFF">+{attr}</Text>
                 </AutoLayout>
               </AutoLayout>
             ))}
@@ -299,11 +324,11 @@ function lildice() {
                     setForward(Math.max(-5, Math.min(5, val)))
                   }
                 }}
-                fontSize={16}
-                width={40}
+                fontSize={24}
+                width={60}
                 horizontalAlignText="center"
             />
-            <Text fontSize={16} fontWeight={600}>Forward</Text>
+            <Text fontSize={24} fontWeight={600}>Forward</Text>
           </AutoLayout>
           <AutoLayout
               fill="#FFFFFF"
@@ -349,13 +374,15 @@ function lildice() {
             <Text fontSize={16} fontWeight={600}>Ongoing</Text>
           </AutoLayout>
         </AutoLayout>
-        {sides1 && sides2 ?
-            <AutoLayout
-                fill="#E8E8E8"
-                padding={16}
-                width="fill-parent"
-                spacing={8}
-            >
+        <AutoLayout
+            fill="#E8E8E8"
+            padding={16}
+            width="fill-parent"
+            spacing={8}
+            height={115}
+        >
+          {sides1 && sides2 ?
+            <>
               <Text fontSize={32} fontWeight={700}>
                 Roll:
               </Text>
@@ -363,10 +390,11 @@ function lildice() {
                 {sides1 + sides2 + rolledModifier + rolledForward + rolledOngoing}
               </Text>
               <Text fontSize={32} fontWeight={700} width="fill-parent">
-                = [({sides1} + {sides2}) {rolledModifier >= 0 ? ' +' + rolledModifier : ' -' + Math.abs(rolledModifier)}{modifierName ? ' (' + modifierName + ')' : ''}]{rolledForward !== 0 ? (rolledForward >= 0 ? ' +' + rolledForward : ' -' + Math.abs(rolledForward)) + ' (Forward)' : ''}{rolledOngoing !== 0 ? (rolledOngoing >= 0 ? ' +' + rolledOngoing : ' -' + Math.abs(rolledOngoing)) + ' (Ongoing)' : ''}
+                = [({sides1} + {sides2}){modifierName && rolledModifier !== 0 ? (rolledModifier >= 0 ? ' +' + rolledModifier : ' -' + Math.abs(rolledModifier)) + ' (' + modifierName + ')' : modifierName && rolledModifier === 0 ? ' +' + rolledModifier + ' (' + modifierName + ')' : ''}]{rolledForward !== 0 ? (rolledForward >= 0 ? ' +' + rolledForward : ' -' + Math.abs(rolledForward)) + ' (Forward)' : ''}{rolledOngoing !== 0 ? (rolledOngoing >= 0 ? ' +' + rolledOngoing : ' -' + Math.abs(rolledOngoing)) + ' (Ongoing)' : ''}
               </Text>
-            </AutoLayout>
+            </>
             : null}
+        </AutoLayout>
       </AutoLayout>
   )
 }
