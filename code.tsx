@@ -396,23 +396,39 @@ function lildice() {
                     <Text fontSize={12} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>-</Text>
                   </AutoLayout>
                 </AutoLayout>
-                <Input
-                    value={(attributeValues[attr] >= 0 ? '+' : '') + String(attributeValues[attr])}
-                    onTextEditEnd={(e) => {
-                      if (!attributesLocked) {
-                        let val = parseInt(e.characters)
-                        if (!isNaN(val)) {
-                          setAttributeValues({
-                            ...attributeValues,
-                            [attr]: Math.max(-5, Math.min(5, val))
-                          })
-                        }
-                      }
-                    }}
-                    fontSize={24}
+                <Frame
                     width={60}
-                    horizontalAlignText="center"
-                />
+                    height={60}
+                    stroke="#333333"
+                    strokeWidth={2}
+                    cornerRadius={30}
+                    fill="#FFFFFF"
+                >
+                  <AutoLayout
+                      width={60}
+                      height={60}
+                      horizontalAlignItems="center"
+                      verticalAlignItems="center"
+                  >
+                    <Input
+                        value={(attributeValues[attr] >= 0 ? '+' : '') + String(attributeValues[attr])}
+                        onTextEditEnd={(e) => {
+                          if (!attributesLocked) {
+                            let val = parseInt(e.characters)
+                            if (!isNaN(val)) {
+                              setAttributeValues({
+                                ...attributeValues,
+                                [attr]: Math.max(-5, Math.min(5, val))
+                              })
+                            }
+                          }
+                        }}
+                        fontSize={24}
+                        width={50}
+                        horizontalAlignText="center"
+                    />
+                  </AutoLayout>
+                </Frame>
                 <AutoLayout
                     onClick={() => {
                       const attributeRoll = {
