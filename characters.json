@@ -4,7 +4,7 @@
     "subtitle": "Frontierswoman",
     "moves": {
       "mythos": {
-        "anchorMove": {  
+        "anchorMove": {
           "name": "Winchester Model 1876 Lever Action Rifle",
           "subtitle": "Mythic Weapon",
           "description": "You have a mythic weapon that does 3 harm, functions at all ranges, is mystically concealable, and cannot be taken from you by normal means.  When using it, use the better of (+Mythos) or (+Attribute+1). Take one “drawback” tag for the weapon: 🗹 loud ❑ messy ❑reload ❑ unreliable",
@@ -12,11 +12,17 @@
             "name": "A-whoopin' and a-hollerin'",
             "description": "You are Impulsive and reckless, and find it hard to do methodical tasks while wielding your weapon. You may take -1 ongoing on long-form tasks to mark Attention to your Mythos."
           },
-          "moveReferences": ["Go Toe To Toe", "Hit With All You've Got", "Take The Shot"],
-          "attributeReferences": ["Mythos"]
+          "moveReferences": [
+            "Go Toe To Toe",
+            "Hit With All You've Got",
+            "Take The Shot"
+          ],
+          "attributeReferences": [
+            "Mythos"
+          ]
         },
         "additionalMoves": [
-          {  
+          {
             "name": "Enchanted Ammo",
             "subtitle": "Switchable Attack Modes",
             "description": "Your Mythic Weapon can be loaded with multiple different ammo types to account for different circumstances (see next page). Adds the “reload” tag to the weapon. To Reload, roll +Mythos",
@@ -29,7 +35,7 @@
             "10+": "You have plenty of ammo of exactly the kind you need for the situation",
             "7-9": "You have the ammo, but it the MC will choose a drawback or flaw",
             "6-": "You have Just One Bullet of the type you need and the it is deeply flawed. The MC will tell you how",
-            "hold" : [
+            "hold": [
               "Armor Piercing - gains 'ignore armor'",
               "Buckshot - hits more than one target",
               "Chain Shot - can entangle targets",
@@ -52,34 +58,39 @@
       },
       "logos": {
         "anchorMove": {
-          "name": "Winchester Model 1876 Lever Action Rifle",
-          "subtitle": "Mythic Weapon",
-          "description": "You have a mythic weapon that does 3 harm, functions at all ranges, is mystically concealable, and cannot be taken from you by normal means.  When using it, use the better of (+Mythos) or (+Attribute+1). Take one “drawback” tag for the weapon: 🗹 loud ❑ messy ❑reload ❑ unreliable",
+          "name": "Infiltrator",
+          "description": "When you attempt to infiltrate a secure area alone, roll +Logos. As the MC describes the infiltration and the security measures you must overcome, you may spend 1 hold to describe how you overcome the obstacle and",
+          "10+": "Gain 3 hold.",
+          "7-9": "gain 1 hold.",
           "flaw": {
-            "name": "",
-            "description": ""
+            "name": "Under Cover of Darkness",
+            "description": "If you have to Infiltrate in an a way that leaves you feeling literally or metaphorically exposed, you may take 1 Stress to mark Attention on your Logos"
           },
-          "moveReferences": ["Read a Bad Situation"]
+          "attributeReferences": [
+            "Logos"
+          ],
+          "hold": [
+            "bypass a security system or guard",
+            "disable a guard",
+            "disable a security system you have bypassed",
+            "give an advantage (+1 forward) to a member of your crew"
+          ]
         },
         "additionalMoves": [
           {
-            "name": "Work Your Connections",
+            "name": "Super Spy",
             "subtitle": "",
-            "description": "",
+            "description": "During your infiltration, you will have opportunity to observe information that will be useful later. After you have spent all your Infiltrator hold you may sort through what you have taken to get 2 hold as though you had rolled 10+ on Investigate a Mystery.",
             "flaw": {
-              "name": "",
-              "description": ""
+              "name": "I Know Too Much",
+              "description": "Describe how something you learned spying reminds you of your criminal past, and take 1 Stress to mark Attention to your Logos."
             },
-            "13+": "",
-            "10+": "",
-            "7-9": "",
-            "6-": "",
-            "hold" : [
-              "",
-              ""
+            "moveReferences": [
+              "Investigate a Mystery"
             ]
           }
         ]
       }
     }
-    ]
+  }
+]
