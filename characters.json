@@ -1,0 +1,85 @@
+﻿[
+  {
+    "name": "Dakota Boone",
+    "subtitle": "Frontierswoman",
+    "moves": {
+      "mythos": {
+        "anchorMove": {  
+          "name": "Winchester Model 1876 Lever Action Rifle",
+          "subtitle": "Mythic Weapon",
+          "description": "You have a mythic weapon that does 3 harm, functions at all ranges, is mystically concealable, and cannot be taken from you by normal means.  When using it, use the better of (+Mythos) or (+Attribute+1). Take one “drawback” tag for the weapon: 🗹 loud ❑ messy ❑reload ❑ unreliable",
+          "flaw": {
+            "name": "A-whoopin' and a-hollerin'",
+            "description": "You are Impulsive and reckless, and find it hard to do methodical tasks while wielding your weapon. You may take -1 ongoing on long-form tasks to mark Attention to your Mythos."
+          },
+          "moveReferences": ["Go Toe To Toe", "Hit With All You've Got", "Take The Shot"],
+          "attributeReferences": ["Mythos"]
+        },
+        "additionalMoves": [
+          {  
+            "name": "Enchanted Ammo",
+            "subtitle": "Switchable Attack Modes",
+            "description": "Your Mythic Weapon can be loaded with multiple different ammo types to account for different circumstances (see next page). Adds the “reload” tag to the weapon. To Reload, roll +Mythos",
+            "flaw": {
+              "name": "Ammo Grab Bag",
+              "description": "You can tell the MC that you are randomly drawing ammo to mark Attention on your Mythos. The MC will choose what he thinks is the most interesting..."
+            },
+            "attribute": "Mythos",
+            "13+": "",
+            "10+": "You have plenty of ammo of exactly the kind you need for the situation",
+            "7-9": "You have the ammo, but it the MC will choose a drawback or flaw",
+            "6-": "You have Just One Bullet of the type you need and the it is deeply flawed. The MC will tell you how",
+            "hold" : [
+              "Armor Piercing - gains 'ignore armor'",
+              "Buckshot - hits more than one target",
+              "Chain Shot - can entangle targets",
+              "Explosive - blows up on impac",
+              "Ghost Shot - can hurt incorporeal entities",
+              "Incendiary - starts fires",
+              "Trick Shot - can ricochet off hard surfaces to shoot around corners, etc."
+            ]
+          },
+          {
+            "name": "Alive to my Surroundings",
+            "subtitle": "Supernaturally Aware",
+            "description": "Whenever you Read a Bad Situation, you always take 1 additional hold, even on a 6-. Additionally, you can always spend your hold from Read a Bad Situation, to Ask Any Question.",
+            "flaw": {
+              "name": "Sensory Overload",
+              "description": "Whenever you are in a highly stimulating situation, you may take 1 Stress to mark Attention to your Mythos"
+            }
+          }
+        ]
+      },
+      "logos": {
+        "anchorMove": {
+          "name": "Winchester Model 1876 Lever Action Rifle",
+          "subtitle": "Mythic Weapon",
+          "description": "You have a mythic weapon that does 3 harm, functions at all ranges, is mystically concealable, and cannot be taken from you by normal means.  When using it, use the better of (+Mythos) or (+Attribute+1). Take one “drawback” tag for the weapon: 🗹 loud ❑ messy ❑reload ❑ unreliable",
+          "flaw": {
+            "name": "",
+            "description": ""
+          },
+          "moveReferences": ["Read a Bad Situation"]
+        },
+        "additionalMoves": [
+          {
+            "name": "Work Your Connections",
+            "subtitle": "",
+            "description": "",
+            "flaw": {
+              "name": "",
+              "description": ""
+            },
+            "13+": "",
+            "10+": "",
+            "7-9": "",
+            "6-": "",
+            "hold" : [
+              "",
+              ""
+            ]
+          }
+        ]
+      }
+    }
+    ]
