@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/dannw/AppData/Local/Figma/app-125.8.8/PbtA Dice Roller/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

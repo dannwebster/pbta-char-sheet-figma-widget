@@ -1,0 +1,19 @@
+{
+  "name": "PbtA Char Sheet",
+  "id": "1554205046670950584",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "documentAccess": "dynamic-page",
+  "editorType": [
+    "figjam"
+  ],
+  "containsWidget": true,
+  "widgetApi": "1.0.0",
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  }
+}
