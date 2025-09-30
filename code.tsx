@@ -59,7 +59,7 @@ function Grid(props) {
   }
 }
 
-function lildice() {
+function pbta_character() {
   const [initialized, setInitialized] = useSyncedState("initialized", false)
   const [sides1, setSides1] = useSyncedState("side1", null)
   const [sides2, setSides2] = useSyncedState("side2", null)
@@ -90,23 +90,26 @@ function lildice() {
 
   // Harm and Stress tracking
   const harmLevels = [
-    { name: "Healthy", symbol: "", modifier: "" },
-    { name: "Marked", symbol: "", modifier: "" },
-    { name: "Injured", symbol: "", modifier: "" },
-    { name: "Wounded", symbol: "", modifier: "-1" },
-    { name: "Gasping", symbol: "", modifier: "-2" },
-    { name: "Out of It", symbol: "", modifier: "-3" },
-    { name: "Dying", symbol: "", modifier: "" }
+    { name: "Healthy",   symbol: "☆", modifier: "" },   // White Star
+    { name: "Marked",    symbol: "○", modifier: "" },   // White Circle
+    { name: "Injured",   symbol: "◔", modifier: "" },   // Circle 1/4 Black
+    { name: "Wounded",   symbol: "◑", modifier: "-1" }, // Circle Right Half Black
+    { name: "Gasping",   symbol: "◕", modifier: "-2" }, // Circle 3/4 Black
+    { name: "Out of It", symbol: "●", modifier: "-3" }, // Black Circle
+    { name: "Dying",     symbol: "☠", modifier: "" }    // Skull and Crossbones
   ]
+
   const stressLevels = [
-    { name: "Grounded", symbol: "", modifier: "" },
-    { name: "Shaken", symbol: "", modifier: "" },
-    { name: "Disturbed", symbol: "", modifier: "" },
-    { name: "Unraveled", symbol: "", modifier: "-1" },
-    { name: "Haunted", symbol: "", modifier: "-2" },
-    { name: "Broken", symbol: "", modifier: "-3" },
-    { name: "Shattered", symbol: "", modifier: "" }
+    { name: "Grounded",  symbol: "☆", modifier: "" },   // White Star
+    { name: "Shaken",    symbol: "○", modifier: "" },   // White Circle
+    { name: "Disturbed", symbol: "◔", modifier: "" },   // Circle 1/4 Black
+    { name: "Unraveled", symbol: "◑", modifier: "-1" }, // Circle Right Half Black
+    { name: "Haunted",   symbol: "◕", modifier: "-2" }, // Circle 3/4 Black
+    { name: "Broken",    symbol: "●", modifier: "-3" }, // Black Circle
+    { name: "Shattered", symbol: "☠", modifier: "" }    // Skull and Crossbones
   ]
+  
+
   const [harmChecked, setHarmChecked] = useSyncedState("harmChecked", Array(7).fill(false))
   const [stressChecked, setStressChecked] = useSyncedState("stressChecked", Array(7).fill(false))
   const [harmSymbols, setHarmSymbols] = useSyncedState("harmSymbols", Array(7).fill(""))
@@ -285,7 +288,7 @@ function lildice() {
           "6-": ""
         },
         total: 0,
-        dice: null,
+        dice: [0,0],
         modifier: 0,
         forward: 0,
         ongoing: 0,
@@ -905,29 +908,9 @@ function lildice() {
                 >
                   {harmChecked[idx] && <Text fontSize={18} fill="#FFFFFF">✓</Text>}
                 </AutoLayout>
-                <Input
-                    value={harmSymbols[idx]}
-                    onTextEditEnd={(e) => {
-                      const newSymbols = [...harmSymbols]
-                      newSymbols[idx] = e.characters
-                      setHarmSymbols(newSymbols)
-                    }}
-                    fontSize={21}
-                    placeholder="Sym"
-                    width={60}
-                />
+                <Text fontSize={21} width={30}>{level.symbol}</Text>
                 <Text fontSize={21} width={120}>{level.name}</Text>
-                <Input
-                    value={harmModifiers[idx]}
-                    onTextEditEnd={(e) => {
-                      const newModifiers = [...harmModifiers]
-                      newModifiers[idx] = e.characters
-                      setHarmModifiers(newModifiers)
-                    }}
-                    fontSize={21}
-                    placeholder="Mod"
-                    width={60}
-                />
+                <Text fontSize={21} width={30}>{level.modifier}</Text>
               </AutoLayout>
             ))}
           </AutoLayout>
@@ -952,29 +935,9 @@ function lildice() {
                 >
                   {stressChecked[idx] && <Text fontSize={18} fill="#FFFFFF">✓</Text>}
                 </AutoLayout>
-                <Input
-                    value={stressSymbols[idx]}
-                    onTextEditEnd={(e) => {
-                      const newSymbols = [...stressSymbols]
-                      newSymbols[idx] = e.characters
-                      setStressSymbols(newSymbols)
-                    }}
-                    fontSize={21}
-                    placeholder="Sym"
-                    width={60}
-                />
+                <Text fontSize={21} width={30}>{level.symbol}</Text>
                 <Text fontSize={21} width={120}>{level.name}</Text>
-                <Input
-                    value={stressModifiers[idx]}
-                    onTextEditEnd={(e) => {
-                      const newModifiers = [...stressModifiers]
-                      newModifiers[idx] = e.characters
-                      setStressModifiers(newModifiers)
-                    }}
-                    fontSize={21}
-                    placeholder="Mod"
-                    width={60}
-                />
+                <Text fontSize={21} width={30}>{level.modifier}</Text>
               </AutoLayout>
             ))}
           </AutoLayout>
@@ -1430,4 +1393,4 @@ function lildice() {
       </AutoLayout>
   )
 }
-widget.register(lildice)
+widget.register(pbta_character)
