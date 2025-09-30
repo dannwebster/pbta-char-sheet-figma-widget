@@ -73,6 +73,7 @@ function pbta_character() {
   const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
   const [attributesLocked, setAttributesLocked] = useSyncedState("attributesLocked", false)
   const [pendingMultiAttributeMove, setPendingMultiAttributeMove] = useSyncedState("pendingMultiAttributeMove", null)
+  const [basicMovesExpanded, setBasicMovesExpanded] = useSyncedState("basicMovesExpanded", false)
 
   // Archetype selection
   const archetypes = {
@@ -338,7 +339,8 @@ function pbta_character() {
   })
 
   return (
-      <AutoLayout direction="horizontal" spacing={0}>
+      <AutoLayout direction="vertical" spacing={16}>
+        <AutoLayout direction="horizontal" spacing={0}>
       <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={1200}>
         <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF" spacing={16}>
           <AutoLayout
@@ -1290,15 +1292,15 @@ function pbta_character() {
             <AutoLayout direction="vertical" spacing={12} width="fill-parent">
               {moveHistory.slice(historyPage * 5, (historyPage * 5) + 5).map((entry, idx) => {
                 let outcomeText = ""
-                let holdOptions = entry.move.hold || []
-                if (entry.move["13+"] && entry.total >= 13) {
-                  outcomeText = `13+: ${entry.move["13+"]}`
+                let holdOptions = entry.move.outcomes?.hold || []
+                if (entry.move.outcomes?.["13+"] && entry.total >= 13) {
+                  outcomeText = `13+: ${entry.move.outcomes["13+"]}`
                 } else if (entry.total >= 10) {
-                  outcomeText = `10+: ${entry.move["10+"]}`
+                  outcomeText = `10+: ${entry.move.outcomes?.["10+"]}`
                 } else if (entry.total >= 7) {
-                  outcomeText = `7-9: ${entry.move["7-9"]}`
-                } else if (entry.move["6-"]) {
-                  outcomeText = `6-: ${entry.move["6-"]}`
+                  outcomeText = `7-9: ${entry.move.outcomes?.["7-9"]}`
+                } else if (entry.move.outcomes?.["6-"]) {
+                  outcomeText = `6-: ${entry.move.outcomes["6-"]}`
                 }
 
                 return (
@@ -1384,6 +1386,165 @@ function pbta_character() {
           </>
         )}
       </AutoLayout>
+        </AutoLayout>
+
+      {/* Basic Moves Section */}
+      <AutoLayout
+          direction="vertical"
+          width={1800}
+          fill="#FFFFFF"
+          stroke="#333333"
+          strokeWidth={2}
+          padding={16}
+          spacing={12}
+          cornerRadius={8}
+      >
+        <AutoLayout
+            direction="horizontal"
+            width="fill-parent"
+            verticalAlignItems="center"
+            spacing={12}
+        >
+          <AutoLayout
+              fill="#333333"
+              padding={8}
+              cornerRadius={4}
+              onClick={() => setBasicMovesExpanded(!basicMovesExpanded)}
+          >
+            <Text fontSize={20} fontWeight={700} fill="#FFFFFF">
+              {basicMovesExpanded ? "▼" : "▶"}
+            </Text>
+          </AutoLayout>
+          <Text fontSize={24} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+            Basic Moves
+          </Text>
+        </AutoLayout>
+
+        {basicMovesExpanded && (
+          <AutoLayout direction="vertical" spacing={12} width="fill-parent">
+            {/* First row: Muscle, Finesse, Grit */}
+            <AutoLayout direction="horizontal" spacing={12} width="fill-parent">
+              {Object.keys(movesData.AttributeMoves).slice(0, 3).map(attribute => (
+                <AutoLayout
+                    key={attribute}
+                    direction="vertical"
+                    width="fill-parent"
+                    fill="#F5F5F5"
+                    stroke="#333333"
+                    strokeWidth={2}
+                    padding={16}
+                    cornerRadius={8}
+                    spacing={12}
+                >
+                  <Text fontSize={22} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                    {attribute} Moves
+                  </Text>
+                  {movesData.AttributeMoves[attribute].map((move, idx) => (
+                    <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
+                      <Text fontSize={18} fontWeight={700} width="fill-parent">
+                        {move.name}
+                      </Text>
+                      <Text fontSize={15} width="fill-parent">
+                        {move.description}
+                      </Text>
+                      {move.outcomes?.["13+"] && (
+                        <Text fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On 13+:</Text> {move.outcomes["13+"]}
+                        </Text>
+                      )}
+                      {move.outcomes?.["10+"] && (
+                        <Text fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On 10+:</Text> {move.outcomes["10+"]}
+                        </Text>
+                      )}
+                      {move.outcomes?.["7-9"] && (
+                        <Text fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On 7-9:</Text> {move.outcomes["7-9"]}
+                        </Text>
+                      )}
+                      {move.outcomes?.["6-"] && (
+                        <Text fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On 6-:</Text> {move.outcomes["6-"]}
+                        </Text>
+                      )}
+                      {move.outcomes?.hold && move.outcomes.hold.length > 0 && (
+                        <AutoLayout direction="vertical" spacing={3} width="fill-parent">
+                          {move.outcomes.hold.map((option, optIdx) => (
+                            <Text key={optIdx} fontSize={15} width="fill-parent">
+                              • {option}
+                            </Text>
+                          ))}
+                        </AutoLayout>
+                      )}
+                    </AutoLayout>
+                  ))}
+                </AutoLayout>
+              ))}
+            </AutoLayout>
+
+            {/* Second row: Moxie, Smarts, Coin */}
+            <AutoLayout direction="horizontal" spacing={12} width="fill-parent">
+              {Object.keys(movesData.AttributeMoves).slice(3, 6).map(attribute => (
+                <AutoLayout
+                    key={attribute}
+                    direction="vertical"
+                    width="fill-parent"
+                    fill="#F5F5F5"
+                    stroke="#333333"
+                    strokeWidth={2}
+                    padding={16}
+                    cornerRadius={8}
+                    spacing={12}
+                >
+                  <Text fontSize={22} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                    {attribute} Moves
+                  </Text>
+                  {movesData.AttributeMoves[attribute].map((move, idx) => (
+                    <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
+                      <Text fontSize={18} fontWeight={700} width="fill-parent">
+                        {move.name}
+                      </Text>
+                      <Text fontSize={15} width="fill-parent">
+                        {move.description}
+                      </Text>
+                      {move.outcomes?.["13+"] && (
+                        <Text fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On 13+:</Text> {move.outcomes["13+"]}
+                        </Text>
+                      )}
+                      {move.outcomes?.["10+"] && (
+                        <Text fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On 10+:</Text> {move.outcomes["10+"]}
+                        </Text>
+                      )}
+                      {move.outcomes?.["7-9"] && (
+                        <Text fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On 7-9:</Text> {move.outcomes["7-9"]}
+                        </Text>
+                      )}
+                      {move.outcomes?.["6-"] && (
+                        <Text fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On 6-:</Text> {move.outcomes["6-"]}
+                        </Text>
+                      )}
+                      {move.outcomes?.hold && move.outcomes.hold.length > 0 && (
+                        <AutoLayout direction="vertical" spacing={3} width="fill-parent">
+                          {move.outcomes.hold.map((option, optIdx) => (
+                            <Text key={optIdx} fontSize={15} width="fill-parent">
+                              • {option}
+                            </Text>
+                          ))}
+                        </AutoLayout>
+                      )}
+                    </AutoLayout>
+                  ))}
+                </AutoLayout>
+              ))}
+            </AutoLayout>
+          </AutoLayout>
+        )}
+      </AutoLayout>
+
       {pendingMultiAttributeMove && (
         <AutoLayout
             positioning="absolute"
