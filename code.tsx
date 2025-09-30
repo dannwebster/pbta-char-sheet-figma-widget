@@ -956,7 +956,7 @@ function pbta_character() {
                     fill={harmChecked[idx] ? "#333333" : "#FFFFFF"}
                     stroke="#333333"
                     strokeWidth={2}
-                    cornerRadius={4}
+                    cornerRadius={15}
                     horizontalAlignItems="center"
                     verticalAlignItems="center"
                     onClick={() => {
@@ -965,9 +965,8 @@ function pbta_character() {
                       setHarmChecked(newChecked)
                     }}
                 >
-                  {harmChecked[idx] && <Text fontSize={18} fill="#FFFFFF">✓</Text>}
+                  <Text fontSize={18} fill={harmChecked[idx] ? "#FFFFFF" : "#333333"}>{level.symbol}</Text>
                 </AutoLayout>
-                <Text fontSize={21} width={30}>{level.symbol}</Text>
                 <Text fontSize={21} width={120}>{level.name}</Text>
                 <Text fontSize={21} width={30}>{level.modifier}</Text>
               </AutoLayout>
@@ -983,7 +982,7 @@ function pbta_character() {
                     fill={stressChecked[idx] ? "#333333" : "#FFFFFF"}
                     stroke="#333333"
                     strokeWidth={2}
-                    cornerRadius={4}
+                    cornerRadius={15}
                     horizontalAlignItems="center"
                     verticalAlignItems="center"
                     onClick={() => {
@@ -992,9 +991,8 @@ function pbta_character() {
                       setStressChecked(newChecked)
                     }}
                 >
-                  {stressChecked[idx] && <Text fontSize={18} fill="#FFFFFF">✓</Text>}
+                  <Text fontSize={18} fill={stressChecked[idx] ? "#FFFFFF" : "#333333"}>{level.symbol}</Text>
                 </AutoLayout>
-                <Text fontSize={21} width={30}>{level.symbol}</Text>
                 <Text fontSize={21} width={120}>{level.name}</Text>
                 <Text fontSize={21} width={30}>{level.modifier}</Text>
               </AutoLayout>
