@@ -1391,7 +1391,7 @@ function pbta_character() {
       {/* Basic Moves Section */}
       <AutoLayout
           direction="vertical"
-          width={1800}
+          width={2250}
           fill="#FFFFFF"
           stroke="#333333"
           strokeWidth={2}
@@ -1411,11 +1411,11 @@ function pbta_character() {
               cornerRadius={4}
               onClick={() => setBasicMovesExpanded(!basicMovesExpanded)}
           >
-            <Text fontSize={20} fontWeight={700} fill="#FFFFFF">
+            <Text fontSize={25} fontWeight={700} fill="#FFFFFF">
               {basicMovesExpanded ? "▼" : "▶"}
             </Text>
           </AutoLayout>
-          <Text fontSize={24} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+          <Text fontSize={30} fontWeight={700} width="fill-parent" horizontalAlignText="center">
             Basic Moves
           </Text>
         </AutoLayout>
@@ -1436,26 +1436,26 @@ function pbta_character() {
                     cornerRadius={8}
                     spacing={12}
                 >
-                  <Text fontSize={22} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                  <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
                     {attribute} Moves
                   </Text>
                   {movesData.AttributeMoves[attribute].map((move, idx) => (
                     <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
-                      <Text fontSize={18} fontWeight={700} width="fill-parent">
+                      <Text fontSize={22} fontWeight={700} width="fill-parent">
                         {move.name}
                       </Text>
-                      <Text fontSize={15} width="fill-parent">
+                      <Text fontSize={19} width="fill-parent">
                         {move.description}
                       </Text>
                       {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
-                        <Text key={key} fontSize={15} width="fill-parent">
+                        <Text key={key} fontSize={19} width="fill-parent">
                           • On {key}: {value}
                         </Text>
                       ))}
                       {move.hold && move.hold.length > 0 && (
                         <AutoLayout direction="vertical" spacing={3} width="fill-parent">
                           {move.hold.map((option, optIdx) => (
-                            <Text key={optIdx} fontSize={15} width="fill-parent">
+                            <Text key={optIdx} fontSize={19} width="fill-parent">
                               • {option}
                             </Text>
                           ))}
@@ -1510,6 +1510,112 @@ function pbta_character() {
                   ))}
                 </AutoLayout>
               ))}
+            </AutoLayout>
+
+            {/* Third row: Global Moves, Mythos/Logos Moves, Clock Moves */}
+            <AutoLayout direction="horizontal" spacing={12} width="fill-parent">
+              {/* Global Moves */}
+              <AutoLayout
+                  direction="vertical"
+                  width="fill-parent"
+                  fill="#F5F5F5"
+                  stroke="#333333"
+                  strokeWidth={2}
+                  padding={16}
+                  cornerRadius={8}
+                  spacing={12}
+              >
+                <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                  Global Moves
+                </Text>
+                {movesData.MultiAttributeMoves.find(section => section.Name === "Global Moves")?.Moves.map((move, idx) => (
+                  <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
+                    <Text fontSize={22} fontWeight={700} width="fill-parent">
+                      {move.name}
+                    </Text>
+                    <Text fontSize={19} width="fill-parent">
+                      {move.description}
+                    </Text>
+                    {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
+                      <Text key={key} fontSize={19} width="fill-parent">
+                        • On {key}: {value}
+                      </Text>
+                    ))}
+                    {move.hold && move.hold.length > 0 && (
+                      <AutoLayout direction="vertical" spacing={3} width="fill-parent">
+                        {move.hold.map((option, optIdx) => (
+                          <Text key={optIdx} fontSize={19} width="fill-parent">
+                            • {option}
+                          </Text>
+                        ))}
+                      </AutoLayout>
+                    )}
+                  </AutoLayout>
+                ))}
+              </AutoLayout>
+
+              {/* Mythos/Logos Moves */}
+              <AutoLayout
+                  direction="vertical"
+                  width="fill-parent"
+                  fill="#F5F5F5"
+                  stroke="#333333"
+                  strokeWidth={2}
+                  padding={16}
+                  cornerRadius={8}
+                  spacing={12}
+              >
+                <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                  Mythos/Logos Moves
+                </Text>
+                {movesData.MultiAttributeMoves.find(section => section.Name === "Mythos/Logos Moves")?.Moves.map((move, idx) => (
+                  <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
+                    <Text fontSize={22} fontWeight={700} width="fill-parent">
+                      {move.name}
+                    </Text>
+                    <Text fontSize={19} width="fill-parent">
+                      {move.description}
+                    </Text>
+                    {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
+                      <Text key={key} fontSize={19} width="fill-parent">
+                        • On {key}: {value}
+                      </Text>
+                    ))}
+                    {move.hold && move.hold.length > 0 && (
+                      <AutoLayout direction="vertical" spacing={3} width="fill-parent">
+                        {move.hold.map((option, optIdx) => (
+                          <Text key={optIdx} fontSize={19} width="fill-parent">
+                            • {option}
+                          </Text>
+                        ))}
+                      </AutoLayout>
+                    )}
+                  </AutoLayout>
+                ))}
+              </AutoLayout>
+
+              {/* Clock Moves */}
+              <AutoLayout
+                  direction="vertical"
+                  width="fill-parent"
+                  fill="#F5F5F5"
+                  stroke="#333333"
+                  strokeWidth={2}
+                  padding={16}
+                  cornerRadius={8}
+                  spacing={12}
+              >
+                <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                  Clock Moves
+                </Text>
+                {movesData.ClockMoves.map((move, idx) => (
+                  <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
+                    <Text fontSize={22} fontWeight={700} width="fill-parent">
+                      {move.name}
+                    </Text>
+                  </AutoLayout>
+                ))}
+              </AutoLayout>
             </AutoLayout>
           </AutoLayout>
         )}
