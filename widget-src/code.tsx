@@ -74,6 +74,9 @@ function pbta_character() {
   const [attributesLocked, setAttributesLocked] = useSyncedState("attributesLocked", false)
   const [pendingMultiAttributeMove, setPendingMultiAttributeMove] = useSyncedState("pendingMultiAttributeMove", null)
   const [basicMovesExpanded, setBasicMovesExpanded] = useSyncedState("basicMovesExpanded", false)
+  const [pendingRoll, setPendingRoll] = useSyncedState("pendingRoll", null)
+  const [popupForward, setPopupForward] = useSyncedState("popupForward", 0)
+  const [popupOngoing, setPopupOngoing] = useSyncedState("popupOngoing", 0)
 
   // Archetype selection
   const archetypes = {
@@ -172,10 +175,10 @@ function pbta_character() {
   })
   const [attributeValues, setAttributeValues] = useSyncedState("attributeValues", initialAttributeValues)
 
-  let roll = (mod, name, moveData = null) => {
+  let roll = (mod, name, moveData = null, forwardMod = 0, ongoingMod = 0) => {
     let number1 = Math.floor(Math.random() * 6) + 1
     let number2 = Math.floor(Math.random() * 6) + 1
-    let total = number1 + number2 + mod + forward + ongoing
+    let total = number1 + number2 + mod + forwardMod + ongoingMod
 
     // Build roll text
     let rollTextStr = `${total} = [(${number1} + ${number2})`
@@ -183,11 +186,11 @@ function pbta_character() {
       rollTextStr += modifierName && mod !== 0 ? (mod >= 0 ? ' +' + mod : ' -' + Math.abs(mod)) + ' (' + name + ')' : mod === 0 ? ' +' + mod + ' (' + name + ')' : ''
     }
     rollTextStr += ']'
-    if (forward !== 0) {
-      rollTextStr += (forward >= 0 ? ' +' + forward : ' -' + Math.abs(forward)) + ' (Forward)'
+    if (forwardMod !== 0) {
+      rollTextStr += (forwardMod >= 0 ? ' +' + forwardMod : ' -' + Math.abs(forwardMod)) + ' (Forward)'
     }
-    if (ongoing !== 0) {
-      rollTextStr += (ongoing >= 0 ? ' +' + ongoing : ' -' + Math.abs(ongoing)) + ' (Ongoing)'
+    if (ongoingMod !== 0) {
+      rollTextStr += (ongoingMod >= 0 ? ' +' + ongoingMod : ' -' + Math.abs(ongoingMod)) + ' (Ongoing)'
     }
 
     // Save snapshot of modifiers used in this roll
@@ -195,8 +198,8 @@ function pbta_character() {
     setSides2(number2)
     setRolledModifier(mod)
     setModifierName(name)
-    setRolledForward(forward)
-    setRolledOngoing(ongoing)
+    setRolledForward(forwardMod)
+    setRolledOngoing(ongoingMod)
     setRollText(rollTextStr)
 
     // Add to move history if a move was passed directly
@@ -207,18 +210,15 @@ function pbta_character() {
         dice: [number1, number2],
         modifier: mod,
         modifierName: name,
-        forward: forward,
-        ongoing: ongoing,
+        forward: forwardMod,
+        ongoing: ongoingMod,
         rollText: rollTextStr,
         timestamp: Date.now()
       }
       setMoveHistory([historyEntry, ...moveHistory])
     }
 
-    // Reset forward after roll
-    setForward(0)
-
-    console.log(number1, number2, mod, forward, ongoing)
+    console.log(number1, number2, mod, forwardMod, ongoingMod)
     figma.notify('You rolled a ' + number1 + ' and a ' + number2 + ' (total: ' + total + ')')
   }
 
@@ -421,7 +421,7 @@ function pbta_character() {
                     "7-9": "Partial Success",
                     "6-": "Failure"
                   }
-                  roll(mythosValue, "+Mythos", mythosRoll)
+                  setPendingRoll({ modifier: mythosValue, modifierName: "+Mythos", move: mythosRoll })
                 }}
                 fill="#333333"
                 padding={8}
@@ -535,7 +535,7 @@ function pbta_character() {
                     "7-9": "Partial Success",
                     "6-": "Failure"
                   }
-                  roll(logosValue, "+Logos", logosRoll)
+                  setPendingRoll({ modifier: logosValue, modifierName: "+Logos", move: logosRoll })
                 }}
                 fill="#333333"
                 padding={8}
@@ -731,7 +731,7 @@ function pbta_character() {
                         "7-9": "Partial Success",
                         "6-": "Failure"
                       }
-                      roll(attributeValues[attr], "+" + attr, attributeRoll)
+                      setPendingRoll({ modifier: attributeValues[attr], modifierName: "+" + attr, move: attributeRoll })
                     }}
                     fill="#333333"
                     padding={8}
@@ -761,7 +761,7 @@ function pbta_character() {
                         padding={8}
                         cornerRadius={4}
                         onClick={() => {
-                          roll(attributeValues[attr], "+" + attr, move)
+                          setPendingRoll({ modifier: attributeValues[attr], modifierName: "+" + attr, move: move })
                         }}
                         spacing={6}
                         width={350}
@@ -834,112 +834,6 @@ function pbta_character() {
                 </AutoLayout>
               ))}
             </AutoLayout>
-          </AutoLayout>
-        </AutoLayout>
-        <AutoLayout spacing={12} verticalAlignItems="center" fill="#E8E8E8" padding={24} width="fill-parent" stroke="#333333" strokeWidth={2}>
-          <AutoLayout
-              fill="#4CAF50"
-              padding={16}
-              cornerRadius={8}
-              onClick={() => {
-                const basicRoll = {
-                  name: "Roll",
-                  description: "",
-                  "13+": "Critical Success",
-                  "10+": "Great Success",
-                  "7-9": "Partial Success",
-                  "6-": "Failure"
-                }
-                roll(0, "", basicRoll)
-              }}
-          >
-            <Text fontSize={20} fontWeight={700} fill="#FFFFFF">Roll</Text>
-          </AutoLayout>
-          <AutoLayout
-              fill="#FFFFFF"
-              padding={12}
-              cornerRadius={8}
-              spacing={12}
-              verticalAlignItems="center"
-          >
-            <AutoLayout direction="vertical" spacing={4}>
-              <AutoLayout
-                  fill="#E6E6E6"
-                  padding={4}
-                  cornerRadius={4}
-                  width={24}
-                  horizontalAlignItems="center"
-                  onClick={() => setForward(Math.min(5, forward + 1))}
-              >
-                <Text fontSize={12} fontWeight={600}>+</Text>
-              </AutoLayout>
-              <AutoLayout
-                  fill="#E6E6E6"
-                  padding={4}
-                  cornerRadius={4}
-                  width={24}
-                  horizontalAlignItems="center"
-                  onClick={() => setForward(Math.max(-5, forward - 1))}
-              >
-                <Text fontSize={12} fontWeight={600}>-</Text>
-              </AutoLayout>
-            </AutoLayout>
-            <Input
-                value={(forward >= 0 ? '+' : '') + String(forward)}
-                onTextEditEnd={(e) => {
-                  let val = parseInt(e.characters)
-                  if (!isNaN(val)) {
-                    setForward(Math.max(-5, Math.min(5, val)))
-                  }
-                }}
-                fontSize={24}
-                width={60}
-                horizontalAlignText="center"
-            />
-            <Text fontSize={24} fontWeight={600}>Forward</Text>
-          </AutoLayout>
-          <AutoLayout
-              fill="#FFFFFF"
-              padding={12}
-              cornerRadius={8}
-              spacing={12}
-              verticalAlignItems="center"
-          >
-            <AutoLayout direction="vertical" spacing={4}>
-              <AutoLayout
-                  fill="#E6E6E6"
-                  padding={4}
-                  cornerRadius={4}
-                  width={24}
-                  horizontalAlignItems="center"
-                  onClick={() => setOngoing(Math.min(5, ongoing + 1))}
-              >
-                <Text fontSize={12} fontWeight={600}>+</Text>
-              </AutoLayout>
-              <AutoLayout
-                  fill="#E6E6E6"
-                  padding={4}
-                  cornerRadius={4}
-                  width={24}
-                  horizontalAlignItems="center"
-                  onClick={() => setOngoing(Math.max(-5, ongoing - 1))}
-              >
-                <Text fontSize={12} fontWeight={600}>-</Text>
-              </AutoLayout>
-            </AutoLayout>
-            <Input
-                value={(ongoing >= 0 ? '+' : '') + String(ongoing)}
-                onTextEditEnd={(e) => {
-                  let val = parseInt(e.characters)
-                  if (!isNaN(val)) {
-                    setOngoing(Math.max(-5, Math.min(5, val)))
-                  }
-                }}
-                fontSize={24}
-                width={60}
-                horizontalAlignText="center"
-            />
-            <Text fontSize={24} fontWeight={600}>Ongoing</Text>
           </AutoLayout>
         </AutoLayout>
       </AutoLayout>
@@ -1127,7 +1021,7 @@ function pbta_character() {
                       "7-9": "Partial Success",
                       "6-": "Failure"
                     }
-                    roll(contactRatings[idx], "+Rating", contactRoll)
+                    setPendingRoll({ modifier: contactRatings[idx], modifierName: "+Rating", move: contactRoll })
                   }}
                   width={120}
                   horizontalAlignItems="center"
@@ -1487,7 +1381,7 @@ function pbta_character() {
                               padding={6}
                               cornerRadius={4}
                               onClick={() => {
-                                roll(attributeValues[attribute], "+" + attribute, move)
+                                setPendingRoll({ modifier: attributeValues[attribute], modifierName: "+" + attribute, move: move })
                               }}
                           >
                             <Frame width={18} height={18} fill="#FFFFFF" cornerRadius={3}>
@@ -1699,6 +1593,135 @@ function pbta_character() {
         )}
       </AutoLayout>
 
+      {pendingRoll && (
+        <AutoLayout
+            positioning="absolute"
+            x={500}
+            y={400}
+            fill="#FFFFFF"
+            stroke="#333333"
+            strokeWidth={3}
+            cornerRadius={8}
+            padding={24}
+            direction="vertical"
+            spacing={16}
+            effect={[
+              {
+                type: 'drop-shadow',
+                color: { r: 0, g: 0, b: 0, a: 0.5 },
+                offset: { x: 0, y: 4 },
+                blur: 20,
+                spread: 0,
+              },
+            ]}
+        >
+          <Text fontSize={24} fontWeight={700}>{pendingRoll.move.name}</Text>
+          <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
+            <Text fontSize={20}>Forward:</Text>
+            <AutoLayout direction="vertical" spacing={4}>
+              <AutoLayout
+                  fill="#E6E6E6"
+                  padding={4}
+                  cornerRadius={4}
+                  width={24}
+                  horizontalAlignItems="center"
+                  onClick={() => setPopupForward(Math.min(5, popupForward + 1))}
+              >
+                <Text fontSize={12} fontWeight={600}>+</Text>
+              </AutoLayout>
+              <AutoLayout
+                  fill="#E6E6E6"
+                  padding={4}
+                  cornerRadius={4}
+                  width={24}
+                  horizontalAlignItems="center"
+                  onClick={() => setPopupForward(Math.max(-5, popupForward - 1))}
+              >
+                <Text fontSize={12} fontWeight={600}>-</Text>
+              </AutoLayout>
+            </AutoLayout>
+            <Input
+                value={(popupForward >= 0 ? '+' : '') + String(popupForward)}
+                onTextEditEnd={(e) => {
+                  let val = parseInt(e.characters)
+                  if (!isNaN(val)) {
+                    setPopupForward(Math.max(-5, Math.min(5, val)))
+                  }
+                }}
+                fontSize={24}
+                width={60}
+                horizontalAlignText="center"
+            />
+          </AutoLayout>
+          <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
+            <Text fontSize={20}>Ongoing:</Text>
+            <AutoLayout direction="vertical" spacing={4}>
+              <AutoLayout
+                  fill="#E6E6E6"
+                  padding={4}
+                  cornerRadius={4}
+                  width={24}
+                  horizontalAlignItems="center"
+                  onClick={() => setPopupOngoing(Math.min(5, popupOngoing + 1))}
+              >
+                <Text fontSize={12} fontWeight={600}>+</Text>
+              </AutoLayout>
+              <AutoLayout
+                  fill="#E6E6E6"
+                  padding={4}
+                  cornerRadius={4}
+                  width={24}
+                  horizontalAlignItems="center"
+                  onClick={() => setPopupOngoing(Math.max(-5, popupOngoing - 1))}
+              >
+                <Text fontSize={12} fontWeight={600}>-</Text>
+              </AutoLayout>
+            </AutoLayout>
+            <Input
+                value={(popupOngoing >= 0 ? '+' : '') + String(popupOngoing)}
+                onTextEditEnd={(e) => {
+                  let val = parseInt(e.characters)
+                  if (!isNaN(val)) {
+                    setPopupOngoing(Math.max(-5, Math.min(5, val)))
+                  }
+                }}
+                fontSize={24}
+                width={60}
+                horizontalAlignText="center"
+            />
+          </AutoLayout>
+          <AutoLayout
+              fill="#4CAF50"
+              padding={12}
+              cornerRadius={4}
+              onClick={() => {
+                roll(pendingRoll.modifier, pendingRoll.modifierName, pendingRoll.move, popupForward, popupOngoing)
+                setPendingRoll(null)
+                setPopupForward(0)
+                setPopupOngoing(0)
+              }}
+              width="fill-parent"
+              horizontalAlignItems="center"
+          >
+            <Text fontSize={20} fontWeight={600} fill="#FFFFFF">Roll</Text>
+          </AutoLayout>
+          <AutoLayout
+              fill="#FF5555"
+              padding={12}
+              cornerRadius={4}
+              onClick={() => {
+                setPendingRoll(null)
+                setPopupForward(0)
+                setPopupOngoing(0)
+              }}
+              width="fill-parent"
+              horizontalAlignItems="center"
+          >
+            <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Cancel</Text>
+          </AutoLayout>
+        </AutoLayout>
+      )}
+
       {pendingMultiAttributeMove && (
         <AutoLayout
             positioning="absolute"
@@ -1733,7 +1756,7 @@ function pbta_character() {
                       padding={12}
                       cornerRadius={4}
                       onClick={() => {
-                        roll(value, "+" + attr, pendingMultiAttributeMove.move)
+                        setPendingRoll({ modifier: value, modifierName: "+" + attr, move: pendingMultiAttributeMove.move })
                         setPendingMultiAttributeMove(null)
                       }}
                       width="fill-parent"
