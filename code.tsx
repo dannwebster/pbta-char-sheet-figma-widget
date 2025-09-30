@@ -1542,26 +1542,48 @@ function pbta_character() {
                     cornerRadius={8}
                     spacing={12}
                 >
-                  <Text fontSize={22} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                  <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
                     {attribute} Moves
                   </Text>
                   {movesData.AttributeMoves[attribute].map((move, idx) => (
                     <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
-                      <Text fontSize={18} fontWeight={700} width="fill-parent">
-                        {move.name}
-                      </Text>
-                      <Text fontSize={15} width="fill-parent">
+                      <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
+                        <Text fontSize={22} fontWeight={700} width="fill-parent">
+                          {move.name}
+                        </Text>
+                        <AutoLayout
+                            fill="#333333"
+                            padding={6}
+                            cornerRadius={4}
+                            onClick={() => {
+                              roll(attributeValues[attribute], "+" + attribute, move)
+                            }}
+                        >
+                          <Frame width={18} height={18} fill="#FFFFFF" cornerRadius={3}>
+                            <AutoLayout
+                                horizontalAlignItems="center"
+                                verticalAlignItems="center"
+                                width={18}
+                                height={18}
+                                padding={4}
+                            >
+                              <Grid sides={6} size={3} fill="#333333" spacing={2} />
+                            </AutoLayout>
+                          </Frame>
+                        </AutoLayout>
+                      </AutoLayout>
+                      <Text fontSize={19} width="fill-parent">
                         {move.description}
                       </Text>
                       {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
-                        <Text key={key} fontSize={15} width="fill-parent">
-                          • <Text fontWeight={600}>On {key}:</Text> {value}
+                        <Text key={key} fontSize={19} width="fill-parent">
+                          • On {key}: {value}
                         </Text>
                       ))}
                       {move.hold && move.hold.length > 0 && (
                         <AutoLayout direction="vertical" spacing={3} width="fill-parent">
                           {move.hold.map((option, optIdx) => (
-                            <Text key={optIdx} fontSize={15} width="fill-parent">
+                            <Text key={optIdx} fontSize={19} width="fill-parent">
                               • {option}
                             </Text>
                           ))}
