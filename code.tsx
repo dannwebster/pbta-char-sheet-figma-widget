@@ -93,18 +93,18 @@ function lildice() {
     { name: "Healthy", symbol: "", modifier: "" },
     { name: "Marked", symbol: "", modifier: "" },
     { name: "Injured", symbol: "", modifier: "" },
-    { name: "Wounded", symbol: "", modifier: "" },
-    { name: "Gasping", symbol: "", modifier: "" },
-    { name: "Out of It", symbol: "", modifier: "" },
+    { name: "Wounded", symbol: "", modifier: "-1" },
+    { name: "Gasping", symbol: "", modifier: "-2" },
+    { name: "Out of It", symbol: "", modifier: "-3" },
     { name: "Dying", symbol: "", modifier: "" }
   ]
   const stressLevels = [
     { name: "Grounded", symbol: "", modifier: "" },
     { name: "Shaken", symbol: "", modifier: "" },
     { name: "Disturbed", symbol: "", modifier: "" },
-    { name: "Unraveled", symbol: "", modifier: "" },
-    { name: "Haunted", symbol: "", modifier: "" },
-    { name: "Broken", symbol: "", modifier: "" },
+    { name: "Unraveled", symbol: "", modifier: "-1" },
+    { name: "Haunted", symbol: "", modifier: "-2" },
+    { name: "Broken", symbol: "", modifier: "-3" },
     { name: "Shattered", symbol: "", modifier: "" }
   ]
   const [harmChecked, setHarmChecked] = useSyncedState("harmChecked", Array(7).fill(false))
@@ -209,7 +209,7 @@ function lildice() {
     })
   })
 
-  const handleClockMove = (clockName, action) => {
+  const handleClockMove = (clockName, action, moveName) => {
     console.log('handleClockMove called:', clockName, action)
     const clock = clocks[clockName]
     console.log('clock:', clock)
@@ -224,6 +224,17 @@ function lildice() {
 
     const currentState = clock.state
     console.log('currentState:', currentState)
+
+    // Clock display names
+    const clockDisplayNames = {
+      'mythosFade': 'Mythos Fade',
+      'logosCrack': 'Logos Crack',
+      'mythosAttention': 'Mythos Attention',
+      'logosAttention': 'Logos Attention'
+    }
+
+    let didChange = false
+    let newClockValue = 0
 
     if (action === 'advance') {
       // Find first unchecked box
@@ -241,6 +252,8 @@ function lildice() {
         newClock[firstUnchecked] = true
         console.log('Setting new clock state:', newClock)
         clock.setter(newClock)
+        didChange = true
+        newClockValue = newClock.filter(v => v === true).length
       }
     } else if (action === 'rollback') {
       // Find last checked box
@@ -249,9 +262,37 @@ function lildice() {
           const newClock = [...currentState]
           newClock[i] = false
           clock.setter(newClock)
+          didChange = true
+          newClockValue = newClock.filter(v => v === true).length
           break
         }
       }
+    }
+
+    // Add to move history if the clock was changed
+    if (didChange) {
+      const actionText = action === 'advance' ? 'Advanced' : 'Rolled back'
+      const clockDisplayName = clockDisplayNames[clockName] || clockName
+      const description = `${actionText} the ${clockDisplayName} clock by 1. ${clockDisplayName} now at ${newClockValue}`
+
+      const historyEntry = {
+        move: {
+          name: moveName,
+          description: description,
+          "13+": "",
+          "10+": "",
+          "7-9": "",
+          "6-": ""
+        },
+        total: 0,
+        dice: null,
+        modifier: 0,
+        forward: 0,
+        ongoing: 0,
+        rollText: "",
+        timestamp: Date.now()
+      }
+      setMoveHistory([historyEntry, ...moveHistory])
     }
   }
 
@@ -704,7 +745,7 @@ function lildice() {
                     padding={8}
                     cornerRadius={4}
                     onClick={() => {
-                      handleClockMove(clockMove.clock, clockMove.action)
+                      handleClockMove(clockMove.clock, clockMove.action, clockMove.name)
                     }}
                     spacing={6}
                     width={350}
@@ -840,16 +881,16 @@ function lildice() {
             : null}
         </AutoLayout>
       </AutoLayout>
-      <AutoLayout direction="vertical" spacing={16} padding={16} width={600} fill="#F5F5F5" stroke="#333333" strokeWidth={2} cornerRadius={8}>
-        <Text fontSize={24} fontWeight={700}>Clocks</Text>
+      <AutoLayout direction="vertical" spacing={16} padding={16} width={900} height="fill-parent" fill="#F5F5F5" stroke="#333333" strokeWidth={2} cornerRadius={8}>
+        <Text fontSize={36} fontWeight={700}>Clocks</Text>
         <AutoLayout direction="horizontal" spacing={16} width="fill-parent">
           <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <Text fontSize={20} fontWeight={700}>Harm</Text>
+            <Text fontSize={30} fontWeight={700}>Harm</Text>
             {harmLevels.map((level, idx) => (
               <AutoLayout key={idx} spacing={8} verticalAlignItems="center" width="fill-parent">
                 <AutoLayout
-                    width={20}
-                    height={20}
+                    width={30}
+                    height={30}
                     fill={harmChecked[idx] ? "#333333" : "#FFFFFF"}
                     stroke="#333333"
                     strokeWidth={2}
@@ -862,7 +903,7 @@ function lildice() {
                       setHarmChecked(newChecked)
                     }}
                 >
-                  {harmChecked[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
+                  {harmChecked[idx] && <Text fontSize={18} fill="#FFFFFF">✓</Text>}
                 </AutoLayout>
                 <Input
                     value={harmSymbols[idx]}
@@ -871,11 +912,11 @@ function lildice() {
                       newSymbols[idx] = e.characters
                       setHarmSymbols(newSymbols)
                     }}
-                    fontSize={14}
+                    fontSize={21}
                     placeholder="Sym"
-                    width={40}
+                    width={60}
                 />
-                <Text fontSize={14} width={80}>{level.name}</Text>
+                <Text fontSize={21} width={120}>{level.name}</Text>
                 <Input
                     value={harmModifiers[idx]}
                     onTextEditEnd={(e) => {
@@ -883,20 +924,20 @@ function lildice() {
                       newModifiers[idx] = e.characters
                       setHarmModifiers(newModifiers)
                     }}
-                    fontSize={14}
+                    fontSize={21}
                     placeholder="Mod"
-                    width={40}
+                    width={60}
                 />
               </AutoLayout>
             ))}
           </AutoLayout>
           <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <Text fontSize={20} fontWeight={700}>Stress</Text>
+            <Text fontSize={30} fontWeight={700}>Stress</Text>
             {stressLevels.map((level, idx) => (
               <AutoLayout key={idx} spacing={8} verticalAlignItems="center" width="fill-parent">
                 <AutoLayout
-                    width={20}
-                    height={20}
+                    width={30}
+                    height={30}
                     fill={stressChecked[idx] ? "#333333" : "#FFFFFF"}
                     stroke="#333333"
                     strokeWidth={2}
@@ -909,7 +950,7 @@ function lildice() {
                       setStressChecked(newChecked)
                     }}
                 >
-                  {stressChecked[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
+                  {stressChecked[idx] && <Text fontSize={18} fill="#FFFFFF">✓</Text>}
                 </AutoLayout>
                 <Input
                     value={stressSymbols[idx]}
@@ -918,11 +959,11 @@ function lildice() {
                       newSymbols[idx] = e.characters
                       setStressSymbols(newSymbols)
                     }}
-                    fontSize={14}
+                    fontSize={21}
                     placeholder="Sym"
-                    width={40}
+                    width={60}
                 />
-                <Text fontSize={14} width={80}>{level.name}</Text>
+                <Text fontSize={21} width={120}>{level.name}</Text>
                 <Input
                     value={stressModifiers[idx]}
                     onTextEditEnd={(e) => {
@@ -930,24 +971,24 @@ function lildice() {
                       newModifiers[idx] = e.characters
                       setStressModifiers(newModifiers)
                     }}
-                    fontSize={14}
+                    fontSize={21}
                     placeholder="Mod"
-                    width={40}
+                    width={60}
                 />
               </AutoLayout>
             ))}
           </AutoLayout>
         </AutoLayout>
         <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-          <Text fontSize={24} fontWeight={700}>Contacts</Text>
+          <Text fontSize={36} fontWeight={700}>Contacts</Text>
           {/* Header Row */}
           <AutoLayout spacing={4} width="fill-parent">
-            <Text fontSize={14} fontWeight={700} width={120}>Name</Text>
-            <Text fontSize={14} fontWeight={700} width={60}>Type</Text>
-            <Text fontSize={14} fontWeight={700} width={60}>Rating</Text>
-            <Text fontSize={14} fontWeight={700} width={100}>Expertise</Text>
-            <Text fontSize={14} fontWeight={700} width={100}>Relationship</Text>
-            <Text fontSize={14} fontWeight={700} width={80}>Action</Text>
+            <Text fontSize={21} fontWeight={700} width={180}>Name</Text>
+            <Text fontSize={21} fontWeight={700} width={90}>Type</Text>
+            <Text fontSize={21} fontWeight={700} width={90}>Rating</Text>
+            <Text fontSize={21} fontWeight={700} width={150}>Expertise</Text>
+            <Text fontSize={21} fontWeight={700} width={150}>Relationship</Text>
+            <Text fontSize={21} fontWeight={700} width={120}>Action</Text>
           </AutoLayout>
           {/* Contact Rows */}
           {[0, 1, 2, 3, 4].map((idx) => (
@@ -959,15 +1000,15 @@ function lildice() {
                     newNames[idx] = e.characters
                     setContactNames(newNames)
                   }}
-                  fontSize={14}
+                  fontSize={21}
                   placeholder="Name"
-                  width={120}
+                  width={180}
               />
               <AutoLayout
                   fill={attributesLocked ? "#FFCCCC" : "#E6E6E6"}
-                  padding={6}
+                  padding={9}
                   cornerRadius={4}
-                  width={60}
+                  width={90}
                   horizontalAlignItems="center"
                   onClick={() => {
                     if (!attributesLocked) {
@@ -977,15 +1018,15 @@ function lildice() {
                     }
                   }}
               >
-                <Text fontSize={12}>{contactTypes[idx]}</Text>
+                <Text fontSize={18}>{contactTypes[idx]}</Text>
               </AutoLayout>
               <AutoLayout spacing={4} verticalAlignItems="center">
                 <AutoLayout direction="vertical" spacing={2}>
                   <AutoLayout
                       fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
-                      padding={2}
+                      padding={3}
                       cornerRadius={2}
-                      width={16}
+                      width={24}
                       horizontalAlignItems="center"
                       onClick={() => {
                         if (!attributesLocked) {
@@ -995,13 +1036,13 @@ function lildice() {
                         }
                       }}
                   >
-                    <Text fontSize={10} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>+</Text>
+                    <Text fontSize={15} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>+</Text>
                   </AutoLayout>
                   <AutoLayout
                       fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
-                      padding={2}
+                      padding={3}
                       cornerRadius={2}
-                      width={16}
+                      width={24}
                       horizontalAlignItems="center"
                       onClick={() => {
                         if (!attributesLocked) {
@@ -1011,7 +1052,7 @@ function lildice() {
                         }
                       }}
                   >
-                    <Text fontSize={10} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>-</Text>
+                    <Text fontSize={15} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>-</Text>
                   </AutoLayout>
                 </AutoLayout>
                 <Input
@@ -1026,8 +1067,8 @@ function lildice() {
                         }
                       }
                     }}
-                    fontSize={14}
-                    width={35}
+                    fontSize={21}
+                    width={52}
                     horizontalAlignText="center"
                 />
               </AutoLayout>
@@ -1038,9 +1079,9 @@ function lildice() {
                     newExpertise[idx] = e.characters
                     setContactExpertise(newExpertise)
                   }}
-                  fontSize={14}
+                  fontSize={21}
                   placeholder="Expertise"
-                  width={100}
+                  width={150}
               />
               <Input
                   value={contactRelationships[idx]}
@@ -1049,13 +1090,13 @@ function lildice() {
                     newRelationships[idx] = e.characters
                     setContactRelationships(newRelationships)
                   }}
-                  fontSize={14}
+                  fontSize={21}
                   placeholder="Relationship"
-                  width={100}
+                  width={150}
               />
               <AutoLayout
                   fill="#333333"
-                  padding={6}
+                  padding={9}
                   cornerRadius={4}
                   onClick={() => {
                     const contactRoll = {
@@ -1068,28 +1109,28 @@ function lildice() {
                     }
                     roll(contactRatings[idx], "+Rating", contactRoll)
                   }}
-                  width={80}
+                  width={120}
                   horizontalAlignItems="center"
               >
-                <Text fontSize={12} fontWeight={600} fill="#FFFFFF">Contact</Text>
+                <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Contact</Text>
               </AutoLayout>
             </AutoLayout>
           ))}
         </AutoLayout>
         <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-          <Text fontSize={24} fontWeight={700}>Equipment</Text>
+          <Text fontSize={36} fontWeight={700}>Equipment</Text>
           {/* Header Row */}
           <AutoLayout spacing={4} width="fill-parent">
-            <Text fontSize={14} fontWeight={700} width={140}>Name</Text>
-            <Text fontSize={14} fontWeight={700} width={70}>Type</Text>
-            <Text fontSize={14} fontWeight={700} width={50}>Coin</Text>
-            <Text fontSize={14} fontWeight={700} width={50}>Harm</Text>
-            <Text fontSize={14} fontWeight={700} width={150}>Tags</Text>
+            <Text fontSize={21} fontWeight={700} width={210}>Name</Text>
+            <Text fontSize={21} fontWeight={700} width={105}>Type</Text>
+            <Text fontSize={21} fontWeight={700} width={75}>Coin</Text>
+            <Text fontSize={21} fontWeight={700} width={75}>Harm</Text>
+            <Text fontSize={21} fontWeight={700} width={225}>Tags</Text>
           </AutoLayout>
           {/* Equipment Rows */}
           {equipmentTypes.map((equipType, idx) => (
             <AutoLayout key={idx} spacing={4} width="fill-parent" verticalAlignItems="center">
-              {idx < 6 && <Text fontSize={16}>⭐</Text>}
+              {idx < 6 && <Text fontSize={24}>⭐</Text>}
               <Input
                   value={equipmentNames[idx]}
                   onTextEditEnd={(e) => {
@@ -1097,15 +1138,15 @@ function lildice() {
                     newNames[idx] = e.characters
                     setEquipmentNames(newNames)
                   }}
-                  fontSize={14}
+                  fontSize={21}
                   placeholder="Name"
-                  width={idx < 6 ? 120 : 140}
+                  width={idx < 6 ? 180 : 210}
               />
               <AutoLayout
                   fill={attributesLocked ? "#FFCCCC" : "#E6E6E6"}
-                  padding={6}
+                  padding={9}
                   cornerRadius={4}
-                  width={70}
+                  width={105}
                   horizontalAlignItems="center"
                   onClick={() => {
                     if (!attributesLocked) {
@@ -1116,7 +1157,7 @@ function lildice() {
                     }
                   }}
               >
-                <Text fontSize={12}>{equipType || "---"}</Text>
+                <Text fontSize={18}>{equipType || "---"}</Text>
               </AutoLayout>
               <Input
                   value={equipmentCoin[idx]}
@@ -1125,17 +1166,17 @@ function lildice() {
                     newCoin[idx] = e.characters
                     setEquipmentCoin(newCoin)
                   }}
-                  fontSize={14}
+                  fontSize={21}
                   placeholder="Coin"
-                  width={50}
+                  width={75}
               />
               <AutoLayout spacing={4} verticalAlignItems="center">
                 <AutoLayout direction="vertical" spacing={2}>
                   <AutoLayout
                       fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
-                      padding={2}
+                      padding={3}
                       cornerRadius={2}
-                      width={16}
+                      width={24}
                       horizontalAlignItems="center"
                       onClick={() => {
                         if (!attributesLocked) {
@@ -1145,13 +1186,13 @@ function lildice() {
                         }
                       }}
                   >
-                    <Text fontSize={10} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>+</Text>
+                    <Text fontSize={15} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>+</Text>
                   </AutoLayout>
                   <AutoLayout
                       fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
-                      padding={2}
+                      padding={3}
                       cornerRadius={2}
-                      width={16}
+                      width={24}
                       horizontalAlignItems="center"
                       onClick={() => {
                         if (!attributesLocked) {
@@ -1161,7 +1202,7 @@ function lildice() {
                         }
                       }}
                   >
-                    <Text fontSize={10} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>-</Text>
+                    <Text fontSize={15} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>-</Text>
                   </AutoLayout>
                 </AutoLayout>
                 <Input
@@ -1176,8 +1217,8 @@ function lildice() {
                         }
                       }
                     }}
-                    fontSize={14}
-                    width={25}
+                    fontSize={21}
+                    width={37}
                     horizontalAlignText="center"
                 />
               </AutoLayout>
@@ -1188,9 +1229,9 @@ function lildice() {
                     newTags[idx] = e.characters
                     setEquipmentTags(newTags)
                   }}
-                  fontSize={14}
+                  fontSize={21}
                   placeholder="Tags"
-                  width={150}
+                  width={225}
               />
             </AutoLayout>
           ))}
