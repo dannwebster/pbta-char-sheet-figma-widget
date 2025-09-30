@@ -114,6 +114,13 @@ function lildice() {
   const [harmModifiers, setHarmModifiers] = useSyncedState("harmModifiers", Array(7).fill(""))
   const [stressModifiers, setStressModifiers] = useSyncedState("stressModifiers", Array(7).fill(""))
 
+  // Contacts tracking
+  const [contactNames, setContactNames] = useSyncedState("contactNames", Array(5).fill(""))
+  const [contactTypes, setContactTypes] = useSyncedState("contactTypes", Array(5).fill("Mythos"))
+  const [contactRatings, setContactRatings] = useSyncedState("contactRatings", Array(5).fill(0))
+  const [contactExpertise, setContactExpertise] = useSyncedState("contactExpertise", Array(5).fill(""))
+  const [contactRelationships, setContactRelationships] = useSyncedState("contactRelationships", Array(5).fill(""))
+
   // Snapshot of modifiers used in the last roll
   const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
   const [rolledOngoing, setRolledOngoing] = useSyncedState("rolledOngoing", 0)
@@ -923,9 +930,143 @@ function lildice() {
             ))}
           </AutoLayout>
         </AutoLayout>
-        <AutoLayout direction="vertical" spacing={16} width="fill-parent">
+        <AutoLayout direction="vertical" spacing={8} width="fill-parent">
           <Text fontSize={24} fontWeight={700}>Contacts</Text>
-          <Text fontSize={16}>(Coming soon)</Text>
+          {/* Header Row */}
+          <AutoLayout spacing={4} width="fill-parent">
+            <Text fontSize={14} fontWeight={700} width={120}>Name</Text>
+            <Text fontSize={14} fontWeight={700} width={60}>Type</Text>
+            <Text fontSize={14} fontWeight={700} width={60}>Rating</Text>
+            <Text fontSize={14} fontWeight={700} width={100}>Expertise</Text>
+            <Text fontSize={14} fontWeight={700} width={100}>Relationship</Text>
+            <Text fontSize={14} fontWeight={700} width={80}>Action</Text>
+          </AutoLayout>
+          {/* Contact Rows */}
+          {[0, 1, 2, 3, 4].map((idx) => (
+            <AutoLayout key={idx} spacing={4} width="fill-parent" verticalAlignItems="center">
+              <Input
+                  value={contactNames[idx]}
+                  onTextEditEnd={(e) => {
+                    const newNames = [...contactNames]
+                    newNames[idx] = e.characters
+                    setContactNames(newNames)
+                  }}
+                  fontSize={14}
+                  placeholder="Name"
+                  width={120}
+              />
+              <AutoLayout
+                  fill={attributesLocked ? "#FFCCCC" : "#E6E6E6"}
+                  padding={6}
+                  cornerRadius={4}
+                  width={60}
+                  horizontalAlignItems="center"
+                  onClick={() => {
+                    if (!attributesLocked) {
+                      const newTypes = [...contactTypes]
+                      newTypes[idx] = newTypes[idx] === "Mythos" ? "Logos" : "Mythos"
+                      setContactTypes(newTypes)
+                    }
+                  }}
+              >
+                <Text fontSize={12}>{contactTypes[idx]}</Text>
+              </AutoLayout>
+              <AutoLayout spacing={4} verticalAlignItems="center">
+                <AutoLayout direction="vertical" spacing={2}>
+                  <AutoLayout
+                      fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
+                      padding={2}
+                      cornerRadius={2}
+                      width={16}
+                      horizontalAlignItems="center"
+                      onClick={() => {
+                        if (!attributesLocked) {
+                          const newRatings = [...contactRatings]
+                          newRatings[idx] = Math.min(1, newRatings[idx] + 1)
+                          setContactRatings(newRatings)
+                        }
+                      }}
+                  >
+                    <Text fontSize={10} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>+</Text>
+                  </AutoLayout>
+                  <AutoLayout
+                      fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
+                      padding={2}
+                      cornerRadius={2}
+                      width={16}
+                      horizontalAlignItems="center"
+                      onClick={() => {
+                        if (!attributesLocked) {
+                          const newRatings = [...contactRatings]
+                          newRatings[idx] = Math.max(-1, newRatings[idx] - 1)
+                          setContactRatings(newRatings)
+                        }
+                      }}
+                  >
+                    <Text fontSize={10} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>-</Text>
+                  </AutoLayout>
+                </AutoLayout>
+                <Input
+                    value={(contactRatings[idx] >= 0 ? '+' : '') + String(contactRatings[idx])}
+                    onTextEditEnd={(e) => {
+                      if (!attributesLocked) {
+                        let val = parseInt(e.characters)
+                        if (!isNaN(val)) {
+                          const newRatings = [...contactRatings]
+                          newRatings[idx] = Math.max(-1, Math.min(1, val))
+                          setContactRatings(newRatings)
+                        }
+                      }
+                    }}
+                    fontSize={14}
+                    width={35}
+                    horizontalAlignText="center"
+                />
+              </AutoLayout>
+              <Input
+                  value={contactExpertise[idx]}
+                  onTextEditEnd={(e) => {
+                    const newExpertise = [...contactExpertise]
+                    newExpertise[idx] = e.characters
+                    setContactExpertise(newExpertise)
+                  }}
+                  fontSize={14}
+                  placeholder="Expertise"
+                  width={100}
+              />
+              <Input
+                  value={contactRelationships[idx]}
+                  onTextEditEnd={(e) => {
+                    const newRelationships = [...contactRelationships]
+                    newRelationships[idx] = e.characters
+                    setContactRelationships(newRelationships)
+                  }}
+                  fontSize={14}
+                  placeholder="Relationship"
+                  width={100}
+              />
+              <AutoLayout
+                  fill="#333333"
+                  padding={6}
+                  cornerRadius={4}
+                  onClick={() => {
+                    const contactRoll = {
+                      name: "Contact: " + (contactNames[idx] || "Unknown"),
+                      description: "",
+                      "13+": "Critical Success",
+                      "10+": "Great Success",
+                      "7-9": "Partial Success",
+                      "6-": "Failure"
+                    }
+                    roll(contactRatings[idx], "+Rating", contactRoll)
+                  }}
+                  width={80}
+                  horizontalAlignItems="center"
+              >
+                <Text fontSize={12} fontWeight={600} fill="#FFFFFF">Contact</Text>
+              </AutoLayout>
+            </AutoLayout>
+          ))}
         </AutoLayout>
         <AutoLayout direction="vertical" spacing={16} width="fill-parent">
           <Text fontSize={24} fontWeight={700}>Equipment</Text>
