@@ -151,7 +151,7 @@ function pbta_character() {
     let total = number1 + number2 + mod + forward + ongoing
 
     // Build roll text
-    let rollTextStr = `${total} = [(${number1} + ${number2})`
+    let rollTextStr = `<span  style="color: red">${total}</span> = [(${number1} + ${number2})`
     if (name) {
       rollTextStr += modifierName && mod !== 0 ? (mod >= 0 ? ' +' + mod : ' -' + Math.abs(mod)) + ' (' + name + ')' : mod === 0 ? ' +' + mod + ' (' + name + ')' : ''
     }
@@ -230,8 +230,8 @@ function pbta_character() {
 
     // Clock display names
     const clockDisplayNames = {
-      'mythosFade': 'Mythos Fade',
-      'logosCrack': 'Logos Crack',
+      'mythosFade': 'Fade',
+      'logosCrack': 'Crack',
       'mythosAttention': 'Mythos Attention',
       'logosAttention': 'Logos Attention'
     }
