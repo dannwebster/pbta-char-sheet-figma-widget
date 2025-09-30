@@ -1,5 +1,22 @@
-Below are the steps to get your widget running. You can also find instructions at:
+# Figma Widget: Powered by the Apocalypse Character Sheet 
 
+### This allows you to run a Powered by the Apocalypse game entirely in Figma
+## Purpose
+This allows you to run a Powered by the Apocalypse game entirely in Figma, by making an editable, interactable Figma Widget that allows editing character stats, and making rolls.
+
+Currently, this is version is configured to run my own hack of Monster of the Week and City of Mist call Mysteries of the Mist.
+
+## Source Code
+[Source Code is on github](https://github.com/dannwebster/pbta-char-sheet-figma-widget)
+
+### Key Files
+The key file is moves.json, which defines all the moves. Modifying this file should auto-adjust the Attribute Buttons and names, the moves buttons, and the basic moves sheet.
+
+## Ackhowledgements
+
+Thank you to [lil-dice](https://www.figma.com/community/widget/1031933047254087478) for getting me started. The original code for the dice roller and dice icons are derived from their source-code
+
+## Boilerplate
 https://www.figma.com/widget-docs/setup-guide/
 
 This widget template uses TypeScript and NPM, two standard tools in creating JavaScript applications.
