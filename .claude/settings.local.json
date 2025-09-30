@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Read(//c/Users/dannw/AppData/Local/Figma/app-125.8.8/PbtA Dice Roller/**)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(node -e \"JSON.parse(require(''fs'').readFileSync(''moves.json'', ''utf8'')); console.log(''JSON is valid!'')\")"
     ],
     "deny": [],
     "ask": []

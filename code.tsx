@@ -1292,7 +1292,7 @@ function pbta_character() {
             <AutoLayout direction="vertical" spacing={12} width="fill-parent">
               {moveHistory.slice(historyPage * 5, (historyPage * 5) + 5).map((entry, idx) => {
                 let outcomeText = ""
-                let holdOptions = entry.move.outcomes?.hold || []
+                let holdOptions = entry.move.hold || []
                 if (entry.move.outcomes?.["13+"] && entry.total >= 13) {
                   outcomeText = `13+: ${entry.move.outcomes["13+"]}`
                 } else if (entry.total >= 10) {
@@ -1467,9 +1467,9 @@ function pbta_character() {
                           <Text fontWeight={600}>On 6-:</Text> {move.outcomes["6-"]}
                         </Text>
                       )}
-                      {move.outcomes?.hold && move.outcomes.hold.length > 0 && (
+                      {move.hold && move.hold.length > 0 && (
                         <AutoLayout direction="vertical" spacing={3} width="fill-parent">
-                          {move.outcomes.hold.map((option, optIdx) => (
+                          {move.hold.map((option, optIdx) => (
                             <Text key={optIdx} fontSize={15} width="fill-parent">
                               • {option}
                             </Text>
@@ -1527,9 +1527,9 @@ function pbta_character() {
                           <Text fontWeight={600}>On 6-:</Text> {move.outcomes["6-"]}
                         </Text>
                       )}
-                      {move.outcomes?.hold && move.outcomes.hold.length > 0 && (
+                      {move.hold && move.hold.length > 0 && (
                         <AutoLayout direction="vertical" spacing={3} width="fill-parent">
-                          {move.outcomes.hold.map((option, optIdx) => (
+                          {move.hold.map((option, optIdx) => (
                             <Text key={optIdx} fontSize={15} width="fill-parent">
                               • {option}
                             </Text>
