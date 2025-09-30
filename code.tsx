@@ -155,7 +155,7 @@ function pbta_character() {
   const equipmentTypeOptions = ["melee", "ranged", "vehicle", "domicile", "accessory", ""]
   const [equipmentNames, setEquipmentNames] = useSyncedState("equipmentNames", Array(7).fill(""))
   const [equipmentTypes, setEquipmentTypes] = useSyncedState("equipmentTypes", ["melee", "ranged", "vehicle", "domicile", "accessory", "accessory", ""])
-  const [equipmentCoin, setEquipmentCoin] = useSyncedState("equipmentCoin", Array(7).fill(""))
+  const [equipmentCoin, setEquipmentCoin] = useSyncedState("equipmentCoin", Array(7).fill(0))
   const [equipmentHarm, setEquipmentHarm] = useSyncedState("equipmentHarm", Array(7).fill(0))
   const [equipmentTags, setEquipmentTags] = useSyncedState("equipmentTags", Array(7).fill(""))
 
@@ -1181,17 +1181,58 @@ function pbta_character() {
               >
                 <Text fontSize={18}>{equipType || "---"}</Text>
               </AutoLayout>
-              <Input
-                  value={equipmentCoin[idx]}
-                  onTextEditEnd={(e) => {
-                    const newCoin = [...equipmentCoin]
-                    newCoin[idx] = e.characters
-                    setEquipmentCoin(newCoin)
-                  }}
-                  fontSize={21}
-                  placeholder="Coin"
-                  width={75}
-              />
+              <AutoLayout spacing={4} verticalAlignItems="center">
+                <AutoLayout direction="vertical" spacing={2}>
+                  <AutoLayout
+                      fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
+                      padding={3}
+                      cornerRadius={2}
+                      width={24}
+                      horizontalAlignItems="center"
+                      onClick={() => {
+                        if (!attributesLocked) {
+                          const newCoin = [...equipmentCoin]
+                          newCoin[idx] = Math.min(3, newCoin[idx] + 1)
+                          setEquipmentCoin(newCoin)
+                        }
+                      }}
+                  >
+                    <Text fontSize={15} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>+</Text>
+                  </AutoLayout>
+                  <AutoLayout
+                      fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
+                      padding={3}
+                      cornerRadius={2}
+                      width={24}
+                      horizontalAlignItems="center"
+                      onClick={() => {
+                        if (!attributesLocked) {
+                          const newCoin = [...equipmentCoin]
+                          newCoin[idx] = Math.max(-3, newCoin[idx] - 1)
+                          setEquipmentCoin(newCoin)
+                        }
+                      }}
+                  >
+                    <Text fontSize={15} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>-</Text>
+                  </AutoLayout>
+                </AutoLayout>
+                <Input
+                    value={(equipmentCoin[idx] >= 0 ? '+' : '') + String(equipmentCoin[idx])}
+                    onTextEditEnd={(e) => {
+                      if (!attributesLocked) {
+                        let val = parseInt(e.characters)
+                        if (!isNaN(val)) {
+                          const newCoin = [...equipmentCoin]
+                          newCoin[idx] = Math.max(-3, Math.min(3, val))
+                          setEquipmentCoin(newCoin)
+                        }
+                      }
+                    }}
+                    fontSize={21}
+                    width={52}
+                    horizontalAlignText="center"
+                />
+              </AutoLayout>
               <AutoLayout spacing={4} verticalAlignItems="center">
                 <AutoLayout direction="vertical" spacing={2}>
                   <AutoLayout
