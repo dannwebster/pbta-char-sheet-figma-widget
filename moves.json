@@ -252,7 +252,7 @@
   ],
   "ClockMoves": [
     {
-      "name": "Take Fade",
+      "name": "Fade your Mythos",
       "clock": "mythosFade",
       "action": "advance"
     },
@@ -262,7 +262,7 @@
       "action": "rollback"
     },
     {
-      "name": "Take Crack",
+      "name": "Crack your Logos",
       "clock": "logosCrack",
       "action": "advance"
     },
@@ -272,22 +272,22 @@
       "action": "rollback"
     },
     {
-      "name": "Take Mythos Attention",
+      "name": "Invoke a Mythos Flaw",
       "clock": "mythosAttention",
       "action": "advance"
     },
     {
-      "name": "Heal Mythos Attention",
+      "name": "Roll Back Mythos Attention",
       "clock": "mythosAttention",
       "action": "rollback"
     },
     {
-      "name": "Take Logos Attention",
+      "name": "Invoke a Logos Flaw",
       "clock": "logosAttention",
       "action": "advance"
     },
     {
-      "name": "Heal Logos Attention",
+      "name": "Roll Back Mythos Attention",
       "clock": "logosAttention",
       "action": "rollback"
     }
