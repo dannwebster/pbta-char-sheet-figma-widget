@@ -121,6 +121,14 @@ function lildice() {
   const [contactExpertise, setContactExpertise] = useSyncedState("contactExpertise", Array(5).fill(""))
   const [contactRelationships, setContactRelationships] = useSyncedState("contactRelationships", Array(5).fill(""))
 
+  // Equipment tracking
+  const equipmentTypeOptions = ["melee", "ranged", "vehicle", "domicile", "accessory", ""]
+  const [equipmentNames, setEquipmentNames] = useSyncedState("equipmentNames", Array(7).fill(""))
+  const [equipmentTypes, setEquipmentTypes] = useSyncedState("equipmentTypes", ["melee", "ranged", "vehicle", "domicile", "accessory", "accessory", ""])
+  const [equipmentCoin, setEquipmentCoin] = useSyncedState("equipmentCoin", Array(7).fill(""))
+  const [equipmentHarm, setEquipmentHarm] = useSyncedState("equipmentHarm", Array(7).fill(0))
+  const [equipmentTags, setEquipmentTags] = useSyncedState("equipmentTags", Array(7).fill(""))
+
   // Snapshot of modifiers used in the last roll
   const [rolledForward, setRolledForward] = useSyncedState("rolledForward", 0)
   const [rolledOngoing, setRolledOngoing] = useSyncedState("rolledOngoing", 0)
@@ -1068,9 +1076,124 @@ function lildice() {
             </AutoLayout>
           ))}
         </AutoLayout>
-        <AutoLayout direction="vertical" spacing={16} width="fill-parent">
+        <AutoLayout direction="vertical" spacing={8} width="fill-parent">
           <Text fontSize={24} fontWeight={700}>Equipment</Text>
-          <Text fontSize={16}>(Coming soon)</Text>
+          {/* Header Row */}
+          <AutoLayout spacing={4} width="fill-parent">
+            <Text fontSize={14} fontWeight={700} width={140}>Name</Text>
+            <Text fontSize={14} fontWeight={700} width={70}>Type</Text>
+            <Text fontSize={14} fontWeight={700} width={50}>Coin</Text>
+            <Text fontSize={14} fontWeight={700} width={50}>Harm</Text>
+            <Text fontSize={14} fontWeight={700} width={150}>Tags</Text>
+          </AutoLayout>
+          {/* Equipment Rows */}
+          {equipmentTypes.map((equipType, idx) => (
+            <AutoLayout key={idx} spacing={4} width="fill-parent" verticalAlignItems="center">
+              {idx < 6 && <Text fontSize={16}>⭐</Text>}
+              <Input
+                  value={equipmentNames[idx]}
+                  onTextEditEnd={(e) => {
+                    const newNames = [...equipmentNames]
+                    newNames[idx] = e.characters
+                    setEquipmentNames(newNames)
+                  }}
+                  fontSize={14}
+                  placeholder="Name"
+                  width={idx < 6 ? 120 : 140}
+              />
+              <AutoLayout
+                  fill={attributesLocked ? "#FFCCCC" : "#E6E6E6"}
+                  padding={6}
+                  cornerRadius={4}
+                  width={70}
+                  horizontalAlignItems="center"
+                  onClick={() => {
+                    if (!attributesLocked) {
+                      const newTypes = [...equipmentTypes]
+                      const currentIndex = equipmentTypeOptions.indexOf(equipType)
+                      newTypes[idx] = equipmentTypeOptions[(currentIndex + 1) % equipmentTypeOptions.length]
+                      setEquipmentTypes(newTypes)
+                    }
+                  }}
+              >
+                <Text fontSize={12}>{equipType || "---"}</Text>
+              </AutoLayout>
+              <Input
+                  value={equipmentCoin[idx]}
+                  onTextEditEnd={(e) => {
+                    const newCoin = [...equipmentCoin]
+                    newCoin[idx] = e.characters
+                    setEquipmentCoin(newCoin)
+                  }}
+                  fontSize={14}
+                  placeholder="Coin"
+                  width={50}
+              />
+              <AutoLayout spacing={4} verticalAlignItems="center">
+                <AutoLayout direction="vertical" spacing={2}>
+                  <AutoLayout
+                      fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
+                      padding={2}
+                      cornerRadius={2}
+                      width={16}
+                      horizontalAlignItems="center"
+                      onClick={() => {
+                        if (!attributesLocked) {
+                          const newHarm = [...equipmentHarm]
+                          newHarm[idx] = Math.min(4, newHarm[idx] + 1)
+                          setEquipmentHarm(newHarm)
+                        }
+                      }}
+                  >
+                    <Text fontSize={10} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>+</Text>
+                  </AutoLayout>
+                  <AutoLayout
+                      fill={attributesLocked ? "#FFCCCC" : "#CCFFCC"}
+                      padding={2}
+                      cornerRadius={2}
+                      width={16}
+                      horizontalAlignItems="center"
+                      onClick={() => {
+                        if (!attributesLocked) {
+                          const newHarm = [...equipmentHarm]
+                          newHarm[idx] = Math.max(0, newHarm[idx] - 1)
+                          setEquipmentHarm(newHarm)
+                        }
+                      }}
+                  >
+                    <Text fontSize={10} fontWeight={600} opacity={attributesLocked ? 0.5 : 1}>-</Text>
+                  </AutoLayout>
+                </AutoLayout>
+                <Input
+                    value={String(equipmentHarm[idx])}
+                    onTextEditEnd={(e) => {
+                      if (!attributesLocked) {
+                        let val = parseInt(e.characters)
+                        if (!isNaN(val)) {
+                          const newHarm = [...equipmentHarm]
+                          newHarm[idx] = Math.max(0, Math.min(4, val))
+                          setEquipmentHarm(newHarm)
+                        }
+                      }
+                    }}
+                    fontSize={14}
+                    width={25}
+                    horizontalAlignText="center"
+                />
+              </AutoLayout>
+              <Input
+                  value={equipmentTags[idx]}
+                  onTextEditEnd={(e) => {
+                    const newTags = [...equipmentTags]
+                    newTags[idx] = e.characters
+                    setEquipmentTags(newTags)
+                  }}
+                  fontSize={14}
+                  placeholder="Tags"
+                  width={150}
+              />
+            </AutoLayout>
+          ))}
         </AutoLayout>
       </AutoLayout>
       <AutoLayout
