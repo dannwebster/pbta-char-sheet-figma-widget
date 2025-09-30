@@ -328,7 +328,7 @@ function pbta_character() {
   }
 
   useEffect(() => {
-    figma.widget.waitForTask(new Promise(async resolve => {
+    figma.widget.waitForTask(() => new Promise(async resolve => {
       if (!initialized) {
         roll()
         setInitialized(true)
