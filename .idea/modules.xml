@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/widget-src.iml" filepath="$PROJECT_DIR$/.idea/widget-src.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PbtA-Dice-Roller.iml" filepath="$PROJECT_DIR$/.idea/PbtA-Dice-Roller.iml" />
     </modules>
   </component>
 </project>
