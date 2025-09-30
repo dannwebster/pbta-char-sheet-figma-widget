@@ -166,6 +166,7 @@
       }
     ]
   },
+  "AdditionalAttributes": ["Mythos", "Logos"],
   "MultiAttributeMoves": [
     {
       "Name": "Global Moves",

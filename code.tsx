@@ -98,6 +98,22 @@ function pbta_character() {
   const [logosCrack, setLogosCrack] = useSyncedState("logosCrack", [false, false, false])
   const [logosValue, setLogosValue] = useSyncedState("logosValue", 0)
 
+  // Helper function to get attribute value from any source
+  const getAttributeValue = (attrName: string): number => {
+    // Check if it's in additionalAttributes
+    if (movesData.AdditionalAttributes?.includes(attrName)) {
+      // Dynamically map additional attributes to their state values
+      const additionalAttrMap: Record<string, number> = {}
+      movesData.AdditionalAttributes.forEach((attr: string) => {
+        if (attr === "Mythos") additionalAttrMap[attr] = mythosValue
+        if (attr === "Logos") additionalAttrMap[attr] = logosValue
+      })
+      return additionalAttrMap[attrName] || 0
+    }
+    // Otherwise check standard attributes
+    return attributeValues[attrName] || 0
+  }
+
   // Harm and Stress tracking
   const harmLevels = [
     { name: "Healthy",   symbol: "☆", modifier: "" },   // White Star
@@ -1393,52 +1409,25 @@ function pbta_character() {
           <AutoLayout direction="vertical" spacing={8} width="fill-parent">
             <Text fontSize={24} fontWeight={700}>Select Attribute for {pendingMultiAttributeMove.move.name}</Text>
             <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-              {pendingMultiAttributeMove.attributes.map(attr => (
-                <AutoLayout
-                    key={attr}
-                    fill="#333333"
-                    padding={12}
-                    cornerRadius={4}
-                    onClick={() => {
-                      roll(attributeValues[attr], "+" + attr, pendingMultiAttributeMove.move)
-                      setPendingMultiAttributeMove(null)
-                    }}
-                    width="fill-parent"
-                    horizontalAlignItems="center"
-                >
-                  <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+{attr} ({(attributeValues[attr] >= 0 ? '+' : '') + attributeValues[attr]})</Text>
-                </AutoLayout>
-              ))}
-              {pendingMultiAttributeMove.attributes.includes("Mythos") && (
-                <AutoLayout
-                    fill="#333333"
-                    padding={12}
-                    cornerRadius={4}
-                    onClick={() => {
-                      roll(mythosValue, "+Mythos", pendingMultiAttributeMove.move)
-                      setPendingMultiAttributeMove(null)
-                    }}
-                    width="fill-parent"
-                    horizontalAlignItems="center"
-                >
-                  <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+Mythos ({(mythosValue >= 0 ? '+' : '') + mythosValue})</Text>
-                </AutoLayout>
-              )}
-              {pendingMultiAttributeMove.attributes.includes("Logos") && (
-                <AutoLayout
-                    fill="#333333"
-                    padding={12}
-                    cornerRadius={4}
-                    onClick={() => {
-                      roll(logosValue, "+Logos", pendingMultiAttributeMove.move)
-                      setPendingMultiAttributeMove(null)
-                    }}
-                    width="fill-parent"
-                    horizontalAlignItems="center"
-                >
-                  <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+Logos ({(logosValue >= 0 ? '+' : '') + logosValue})</Text>
-                </AutoLayout>
-              )}
+              {pendingMultiAttributeMove.attributes.map(attr => {
+                const value = getAttributeValue(attr)
+                return (
+                  <AutoLayout
+                      key={attr}
+                      fill="#333333"
+                      padding={12}
+                      cornerRadius={4}
+                      onClick={() => {
+                        roll(value, "+" + attr, pendingMultiAttributeMove.move)
+                        setPendingMultiAttributeMove(null)
+                      }}
+                      width="fill-parent"
+                      horizontalAlignItems="center"
+                  >
+                    <Text fontSize={20} fontWeight={600} fill="#FFFFFF">+{attr} ({(value >= 0 ? '+' : '') + value})</Text>
+                  </AutoLayout>
+                )
+              })}
             </AutoLayout>
             <AutoLayout
                 fill="#FF5555"
