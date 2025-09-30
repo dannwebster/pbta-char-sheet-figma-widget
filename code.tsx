@@ -1447,26 +1447,11 @@ function pbta_character() {
                       <Text fontSize={15} width="fill-parent">
                         {move.description}
                       </Text>
-                      {move.outcomes?.["13+"] && (
-                        <Text fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On 13+:</Text> {move.outcomes["13+"]}
+                      {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
+                        <Text key={key} fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On {key}:</Text> {value}
                         </Text>
-                      )}
-                      {move.outcomes?.["10+"] && (
-                        <Text fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On 10+:</Text> {move.outcomes["10+"]}
-                        </Text>
-                      )}
-                      {move.outcomes?.["7-9"] && (
-                        <Text fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On 7-9:</Text> {move.outcomes["7-9"]}
-                        </Text>
-                      )}
-                      {move.outcomes?.["6-"] && (
-                        <Text fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On 6-:</Text> {move.outcomes["6-"]}
-                        </Text>
-                      )}
+                      ))}
                       {move.hold && move.hold.length > 0 && (
                         <AutoLayout direction="vertical" spacing={3} width="fill-parent">
                           {move.hold.map((option, optIdx) => (
@@ -1507,26 +1492,11 @@ function pbta_character() {
                       <Text fontSize={15} width="fill-parent">
                         {move.description}
                       </Text>
-                      {move.outcomes?.["13+"] && (
-                        <Text fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On 13+:</Text> {move.outcomes["13+"]}
+                      {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
+                        <Text key={key} fontSize={15} width="fill-parent">
+                          <Text fontWeight={600}>On {key}:</Text> {value}
                         </Text>
-                      )}
-                      {move.outcomes?.["10+"] && (
-                        <Text fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On 10+:</Text> {move.outcomes["10+"]}
-                        </Text>
-                      )}
-                      {move.outcomes?.["7-9"] && (
-                        <Text fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On 7-9:</Text> {move.outcomes["7-9"]}
-                        </Text>
-                      )}
-                      {move.outcomes?.["6-"] && (
-                        <Text fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On 6-:</Text> {move.outcomes["6-"]}
-                        </Text>
-                      )}
+                      ))}
                       {move.hold && move.hold.length > 0 && (
                         <AutoLayout direction="vertical" spacing={3} width="fill-parent">
                           {move.hold.map((option, optIdx) => (
