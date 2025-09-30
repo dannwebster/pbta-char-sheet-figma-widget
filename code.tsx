@@ -1449,7 +1449,7 @@ function pbta_character() {
                       </Text>
                       {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
                         <Text key={key} fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On {key}:</Text> {value}
+                          • On {key}: {value}
                         </Text>
                       ))}
                       {move.hold && move.hold.length > 0 && (
@@ -1494,7 +1494,7 @@ function pbta_character() {
                       </Text>
                       {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
                         <Text key={key} fontSize={15} width="fill-parent">
-                          <Text fontWeight={600}>On {key}:</Text> {value}
+                          • <Text fontWeight={600}>On {key}:</Text> {value}
                         </Text>
                       ))}
                       {move.hold && move.hold.length > 0 && (
