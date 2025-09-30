@@ -161,7 +161,7 @@ function pbta_character() {
     let total = number1 + number2 + mod + forward + ongoing
 
     // Build roll text
-    let rollTextStr = `<span  style="color: red">${total}</span> = [(${number1} + ${number2})`
+    let rollTextStr = `${total} = [(${number1} + ${number2})`
     if (name) {
       rollTextStr += modifierName && mod !== 0 ? (mod >= 0 ? ' +' + mod : ' -' + Math.abs(mod)) + ' (' + name + ')' : mod === 0 ? ' +' + mod + ' (' + name + ')' : ''
     }
@@ -189,6 +189,7 @@ function pbta_character() {
         total: total,
         dice: [number1, number2],
         modifier: mod,
+        modifierName: name,
         forward: forward,
         ongoing: ongoing,
         rollText: rollTextStr,
@@ -923,24 +924,6 @@ function pbta_character() {
             <Text fontSize={24} fontWeight={600}>Ongoing</Text>
           </AutoLayout>
         </AutoLayout>
-        <AutoLayout
-            fill="#E8E8E8"
-            padding={16}
-            width="fill-parent"
-            spacing={8}
-            height={115}
-        >
-          {sides1 && sides2 ?
-            <>
-              <Text fontSize={32} fontWeight={700}>
-                Roll:
-              </Text>
-              <Text fontSize={32} fontWeight={700} width="fill-parent">
-                {rollText}
-              </Text>
-            </>
-            : null}
-        </AutoLayout>
       </AutoLayout>
       <AutoLayout direction="vertical" spacing={16} padding={16} width={900} height="fill-parent" fill="#F5F5F5" stroke="#333333" strokeWidth={2} cornerRadius={8}>
         <Text fontSize={36} fontWeight={700}>Clocks</Text>
@@ -1325,7 +1308,29 @@ function pbta_character() {
                       </Frame>
                       <Text fontSize={22.5} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
                     </AutoLayout>
-                    <Text fontSize={20} fontWeight={600} width="fill-parent">Roll: {entry.rollText}</Text>
+                    {entry.rollText && (
+                      <AutoLayout spacing={4} verticalAlignItems="center" width="fill-parent">
+                        <Text fontSize={20} fontWeight={600}>Roll:</Text>
+                        <AutoLayout fill="#FF0000" padding={4} cornerRadius={4}>
+                          <Text fontSize={20} fontWeight={700} fill="#FFFFFF">{entry.total}</Text>
+                        </AutoLayout>
+                        <Text fontSize={20} fontWeight={600}>=</Text>
+                        <AutoLayout fill="#00AA00" padding={4} cornerRadius={4}>
+                          <Text fontSize={20} fontWeight={700} fill="#FFFFFF">({entry.dice[0]} + {entry.dice[1]})</Text>
+                        </AutoLayout>
+                        {entry.modifierName && (
+                          <AutoLayout fill="#0066FF" padding={4} cornerRadius={4}>
+                            <Text fontSize={20} fontWeight={700} fill="#FFFFFF">{entry.modifier >= 0 ? '+' : ''}{entry.modifier} ({entry.modifierName})</Text>
+                          </AutoLayout>
+                        )}
+                        {entry.forward !== 0 && (
+                          <Text fontSize={20} fontWeight={700} fill="#00AA00">{entry.forward >= 0 ? '+' : ''}{entry.forward} (Forward)</Text>
+                        )}
+                        {entry.ongoing !== 0 && (
+                          <Text fontSize={20} fontWeight={700} fill="#0066FF">{entry.ongoing >= 0 ? '+' : ''}{entry.ongoing} (Ongoing)</Text>
+                        )}
+                      </AutoLayout>
+                    )}
                     <Text fontSize={17.5} width="fill-parent">{entry.move.description}</Text>
                     <Text fontSize={17.5} fontWeight={600} width="fill-parent">{outcomeText}</Text>
                     {holdOptions.length > 0 && (
