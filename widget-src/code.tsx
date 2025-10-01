@@ -76,6 +76,7 @@ function pbta_character() {
   const [pendingMultiAttributeMove, setPendingMultiAttributeMove] = useSyncedState("pendingMultiAttributeMove", null)
   const [characterMovesExpanded, setCharacterMovesExpanded] = useSyncedState("characterMovesExpanded", false)
   const [basicMovesExpanded, setBasicMovesExpanded] = useSyncedState("basicMovesExpanded", false)
+  const [chartsExpanded, setChartsExpanded] = useSyncedState("chartsExpanded", false)
   const [pendingRoll, setPendingRoll] = useSyncedState("pendingRoll", null)
   const [popupForward, setPopupForward] = useSyncedState("popupForward", 0)
   const [popupOngoing, setPopupOngoing] = useSyncedState("popupOngoing", 0)
@@ -1858,6 +1859,45 @@ function pbta_character() {
                 ))}
               </AutoLayout>
             </AutoLayout>
+          </AutoLayout>
+        )}
+      </AutoLayout>
+
+      {/* Charts Section */}
+      <AutoLayout
+          direction="vertical"
+          width={2250}
+          fill="#FFFFFF"
+          stroke="#333333"
+          strokeWidth={2}
+          padding={16}
+          spacing={12}
+          cornerRadius={8}
+      >
+        <AutoLayout
+            direction="horizontal"
+            width="fill-parent"
+            verticalAlignItems="center"
+            spacing={12}
+        >
+          <AutoLayout
+              fill="#333333"
+              padding={8}
+              cornerRadius={4}
+              onClick={() => setChartsExpanded(!chartsExpanded)}
+          >
+            <Text fontSize={25} fontWeight={700} fill="#FFFFFF">
+              {chartsExpanded ? "▼" : "▶"}
+            </Text>
+          </AutoLayout>
+          <Text fontSize={30} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+            Charts
+          </Text>
+        </AutoLayout>
+
+        {chartsExpanded && (
+          <AutoLayout direction="vertical" spacing={12} width="fill-parent">
+            <Text fontSize={24}>Charts content will go here</Text>
           </AutoLayout>
         )}
       </AutoLayout>
