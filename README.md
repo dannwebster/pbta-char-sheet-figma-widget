@@ -34,8 +34,6 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 - [ ] make all sizes (fonts, widths, etc) variables abstracted out and relative
 - [ ] make the Coin field a selector field
 ### Bugs
-- [x] allow for merging any number of character files
-  - [ ] BUG: data is still too hardcoded. there must be some way to make it rely entirely on the manifest file. 
 
 ### Data
 - [ ] First Aid
@@ -64,6 +62,8 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 
 ### Done
 - [x] allow for merging any number of character files
+    - [x] BUG: data is still too hardcoded. there must be some way to make it rely entirely on the manifest file.
+    - [x] FIX: use character-loader.ts
 - [x] Flaw buttons don't work
 - [x] add a Charts section.
     - [x] add a prices chart
