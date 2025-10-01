@@ -88,7 +88,6 @@ The widget uses Figma's declarative widget API with React-like patterns:
 - [ ] make the Coin field a selector field
 ## Required
 - [ ] make Harm and Stress Clocks real clocks with clock moves
-- [ ] ensure Health and Stress modifiers get added to rolls
 - [ ] *Project* - save character move values
   - [ ] add characters.json w/ logos and Mythos moves sections
   - [ ] add logos/mythos moves page that shows them, with buttons
@@ -100,6 +99,7 @@ The widget uses Figma's declarative widget API with React-like patterns:
     - [ ] put the JSON in that bucket
 
 ## Done
+- [x] ensure Health and Stress modifiers get added to rolls
 - [x] change the Forward and Ongoing input to be in a popup when you roll
 - [x] add dice to contact moves
 - [x] add basic moves sheet that is expandible and collapsible

@@ -241,6 +241,7 @@ function pbta_character() {
     // Add to move history if a move was passed directly
     if (moveData) {
       const historyEntry = {
+        type: "move",
         move: moveData,
         total: total,
         dice: [number1, number2],
@@ -321,8 +322,10 @@ function pbta_character() {
         newClock[firstUnchecked] = true
         console.log('Setting new clock state:', newClock)
         clock.setter(newClock)
+        console.log('Set New Clock State:', newClock)
         didChange = true
         newClockValue = newClock.filter(v => v === true).length
+        console.log('New Clock Value:', newClockValue)
       }
     } else if (action === 'rollback') {
       // Find last checked box
@@ -344,24 +347,18 @@ function pbta_character() {
       const clockDisplayName = clockDisplayNames[clockName] || clockName
       const description = `${actionText} the ${clockDisplayName} clock by 1. ${clockDisplayName} now at ${newClockValue}`
 
+      console.log('Logging Description for Clock Value:', description)
       const historyEntry = {
+        type: "clock",
         move: {
           name: moveName,
-          description: description,
-          "13+": "",
-          "10+": "",
-          "7-9": "",
-          "6-": ""
+          description: description
         },
-        total: 0,
-        dice: [0,0],
-        modifier: 0,
-        forward: 0,
-        ongoing: 0,
-        rollText: "",
         timestamp: Date.now()
       }
+      console.log('Adding Move History:', historyEntry)
       setMoveHistory([historyEntry, ...moveHistory])
+      console.log('Finished Setting :', historyEntry)
     }
   }
 
@@ -1262,6 +1259,25 @@ function pbta_character() {
           <>
             <AutoLayout direction="vertical" spacing={12} width="fill-parent">
               {moveHistory.slice(historyPage * 5, (historyPage * 5) + 5).map((entry, idx) => {
+                if (entry.type === "clock") {
+                  // Clock move - simple display
+                  return (
+                    <AutoLayout
+                        key={idx}
+                        direction="vertical"
+                        fill="#FFFFFF"
+                        padding={12}
+                        cornerRadius={4}
+                        width="fill-parent"
+                        spacing={8}
+                    >
+                      <Text fontSize={22.5} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
+                      <Text fontSize={17.5} width="fill-parent">{entry.move.description}</Text>
+                    </AutoLayout>
+                  )
+                }
+
+                // Regular move with dice roll
                 let outcomeText = ""
                 let holdOptions = entry.move.hold || []
                 if (entry.move.outcomes?.["13+"] && entry.total >= 13) {
@@ -1318,16 +1334,18 @@ function pbta_character() {
                         {entry.ongoing !== 0 && (
                           <Text fontSize={20} fontWeight={700} fill="#0066FF">{entry.ongoing >= 0 ? '+' : ''}{entry.ongoing} (Ongoing)</Text>
                         )}
-                        {entry.harm !== 0 && (
+                        {entry.harm != null && entry.harm !== 0 && (
                           <Text fontSize={20} fontWeight={700} fill="#FF0000">{entry.harm >= 0 ? '+' : ''}{entry.harm} (Harm)</Text>
                         )}
-                        {entry.stress !== 0 && (
+                        {entry.stress != null && entry.stress !== 0 && (
                           <Text fontSize={20} fontWeight={700} fill="#9933FF">{entry.stress >= 0 ? '+' : ''}{entry.stress} (Stress)</Text>
                         )}
                       </AutoLayout>
                     )}
                     <Text fontSize={17.5} width="fill-parent">{entry.move.description}</Text>
-                    <Text fontSize={17.5} fontWeight={600} width="fill-parent">{outcomeText}</Text>
+                    {outcomeText && (
+                      <Text fontSize={17.5} fontWeight={600} width="fill-parent">{outcomeText}</Text>
+                    )}
                     {holdOptions.length > 0 && (
                       <AutoLayout direction="vertical" spacing={4} width="fill-parent">
                         {holdOptions.map((option, optIdx) => (
