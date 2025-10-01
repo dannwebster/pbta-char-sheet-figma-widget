@@ -34,9 +34,18 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 - [ ] make all sizes (fonts, widths, etc) variables abstracted out and relative
 - [ ] make the Coin field a selector field
 ### Bugs
-- [ ] Flaw buttons don't work
+
+### Data
+- [ ] First Aid
+- [ ] Down Time
+- [ ] Contact Moves
+- [ ] Contact Moves
+- [ ] Explore Mythos/Logos Lore
+- [ ] Cultivate a Mythos/Logos Contact
+- 
 ### Features
-- [ ] allow for merging any number fo character files
+- [ ] allow for merging any number of character files
+- [ ] restructure clock move buttons and clock moves data 
 - [ ] *Project* - pull all widget information out into the characters json file 
    - [ ] abstract all data out into a Characters file
      - [ ] equipment
@@ -53,6 +62,7 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
    - [ ] put the JSON in that bucket
 
 ### Done
+- [x] Flaw buttons don't work
 - [x] add a Charts section.
     - [x] add a prices chart
 - [x] *Project* - save character move values
