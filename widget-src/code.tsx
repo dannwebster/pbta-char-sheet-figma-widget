@@ -105,13 +105,13 @@ function pbta_character() {
   const [mythosQuestion, setMythosQuestion] = useSyncedState("mythosQuestion", "")
   const [mythosAttention, setMythosAttention] = useSyncedState("mythosAttention", [false, false, false, false, false])
   const [mythosFade, setMythosFade] = useSyncedState("mythosFade", [false, false, false])
-  const [mythosValue, setMythosValue] = useSyncedState("mythosValue", 0)
+  const [mythosValue, setMythosValue] = useSyncedState("mythosValue", archetypes["Borderliner"].mythos)
   const [logosName, setLogosName] = useSyncedState("logosName", "")
   const [logosConcept, setLogosConcept] = useSyncedState("logosConcept", "")
   const [logosStatement, setLogosStatement] = useSyncedState("logosStatement", "")
   const [logosAttention, setLogosAttention] = useSyncedState("logosAttention", [false, false, false, false, false])
   const [logosCrack, setLogosCrack] = useSyncedState("logosCrack", [false, false, false])
-  const [logosValue, setLogosValue] = useSyncedState("logosValue", 0)
+  const [logosValue, setLogosValue] = useSyncedState("logosValue", archetypes["Borderliner"].logos)
 
   // Helper function to get attribute value from any source
   const getAttributeValue = (attrName: string): number => {

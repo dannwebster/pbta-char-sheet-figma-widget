@@ -32,7 +32,6 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
     > currently, the attribute popup and the modifier popup always appear in the same place. instead make them appear relative to the button that was just clicked, about 100 px above, and 100 px to the right of the upper   right corner of the button.
 - [ ] make all sizes (fonts, widths, etc) variables abstracted out and relative
 - [ ] make the Coin field a selector field
-### Bugs
 
 ### Data
 - [ ] First Aid
@@ -59,7 +58,10 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
    - [ ] create simple save/retrieve function that saves to a AWS bucket
    - [ ] put the JSON in that bucket
 
+### Bugs
+
 ### Done
+- [x] mythos and logos values don't initialize until manually selecting an archetype
 - [x] move dice from right to left side of move buttons
 - [x] allow for merging any number of character files
     - [x] BUG: data is still too hardcoded. there must be some way to make it rely entirely on the manifest file.
