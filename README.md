@@ -18,7 +18,6 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 
 ## Project Backlog
 ### Cosmetic
-- [ ] move dice from right to left side of move buttons
 - [ ] add tooltip over buttons
    - [ ] attribute moves
    - [ ] clock moves
@@ -61,6 +60,7 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
    - [ ] put the JSON in that bucket
 
 ### Done
+- [x] move dice from right to left side of move buttons
 - [x] allow for merging any number of character files
     - [x] BUG: data is still too hardcoded. there must be some way to make it rely entirely on the manifest file.
     - [x] FIX: use character-loader.ts
