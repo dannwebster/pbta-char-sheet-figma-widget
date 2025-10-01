@@ -2,6 +2,7 @@ const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
 import movesData from './moves.json'
+import characterData from './characters.json'
 
 // Build attributes array dynamically from AttributeMoves keys
 const moves = movesData.AttributeMoves
@@ -67,7 +68,7 @@ function pbta_character() {
   const [modifierName, setModifierName] = useSyncedState("modifierName", "")
   const [forward, setForward] = useSyncedState("forward", 0)
   const [ongoing, setOngoing] = useSyncedState("ongoing", 0)
-  const [characterName, setCharacterName] = useSyncedState("characterName", "Character Name")
+  const [characterName, setCharacterName] = useSyncedState("characterName", characterData.characters[0].name)
   const [selectedMove, setSelectedMove] = useSyncedState("selectedMove", null)
   const [moveHistory, setMoveHistory] = useSyncedState("moveHistory", [])
   const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
@@ -392,14 +393,20 @@ function pbta_character() {
             <Text fontSize={32} fontWeight={700}>{attributesLocked ? "🔒" : "🔓"}</Text>
           </AutoLayout>
           <Text fontSize={40} fontWeight={700}>Character: </Text>
-          <Input
-              value={characterName}
-              onTextEditEnd={(e) => setCharacterName(e.characters)}
-              fontSize={40}
-              fontWeight={700}
-              placeholder="Character Name"
+          <AutoLayout
+              fill="#E6E6E6"
+              padding={12}
+              cornerRadius={8}
+              onClick={() => {
+                const currentIndex = characterData.characters.findIndex(c => c.name === characterName)
+                const nextIndex = (currentIndex + 1) % characterData.characters.length
+                setCharacterName(characterData.characters[nextIndex].name)
+              }}
               width="fill-parent"
-          />
+              horizontalAlignItems="center"
+          >
+            <Text fontSize={40} fontWeight={700}>{characterName}</Text>
+          </AutoLayout>
         </AutoLayout>
         <AutoLayout direction="vertical" spacing={8} padding={16} width="fill-parent" fill="#FFFFFF">
           <AutoLayout direction="horizontal" spacing={8} width="fill-parent">
