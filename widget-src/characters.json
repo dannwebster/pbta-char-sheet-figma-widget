@@ -153,38 +153,38 @@
         "mythosMoves": {
           "anchorMove": {
             "name": "Winchester Model 1876 Lever Action Rifle",
-            "description": "You have a mythic weapon that does 3 harm, functions at all ranges, is mystically concealable, and cannot be taken from you by normal means. When using it, use the better of (+Mythos) or (+Attribute+1). Take one "drawback" tag for the weapon: 🗹 loud ❑ messy ❑reload ❑ unreliable"
+            "description": "You have a mythic weapon that does 3 harm, functions at all ranges, is mystically concealable, and cannot be taken from you by normal means. When using it, use the better of (+Mythos) or (+Attribute+1). Take one drawback tag for the weapon: loud, messy, reload, or unreliable"
           },
           "additionalMoves": [
             {
               "name": "Enchanted Ammo",
-              "description": "Your Mythic Weapon can be loaded with multiple different ammo types to account for different circumstances (see next page). Adds the "reload" tag to the weapon. To Reload, roll +Mythos",
+              "description": "Your Mythic Weapon can be loaded with multiple different ammo types to account for different circumstances. Adds the reload tag to the weapon. To Reload, roll +Mythos",
               "outcomes": {
                 "13+": "",
                 "10+": "You have plenty of ammo of exactly the kind you need for the situation",
-                "7-9": "You have the ammo, but it the MC will choose a drawback or flaw",
-                "6-": "You have Just One Bullet of the type you need and the it is deeply flawed. The MC will tell you how"
+                "7-9": "You have the ammo, but the MC will choose a drawback or flaw",
+                "6-": "You have Just One Bullet of the type you need and it is deeply flawed. The MC will tell you how"
               },
               "hold": [
-                "Armor Piercing - gains 'ignore armor'",
+                "Armor Piercing - gains ignore armor",
                 "Buckshot - hits more than one target",
                 "Chain Shot - can entangle targets",
-                "Explosive - blows up on impac",
+                "Explosive - blows up on impact",
                 "Ghost Shot - can hurt incorporeal entities",
                 "Incendiary - starts fires",
-                "Trick Shot - can ricochet off hard surfaces to shoot around corners, etc."
+                "Trick Shot - can ricochet off hard surfaces to shoot around corners"
               ]
             },
             {
               "name": "Alive to my Surroundings",
-              "description": "Whenever you Read a Bad Situation, you always take 1 additional hold, even on a 6-. Additionally, you can always spend your hold from Read a Bad Situation, to Ask Any Question."
+              "description": "Whenever you Read a Bad Situation, you always take 1 additional hold, even on a 6-. Additionally, you can always spend your hold from Read a Bad Situation to Ask Any Question."
             }
           ]
         },
         "logosMoves": {
           "anchorMove": {
             "name": "Infiltrator",
-            "description": "When you attempt to infiltrate a secure area alone, roll +Logos. As the MC describes the infiltration and the security measures you must overcome, you may spend 1 hold to describe how you overcome the obstacle and",
+            "description": "When you attempt to infiltrate a secure area alone, roll +Logos. As the MC describes the infiltration and the security measures you must overcome, you may spend 1 hold to describe how you overcome the obstacle",
             "outcomes": {
               "10+": "Gain 3 hold.",
               "7-9": "Gain 1 hold."
@@ -210,7 +210,7 @@
               },
               "hold": [
                 "Inflict Stress on all enemies in the scene equal to the Harm inflicted by the attack",
-                "As a question as per Read a Bad Situation",
+                "Ask a question as per Read a Bad Situation",
                 "Create Juice as per Change the Game"
               ]
             }
