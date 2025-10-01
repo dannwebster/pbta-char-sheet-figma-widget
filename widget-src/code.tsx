@@ -77,6 +77,8 @@ function pbta_character() {
   const [pendingRoll, setPendingRoll] = useSyncedState("pendingRoll", null)
   const [popupForward, setPopupForward] = useSyncedState("popupForward", 0)
   const [popupOngoing, setPopupOngoing] = useSyncedState("popupOngoing", 0)
+  const [popupApplyHarm, setPopupApplyHarm] = useSyncedState("popupApplyHarm", true)
+  const [popupApplyStress, setPopupApplyStress] = useSyncedState("popupApplyStress", true)
 
   // Archetype selection
   const archetypes = {
@@ -116,6 +118,34 @@ function pbta_character() {
     }
     // Otherwise check standard attributes
     return attributeValues[attrName] || 0
+  }
+
+  // Helper function to get current Harm modifier
+  const getHarmModifier = (): number => {
+    let lastCheckedIndex = -1
+    for (let i = harmChecked.length - 1; i >= 0; i--) {
+      if (harmChecked[i]) {
+        lastCheckedIndex = i
+        break
+      }
+    }
+    if (lastCheckedIndex === -1) return 0
+    const modStr = harmLevels[lastCheckedIndex]?.modifier || ""
+    return modStr ? parseInt(modStr) : 0
+  }
+
+  // Helper function to get current Stress modifier
+  const getStressModifier = (): number => {
+    let lastCheckedIndex = -1
+    for (let i = stressChecked.length - 1; i >= 0; i--) {
+      if (stressChecked[i]) {
+        lastCheckedIndex = i
+        break
+      }
+    }
+    if (lastCheckedIndex === -1) return 0
+    const modStr = stressLevels[lastCheckedIndex]?.modifier || ""
+    return modStr ? parseInt(modStr) : 0
   }
 
   // Harm and Stress tracking
@@ -175,10 +205,10 @@ function pbta_character() {
   })
   const [attributeValues, setAttributeValues] = useSyncedState("attributeValues", initialAttributeValues)
 
-  let roll = (mod, name, moveData = null, forwardMod = 0, ongoingMod = 0) => {
+  let roll = (mod, name, moveData = null, forwardMod = 0, ongoingMod = 0, harmMod = 0, stressMod = 0) => {
     let number1 = Math.floor(Math.random() * 6) + 1
     let number2 = Math.floor(Math.random() * 6) + 1
-    let total = number1 + number2 + mod + forwardMod + ongoingMod
+    let total = number1 + number2 + mod + forwardMod + ongoingMod + harmMod + stressMod
 
     // Build roll text
     let rollTextStr = `${total} = [(${number1} + ${number2})`
@@ -191,6 +221,12 @@ function pbta_character() {
     }
     if (ongoingMod !== 0) {
       rollTextStr += (ongoingMod >= 0 ? ' +' + ongoingMod : ' -' + Math.abs(ongoingMod)) + ' (Ongoing)'
+    }
+    if (harmMod !== 0) {
+      rollTextStr += (harmMod >= 0 ? ' +' + harmMod : ' -' + Math.abs(harmMod)) + ' (Harm)'
+    }
+    if (stressMod !== 0) {
+      rollTextStr += (stressMod >= 0 ? ' +' + stressMod : ' -' + Math.abs(stressMod)) + ' (Stress)'
     }
 
     // Save snapshot of modifiers used in this roll
@@ -212,13 +248,15 @@ function pbta_character() {
         modifierName: name,
         forward: forwardMod,
         ongoing: ongoingMod,
+        harm: harmMod,
+        stress: stressMod,
         rollText: rollTextStr,
         timestamp: Date.now()
       }
       setMoveHistory([historyEntry, ...moveHistory])
     }
 
-    console.log(number1, number2, mod, forwardMod, ongoingMod)
+    console.log(number1, number2, mod, forwardMod, ongoingMod, harmMod, stressMod)
     figma.notify('You rolled a ' + number1 + ' and a ' + number2 + ' (total: ' + total + ')')
   }
 
@@ -1260,7 +1298,7 @@ function pbta_character() {
                       <Text fontSize={22.5} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
                     </AutoLayout>
                     {entry.rollText && (
-                      <AutoLayout spacing={4} verticalAlignItems="center" width="fill-parent">
+                      <AutoLayout spacing={4} verticalAlignItems="center" width="fill-parent" wrap={true}>
                         <Text fontSize={20} fontWeight={600}>Roll:</Text>
                         <AutoLayout fill="#FF0000" padding={4} cornerRadius={4}>
                           <Text fontSize={20} fontWeight={700} fill="#FFFFFF">{entry.total}</Text>
@@ -1279,6 +1317,12 @@ function pbta_character() {
                         )}
                         {entry.ongoing !== 0 && (
                           <Text fontSize={20} fontWeight={700} fill="#0066FF">{entry.ongoing >= 0 ? '+' : ''}{entry.ongoing} (Ongoing)</Text>
+                        )}
+                        {entry.harm !== 0 && (
+                          <Text fontSize={20} fontWeight={700} fill="#FF0000">{entry.harm >= 0 ? '+' : ''}{entry.harm} (Harm)</Text>
+                        )}
+                        {entry.stress !== 0 && (
+                          <Text fontSize={20} fontWeight={700} fill="#9933FF">{entry.stress >= 0 ? '+' : ''}{entry.stress} (Stress)</Text>
                         )}
                       </AutoLayout>
                     )}
@@ -1593,134 +1637,179 @@ function pbta_character() {
         )}
       </AutoLayout>
 
-      {pendingRoll && (
-        <AutoLayout
-            positioning="absolute"
-            x={500}
-            y={400}
-            fill="#FFFFFF"
-            stroke="#333333"
-            strokeWidth={3}
-            cornerRadius={8}
-            padding={24}
-            direction="vertical"
-            spacing={16}
-            effect={[
-              {
-                type: 'drop-shadow',
-                color: { r: 0, g: 0, b: 0, a: 0.5 },
-                offset: { x: 0, y: 4 },
-                blur: 20,
-                spread: 0,
-              },
-            ]}
-        >
-          <Text fontSize={24} fontWeight={700}>{pendingRoll.move.name}</Text>
-          <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
-            <Text fontSize={20}>Forward:</Text>
-            <AutoLayout direction="vertical" spacing={4}>
-              <AutoLayout
-                  fill="#E6E6E6"
-                  padding={4}
-                  cornerRadius={4}
-                  width={24}
-                  horizontalAlignItems="center"
-                  onClick={() => setPopupForward(Math.min(5, popupForward + 1))}
-              >
-                <Text fontSize={12} fontWeight={600}>+</Text>
-              </AutoLayout>
-              <AutoLayout
-                  fill="#E6E6E6"
-                  padding={4}
-                  cornerRadius={4}
-                  width={24}
-                  horizontalAlignItems="center"
-                  onClick={() => setPopupForward(Math.max(-5, popupForward - 1))}
-              >
-                <Text fontSize={12} fontWeight={600}>-</Text>
-              </AutoLayout>
-            </AutoLayout>
-            <Input
-                value={(popupForward >= 0 ? '+' : '') + String(popupForward)}
-                onTextEditEnd={(e) => {
-                  let val = parseInt(e.characters)
-                  if (!isNaN(val)) {
-                    setPopupForward(Math.max(-5, Math.min(5, val)))
-                  }
-                }}
-                fontSize={24}
-                width={60}
-                horizontalAlignText="center"
-            />
-          </AutoLayout>
-          <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
-            <Text fontSize={20}>Ongoing:</Text>
-            <AutoLayout direction="vertical" spacing={4}>
-              <AutoLayout
-                  fill="#E6E6E6"
-                  padding={4}
-                  cornerRadius={4}
-                  width={24}
-                  horizontalAlignItems="center"
-                  onClick={() => setPopupOngoing(Math.min(5, popupOngoing + 1))}
-              >
-                <Text fontSize={12} fontWeight={600}>+</Text>
-              </AutoLayout>
-              <AutoLayout
-                  fill="#E6E6E6"
-                  padding={4}
-                  cornerRadius={4}
-                  width={24}
-                  horizontalAlignItems="center"
-                  onClick={() => setPopupOngoing(Math.max(-5, popupOngoing - 1))}
-              >
-                <Text fontSize={12} fontWeight={600}>-</Text>
-              </AutoLayout>
-            </AutoLayout>
-            <Input
-                value={(popupOngoing >= 0 ? '+' : '') + String(popupOngoing)}
-                onTextEditEnd={(e) => {
-                  let val = parseInt(e.characters)
-                  if (!isNaN(val)) {
-                    setPopupOngoing(Math.max(-5, Math.min(5, val)))
-                  }
-                }}
-                fontSize={24}
-                width={60}
-                horizontalAlignText="center"
-            />
-          </AutoLayout>
+      {pendingRoll && (() => {
+        const harmMod = getHarmModifier()
+        const stressMod = getStressModifier()
+        return (
           <AutoLayout
-              fill="#4CAF50"
-              padding={12}
-              cornerRadius={4}
-              onClick={() => {
-                roll(pendingRoll.modifier, pendingRoll.modifierName, pendingRoll.move, popupForward, popupOngoing)
-                setPendingRoll(null)
-                setPopupForward(0)
-                setPopupOngoing(0)
-              }}
-              width="fill-parent"
-              horizontalAlignItems="center"
+              positioning="absolute"
+              x={400}
+              y={400}
+              fill="#FFFFFF"
+              stroke="#333333"
+              strokeWidth={3}
+              cornerRadius={8}
+              padding={24}
+              direction="vertical"
+              spacing={16}
+              width={400}
+              effect={[
+                {
+                  type: 'drop-shadow',
+                  color: { r: 0, g: 0, b: 0, a: 0.5 },
+                  offset: { x: 0, y: 4 },
+                  blur: 20,
+                  spread: 0,
+                },
+              ]}
           >
-            <Text fontSize={20} fontWeight={600} fill="#FFFFFF">Roll</Text>
+            <Text fontSize={24} fontWeight={700}>{pendingRoll.move.name}</Text>
+            <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
+              <Text fontSize={20} width={80}>Forward:</Text>
+              <AutoLayout direction="vertical" spacing={4}>
+                <AutoLayout
+                    fill="#E6E6E6"
+                    padding={4}
+                    cornerRadius={4}
+                    width={24}
+                    horizontalAlignItems="center"
+                    onClick={() => setPopupForward(Math.min(5, popupForward + 1))}
+                >
+                  <Text fontSize={12} fontWeight={600}>+</Text>
+                </AutoLayout>
+                <AutoLayout
+                    fill="#E6E6E6"
+                    padding={4}
+                    cornerRadius={4}
+                    width={24}
+                    horizontalAlignItems="center"
+                    onClick={() => setPopupForward(Math.max(-5, popupForward - 1))}
+                >
+                  <Text fontSize={12} fontWeight={600}>-</Text>
+                </AutoLayout>
+              </AutoLayout>
+              <Input
+                  value={(popupForward >= 0 ? '+' : '') + String(popupForward)}
+                  onTextEditEnd={(e) => {
+                    let val = parseInt(e.characters)
+                    if (!isNaN(val)) {
+                      setPopupForward(Math.max(-5, Math.min(5, val)))
+                    }
+                  }}
+                  fontSize={24}
+                  width={60}
+                  horizontalAlignText="center"
+              />
+            </AutoLayout>
+            <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
+              <Text fontSize={20} width={80}>Ongoing:</Text>
+              <AutoLayout direction="vertical" spacing={4}>
+                <AutoLayout
+                    fill="#E6E6E6"
+                    padding={4}
+                    cornerRadius={4}
+                    width={24}
+                    horizontalAlignItems="center"
+                    onClick={() => setPopupOngoing(Math.min(5, popupOngoing + 1))}
+                >
+                  <Text fontSize={12} fontWeight={600}>+</Text>
+                </AutoLayout>
+                <AutoLayout
+                    fill="#E6E6E6"
+                    padding={4}
+                    cornerRadius={4}
+                    width={24}
+                    horizontalAlignItems="center"
+                    onClick={() => setPopupOngoing(Math.max(-5, popupOngoing - 1))}
+                >
+                  <Text fontSize={12} fontWeight={600}>-</Text>
+                </AutoLayout>
+              </AutoLayout>
+              <Input
+                  value={(popupOngoing >= 0 ? '+' : '') + String(popupOngoing)}
+                  onTextEditEnd={(e) => {
+                    let val = parseInt(e.characters)
+                    if (!isNaN(val)) {
+                      setPopupOngoing(Math.max(-5, Math.min(5, val)))
+                    }
+                  }}
+                  fontSize={24}
+                  width={60}
+                  horizontalAlignText="center"
+              />
+            </AutoLayout>
+            <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
+              <AutoLayout
+                  width={20}
+                  height={20}
+                  fill={popupApplyHarm ? "#333333" : "#FFFFFF"}
+                  stroke="#333333"
+                  strokeWidth={2}
+                  cornerRadius={4}
+                  horizontalAlignItems="center"
+                  verticalAlignItems="center"
+                  onClick={() => setPopupApplyHarm(!popupApplyHarm)}
+              >
+                {popupApplyHarm && <Text fontSize={14} fill="#FFFFFF">✓</Text>}
+              </AutoLayout>
+              <Text fontSize={20} width={80}>Harm:</Text>
+              <Text fontSize={24} width={60} horizontalAlignText="center">{harmMod !== 0 ? (harmMod >= 0 ? '+' : '') + harmMod : '0'}</Text>
+            </AutoLayout>
+            <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
+              <AutoLayout
+                  width={20}
+                  height={20}
+                  fill={popupApplyStress ? "#333333" : "#FFFFFF"}
+                  stroke="#333333"
+                  strokeWidth={2}
+                  cornerRadius={4}
+                  horizontalAlignItems="center"
+                  verticalAlignItems="center"
+                  onClick={() => setPopupApplyStress(!popupApplyStress)}
+              >
+                {popupApplyStress && <Text fontSize={14} fill="#FFFFFF">✓</Text>}
+              </AutoLayout>
+              <Text fontSize={20} width={80}>Stress:</Text>
+              <Text fontSize={24} width={60} horizontalAlignText="center">{stressMod !== 0 ? (stressMod >= 0 ? '+' : '') + stressMod : '0'}</Text>
+            </AutoLayout>
+            <AutoLayout
+                fill="#4CAF50"
+                padding={12}
+                cornerRadius={4}
+                onClick={() => {
+                  const appliedHarm = popupApplyHarm ? harmMod : 0
+                  const appliedStress = popupApplyStress ? stressMod : 0
+                  roll(pendingRoll.modifier, pendingRoll.modifierName, pendingRoll.move, popupForward, popupOngoing, appliedHarm, appliedStress)
+                  setPendingRoll(null)
+                  setPopupForward(0)
+                  setPopupOngoing(0)
+                  setPopupApplyHarm(true)
+                  setPopupApplyStress(true)
+                }}
+                width="fill-parent"
+                horizontalAlignItems="center"
+            >
+              <Text fontSize={20} fontWeight={600} fill="#FFFFFF">Roll</Text>
+            </AutoLayout>
+            <AutoLayout
+                fill="#FF5555"
+                padding={12}
+                cornerRadius={4}
+                onClick={() => {
+                  setPendingRoll(null)
+                  setPopupForward(0)
+                  setPopupOngoing(0)
+                  setPopupApplyHarm(true)
+                  setPopupApplyStress(true)
+                }}
+                width="fill-parent"
+                horizontalAlignItems="center"
+            >
+              <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Cancel</Text>
+            </AutoLayout>
           </AutoLayout>
-          <AutoLayout
-              fill="#FF5555"
-              padding={12}
-              cornerRadius={4}
-              onClick={() => {
-                setPendingRoll(null)
-                setPopupForward(0)
-                setPopupOngoing(0)
-              }}
-              width="fill-parent"
-              horizontalAlignItems="center"
-          >
-            <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Cancel</Text>
-          </AutoLayout>
-        </AutoLayout>
-      )}
+        )
+      })()}
 
       {pendingMultiAttributeMove && (
         <AutoLayout
