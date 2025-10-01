@@ -1479,6 +1479,22 @@ function pbta_character() {
                   ))}
                 </AutoLayout>
               )}
+              {move.flaw && (
+                <AutoLayout direction="horizontal" spacing={4} width="fill-parent">
+                  <Text fontSize={19} width="hug-contents">
+                    Flaw:
+                  </Text>
+                  <Text fontSize={19} fontWeight={700} width="hug-contents">
+                    {move.flaw.name}
+                  </Text>
+                  <Text fontSize={19} width="hug-contents">
+                    -
+                  </Text>
+                  <Text fontSize={19} fontStyle="italic" width="fill-parent">
+                    {move.flaw.description}
+                  </Text>
+                </AutoLayout>
+              )}
             </AutoLayout>
           )
 
