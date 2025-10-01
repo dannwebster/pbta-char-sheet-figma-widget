@@ -2,7 +2,7 @@ const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
 import movesData from './moves.json'
-import characterData from './characters.json'
+import characterData from './example-characters.json'
 
 // Build attributes array dynamically from AttributeMoves keys
 const moves = movesData.AttributeMoves
