@@ -2,7 +2,7 @@ const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
 import movesData from './moves.json'
-import characterData from './example-characters.json'
+import characterData from './hotm-characters.json'
 
 // Build attributes array dynamically from AttributeMoves keys
 const moves = movesData.AttributeMoves
@@ -1433,7 +1433,7 @@ function pbta_character() {
 
         {characterMovesExpanded && (() => {
           const currentCharacter = characterData.characters.find(c => c.name === characterName)
-          if (!currentCharacter) return null
+          if (!currentCharacter || !currentCharacter.moves) return null
 
           const renderMove = (move, attribute) => (
             <AutoLayout direction="vertical" spacing={6} width="fill-parent">

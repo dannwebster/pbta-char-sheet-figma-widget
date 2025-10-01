@@ -18,7 +18,11 @@
               "First hold option",
               "Second hold option",
               "Third hold option"
-            ]
+            ],
+            "flaw": {
+              "name": "Placeholder Mythos Anchor Flaw",
+              "description": "This is a placeholder flaw for the Mythos anchor move"
+            }
           },
           "additionalMoves": [
             {
@@ -29,6 +33,10 @@
                 "10+": "Great Success",
                 "7-9": "Partial Success",
                 "6-": "Failure"
+              },
+              "flaw": {
+                "name": "Placeholder Flaw 1",
+                "description": "This is a placeholder flaw for the first additional Mythos move"
               }
             },
             {
@@ -43,7 +51,11 @@
               "hold": [
                 "Hold option 1",
                 "Hold option 2"
-              ]
+              ],
+              "flaw": {
+                "name": "Placeholder Flaw 2",
+                "description": "This is a placeholder flaw for the second additional Mythos move"
+              }
             }
           ]
         },
@@ -61,7 +73,11 @@
               "First hold option",
               "Second hold option",
               "Third hold option"
-            ]
+            ],
+            "flaw": {
+              "name": "Placeholder Logos Anchor Flaw",
+              "description": "This is a placeholder flaw for the Logos anchor move"
+            }
           },
           "additionalMoves": [
             {
@@ -72,6 +88,10 @@
                 "10+": "Great Success",
                 "7-9": "Partial Success",
                 "6-": "Failure"
+              },
+              "flaw": {
+                "name": "Placeholder Flaw 3",
+                "description": "This is a placeholder flaw for the first additional Logos move"
               }
             },
             {
@@ -86,7 +106,11 @@
               "hold": [
                 "Hold option 1",
                 "Hold option 2"
-              ]
+              ],
+              "flaw": {
+                "name": "Placeholder Flaw 4",
+                "description": "This is a placeholder flaw for the second additional Logos move"
+              }
             }
           ]
         }
@@ -105,6 +129,10 @@
               "10+": "You successfully channel the power",
               "7-9": "You channel the power, but at a cost",
               "6-": "The forces overwhelm you"
+            },
+            "flaw": {
+              "name": "Otherworldly Connection",
+              "description": "The forces you channel leave their mark on you, making it hard to relate to normal people"
             }
           },
           "additionalMoves": [
@@ -116,6 +144,10 @@
                 "10+": "You see the truth",
                 "7-9": "Partial understanding",
                 "6-": "Confusion deepens"
+              },
+              "flaw": {
+                "name": "Too Much Truth",
+                "description": "Sometimes seeing through all deceptions reveals truths you wish you didn't know"
               }
             }
           ]
@@ -129,6 +161,10 @@
               "10+": "Sound reasoning prevails",
               "7-9": "A workable solution",
               "6-": "Flawed logic"
+            },
+            "flaw": {
+              "name": "Overthinking",
+              "description": "Your logical mind sometimes paralyzes you with too many possibilities"
             }
           },
           "additionalMoves": [
@@ -140,6 +176,10 @@
                 "10+": "Pattern identified",
                 "7-9": "Partial pattern",
                 "6-": "Pattern eludes you"
+              },
+              "flaw": {
+                "name": "Pattern Obsession",
+                "description": "You sometimes see patterns where none exist, leading you astray"
               }
             }
           ]

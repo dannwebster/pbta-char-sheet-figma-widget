@@ -35,12 +35,21 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
    - [ ] add logos/mythos moves page that shows them, with buttons
 - [ ] *Project* - make into a widget that saves a character data
    - [ ] abstract all data out into a Characters file
-   - [ ] make widget load that based on character name
+     - [ ] equipment
+     - [ ] contacts
+     - [ ] name
+     - [ ] mythos info 
+     - [ ] logos info
+     - [ ] archetype
+     - [ ] stats
+
+- [ ] *Project* - make into a widget into a Plugin
    - [ ] change the Widget into a Plugin
    - [ ] create simple save/retrieve function that saves to a AWS bucket
    - [ ] put the JSON in that bucket
 
 ### Done
+- [x] make widget load moves data that based on character name
 - [x] make Harm and Stress Clocks real clocks with clock moves
 - [x] ensure Health and Stress modifiers get added to rolls
 - [x] change the Forward and Ongoing input to be in a popup when you roll
