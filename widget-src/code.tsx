@@ -1482,48 +1482,20 @@ function pbta_character() {
                 </AutoLayout>
               )}
               {move.flaw && (
-                <AutoLayout direction="horizontal" spacing={4} width="fill-parent" verticalAlignItems="center">
+                <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
                   <AutoLayout
                       fill="#333333"
                       padding={6}
                       cornerRadius={4}
                       onClick={() => {
                         const clockName = attribute === "Mythos" ? "mythosAttention" : "logosAttention"
-                        const clock = clocks[clockName]
-                        if (clock.state < clock.size) {
-                          clock.setter(clock.state + 1)
-                          addHistoryEntry({
-                            type: "clock",
-                            clockName: clockName,
-                            action: "advance",
-                            timestamp: Date.now()
-                          })
-                        }
+                        handleClockMove(clockName, "advance", `Invoke ${attribute} Flaw`)
                       }}
                   >
-                    <Frame width={18} height={18} fill="#FFFFFF" cornerRadius={9}>
-                      <AutoLayout
-                          horizontalAlignItems="center"
-                          verticalAlignItems="center"
-                          width={18}
-                          height={18}
-                          padding={4}
-                      >
-                        <Ellipse width={10} height={10} fill="#333333" />
-                      </AutoLayout>
-                    </Frame>
+                    <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
                   </AutoLayout>
-                  <Text fontSize={19} fontWeight={700} width="hug-contents">
-                    FLAW:
-                  </Text>
-                  <Text fontSize={19} fontWeight={700} width="hug-contents">
-                    {move.flaw.name}
-                  </Text>
-                  <Text fontSize={19} width="hug-contents">
-                    -
-                  </Text>
-                  <Text fontSize={19} fontStyle="italic" width="fill-parent">
-                    {move.flaw.description}
+                  <Text fontSize={19} width="fill-parent">
+                    FLAW: {move.flaw.name} - {move.flaw.description}
                   </Text>
                 </AutoLayout>
               )}

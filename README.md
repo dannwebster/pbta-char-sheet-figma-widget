@@ -36,8 +36,6 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 ### Bugs
 - [ ] Flaw buttons don't work
 ### Features
-- [ ] add a Charts section.
-  - [ ] add a prices chart
 - [ ] allow for merging any number fo character files
 - [ ] *Project* - pull all widget information out into the characters json file 
    - [ ] abstract all data out into a Characters file
@@ -55,6 +53,8 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
    - [ ] put the JSON in that bucket
 
 ### Done
+- [x] add a Charts section.
+    - [x] add a prices chart
 - [x] *Project* - save character move values
   - [x] add characters.json w/ logos and Mythos moves sections
   - [x] add logos/mythos moves page that shows them, with buttons
