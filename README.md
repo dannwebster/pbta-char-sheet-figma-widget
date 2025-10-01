@@ -27,12 +27,18 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 - [ ] add exclusions to when hold shows up
 - [ ] make whole background white
 - [ ] make equipment section wider
+- [ ] make field names (ongoing, forward) longer, so they don't break mid word
+- [ ] fix formatting of Flaws in Character Moves
+- [ ] make popup's appear near mouse button that was clicked
+    > currently, the attribute popup and the modifier popup always appear in the same place. instead make them appear relative to the button that was just clicked, about 100 px above, and 100 px to the right of the upper   right corner of the button.
 - [ ] make all sizes (fonts, widths, etc) variables abstracted out and relative
 - [ ] make the Coin field a selector field
-### Required
-- [ ] *Project* - save character move values
-   - [ ] add characters.json w/ logos and Mythos moves sections
-   - [ ] add logos/mythos moves page that shows them, with buttons
+### Bugs
+- [ ] Flaw buttons don't work
+### Features
+- [ ] add a Charts section. 
+- [ ] add a Charts section.
+  - [ ] add a prices chart
 - [ ] *Project* - make into a widget that saves a character data
    - [ ] abstract all data out into a Characters file
      - [ ] equipment
@@ -49,6 +55,9 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
    - [ ] put the JSON in that bucket
 
 ### Done
+- [x] *Project* - save character move values
+  - [x] add characters.json w/ logos and Mythos moves sections
+  - [x] add logos/mythos moves page that shows them, with buttons
 - [x] make widget load moves data that based on character name
 - [x] make Harm and Stress Clocks real clocks with clock moves
 - [x] ensure Health and Stress modifiers get added to rolls
