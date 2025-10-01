@@ -36,10 +36,10 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 ### Bugs
 - [ ] Flaw buttons don't work
 ### Features
-- [ ] add a Charts section. 
 - [ ] add a Charts section.
   - [ ] add a prices chart
-- [ ] *Project* - make into a widget that saves a character data
+- [ ] allow for merging any number fo character files
+- [ ] *Project* - pull all widget information out into the characters json file 
    - [ ] abstract all data out into a Characters file
      - [ ] equipment
      - [ ] contacts
