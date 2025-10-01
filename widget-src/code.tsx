@@ -2,7 +2,7 @@ const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
 import movesData from './moves.json'
-import chartsData from './charts.json'
+import { charts as chartsData } from './charts.js'
 import { characterModules } from './character-loader'
 
 // Merge all character data from character-loader
@@ -1875,7 +1875,7 @@ function pbta_character() {
 
         {chartsExpanded && (
           <AutoLayout direction="vertical" spacing={24} width="fill-parent">
-            {chartsData.charts.map((chart, chartIdx) => (
+            {chartsData.map((chart, chartIdx) => (
               <AutoLayout key={chartIdx} direction="vertical" spacing={8} width="fill-parent">
                 <Text fontSize={28} fontWeight={700}>{chart.title}</Text>
                 <AutoLayout direction="vertical" width="fill-parent" stroke="#333333" strokeWidth={2}>
@@ -1897,8 +1897,8 @@ function pbta_character() {
                     ))}
                   </AutoLayout>
                   {/* Data Rows */}
-                  {chart.rows.map((row, rowIdx) => (
-                    <AutoLayout key={row.id} direction="horizontal" width="fill-parent" fill="#FFFFFF">
+                  {chart.columns[0].values.map((_, rowIdx) => (
+                    <AutoLayout key={rowIdx} direction="horizontal" width="fill-parent" fill="#FFFFFF">
                       {chart.columns.map((col) => (
                         <AutoLayout
                             key={col.id}
@@ -1909,7 +1909,7 @@ function pbta_character() {
                             verticalAlignItems="center"
                         >
                           <Text fontSize={16} width="fill-parent" horizontalAlignText="center">
-                            {row.cells[col.id]}
+                            {col.values[rowIdx]}
                           </Text>
                         </AutoLayout>
                       ))}
