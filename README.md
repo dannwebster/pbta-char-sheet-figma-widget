@@ -34,6 +34,8 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 - [ ] make all sizes (fonts, widths, etc) variables abstracted out and relative
 - [ ] make the Coin field a selector field
 ### Bugs
+- [x] allow for merging any number of character files
+  - [ ] BUG: data is still too hardcoded. there must be some way to make it rely entirely on the manifest file. 
 
 ### Data
 - [ ] First Aid
@@ -44,7 +46,6 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 - [ ] Cultivate a Mythos/Logos Contact
 - 
 ### Features
-- [ ] allow for merging any number of character files
 - [ ] restructure clock move buttons and clock moves data 
 - [ ] *Project* - pull all widget information out into the characters json file 
    - [ ] abstract all data out into a Characters file
@@ -62,6 +63,7 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
    - [ ] put the JSON in that bucket
 
 ### Done
+- [x] allow for merging any number of character files
 - [x] Flaw buttons don't work
 - [x] add a Charts section.
     - [x] add a prices chart

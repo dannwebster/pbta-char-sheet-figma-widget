@@ -2,16 +2,23 @@ const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
 import movesData from './moves.json'
-import hotmCharacters from './hotm-characters.json'
-import exampleCharacters from './example-characters.json'
 import chartsData from './charts.json'
+import charactersManifest from './characters-manifest.json'
+import { characterModules } from './character-loader'
 
-// Merge all character data
+// Build character file map from manifest
+const characterFileMap = {}
+charactersManifest.characterFiles.forEach(entry => {
+  if (characterModules[entry.id]) {
+    characterFileMap[entry.id] = characterModules[entry.id]
+  }
+})
+
+// Merge character data based on manifest
 const characterData = {
-  characters: [
-    ...hotmCharacters.characters,
-    ...exampleCharacters.characters
-  ]
+  characters: charactersManifest.characterFiles
+    .filter(entry => characterFileMap[entry.id])
+    .flatMap(entry => characterFileMap[entry.id].characters)
 }
 
 // Build attributes array dynamically from AttributeMoves keys

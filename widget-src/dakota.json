@@ -1,0 +1,100 @@
+{
+  "characters": [
+    {
+      "name": "Dakota Boone",
+      "subtitle": "Frontierswoman",
+      "moves": {
+        "mythosMoves": {
+          "anchorMove": {
+            "name": "Winchester Model 1876 Lever Action Rifle",
+            "description": "You have a mythic weapon that does 3 harm, functions at all ranges, is mystically concealable, and cannot be taken from you by normal means. When using it, use the better of (+Mythos) or (+Attribute+1). Take one drawback tag for the weapon: loud, messy, reload, or unreliable",
+            "flaw": {
+              "name": "A-whoopin' and a-hollerin'",
+              "description": "You are Impulsive and reckless, and find it hard to do methodical tasks while wielding your weapon. You may take -1 ongoing on long-form tasks to mark Attention to your Mythos."
+            }
+          },
+          "additionalMoves": [
+            {
+              "name": "Enchanted Ammo",
+              "description": "Your Mythic Weapon can be loaded with multiple different ammo types to account for different circumstances. Adds the reload tag to the weapon. To Reload, roll +Mythos",
+              "outcomes": {
+                "13+": "",
+                "10+": "You have plenty of ammo of exactly the kind you need for the situation",
+                "7-9": "You have the ammo, but the MC will choose a drawback or flaw",
+                "6-": "You have Just One Bullet of the type you need and it is deeply flawed. The MC will tell you how"
+              },
+              "hold": [
+                "Armor Piercing - gains ignore armor",
+                "Buckshot - hits more than one target",
+                "Chain Shot - can entangle targets",
+                "Explosive - blows up on impact",
+                "Ghost Shot - can hurt incorporeal entities",
+                "Incendiary - starts fires",
+                "Trick Shot - can ricochet off hard surfaces to shoot around corners"
+              ],
+              "flaw": {
+                "name": "Ammo Grab Bag",
+                "description": "You can tell the MC that you are randomly drawing ammo to mark Attention on your Mythos. The MC will choose what he thinks is the most interesting..."
+              }
+            },
+            {
+              "name": "Alive to my Surroundings",
+              "description": "Whenever you Read a Bad Situation, you always take 1 additional hold, even on a 6-. Additionally, you can always spend your hold from Read a Bad Situation to Ask Any Question.",
+              "flaw": {
+                "name": "Sensory Overload",
+                "description": "Whenever you are in a highly stimulating situation, you may take 1 Stress to mark Attention to your Mythos"
+              }
+            }
+          ]
+        },
+        "logosMoves": {
+          "anchorMove": {
+            "name": "Infiltrator",
+            "description": "When you attempt to infiltrate a secure area alone, roll +Logos. As the MC describes the infiltration and the security measures you must overcome, you may spend 1 hold to describe how you overcome the obstacle",
+            "outcomes": {
+              "10+": "Gain 3 hold.",
+              "7-9": "Gain 1 hold."
+            },
+            "hold": [
+              "bypass a security system or guard",
+              "disable a guard",
+              "disable a security system you have bypassed",
+              "give an advantage (+1 forward) to a member of your crew"
+            ],
+            "flaw": {
+              "name": "Under Cover of Darkness",
+              "description": "If you have to Infiltrate in a way that leaves you feeling literally or metaphorically exposed, you may take 1 Stress to mark Attention on your Logos"
+            }
+          },
+          "additionalMoves": [
+            {
+              "name": "Super Spy",
+              "description": "During your infiltration, you will have opportunity to observe information that will be useful later. After you have spent all your Infiltrator hold you may sort through what you have taken to get 2 hold as though you had rolled 10+ on Investigate a Mystery.",
+              "flaw": {
+                "name": "I Know Too Much",
+                "description": "Describe how something you learned spying reminds you of your criminal past, and take 1 Stress to mark Attention to your Logos."
+              }
+            },
+            {
+              "name": "Assassin",
+              "description": "When you attack unexpectedly, roll +Logos",
+              "outcomes": {
+                "10+": "Hold 3",
+                "7-9": "Hold 1"
+              },
+              "hold": [
+                "Inflict Stress on all enemies in the scene equal to the Harm inflicted by the attack",
+                "Ask a question as per Read a Bad Situation",
+                "Create Juice as per Change the Game"
+              ],
+              "flaw": {
+                "name": "I've Made Some Enemies",
+                "description": "On any interaction with the criminal underworld, you may describe the bad blood between you and the criminal. Take -1 ongoing for any interactions in this scene to mark Attention on your Logos."
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
