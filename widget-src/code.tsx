@@ -73,6 +73,7 @@ function pbta_character() {
   const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
   const [attributesLocked, setAttributesLocked] = useSyncedState("attributesLocked", false)
   const [pendingMultiAttributeMove, setPendingMultiAttributeMove] = useSyncedState("pendingMultiAttributeMove", null)
+  const [characterMovesExpanded, setCharacterMovesExpanded] = useSyncedState("characterMovesExpanded", false)
   const [basicMovesExpanded, setBasicMovesExpanded] = useSyncedState("basicMovesExpanded", false)
   const [pendingRoll, setPendingRoll] = useSyncedState("pendingRoll", null)
   const [popupForward, setPopupForward] = useSyncedState("popupForward", 0)
@@ -1386,6 +1387,87 @@ function pbta_character() {
         )}
       </AutoLayout>
         </AutoLayout>
+
+      {/* Character Moves Section */}
+      <AutoLayout
+          direction="vertical"
+          width={2250}
+          fill="#FFFFFF"
+          stroke="#333333"
+          strokeWidth={2}
+          padding={16}
+          spacing={12}
+          cornerRadius={8}
+      >
+        <AutoLayout
+            direction="horizontal"
+            width="fill-parent"
+            verticalAlignItems="center"
+            spacing={12}
+        >
+          <AutoLayout
+              fill="#333333"
+              padding={8}
+              cornerRadius={4}
+              onClick={() => setCharacterMovesExpanded(!characterMovesExpanded)}
+          >
+            <Text fontSize={25} fontWeight={700} fill="#FFFFFF">
+              {characterMovesExpanded ? "▼" : "▶"}
+            </Text>
+          </AutoLayout>
+          <Text fontSize={30} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+            Character Moves
+          </Text>
+        </AutoLayout>
+
+        {characterMovesExpanded && (
+          <AutoLayout direction="horizontal" spacing={12} width="fill-parent">
+            {/* Mythos Moves */}
+            <AutoLayout
+                direction="vertical"
+                width="fill-parent"
+                fill="#F5F5F5"
+                stroke="#333333"
+                strokeWidth={2}
+                padding={16}
+                cornerRadius={8}
+                spacing={12}
+            >
+              <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                Mythos Moves
+              </Text>
+              <Text fontSize={22} fontWeight={700} width="fill-parent">
+                Anchor Move
+              </Text>
+              <Text fontSize={22} fontWeight={700} width="fill-parent">
+                Additional Moves
+              </Text>
+            </AutoLayout>
+
+            {/* Logos Moves */}
+            <AutoLayout
+                direction="vertical"
+                width="fill-parent"
+                fill="#F5F5F5"
+                stroke="#333333"
+                strokeWidth={2}
+                padding={16}
+                cornerRadius={8}
+                spacing={12}
+            >
+              <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                Logos Moves
+              </Text>
+              <Text fontSize={22} fontWeight={700} width="fill-parent">
+                Anchor Move
+              </Text>
+              <Text fontSize={22} fontWeight={700} width="fill-parent">
+                Additional Moves
+              </Text>
+            </AutoLayout>
+          </AutoLayout>
+        )}
+      </AutoLayout>
 
       {/* Basic Moves Section */}
       <AutoLayout
