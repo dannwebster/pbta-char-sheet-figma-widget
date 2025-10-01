@@ -2,8 +2,17 @@ const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
 import movesData from './moves.json'
-import characterData from './hotm-characters.json'
+import hotmCharacters from './hotm-characters.json'
+import exampleCharacters from './example-characters.json'
 import chartsData from './charts.json'
+
+// Merge all character data
+const characterData = {
+  characters: [
+    ...hotmCharacters.characters,
+    ...exampleCharacters.characters
+  ]
+}
 
 // Build attributes array dynamically from AttributeMoves keys
 const moves = movesData.AttributeMoves
