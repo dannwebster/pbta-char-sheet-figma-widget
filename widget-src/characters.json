@@ -1,0 +1,150 @@
+{
+  "characters": [
+    {
+      "name": "The Warrior",
+      "subtitle": "Master of Combat",
+      "moves": {
+        "mythosMoves": {
+          "anchorMove": {
+            "name": "Mythos Anchor Move",
+            "description": "This is the anchor move description for Mythos",
+            "outcomes": {
+              "13+": "Critical Success outcome",
+              "10+": "Great Success outcome",
+              "7-9": "Partial Success outcome",
+              "6-": "Failure outcome"
+            },
+            "hold": [
+              "First hold option",
+              "Second hold option",
+              "Third hold option"
+            ]
+          },
+          "additionalMoves": [
+            {
+              "name": "Mythos Additional Move 1",
+              "description": "Description for first additional Mythos move",
+              "outcomes": {
+                "13+": "Critical Success",
+                "10+": "Great Success",
+                "7-9": "Partial Success",
+                "6-": "Failure"
+              }
+            },
+            {
+              "name": "Mythos Additional Move 2",
+              "description": "Description for second additional Mythos move",
+              "outcomes": {
+                "13+": "Critical Success",
+                "10+": "Great Success",
+                "7-9": "Partial Success",
+                "6-": "Failure"
+              },
+              "hold": [
+                "Hold option 1",
+                "Hold option 2"
+              ]
+            }
+          ]
+        },
+        "logosMoves": {
+          "anchorMove": {
+            "name": "Logos Anchor Move",
+            "description": "This is the anchor move description for Logos",
+            "outcomes": {
+              "13+": "Critical Success outcome",
+              "10+": "Great Success outcome",
+              "7-9": "Partial Success outcome",
+              "6-": "Failure outcome"
+            },
+            "hold": [
+              "First hold option",
+              "Second hold option",
+              "Third hold option"
+            ]
+          },
+          "additionalMoves": [
+            {
+              "name": "Logos Additional Move 1",
+              "description": "Description for first additional Logos move",
+              "outcomes": {
+                "13+": "Critical Success",
+                "10+": "Great Success",
+                "7-9": "Partial Success",
+                "6-": "Failure"
+              }
+            },
+            {
+              "name": "Logos Additional Move 2",
+              "description": "Description for second additional Logos move",
+              "outcomes": {
+                "13+": "Critical Success",
+                "10+": "Great Success",
+                "7-9": "Partial Success",
+                "6-": "Failure"
+              },
+              "hold": [
+                "Hold option 1",
+                "Hold option 2"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "The Mystic",
+      "subtitle": "Seeker of Hidden Knowledge",
+      "moves": {
+        "mythosMoves": {
+          "anchorMove": {
+            "name": "Channel the Unknown",
+            "description": "Tap into mysterious forces beyond mortal understanding",
+            "outcomes": {
+              "13+": "The forces obey your will completely",
+              "10+": "You successfully channel the power",
+              "7-9": "You channel the power, but at a cost",
+              "6-": "The forces overwhelm you"
+            }
+          },
+          "additionalMoves": [
+            {
+              "name": "Pierce the Veil",
+              "description": "See through illusions and deceptions",
+              "outcomes": {
+                "13+": "Complete clarity",
+                "10+": "You see the truth",
+                "7-9": "Partial understanding",
+                "6-": "Confusion deepens"
+              }
+            }
+          ]
+        },
+        "logosMoves": {
+          "anchorMove": {
+            "name": "Rational Mind",
+            "description": "Use logic and reason to solve problems",
+            "outcomes": {
+              "13+": "Brilliant deduction",
+              "10+": "Sound reasoning prevails",
+              "7-9": "A workable solution",
+              "6-": "Flawed logic"
+            }
+          },
+          "additionalMoves": [
+            {
+              "name": "Analyze Pattern",
+              "description": "Identify patterns and connections",
+              "outcomes": {
+                "13+": "Perfect pattern recognition",
+                "10+": "Pattern identified",
+                "7-9": "Partial pattern",
+                "6-": "Pattern eludes you"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
