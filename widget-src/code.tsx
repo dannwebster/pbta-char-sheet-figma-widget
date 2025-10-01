@@ -3,6 +3,7 @@ const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, use
 
 import movesData from './moves.json'
 import characterData from './hotm-characters.json'
+import chartsData from './charts.json'
 
 // Build attributes array dynamically from AttributeMoves keys
 const moves = movesData.AttributeMoves
@@ -1896,8 +1897,50 @@ function pbta_character() {
         </AutoLayout>
 
         {chartsExpanded && (
-          <AutoLayout direction="vertical" spacing={12} width="fill-parent">
-            <Text fontSize={24}>Charts content will go here</Text>
+          <AutoLayout direction="vertical" spacing={24} width="fill-parent">
+            {chartsData.charts.map((chart, chartIdx) => (
+              <AutoLayout key={chartIdx} direction="vertical" spacing={8} width="fill-parent">
+                <Text fontSize={28} fontWeight={700}>{chart.title}</Text>
+                <AutoLayout direction="vertical" width="fill-parent" stroke="#333333" strokeWidth={2}>
+                  {/* Header Row */}
+                  <AutoLayout direction="horizontal" width="fill-parent" fill="#E6E6E6">
+                    {chart.columns.map((col, colIdx) => (
+                      <AutoLayout
+                          key={col.id}
+                          width="fill-parent"
+                          padding={8}
+                          stroke="#333333"
+                          strokeWidth={1}
+                          verticalAlignItems="center"
+                      >
+                        <Text fontSize={18} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                          {col.header}
+                        </Text>
+                      </AutoLayout>
+                    ))}
+                  </AutoLayout>
+                  {/* Data Rows */}
+                  {chart.rows.map((row, rowIdx) => (
+                    <AutoLayout key={row.id} direction="horizontal" width="fill-parent" fill="#FFFFFF">
+                      {chart.columns.map((col) => (
+                        <AutoLayout
+                            key={col.id}
+                            width="fill-parent"
+                            padding={8}
+                            stroke="#333333"
+                            strokeWidth={1}
+                            verticalAlignItems="center"
+                        >
+                          <Text fontSize={16} width="fill-parent" horizontalAlignText="center">
+                            {row.cells[col.id]}
+                          </Text>
+                        </AutoLayout>
+                      ))}
+                    </AutoLayout>
+                  ))}
+                </AutoLayout>
+              </AutoLayout>
+            ))}
           </AutoLayout>
         )}
       </AutoLayout>
