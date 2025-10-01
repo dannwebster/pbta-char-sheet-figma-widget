@@ -287,8 +287,28 @@
       "action": "advance"
     },
     {
-      "name": "Roll Back Mythos Attention",
+      "name": "Roll Back Logos Attention",
       "clock": "logosAttention",
+      "action": "rollback"
+    },
+    {
+      "name": "Take Harm",
+      "clock": "harm",
+      "action": "advance"
+    },
+    {
+      "name": "Heal Harm",
+      "clock": "harm",
+      "action": "rollback"
+    },
+    {
+      "name": "Take Stress",
+      "clock": "stress",
+      "action": "advance"
+    },
+    {
+      "name": "Heal Stress",
+      "clock": "stress",
       "action": "rollback"
     }
   ]

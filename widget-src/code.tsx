@@ -266,7 +266,9 @@ function pbta_character() {
     'mythosFade': { state: mythosFade, setter: setMythosFade, size: 3 },
     'logosCrack': { state: logosCrack, setter: setLogosCrack, size: 3 },
     'mythosAttention': { state: mythosAttention, setter: setMythosAttention, size: 5 },
-    'logosAttention': { state: logosAttention, setter: setLogosAttention, size: 5 }
+    'logosAttention': { state: logosAttention, setter: setLogosAttention, size: 5 },
+    'harm': { state: harmChecked, setter: setHarmChecked, size: 7 },
+    'stress': { state: stressChecked, setter: setStressChecked, size: 7 }
   }
 
   // Fix corrupted clock states
@@ -300,7 +302,9 @@ function pbta_character() {
       'mythosFade': 'Fade',
       'logosCrack': 'Crack',
       'mythosAttention': 'Mythos Attention',
-      'logosAttention': 'Logos Attention'
+      'logosAttention': 'Logos Attention',
+      'harm': 'Harm',
+      'stress': 'Stress'
     }
 
     let didChange = false
