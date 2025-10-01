@@ -3,22 +3,11 @@ const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, use
 
 import movesData from './moves.json'
 import chartsData from './charts.json'
-import charactersManifest from './characters-manifest.json'
 import { characterModules } from './character-loader'
 
-// Build character file map from manifest
-const characterFileMap = {}
-charactersManifest.characterFiles.forEach(entry => {
-  if (characterModules[entry.id]) {
-    characterFileMap[entry.id] = characterModules[entry.id]
-  }
-})
-
-// Merge character data based on manifest
+// Merge all character data from character-loader
 const characterData = {
-  characters: charactersManifest.characterFiles
-    .filter(entry => characterFileMap[entry.id])
-    .flatMap(entry => characterFileMap[entry.id].characters)
+  characters: Object.values(characterModules).flatMap(module => module.characters)
 }
 
 // Build attributes array dynamically from AttributeMoves keys

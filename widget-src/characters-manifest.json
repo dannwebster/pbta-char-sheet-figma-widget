@@ -1,7 +1,0 @@
-{
-  "characterFiles": [
-    { "id": "dakota", "file": "dakota.json" },
-    { "id": "silis", "file": "silis.json" },
-    { "id": "example", "file": "example-characters.json" }
-  ]
-}
