@@ -824,7 +824,6 @@ function pbta_character() {
                         spacing={6}
                         width={350}
                     >
-                      <Text fontSize={18} fontWeight={600}>{move.name}</Text>
                       <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
                         <AutoLayout
                             horizontalAlignItems="center"
@@ -836,6 +835,7 @@ function pbta_character() {
                           <Grid sides={6} size={3} fill="#FFFFFF" spacing={2} />
                         </AutoLayout>
                       </Frame>
+                      <Text fontSize={18} fontWeight={600}>{move.name}</Text>
                     </AutoLayout>
                   ))}
                 </AutoLayout>
@@ -858,7 +858,6 @@ function pbta_character() {
                       spacing={6}
                       width={350}
                   >
-                    <Text fontSize={18} fontWeight={600}>{move.name}</Text>
                     <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
                       <AutoLayout
                           horizontalAlignItems="center"
@@ -870,6 +869,7 @@ function pbta_character() {
                         <Grid sides={6} size={3} fill="#FFFFFF" spacing={2} />
                       </AutoLayout>
                     </Frame>
+                    <Text fontSize={18} fontWeight={600}>{move.name}</Text>
                   </AutoLayout>
                 ))}
               </AutoLayout>
@@ -1445,6 +1445,9 @@ function pbta_character() {
           const renderMove = (move, attribute) => (
             <AutoLayout direction="vertical" spacing={6} width="fill-parent">
               <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
+                <Text fontSize={22} fontWeight={700} width="fill-parent">
+                  {move.name}
+                </Text>
                 <AutoLayout
                     fill="#333333"
                     padding={6}
@@ -1465,9 +1468,6 @@ function pbta_character() {
                     </AutoLayout>
                   </Frame>
                 </AutoLayout>
-                <Text fontSize={22} fontWeight={700} width="fill-parent">
-                  {move.name}
-                </Text>
               </AutoLayout>
               <Text fontSize={19} width="fill-parent">
                 {move.description}
@@ -1624,6 +1624,9 @@ function pbta_character() {
                     {movesData.AttributeMoves[attribute].map((move, idx) => (
                       <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
                         <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
+                          <Text fontSize={22} fontWeight={700} width="fill-parent">
+                            {move.name}
+                          </Text>
                           <AutoLayout
                               fill="#333333"
                               padding={6}
@@ -1644,9 +1647,6 @@ function pbta_character() {
                               </AutoLayout>
                             </Frame>
                           </AutoLayout>
-                          <Text fontSize={22} fontWeight={700} width="fill-parent">
-                            {move.name}
-                          </Text>
                         </AutoLayout>
                         <Text fontSize={19} width="fill-parent">
                           {move.description}
@@ -1693,6 +1693,9 @@ function pbta_character() {
                   return (
                     <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
                       <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
+                        <Text fontSize={22} fontWeight={700} width="fill-parent">
+                          {move.name}
+                        </Text>
                         <AutoLayout
                             fill="#333333"
                             padding={6}
@@ -1713,9 +1716,6 @@ function pbta_character() {
                             </AutoLayout>
                           </Frame>
                         </AutoLayout>
-                        <Text fontSize={22} fontWeight={700} width="fill-parent">
-                          {move.name}
-                        </Text>
                       </AutoLayout>
                       <Text fontSize={19} width="fill-parent">
                         {move.description}
@@ -1758,6 +1758,9 @@ function pbta_character() {
                   return (
                     <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
                       <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
+                        <Text fontSize={22} fontWeight={700} width="fill-parent">
+                          {move.name}
+                        </Text>
                         <AutoLayout
                             fill="#333333"
                             padding={6}
@@ -1778,9 +1781,6 @@ function pbta_character() {
                             </AutoLayout>
                           </Frame>
                         </AutoLayout>
-                        <Text fontSize={22} fontWeight={700} width="fill-parent">
-                          {move.name}
-                        </Text>
                       </AutoLayout>
                       <Text fontSize={19} width="fill-parent">
                         {move.description}
