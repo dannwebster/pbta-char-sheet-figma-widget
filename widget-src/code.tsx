@@ -2069,7 +2069,7 @@ function pbta_character() {
           >
             <Text fontSize={24} fontWeight={700}>{pendingRoll.move.name}</Text>
             <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
-              <Text fontSize={20} width={80}>Forward:</Text>
+              <Text fontSize={20} width={100}>Forward:</Text>
               <AutoLayout direction="vertical" spacing={4}>
                 <AutoLayout
                     fill="#E6E6E6"
@@ -2106,7 +2106,7 @@ function pbta_character() {
               />
             </AutoLayout>
             <AutoLayout direction="horizontal" spacing={12} verticalAlignItems="center">
-              <Text fontSize={20} width={80}>Ongoing:</Text>
+              <Text fontSize={20} width={100}>Ongoing:</Text>
               <AutoLayout direction="vertical" spacing={4}>
                 <AutoLayout
                     fill="#E6E6E6"
