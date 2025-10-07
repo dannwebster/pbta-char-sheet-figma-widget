@@ -316,5 +316,20 @@
       "clock": "stress",
       "action": "rollback"
     }
-  ]
+  ],
+  "ContactMove": {
+    "name": "Work your Connections",
+    "description": "You may go to each Contact for help once per job during the Legwork Phase, roll +the contact rating of the NPC.",
+    "outcomes": {
+      "10+": "You get what you want and a little something extra (choose either Secrets or Gear).",
+      "7-9": "You get what you want, but choose 2 from the list below:",
+      "6-": "You get what they think you should want and Advance the Legwork Clock"
+    },
+    "hold": [
+      "Your request is going to cost you extra. Mark 1 Loot",
+      "Your request is going to attract unwanted attention, complications, consequences, or take extra time",
+      "Your contact needs you to help them out with something. If you turn them down, take -1 to their contact rating until you make it right",
+      "They give you what you think you should want"
+    ]
+  }
 }

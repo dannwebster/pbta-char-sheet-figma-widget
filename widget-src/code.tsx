@@ -1124,13 +1124,16 @@ function pbta_character() {
                   onClick={() => {
                     const contactRoll = {
                       name: "Contact: " + (contactNames[idx] || "Unknown"),
-                      description: null,
-                      ...STANDARD_OUTCOMES
+                      ...movesData.ContactMove
                     }
                     setPendingRoll({ modifier: contactRatings[idx], modifierName: "+Rating", move: contactRoll })
                   }}
                   width={120}
                   horizontalAlignItems="center"
+                  tooltip={formatMoveTooltip({
+                    name: "Contact: " + (contactNames[idx] || "Unknown"),
+                    ...movesData.ContactMove
+                  })}
               >
                 <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Contact</Text>
               </AutoLayout>
