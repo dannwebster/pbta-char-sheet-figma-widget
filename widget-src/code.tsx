@@ -88,6 +88,7 @@ function pbta_character() {
   const [popupOngoing, setPopupOngoing] = useSyncedState("popupOngoing", 0)
   const [popupApplyHarm, setPopupApplyHarm] = useSyncedState("popupApplyHarm", true)
   const [popupApplyStress, setPopupApplyStress] = useSyncedState("popupApplyStress", true)
+  const [tooltipsEnabled, setTooltipsEnabled] = useSyncedState("tooltipsEnabled", false)
 
   // Archetype selection
   const archetypes = {
@@ -186,6 +187,40 @@ function pbta_character() {
       "7-9": "Partial Success",
       "6-": "Failure"
     }
+  }
+
+  // Format move tooltip with description, outcomes, and hold
+  const formatMoveTooltip = (move) => {
+    if (!tooltipsEnabled || !move) return null
+
+    let tooltip = ""
+
+    // Add move name at the top
+    if (move.name) {
+      tooltip += move.name + "\n\n"
+    }
+
+    // Add description
+    if (move.description) {
+      tooltip += move.description + "\n\n"
+    }
+
+    // Add outcomes
+    const outcomes = move.outcomes || {}
+    if (outcomes["13+"]) tooltip += "13+: " + outcomes["13+"] + "\n"
+    if (outcomes["10+"]) tooltip += "10+: " + outcomes["10+"] + "\n"
+    if (outcomes["7-9"]) tooltip += "7-9: " + outcomes["7-9"] + "\n"
+    if (outcomes["6-"]) tooltip += "6-: " + outcomes["6-"] + "\n"
+
+    // Add hold options
+    if (move.hold && move.hold.length > 0) {
+      tooltip += "\nHold Options:\n"
+      move.hold.forEach(option => {
+        if (option) tooltip += "• " + option + "\n"
+      })
+    }
+
+    return tooltip || null
   }
 
   const [harmChecked, setHarmChecked] = useSyncedState("harmChecked", Array(7).fill(false))
@@ -411,6 +446,15 @@ function pbta_character() {
               onClick={() => setAttributesLocked(!attributesLocked)}
           >
             <Text fontSize={32} fontWeight={700}>{attributesLocked ? "🔒" : "🔓"}</Text>
+          </AutoLayout>
+          <AutoLayout
+              fill={tooltipsEnabled ? "#55FF55" : "#E6E6E6"}
+              padding={12}
+              cornerRadius={8}
+              onClick={() => setTooltipsEnabled(!tooltipsEnabled)}
+              tooltip="Toggle move tooltips"
+          >
+            <Text fontSize={32} fontWeight={700}>{tooltipsEnabled ? "💬" : "💭"}</Text>
           </AutoLayout>
           <Text fontSize={40} fontWeight={700}>Character: </Text>
           <AutoLayout
@@ -827,6 +871,7 @@ function pbta_character() {
                         }}
                         spacing={6}
                         width={350}
+                        tooltip={formatMoveTooltip(move)}
                     >
                       <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
                         <AutoLayout
@@ -861,6 +906,7 @@ function pbta_character() {
                       }}
                       spacing={6}
                       width={350}
+                      tooltip={formatMoveTooltip(move)}
                   >
                     <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
                       <AutoLayout
@@ -891,6 +937,7 @@ function pbta_character() {
                     }}
                     spacing={6}
                     width={350}
+                    tooltip={formatMoveTooltip(clockMove)}
                 >
                   <Text fontSize={18} fontWeight={600}>{clockMove.name}</Text>
                 </AutoLayout>
