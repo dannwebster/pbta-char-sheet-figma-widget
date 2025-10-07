@@ -321,9 +321,10 @@
     "name": "Work your Connections",
     "description": "You may go to each Contact for help once per job during the Legwork Phase, roll +the contact rating of the NPC.",
     "outcomes": {
+      "13+": "You get what you want and a little something extra (choose either Secrets or Gear). Add +1 to your Contact's Rating",
       "10+": "You get what you want and a little something extra (choose either Secrets or Gear).",
       "7-9": "You get what you want, but choose 2 from the list below:",
-      "6-": "You get what they think you should want and Advance the Legwork Clock"
+      "6-": "You get what you want, but choose 2 from the list below, and the MC will choose 1 more"
     },
     "hold": [
       "Your request is going to cost you extra. Mark 1 Loot",
