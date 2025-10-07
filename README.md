@@ -18,15 +18,15 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 
 ## Project Backlog
 ### Cosmetic
-- [ ] add tooltip over buttons
-   - [ ] attribute moves
-   - [ ] clock moves
-   - [ ] attributes
-   - [ ] contact moves
+- [x] add tooltip over buttons
+   - [x] attribute moves
+   - [x] clock moves
+   - [x] attributes
+   - [x] contact moves
 - [ ] add exclusions to when hold shows up
 - [ ] make whole background white
 - [ ] make equipment section wider
-- [ ] make field names (ongoing, forward) longer, so they don't break mid word
+- [x] make field names (ongoing, forward) longer, so they don't break mid word
 - [ ] fix formatting of Flaws in Character Moves
 - [ ] make popup's appear near mouse button that was clicked
     > currently, the attribute popup and the modifier popup always appear in the same place. instead make them appear relative to the button that was just clicked, about 100 px above, and 100 px to the right of the upper   right corner of the button.
@@ -34,15 +34,18 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 - [ ] make the Coin field a selector field
 
 ### Data
-- [ ] First Aid
-- [ ] Down Time
-- [ ] Contact Moves
-- [ ] Contact Moves
-- [ ] Explore Mythos/Logos Lore
-- [ ] Cultivate a Mythos/Logos Contact
-- 
+
+### Refactors
+- [ ] extract components
+    - [ ] Move History
+    - [ ] Charts
+  - [ ] Basic Moves
+  - [ ] Contacts Table Table
+  - [ ] Equipment Table
+  - [ ] Character Moves
+  - [ ] Clock Move Button
+  - [ ] Clock Move Button
 ### Features
-- [ ] restructure clock move buttons and clock moves data 
 - [ ] *Project* - pull all widget information out into the characters json file 
    - [ ] abstract all data out into a Characters file
      - [ ] equipment
@@ -61,6 +64,14 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 ### Bugs
 
 ### Done
+#### Data
+- [x] First Aid
+- [x] Down Time
+- [x] Contact Moves
+- [x] Explore Mythos/Logos Lore
+- [x] Cultivate a Mythos/Logos Contact
+#### Bugs and Features
+- [x] restructure clock move buttons and clock moves data
 - [x] mythos and logos values don't initialize until manually selecting an archetype
 - [x] move dice from right to left side of move buttons
 - [x] allow for merging any number of character files

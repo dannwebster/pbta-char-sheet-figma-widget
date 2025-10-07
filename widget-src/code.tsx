@@ -88,7 +88,7 @@ function pbta_character() {
   const [popupOngoing, setPopupOngoing] = useSyncedState("popupOngoing", 0)
   const [popupApplyHarm, setPopupApplyHarm] = useSyncedState("popupApplyHarm", true)
   const [popupApplyStress, setPopupApplyStress] = useSyncedState("popupApplyStress", true)
-  const [tooltipsEnabled, setTooltipsEnabled] = useSyncedState("tooltipsEnabled", false)
+  const [selectedTooltipMove, setSelectedTooltipMove] = useSyncedState("selectedTooltipMove", null)
 
   // Archetype selection
   const archetypes = {
@@ -187,40 +187,6 @@ function pbta_character() {
       "7-9": "Partial Success",
       "6-": "Failure"
     }
-  }
-
-  // Format move tooltip with description, outcomes, and hold
-  const formatMoveTooltip = (move) => {
-    if (!tooltipsEnabled || !move) return null
-
-    let tooltip = ""
-
-    // Add move name at the top
-    if (move.name) {
-      tooltip += move.name + "\n\n"
-    }
-
-    // Add description
-    if (move.description) {
-      tooltip += move.description + "\n\n"
-    }
-
-    // Add outcomes
-    const outcomes = move.outcomes || {}
-    if (outcomes["13+"]) tooltip += "13+: " + outcomes["13+"] + "\n"
-    if (outcomes["10+"]) tooltip += "10+: " + outcomes["10+"] + "\n"
-    if (outcomes["7-9"]) tooltip += "7-9: " + outcomes["7-9"] + "\n"
-    if (outcomes["6-"]) tooltip += "6-: " + outcomes["6-"] + "\n"
-
-    // Add hold options
-    if (move.hold && move.hold.length > 0) {
-      tooltip += "\nHold Options:\n"
-      move.hold.forEach(option => {
-        if (option) tooltip += "• " + option + "\n"
-      })
-    }
-
-    return tooltip || null
   }
 
   const [harmChecked, setHarmChecked] = useSyncedState("harmChecked", Array(7).fill(false))
@@ -436,7 +402,56 @@ function pbta_character() {
 
   return (
       <AutoLayout direction="vertical" spacing={16}>
-        <AutoLayout direction="horizontal" spacing={0}>
+        <AutoLayout direction="horizontal" spacing={16}>
+      {/* Tooltip Panel */}
+      <AutoLayout
+          direction="vertical"
+          spacing={12}
+          padding={16}
+          width={350}
+          height="fill-parent"
+          fill="#F5F5F5"
+          stroke="#333333"
+          strokeWidth={2}
+          cornerRadius={8}
+      >
+        <Text fontSize={24} fontWeight={700}>Move Info</Text>
+        {selectedTooltipMove ? (
+          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
+            <Text fontSize={20} fontWeight={700}>{selectedTooltipMove.name || "Move"}</Text>
+            {selectedTooltipMove.description ? (
+              <Text fontSize={16}>{selectedTooltipMove.description}</Text>
+            ) : null}
+            {selectedTooltipMove.outcomes ? (
+              <AutoLayout direction="vertical" spacing={4} width="fill-parent">
+                <Text fontSize={16} fontWeight={600}>Outcomes:</Text>
+                {selectedTooltipMove.outcomes["13+"] ? (
+                  <Text fontSize={14}>13+: {selectedTooltipMove.outcomes["13+"]}</Text>
+                ) : null}
+                {selectedTooltipMove.outcomes["10+"] ? (
+                  <Text fontSize={14}>10+: {selectedTooltipMove.outcomes["10+"]}</Text>
+                ) : null}
+                {selectedTooltipMove.outcomes["7-9"] ? (
+                  <Text fontSize={14}>7-9: {selectedTooltipMove.outcomes["7-9"]}</Text>
+                ) : null}
+                {selectedTooltipMove.outcomes["6-"] ? (
+                  <Text fontSize={14}>6-: {selectedTooltipMove.outcomes["6-"]}</Text>
+                ) : null}
+              </AutoLayout>
+            ) : null}
+            {selectedTooltipMove.hold && selectedTooltipMove.hold.length > 0 ? (
+              <AutoLayout direction="vertical" spacing={4} width="fill-parent">
+                <Text fontSize={16} fontWeight={600}>Hold Options:</Text>
+                {selectedTooltipMove.hold.map((option, idx) =>
+                  option ? <Text key={idx} fontSize={14}>• {option}</Text> : null
+                )}
+              </AutoLayout>
+            ) : null}
+          </AutoLayout>
+        ) : (
+          <Text fontSize={16} fill="#666666">Hover over a move to see details</Text>
+        )}
+      </AutoLayout>
       <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={1200}>
         <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF" spacing={16} verticalAlignItems="center">
           <AutoLayout
@@ -446,15 +461,6 @@ function pbta_character() {
               onClick={() => setAttributesLocked(!attributesLocked)}
           >
             <Text fontSize={32} fontWeight={700}>{attributesLocked ? "🔒" : "🔓"}</Text>
-          </AutoLayout>
-          <AutoLayout
-              fill={tooltipsEnabled ? "#55FF55" : "#E6E6E6"}
-              padding={12}
-              cornerRadius={8}
-              onClick={() => setTooltipsEnabled(!tooltipsEnabled)}
-              tooltip="Toggle move tooltips"
-          >
-            <Text fontSize={32} fontWeight={700}>{tooltipsEnabled ? "💬" : "💭"}</Text>
           </AutoLayout>
           <Text fontSize={40} fontWeight={700}>Character: </Text>
           <AutoLayout
@@ -869,9 +875,9 @@ function pbta_character() {
                         onClick={() => {
                           setPendingRoll({ modifier: attributeValues[attr], modifierName: "+" + attr, move: move })
                         }}
+                        onPointerEnter={() => setSelectedTooltipMove(move)}
                         spacing={6}
                         width={350}
-                        tooltip={formatMoveTooltip(move)}
                     >
                       <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
                         <AutoLayout
@@ -904,9 +910,9 @@ function pbta_character() {
                       onClick={() => {
                         setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
                       }}
+                      onPointerEnter={() => setSelectedTooltipMove(move)}
                       spacing={6}
                       width={350}
-                      tooltip={formatMoveTooltip(move)}
                   >
                     <Frame width={18} height={18} fill="#333333" cornerRadius={3}>
                       <AutoLayout
@@ -938,9 +944,9 @@ function pbta_character() {
                         onClick={() => {
                           handleClockMove(clockMove.clock, "advance", advanceMove.name)
                         }}
+                        onPointerEnter={() => setSelectedTooltipMove(advanceMove)}
                         spacing={6}
                         width="fill-parent"
-                        tooltip={formatMoveTooltip(advanceMove)}
                     >
                       <Text fontSize={18} fontWeight={600}>→ {advanceMove.name}</Text>
                     </AutoLayout>
@@ -954,9 +960,9 @@ function pbta_character() {
                         onClick={() => {
                           handleClockMove(clockMove.clock, "rollback", rollbackMove.name)
                         }}
+                        onPointerEnter={() => setSelectedTooltipMove(rollbackMove)}
                         spacing={6}
                         width="fill-parent"
-                        tooltip={formatMoveTooltip(rollbackMove)}
                     >
                       <Text fontSize={18} fontWeight={600}>← {rollbackMove.name}</Text>
                     </AutoLayout>
@@ -1149,12 +1155,12 @@ function pbta_character() {
                     }
                     setPendingRoll({ modifier: contactRatings[idx], modifierName: "+Rating", move: contactRoll })
                   }}
-                  width={120}
-                  horizontalAlignItems="center"
-                  tooltip={formatMoveTooltip({
+                  onPointerEnter={() => setSelectedTooltipMove({
                     name: "Contact: " + (contactNames[idx] || "Unknown"),
                     ...movesData.ContactMove
                   })}
+                  width={120}
+                  horizontalAlignItems="center"
               >
                 <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Contact</Text>
               </AutoLayout>
@@ -1899,7 +1905,7 @@ function pbta_character() {
                   <AutoLayout key={idx} direction="vertical" spacing={4} width="fill-parent">
                     <Text fontSize={18} fontWeight={600} fill="#666666">{clockMove.name}</Text>
                     {clockMove.advance.map((advanceMove, advIdx) => (
-                      <AutoLayout key={`advance-${advIdx}`} direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
+                      <AutoLayout key={`advance-${advIdx}`} direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center" onPointerEnter={() => setSelectedTooltipMove(advanceMove)}>
                         <AutoLayout
                             fill="#333333"
                             padding={6}
@@ -1916,7 +1922,7 @@ function pbta_character() {
                       </AutoLayout>
                     ))}
                     {clockMove.rollback.map((rollbackMove, rbIdx) => (
-                      <AutoLayout key={`rollback-${rbIdx}`} direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
+                      <AutoLayout key={`rollback-${rbIdx}`} direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center" onPointerEnter={() => setSelectedTooltipMove(rollbackMove)}>
                         <AutoLayout
                             fill="#333333"
                             padding={6}
@@ -1964,7 +1970,6 @@ function pbta_character() {
                         onClick={() => {
                           setPendingRoll({ modifier: 0, modifierName: "+Rating", move: movesData.ContactMove })
                         }}
-                        tooltip={formatMoveTooltip(movesData.ContactMove)}
                     >
                       <Frame width={18} height={18} fill="#FFFFFF" cornerRadius={3}>
                         <AutoLayout
