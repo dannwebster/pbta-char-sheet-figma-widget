@@ -257,64 +257,108 @@
   ],
   "ClockMoves": [
     {
-      "name": "Fade your Mythos",
+      "name": "Mythos Fade",
       "clock": "mythosFade",
-      "action": "advance"
+      "advance": [
+        {
+          "name": "Fade your Mythos",
+          "description": ""
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Heal Fade",
+          "description": ""
+        }
+      ]
     },
     {
-      "name": "Heal Fade",
-      "clock": "mythosFade",
-      "action": "rollback"
-    },
-    {
-      "name": "Crack your Logos",
+      "name": "Logos Crack",
       "clock": "logosCrack",
-      "action": "advance"
+      "advance": [
+        {
+          "name": "Crack your Logos",
+          "description": ""
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Heal Crack",
+          "description": ""
+        }
+      ]
     },
     {
-      "name": "Heal Crack",
-      "clock": "logosCrack",
-      "action": "rollback"
-    },
-    {
-      "name": "Invoke a Mythos Flaw",
+      "name": "Mythos Attention",
       "clock": "mythosAttention",
-      "action": "advance"
+      "advance": [
+        {
+          "name": "Invoke a Mythos Flaw",
+          "description": ""
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Roll Back Mythos Attention",
+          "description": ""
+        }
+      ]
     },
     {
-      "name": "Roll Back Mythos Attention",
-      "clock": "mythosAttention",
-      "action": "rollback"
-    },
-    {
-      "name": "Invoke a Logos Flaw",
+      "name": "Logos Attention",
       "clock": "logosAttention",
-      "action": "advance"
+      "advance": [
+        {
+          "name": "Invoke a Logos Flaw",
+          "description": ""
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Roll Back Logos Attention",
+          "description": ""
+        }
+      ]
     },
     {
-      "name": "Roll Back Logos Attention",
-      "clock": "logosAttention",
-      "action": "rollback"
-    },
-    {
-      "name": "Take Harm",
+      "name": "Harm",
       "clock": "harm",
-      "action": "advance"
+      "advance": [
+        {
+          "name": "Take Harm",
+          "description": ""
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Physical Downtime",
+          "description": "For every 12 hours of Physical Downtime with medical, recover 1 Harm"
+        },
+        {
+          "name": "Physical First Aid",
+          "description": "When characters have 1 hour of Down Time, a Rift may perform Physical First Aid on another Rift to heal 1 Harm. Only 1 instance of Physical First Aid can be performed on a Rift between Down Time sessions. A character cannot perform Physical First Aid on themself."
+        }
+      ]
     },
     {
-      "name": "Heal Harm",
-      "clock": "harm",
-      "action": "rollback"
-    },
-    {
-      "name": "Take Stress",
+      "name": "Stress",
       "clock": "stress",
-      "action": "advance"
-    },
-    {
-      "name": "Heal Stress",
-      "clock": "stress",
-      "action": "rollback"
+      "advance": [
+        {
+          "name": "Take Stress",
+          "description": ""
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Mental Downtime",
+          "description": "For every 12 hours of Mental Downtime with psychological care, recover 1 Stress"
+        },
+        {
+          "name": "Psych First Aid",
+          "description": "When characters have 1 hour of Down Time, a Rift may perform Psych First Aid on another Rift to heal 1 Stress. Only 1 instance of Psych First Aid can be performed on a Rift between Down Time sessions. A character cannot perform Psych First Aid on themself."
+        }
+      ]
     }
   ],
   "ContactMove": {

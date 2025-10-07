@@ -927,19 +927,40 @@ function pbta_character() {
             <AutoLayout direction="vertical" spacing={8} padding={12} fill="#FFFFFF" cornerRadius={8}>
               <Text fontSize={24} fontWeight={700}>Clock Moves</Text>
               {movesData.ClockMoves.map((clockMove, idx) => (
-                <AutoLayout
-                    key={idx}
-                    fill="#E6E6E6"
-                    padding={8}
-                    cornerRadius={4}
-                    onClick={() => {
-                      handleClockMove(clockMove.clock, clockMove.action, clockMove.name)
-                    }}
-                    spacing={6}
-                    width={350}
-                    tooltip={formatMoveTooltip(clockMove)}
-                >
-                  <Text fontSize={18} fontWeight={600}>{clockMove.name}</Text>
+                <AutoLayout key={idx} direction="vertical" spacing={4} width={350}>
+                  <Text fontSize={16} fontWeight={600} fill="#666666">{clockMove.name}</Text>
+                  {clockMove.advance.map((advanceMove, advIdx) => (
+                    <AutoLayout
+                        key={`advance-${advIdx}`}
+                        fill="#E6E6E6"
+                        padding={8}
+                        cornerRadius={4}
+                        onClick={() => {
+                          handleClockMove(clockMove.clock, "advance", advanceMove.name)
+                        }}
+                        spacing={6}
+                        width="fill-parent"
+                        tooltip={formatMoveTooltip(advanceMove)}
+                    >
+                      <Text fontSize={18} fontWeight={600}>→ {advanceMove.name}</Text>
+                    </AutoLayout>
+                  ))}
+                  {clockMove.rollback.map((rollbackMove, rbIdx) => (
+                    <AutoLayout
+                        key={`rollback-${rbIdx}`}
+                        fill="#E6E6E6"
+                        padding={8}
+                        cornerRadius={4}
+                        onClick={() => {
+                          handleClockMove(clockMove.clock, "rollback", rollbackMove.name)
+                        }}
+                        spacing={6}
+                        width="fill-parent"
+                        tooltip={formatMoveTooltip(rollbackMove)}
+                    >
+                      <Text fontSize={18} fontWeight={600}>← {rollbackMove.name}</Text>
+                    </AutoLayout>
+                  ))}
                 </AutoLayout>
               ))}
             </AutoLayout>
@@ -1874,21 +1895,43 @@ function pbta_character() {
                 <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
                   Clock Moves
                 </Text>
-                {movesData.ClockMoves.map((move, idx) => (
-                  <AutoLayout key={idx} direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
-                    <AutoLayout
-                        fill="#333333"
-                        padding={6}
-                        cornerRadius={4}
-                        onClick={() => {
-                          handleClockMove(move.clock, move.action, move.name)
-                        }}
-                    >
-                      <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
-                    </AutoLayout>
-                    <Text fontSize={22} fontWeight={700} width="fill-parent">
-                      {move.name}
-                    </Text>
+                {movesData.ClockMoves.map((clockMove, idx) => (
+                  <AutoLayout key={idx} direction="vertical" spacing={4} width="fill-parent">
+                    <Text fontSize={18} fontWeight={600} fill="#666666">{clockMove.name}</Text>
+                    {clockMove.advance.map((advanceMove, advIdx) => (
+                      <AutoLayout key={`advance-${advIdx}`} direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
+                        <AutoLayout
+                            fill="#333333"
+                            padding={6}
+                            cornerRadius={4}
+                            onClick={() => {
+                              handleClockMove(clockMove.clock, "advance", advanceMove.name)
+                            }}
+                        >
+                          <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
+                        </AutoLayout>
+                        <Text fontSize={22} fontWeight={700} width="fill-parent">
+                          → {advanceMove.name}
+                        </Text>
+                      </AutoLayout>
+                    ))}
+                    {clockMove.rollback.map((rollbackMove, rbIdx) => (
+                      <AutoLayout key={`rollback-${rbIdx}`} direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
+                        <AutoLayout
+                            fill="#333333"
+                            padding={6}
+                            cornerRadius={4}
+                            onClick={() => {
+                              handleClockMove(clockMove.clock, "rollback", rollbackMove.name)
+                            }}
+                        >
+                          <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
+                        </AutoLayout>
+                        <Text fontSize={22} fontWeight={700} width="fill-parent">
+                          ← {rollbackMove.name}
+                        </Text>
+                      </AutoLayout>
+                    ))}
                   </AutoLayout>
                 ))}
               </AutoLayout>
