@@ -177,7 +177,16 @@ function pbta_character() {
     { name: "Broken",    symbol: "●", modifier: "-3" }, // Black Circle
     { name: "Shattered", symbol: "☠", modifier: "" }    // Skull and Crossbones
   ]
-  
+
+  // Standard outcomes for basic rolls
+  const STANDARD_OUTCOMES = {
+    outcomes: {
+      "13+": "Critical Success",
+      "10+": "Great Success",
+      "7-9": "Partial Success",
+      "6-": "Failure"
+    }
+  }
 
   const [harmChecked, setHarmChecked] = useSyncedState("harmChecked", Array(7).fill(false))
   const [stressChecked, setStressChecked] = useSyncedState("stressChecked", Array(7).fill(false))
@@ -251,7 +260,10 @@ function pbta_character() {
     if (moveData) {
       const historyEntry = {
         type: "move",
-        move: moveData,
+        move: {
+          ...moveData,
+          description: moveData.description || null
+        },
         total: total,
         dice: [number1, number2],
         modifier: mod,
@@ -263,6 +275,7 @@ function pbta_character() {
         rollText: rollTextStr,
         timestamp: Date.now()
       }
+      console.log('HISTORY ENTRY:', JSON.stringify(historyEntry, null, 2))
       setMoveHistory([historyEntry, ...moveHistory])
     }
 
@@ -416,7 +429,7 @@ function pbta_character() {
               spacing={4}
           >
             <Text fontSize={40} fontWeight={700}>{characterName}</Text>
-            <Text fontSize={28} fill="#666666">{characterData.characters.find(c => c.name === characterName)?.subtitle || ""}</Text>
+            <Text fontSize={28} fill="#666666">{characterData.characters.find(c => c.name === characterName)?.subtitle || null}</Text>
           </AutoLayout>
         </AutoLayout>
         <AutoLayout direction="vertical" spacing={8} padding={16} width="fill-parent" fill="#FFFFFF">
@@ -473,11 +486,8 @@ function pbta_character() {
                 onClick={() => {
                   const mythosRoll = {
                     name: "+Mythos",
-                    description: "",
-                    "13+": "Critical Success",
-                    "10+": "Great Success",
-                    "7-9": "Partial Success",
-                    "6-": "Failure"
+                    description: null,
+                    ...STANDARD_OUTCOMES
                   }
                   setPendingRoll({ modifier: mythosValue, modifierName: "+Mythos", move: mythosRoll })
                 }}
@@ -587,11 +597,8 @@ function pbta_character() {
                 onClick={() => {
                   const logosRoll = {
                     name: "+Logos",
-                    description: "",
-                    "13+": "Critical Success",
-                    "10+": "Great Success",
-                    "7-9": "Partial Success",
-                    "6-": "Failure"
+                    description: null,
+                    ...STANDARD_OUTCOMES
                   }
                   setPendingRoll({ modifier: logosValue, modifierName: "+Logos", move: logosRoll })
                 }}
@@ -783,11 +790,8 @@ function pbta_character() {
                     onClick={() => {
                       const attributeRoll = {
                         name: "+" + attr,
-                        description: "",
-                        "13+": "Critical Success",
-                        "10+": "Great Success",
-                        "7-9": "Partial Success",
-                        "6-": "Failure"
+                        description: null,
+                        ...STANDARD_OUTCOMES
                       }
                       setPendingRoll({ modifier: attributeValues[attr], modifierName: "+" + attr, move: attributeRoll })
                     }}
@@ -920,7 +924,7 @@ function pbta_character() {
                   <Text fontSize={18} fill={harmChecked[idx] ? "#FFFFFF" : "#333333"}>{level.symbol}</Text>
                 </AutoLayout>
                 <Text fontSize={21} width={120}>{level.name}</Text>
-                <Text fontSize={21} width={30}>{level.modifier}</Text>
+                <Text fontSize={21} width={30}>{level.modifier || null}</Text>
               </AutoLayout>
             ))}
           </AutoLayout>
@@ -946,7 +950,7 @@ function pbta_character() {
                   <Text fontSize={18} fill={stressChecked[idx] ? "#FFFFFF" : "#333333"}>{level.symbol}</Text>
                 </AutoLayout>
                 <Text fontSize={21} width={120}>{level.name}</Text>
-                <Text fontSize={21} width={30}>{level.modifier}</Text>
+                <Text fontSize={21} width={30}>{level.modifier || null}</Text>
               </AutoLayout>
             ))}
           </AutoLayout>
@@ -1073,11 +1077,8 @@ function pbta_character() {
                   onClick={() => {
                     const contactRoll = {
                       name: "Contact: " + (contactNames[idx] || "Unknown"),
-                      description: "",
-                      "13+": "Critical Success",
-                      "10+": "Great Success",
-                      "7-9": "Partial Success",
-                      "6-": "Failure"
+                      description: null,
+                      ...STANDARD_OUTCOMES
                     }
                     setPendingRoll({ modifier: contactRatings[idx], modifierName: "+Rating", move: contactRoll })
                   }}
@@ -1303,6 +1304,7 @@ function pbta_character() {
                 // Regular move with dice roll
                 let outcomeText = ""
                 let holdOptions = entry.move.hold || []
+                console.log('holdOptions:', holdOptions, 'entry.move.hold:', entry.move.hold)
                 if (entry.move.outcomes?.["13+"] && entry.total >= 13) {
                   outcomeText = `13+: ${entry.move.outcomes["13+"]}`
                 } else if (entry.total >= 10) {
@@ -1311,7 +1313,11 @@ function pbta_character() {
                   outcomeText = `7-9: ${entry.move.outcomes?.["7-9"]}`
                 } else if (entry.move.outcomes?.["6-"]) {
                   outcomeText = `6-: ${entry.move.outcomes["6-"]}`
+                } else {
+                  outcomeText = "fake outcome"
+                  console.log("ERROR: No OutcomeText: '", outcomeText, "'")
                 }
+                console.log("OutcomeText: '", outcomeText, "'")
 
                 return (
                   <AutoLayout
@@ -1323,60 +1329,60 @@ function pbta_character() {
                       width="fill-parent"
                       spacing={8}
                   >
-                    <AutoLayout spacing={8} verticalAlignItems="center" width="fill-parent">
-                      <Frame width={20} height={20} fill="#333333" cornerRadius={2}>
-                        <AutoLayout horizontalAlignItems="center" verticalAlignItems="center" width={20} height={20} padding={2}>
-                          <Grid sides={entry.dice[0]} size={3} fill="#FFFFFF" spacing={2} />
-                        </AutoLayout>
-                      </Frame>
-                      <Frame width={20} height={20} fill="#333333" cornerRadius={2}>
-                        <AutoLayout horizontalAlignItems="center" verticalAlignItems="center" width={20} height={20} padding={2}>
-                          <Grid sides={entry.dice[1]} size={3} fill="#FFFFFF" spacing={2} />
-                        </AutoLayout>
-                      </Frame>
-                      <Text fontSize={22.5} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
-                    </AutoLayout>
-                    {entry.rollText && (
-                      <AutoLayout spacing={4} verticalAlignItems="center" width="fill-parent" wrap={true}>
-                        <Text fontSize={20} fontWeight={600}>Roll:</Text>
-                        <AutoLayout fill="#FF0000" padding={4} cornerRadius={4}>
-                          <Text fontSize={20} fontWeight={700} fill="#FFFFFF">{entry.total}</Text>
-                        </AutoLayout>
-                        <Text fontSize={20} fontWeight={600}>=</Text>
-                        <AutoLayout fill="#00AA00" padding={4} cornerRadius={4}>
-                          <Text fontSize={20} fontWeight={700} fill="#FFFFFF">({entry.dice[0]} + {entry.dice[1]})</Text>
-                        </AutoLayout>
-                        {entry.modifierName && (
-                          <AutoLayout fill="#0066FF" padding={4} cornerRadius={4}>
-                            <Text fontSize={20} fontWeight={700} fill="#FFFFFF">{entry.modifier >= 0 ? '+' : ''}{entry.modifier} ({entry.modifierName})</Text>
-                          </AutoLayout>
-                        )}
-                        {entry.forward !== 0 && (
-                          <Text fontSize={20} fontWeight={700} fill="#00AA00">{entry.forward >= 0 ? '+' : ''}{entry.forward} (Forward)</Text>
-                        )}
-                        {entry.ongoing !== 0 && (
-                          <Text fontSize={20} fontWeight={700} fill="#0066FF">{entry.ongoing >= 0 ? '+' : ''}{entry.ongoing} (Ongoing)</Text>
-                        )}
-                        {entry.harm != null && entry.harm !== 0 && (
-                          <Text fontSize={20} fontWeight={700} fill="#FF0000">{entry.harm >= 0 ? '+' : ''}{entry.harm} (Harm)</Text>
-                        )}
-                        {entry.stress != null && entry.stress !== 0 && (
-                          <Text fontSize={20} fontWeight={700} fill="#9933FF">{entry.stress >= 0 ? '+' : ''}{entry.stress} (Stress)</Text>
-                        )}
-                      </AutoLayout>
-                    )}
-                    <Text fontSize={17.5} width="fill-parent">{entry.move.description}</Text>
-                    {outcomeText && (
-                      <Text fontSize={17.5} fontWeight={600} width="fill-parent">{outcomeText}</Text>
-                    )}
-                    {holdOptions.length > 0 && (
-                      <AutoLayout direction="vertical" spacing={4} width="fill-parent">
-                        {holdOptions.map((option, optIdx) => (
-                          <Text key={optIdx} fontSize={17.5} width="fill-parent">• {option}</Text>
-                        ))}
-                      </AutoLayout>
-                    )}
-                  </AutoLayout>
+                     <AutoLayout spacing={8} verticalAlignItems="center" width="fill-parent">
+                       <Frame width={20} height={20} fill="#333333" cornerRadius={2}>
+                         <AutoLayout horizontalAlignItems="center" verticalAlignItems="center" width={20} height={20} padding={2}>
+                           <Grid sides={entry.dice[0]} size={3} fill="#FFFFFF" spacing={2} />
+                         </AutoLayout>
+                       </Frame>
+                       <Frame width={20} height={20} fill="#333333" cornerRadius={2}>
+                         <AutoLayout horizontalAlignItems="center" verticalAlignItems="center" width={20} height={20} padding={2}>
+                           <Grid sides={entry.dice[1]} size={3} fill="#FFFFFF" spacing={2} />
+                         </AutoLayout>
+                       </Frame>
+                       <Text fontSize={22.5} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
+                     </AutoLayout>
+                     {entry.rollText && (
+                       <AutoLayout spacing={4} verticalAlignItems="center" width="fill-parent" wrap={true}>
+                         <Text fontSize={20} fontWeight={600}>Roll:</Text>
+                         <AutoLayout fill="#FF0000" padding={4} cornerRadius={4}>
+                           <Text fontSize={20} fontWeight={700} fill="#FFFFFF">{entry.total}</Text>
+                         </AutoLayout>
+                         <Text fontSize={20} fontWeight={600}>=</Text>
+                         <AutoLayout fill="#00AA00" padding={4} cornerRadius={4}>
+                           <Text fontSize={20} fontWeight={700} fill="#FFFFFF">({entry.dice[0]} + {entry.dice[1]})</Text>
+                         </AutoLayout>
+                         {entry.modifierName && (
+                           <AutoLayout fill="#0066FF" padding={4} cornerRadius={4}>
+                             <Text fontSize={20} fontWeight={700} fill="#FFFFFF">{entry.modifier >= 0 ? '+' : ''}{entry.modifier} ({entry.modifierName})</Text>
+                           </AutoLayout>
+                         )}
+                         {entry.forward !== 0 && (
+                           <Text fontSize={20} fontWeight={700} fill="#00AA00">{entry.forward >= 0 ? '+' : ''}{entry.forward} (Forward)</Text>
+                         )}
+                         {entry.ongoing !== 0 && (
+                           <Text fontSize={20} fontWeight={700} fill="#0066FF">{entry.ongoing >= 0 ? '+' : ''}{entry.ongoing} (Ongoing)</Text>
+                         )}
+                         {entry.harm != null && entry.harm !== 0 && (
+                           <Text fontSize={20} fontWeight={700} fill="#FF0000">{entry.harm >= 0 ? '+' : ''}{entry.harm} (Harm)</Text>
+                         )}
+                         {entry.stress != null && entry.stress !== 0 && (
+                           <Text fontSize={20} fontWeight={700} fill="#9933FF">{entry.stress >= 0 ? '+' : ''}{entry.stress} (Stress)</Text>
+                         )}
+                       </AutoLayout>
+                     )}
+                     <Text fontSize={17.5} width="fill-parent">{entry.move.description}</Text>
+                     {outcomeText && (
+                       <Text fontSize={17.5} fontWeight={600} width="fill-parent">{outcomeText}</Text>
+                     )}
+                     {holdOptions.length > 0 && (
+                       <AutoLayout direction="vertical" spacing={4} width="fill-parent">
+                         {holdOptions.map((option, optIdx) => (
+                           <Text key={optIdx} fontSize={17.5} width="fill-parent">• {option}</Text>
+                         ))}
+                       </AutoLayout>
+                     )}
+                   </AutoLayout>
                 )
               })}
             </AutoLayout>

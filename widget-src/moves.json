@@ -131,7 +131,7 @@
     "Smarts": [
       {
         "name": "Investigate a Mystery",
-        "description": "When you investigate a mystery, roll +Smarts.",
+        "description": "When you investigate a mystery, roll +Smarts. Note: Once per Mystery, you may also roll against Explore Logos/Mythos Lore from the answers to these questions.",
         "outcomes": {
           "13+": "Hold 2. You can ask any Question, not just the listed ones",
           "10+": "Hold 2. Hold can be spent 1 for 1 to ask Keeper one of the following questions",
@@ -185,7 +185,7 @@
           "13+": "Change the target's agenda to your agenda, and you may turn them into a +0 Contact",
           "10+": "Change the target's agenda to your agenda",
           "7-9": "Change the target's agenda to your agenda, but you must surrender 1 [Gear] or take -1 Ongoing to Coin for the rest of the session",
-          "6-": "The target changes its agenda to the Oppony site of your agenda"
+          "6-": "The target changes its agenda to the opposite of your agenda"
         }
       }
     ]
@@ -228,24 +228,29 @@
       "Attributes": ["Mythos", "Logos"],
       "Moves": [
         {
-          "name": "Explore Mythos/Logos Lore",
-          "description": "",
+          "name": "Cultivate a Mythos/Logos Contact",
+          "description": "Once per Job, when you meet an NPC and want to turn them into a contact, roll. If they are a Sleeper, or otherwise are part of your mundane life, roll +Logos. Otherwise roll +Mythos. You can only have 5 contacts, so if you have gain a new contact when you have 5, you must drop one to make room.",
           "outcomes": {
-            "13+": "",
-            "10+": "",
-            "7-9": "",
-            "6-": ""
+            "13+": "Create a new contact with a +1 contact rating",
+            "10+": "Create a new contact with a +0 contact rating. Record what they are good at (Expertise), and how you know them (Relationship).",
+            "7-9": "The NPC becomes a contact, but one that doesn’t necessarily like or trust you. Record them with a -1 contact rating, note what they are good at, and the source of the conflict",
+            "6-": "The potential contact turns against you. They will do what they can to foil your plans"
           }
         },
         {
-          "name": "Cultivate a Mythos/Logos Contact",
-          "description": "",
+          "name": "Explore Mythos/Logos Lore",
+          "description": "Once per session, in response to an answer from Investigate a Mystery you may declare a linkage between the answer and either your Logos Statement or your Mythos Question. When you do, describe how the mystery is linked to your Mythos Question or Logos Statement, and roll +Logos or +Mythos as appropriate. (When choosing options, you can choose the same option more than once). Based on your roll, you have an insight that is: ",
           "outcomes": {
-            "13+": "",
-            "10+": "",
-            "7-9": "",
-            "6-": ""
-          }
+            "13+": "World-Altering. Choose 3 of the following options:",
+            "10+": "Powerful. Choose 2 of the following options:",
+            "7-9": "Minor. Choose 1 of the following options:",
+            "6-": "Searing: The MC will tell you why this knowledge is traumatizing. Mark Attention on your Logos/Mythos, but also mark Crack/Fade as appropriate."
+          },
+          "hold": [
+            "Mark 1 Attention to your Mythos/Logos as appropriate",
+            "Heal 1 Fade/Crack as appropriate",
+            "Take +1 ongoing when acting on the answer to the question using your Mythos or Logos, as appropriate"
+          ]
         }
       ]
     }
