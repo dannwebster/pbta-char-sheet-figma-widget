@@ -257,66 +257,70 @@
   ],
   "ClockMoves": [
     {
-      "name": "Mythos Fade",
+      "name": "Fade (Mythos)",
       "clock": "mythosFade",
+      "description": "Fade represents the neglect of an aspect of your Mythos. Fade is accrued when a Rift has an opportunity to explore their Mythos Question, but fails to. Generating 3 Fade will result in losing 1 level of Mythos, and gaining 1 level of Logos. You can reduce Fade with the move Explore Mythos Lore",
       "advance": [
         {
-          "name": "Fade your Mythos",
-          "description": ""
+          "name": "Accrue Fade (Mythos)",
+          "description": "Accrue Fade by neglecting your Logos Statement"
         }
       ],
       "rollback": [
         {
-          "name": "Heal Fade",
-          "description": ""
+          "name": "Un-Fade",
+          "description": "Reduce Fade using the Explore Mythos Lore"
         }
       ]
     },
     {
-      "name": "Logos Crack",
+      "name": "Crack (Logos)",
       "clock": "logosCrack",
+      "description": "Crack represents the undermining of an aspect of your Logos. Crack is accrued when a Rift has an opportunity to live out their Logos Statement, but fails to. Generating 3 Crack will result in losing 1 level of Logos, and gaining 1 level of Mythos. You can reduce Crack with the move Explore Logos Lore",
       "advance": [
         {
-          "name": "Crack your Logos",
-          "description": ""
+          "name": "Accrue Crack (Logos)",
+          "description": "Accrue Crack by undermining your Logos Statement"
         }
       ],
       "rollback": [
         {
-          "name": "Heal Crack",
-          "description": ""
+          "name": "Un-Crack",
+          "description": "Reduce Crack using the Explore Logos Lore"
         }
       ]
     },
     {
       "name": "Mythos Attention",
       "clock": "mythosAttention",
+      "description": "Mythos Attention represents the how often the drawbacks of your Mythos (in the form of the Flaws of your Mythos moves) get in the way of your actions. To gain Mythos Attention, Invoke a Mythos Flaw.",
       "advance": [
         {
           "name": "Invoke a Mythos Flaw",
-          "description": ""
+          "description": "The Flaws of your Mythos Moves will describe what happens when you invoke them. When you do, mark Mythos Attention."
         }
       ],
       "rollback": [
         {
           "name": "Roll Back Mythos Attention",
-          "description": ""
+          "description": "Attention does not normally decrease. This move is just an 'undo' button in case Attention was incorrectly advanced."
         }
       ]
     },
     {
       "name": "Logos Attention",
       "clock": "logosAttention",
+      "description": "Logos Attention represents the how often the drawbacks of your Logos (in the form of the Flaws of your Logos moves) get in the way of your actions. To gain Logos Attention, Invoke a Logos Flaw.",
       "advance": [
         {
           "name": "Invoke a Logos Flaw",
-          "description": ""
+          "description": "The Flaws of your Logos Moves will describe what happens when you invoke them. When you do, mark Logos Attention."
         }
       ],
       "rollback": [
         {
           "name": "Roll Back Logos Attention",
-          "description": ""
+          "description": "Attention does not normally decrease. This move is just an 'undo' button in case Attention was incorrectly advanced."
         }
       ]
     },
