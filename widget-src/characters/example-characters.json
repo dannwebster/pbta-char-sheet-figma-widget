@@ -6,15 +6,15 @@
       "concept": [
         {
           "type": "Mythos",
-          "name": "",
-          "concept": "",
-          "tenet": ""
+          "name": "Champion of Legend",
+          "concept": "Blessed by ancient warrior spirits seeking a worthy vessel",
+          "tenet": "What battle will finally prove me worthy?"
         },
         {
           "type": "Logos",
-          "name": "",
-          "concept": "",
-          "tenet": ""
+          "name": "Veteran Soldier",
+          "concept": "Hardened by countless battles and military discipline",
+          "tenet": "Victory justifies any sacrifice"
         }
       ],
       "attributes": [
@@ -167,15 +167,15 @@
       "concept": [
         {
           "type": "Mythos",
-          "name": "",
-          "concept": "",
-          "tenet": ""
+          "name": "Oracle of the Veil",
+          "concept": "Touched by otherworldly forces that grant visions and power",
+          "tenet": "What truth lies beyond the veil of reality?"
         },
         {
           "type": "Logos",
-          "name": "",
-          "concept": "",
-          "tenet": ""
+          "name": "Scholar of the Arcane",
+          "concept": "Years of study in forbidden libraries and ancient texts",
+          "tenet": "Knowledge is the ultimate power"
         }
       ],
       "attributes": [

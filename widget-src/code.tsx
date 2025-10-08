@@ -395,6 +395,7 @@ function pbta_character() {
       if (!initialized) {
         roll()
         loadAttributesFromCharacter(characterName)
+        loadConceptFromCharacter(characterName)
         setInitialized(true)
       }
 
@@ -489,6 +490,28 @@ function pbta_character() {
     }
   }
 
+  // Helper function to load concept data from character data
+  const loadConceptFromCharacter = (charName) => {
+    const currentCharacter = characterData.characters.find(c => c.name === charName)
+
+    if (currentCharacter && currentCharacter.concept) {
+      const mythosConcept = currentCharacter.concept.find(c => c.type === "Mythos")
+      const logosConcept = currentCharacter.concept.find(c => c.type === "Logos")
+
+      if (mythosConcept) {
+        setMythosName(mythosConcept.name || "")
+        setMythosConcept(mythosConcept.concept || "")
+        setMythosQuestion(mythosConcept.tenet || "")
+      }
+
+      if (logosConcept) {
+        setLogosName(logosConcept.name || "")
+        setLogosConcept(logosConcept.concept || "")
+        setLogosStatement(logosConcept.tenet || "")
+      }
+    }
+  }
+
   return (
       <AutoLayout direction="vertical" spacing={16}>
         <AutoLayout direction="horizontal" spacing={16}>
@@ -564,6 +587,7 @@ function pbta_character() {
                 loadEquipmentFromCharacter(newCharacterName)
                 loadContactsFromCharacter(newCharacterName)
                 loadAttributesFromCharacter(newCharacterName)
+                loadConceptFromCharacter(newCharacterName)
               }}
               width="fill-parent"
               direction="vertical"
