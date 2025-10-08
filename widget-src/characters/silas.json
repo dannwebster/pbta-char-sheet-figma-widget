@@ -3,6 +3,14 @@
     {
       "name": "Silas Echo",
       "subtitle": "The Changeling",
+      "attributes": [
+        { "name": "Muscle", "value": 0 },
+        { "name": "Finesse", "value": 1 },
+        { "name": "Grit", "value": 1 },
+        { "name": "Moxie", "value": 3 },
+        { "name": "Smarts", "value": 2 },
+        { "name": "Coin", "value": -1 }
+      ],
       "moves": {
         "mythosMoves": {
           "anchorMove": {

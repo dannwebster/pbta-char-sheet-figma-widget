@@ -3,6 +3,14 @@
     {
       "name": "Dakota Boone",
       "subtitle": "Frontierswoman",
+      "attributes": [
+        { "name": "Muscle", "value": 1 },
+        { "name": "Finesse", "value": 3 },
+        { "name": "Grit", "value": -1 },
+        { "name": "Moxie", "value": 0 },
+        { "name": "Smarts", "value": 2 },
+        { "name": "Coin", "value": 1 }
+      ],
       "moves": {
         "mythosMoves": {
           "anchorMove": {
