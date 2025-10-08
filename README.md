@@ -39,22 +39,38 @@ Thank you to [lil-dice](https://www.figma.com/community/widget/10319330472540874
 - [ ] extract components
     - [ ] Move History
     - [ ] Charts
-  - [ ] Basic Moves
-  - [ ] Contacts Table Table
-  - [ ] Equipment Table
-  - [ ] Character Moves
-  - [ ] Clock Move Button
-  - [ ] Clock Move Button
+    - [ ] Basic Moves
+    - [ ] Contacts Table Table
+    - [ ] Equipment Table
+    - [ ] Character Moves
+    - [ ] Clock Move Button
+    - [ ] Clock Move Button
 ### Features
+- [ ] contact button should put name of contact in work your connections
+- [ ] add "look" under subtitle
+- [ ] Add hold section (text, clock, notes)
+  - [ ] juice
+  - [ ] read a bad situation
+  - [ ] investigate a mystery
+  - [ ] gear
+  - [ ] other
 - [ ] *Project* - pull all widget information out into the characters json file 
    - [ ] abstract all data out into a Characters file
-     - [ ] equipment
-     - [ ] contacts
-     - [ ] name
-     - [ ] mythos info 
-     - [ ] logos info
      - [ ] archetype
-     - [ ] stats
+     - [ ] clocks
+       - [ ] harm
+       - [ ] stress
+       - [ ] mythosAttention
+       - [ ] fade
+       - [ ] logosAttention
+       - [ ] crack
+       - [ ] hold section (text, clock, notes)
+     - [x] equipment
+     - [x] contacts
+     - [x] name
+     - [x] mythos info 
+     - [x] logos info
+     - [x] stats
 
 - [ ] *Project* - make into a widget into a Plugin
    - [ ] change the Widget into a Plugin
