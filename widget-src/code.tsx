@@ -1012,7 +1012,7 @@ function pbta_character() {
           </AutoLayout>
         </AutoLayout>
       </AutoLayout>
-      <AutoLayout direction="vertical" spacing={16} padding={16} width={900} height="fill-parent" fill="#F5F5F5" stroke="#333333" strokeWidth={2} cornerRadius={8}>
+      <AutoLayout direction="vertical" spacing={16} padding={16} width={1350} height="fill-parent" fill="#F5F5F5" stroke="#333333" strokeWidth={2} cornerRadius={8}>
         <Text fontSize={36} fontWeight={700}>Clocks</Text>
         <AutoLayout direction="horizontal" spacing={16} width="fill-parent">
           <AutoLayout direction="vertical" spacing={8} width="fill-parent">
@@ -1072,12 +1072,12 @@ function pbta_character() {
           <Text fontSize={36} fontWeight={700}>Contacts</Text>
           {/* Header Row */}
           <AutoLayout spacing={4} width="fill-parent">
-            <Text fontSize={21} fontWeight={700} width={180}>Name</Text>
-            <Text fontSize={21} fontWeight={700} width={90}>Type</Text>
+            <Text fontSize={21} fontWeight={700} width={320}>Name</Text>
+            <Text fontSize={21} fontWeight={700} width={120}>Type</Text>
             <Text fontSize={21} fontWeight={700} width={90}>Rating</Text>
-            <Text fontSize={21} fontWeight={700} width={150}>Expertise</Text>
-            <Text fontSize={21} fontWeight={700} width={150}>Relationship</Text>
-            <Text fontSize={21} fontWeight={700} width={120}>Action</Text>
+            <Text fontSize={21} fontWeight={700} width={320}>Expertise</Text>
+            <Text fontSize={21} fontWeight={700} width={320}>Relationship</Text>
+            <Text fontSize={21} fontWeight={700} width={150}>Action</Text>
           </AutoLayout>
           {/* Contact Rows */}
           {[0, 1, 2, 3, 4].map((idx) => (
@@ -1091,13 +1091,13 @@ function pbta_character() {
                   }}
                   fontSize={21}
                   placeholder="Name"
-                  width={180}
+                  width={320}
               />
               <AutoLayout
                   fill={attributesLocked ? "#FFCCCC" : "#E6E6E6"}
                   padding={9}
                   cornerRadius={4}
-                  width={90}
+                  width={120}
                   horizontalAlignItems="center"
                   onClick={() => {
                     if (!attributesLocked) {
@@ -1170,7 +1170,7 @@ function pbta_character() {
                   }}
                   fontSize={21}
                   placeholder="Expertise"
-                  width={150}
+                  width={320}
               />
               <Input
                   value={contactRelationships[idx]}
@@ -1181,7 +1181,7 @@ function pbta_character() {
                   }}
                   fontSize={21}
                   placeholder="Relationship"
-                  width={150}
+                  width={320}
               />
               <AutoLayout
                   fill="#333333"
@@ -1198,7 +1198,7 @@ function pbta_character() {
                     name: "Contact: " + (contactNames[idx] || "Unknown"),
                     ...movesData.ContactMove
                   })}
-                  width={120}
+                  width={150}
                   horizontalAlignItems="center"
               >
                 <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Contact</Text>
