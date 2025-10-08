@@ -146,25 +146,25 @@
           "name": "El Raton",
           "type": "Mythos",
           "rating": 1,
-          "expertise": "Stool Pigeon",
-          "relationship": "Former capo, now in witsec",
-          "description": ""
+          "expertise": "Criminal Underworld",
+          "relationship": "Former colleague",
+          "description": "Stool Pigeon, Former capo, now in witsec"
         },
         {
-          "name": "Ma Boone",
+          "name": "Cheryl Boone",
           "type": "Logos",
           "rating": 0,
           "expertise": "Social Sciences",
-          "relationship": "Mother, School Teacher",
-          "description": ""
+          "relationship": "Mother",
+          "description": "School Teacher, warm, maternal"
         },
         {
-          "name": "Pa Boone",
+          "name": "Bill Boone",
           "type": "Logos",
           "rating": -1,
           "expertise": "Engineering",
-          "relationship": "Father, Shop Teacher",
-          "description": ""
+          "relationship": "Father",
+          "description": "Shop Teacher, analytical, gruff"
         },
         {
           "name": "",

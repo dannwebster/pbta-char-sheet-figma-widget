@@ -127,6 +127,40 @@
           "coin": 0,
           "tags": "See It's All In My Backpack Move"
         }
+      ],
+      "contacts": [
+        {
+          "name": "Erica Monroe, Star",
+          "type": "Logos",
+          "rating": -1,
+          "expertise": "Tinseltown",
+          "relationship": "Deals To",
+          "description": "Up and coming starlet"
+        },
+        {
+          "name": "\"Lucky\" Chen",
+          "type": "Logos",
+          "rating": -1,
+          "expertise": "Black Market",
+          "relationship": "Occasional business partner who moves hot goods",
+          "description": "Fence who provides fake IDs when needed"
+        },
+        {
+          "name": "Dr. Amelia Cross",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "Rift Biology",
+          "relationship": "Professional acquaintance",
+          "description": "Researcher studying Rifts, fascinated by changelings"
+        },
+        {
+          "name": "Marco Ruiz",
+          "type": "Logos",
+          "rating": 1,
+          "expertise": "Street Gossip",
+          "relationship": "Friend and occasional landlord",
+          "description": "Bartender at The Blind Tiger, lets Silas crash on his couch"
+        }
       ]
     }
   ]
