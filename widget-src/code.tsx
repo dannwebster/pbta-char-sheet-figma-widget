@@ -208,7 +208,7 @@ function pbta_character() {
   const [equipmentNames, setEquipmentNames] = useSyncedState("equipmentNames", Array(7).fill(""))
   const [equipmentTypes, setEquipmentTypes] = useSyncedState("equipmentTypes", ["melee", "ranged", "vehicle", "domicile", "accessory", "accessory", ""])
   const [equipmentCoin, setEquipmentCoin] = useSyncedState("equipmentCoin", Array(7).fill(0))
-  const [equipmentHarm, setEquipmentHarm] = useSyncedState("equipmentHarm", Array(7).fill(0))
+  const [equipmentHarm, setEquipmentHarm] = useSyncedState("equipmentHarm", Array(7).fill(null))
   const [equipmentTags, setEquipmentTags] = useSyncedState("equipmentTags", Array(7).fill(""))
 
   // Snapshot of modifiers used in the last roll
@@ -410,7 +410,7 @@ function pbta_character() {
       const names = Array(maxItems).fill("")
       const types = Array(maxItems).fill("")
       const coins = Array(maxItems).fill(0)
-      const harms = Array(maxItems).fill(0)
+      const harms = Array(maxItems).fill(null)
       const tags = Array(maxItems).fill("")
 
       equipment.forEach((item, idx) => {
@@ -423,7 +423,7 @@ function pbta_character() {
             // Keep as-is (string or number)
             harms[idx] = item.harm
           } else {
-            harms[idx] = 0
+            harms[idx] = null
           }
           tags[idx] = item.tags || ""
         }
@@ -1311,7 +1311,8 @@ function pbta_character() {
                       onClick={() => {
                         if (!attributesLocked) {
                           const newHarm = [...equipmentHarm]
-                          newHarm[idx] = Math.min(4, newHarm[idx] + 1)
+                          const currentVal = newHarm[idx] === null || newHarm[idx] === undefined ? 0 : Number(newHarm[idx])
+                          newHarm[idx] = Math.min(4, currentVal + 1)
                           setEquipmentHarm(newHarm)
                         }
                       }}
@@ -1327,7 +1328,8 @@ function pbta_character() {
                       onClick={() => {
                         if (!attributesLocked) {
                           const newHarm = [...equipmentHarm]
-                          newHarm[idx] = Math.max(0, newHarm[idx] - 1)
+                          const currentVal = newHarm[idx] === null || newHarm[idx] === undefined ? 0 : Number(newHarm[idx])
+                          newHarm[idx] = Math.max(0, currentVal - 1)
                           setEquipmentHarm(newHarm)
                         }
                       }}
@@ -1336,14 +1338,20 @@ function pbta_character() {
                   </AutoLayout>
                 </AutoLayout>
                 <Input
-                    value={String(equipmentHarm[idx])}
+                    value={equipmentHarm[idx] === null || equipmentHarm[idx] === undefined ? "NA" : String(equipmentHarm[idx])}
                     onTextEditEnd={(e) => {
                       if (!attributesLocked) {
-                        let val = parseInt(e.characters)
-                        if (!isNaN(val)) {
+                        if (e.characters.toUpperCase() === "NA" || e.characters.trim() === "") {
                           const newHarm = [...equipmentHarm]
-                          newHarm[idx] = Math.max(0, Math.min(4, val))
+                          newHarm[idx] = null
                           setEquipmentHarm(newHarm)
+                        } else {
+                          let val = parseInt(e.characters)
+                          if (!isNaN(val)) {
+                            const newHarm = [...equipmentHarm]
+                            newHarm[idx] = Math.max(0, Math.min(4, val))
+                            setEquipmentHarm(newHarm)
+                          }
                         }
                       }
                     }}
