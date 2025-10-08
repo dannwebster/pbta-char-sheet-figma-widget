@@ -400,6 +400,43 @@ function pbta_character() {
     }))
   })
 
+  // Helper function to load equipment from character data
+  const loadEquipmentFromCharacter = (charName) => {
+    const currentCharacter = characterData.characters.find(c => c.name === charName)
+    if (currentCharacter && currentCharacter.equipment) {
+      const equipment = currentCharacter.equipment
+      const maxItems = 7
+
+      const names = Array(maxItems).fill("")
+      const types = Array(maxItems).fill("")
+      const coins = Array(maxItems).fill(0)
+      const harms = Array(maxItems).fill(0)
+      const tags = Array(maxItems).fill("")
+
+      equipment.forEach((item, idx) => {
+        if (idx < maxItems) {
+          names[idx] = item.name || ""
+          types[idx] = item.type || ""
+          coins[idx] = item.coin !== undefined && item.coin !== null ? item.coin : 0
+          // Handle harm - can be string ("+2"), number, or null/undefined
+          if (item.harm !== undefined && item.harm !== null) {
+            // Keep as-is (string or number)
+            harms[idx] = item.harm
+          } else {
+            harms[idx] = 0
+          }
+          tags[idx] = item.tags || ""
+        }
+      })
+
+      setEquipmentNames(names)
+      setEquipmentTypes(types)
+      setEquipmentCoin(coins)
+      setEquipmentHarm(harms)
+      setEquipmentTags(tags)
+    }
+  }
+
   return (
       <AutoLayout direction="vertical" spacing={16}>
         <AutoLayout direction="horizontal" spacing={16}>
@@ -470,7 +507,9 @@ function pbta_character() {
               onClick={() => {
                 const currentIndex = characterData.characters.findIndex(c => c.name === characterName)
                 const nextIndex = (currentIndex + 1) % characterData.characters.length
-                setCharacterName(characterData.characters[nextIndex].name)
+                const newCharacterName = characterData.characters[nextIndex].name
+                setCharacterName(newCharacterName)
+                loadEquipmentFromCharacter(newCharacterName)
               }}
               width="fill-parent"
               direction="vertical"
