@@ -72,7 +72,7 @@
         "description": "When you stand in defense of another person, an item, or a location under attack, roll +Grit.",
         "outcomes": {
           "13+": "As for 10+, and inflict 1 Harm or Stress on the attacker",
-          "10+": "Hold 3. Spend your hold, 1-for-1, to:",
+          "10+": "Hold 3. Spend your hold, 1-for-1 to:",
           "7-9": "Hold 1",
           "6-": "The original target takes harm as established, and your attempts backfires. You take -1 forward, 1 Harm, or 1 Stress, or the target takes 1 more Harm or Stress"
         },
@@ -96,19 +96,13 @@
     "Moxie": [
       {
         "name": "Talk Them Into It",
-        "description": "When you use your abilities to talk, threaten, or seduce someone into doing something, roll+Moxie.",
+        "description": "When you use your abilities to convince, threaten, or seduce someone into doing something, roll+Moxie.",
         "outcomes": {
-          "13+": "Hold 3, and you may turn them into a +0 Contact",
-          "10+": "Hold 3: Spend your hold 1-for-1 to:",
-          "7-9": "Hold 2",
-          "6-": "Hold 1, but the target becomes hostile"
-        },
-        "hold": [
-          "Change the target's agenda 1-for-1 to your agena",
-          "Inflict 1 Stress on the target",
-          "Have the target comply without questions or a need for reassurance, payment, or coercion",
-          "Have them comply without eliciting suspicion from those around you"
-        ]
+          "13+": "The target changes their agenda to your agenda and, if you haven't already taken a new Contact during this Mystery, you may turn the target into a Contact with Rating -1",
+          "10+": "The target changes their agenda to your agenda",
+          "7-9": "The target changes their agenda to your agenda, but either they need reassurance, payment, or coercion, OR their compliance elicits suspicion from someone nearby (MC's choice)",
+          "6-": "The target complies, but becomes immediately hostile"
+        }
       },
       {
         "name": "Draw Them Out",
@@ -134,18 +128,20 @@
         "description": "When you investigate a mystery, roll +Smarts. Note: Once per Mystery, you may also roll against Explore Logos/Mythos Lore from the answers to these questions.",
         "outcomes": {
           "13+": "Hold 2. You can ask any Question, not just the listed ones",
-          "10+": "Hold 2. Hold can be spent 1 for 1 to ask Keeper one of the following questions",
-          "7-9": "Hold 1. Hold can be spent 1 for 1 to ask Keeper one of the following questions",
-          "6-": "Hold 1, and the MC will give you an answer you don't want to hear."
+          "10+": "Hold 2. Hold can be spent 1-for-1 to ask Keeper one of the following questions",
+          "7-9": "Hold 1. Hold can be spent 1-for-1 to ask Keeper one of the following questions",
+          "6-": "The MC will give you an answer you don't want to hear."
         },
         "hold": [
+          "Who should I next talk?",
+          "Is there a pattern here that's important?",
+          "What is being concealed here?",
+          "Was a Rift involved?",
           "What happened here?",
-          "What sort of entity is it?",
           "What are it's powers?",
           "What are it's weaknesses?",
           "Where did it go?",
-          "What was it going to do?",
-          "What is being concealed here?"
+          "What was it going to do?"
         ]
       },
       {

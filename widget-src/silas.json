@@ -9,8 +9,10 @@
             "name": "Power Thief",
             "description": "When you touch someone skin to skin, you may roll +Mythos:",
             "outcomes": {
+              "13+": "Hold 4",
               "10+": "Hold 3",
-              "7-9": "Hold 1"
+              "7-9": "Hold 2",
+              "6-": "Hold 1"
             },
             "hold": [
               "Use an expert mundane skill or language they possess for the rest of the scene",
@@ -28,8 +30,10 @@
               "name": "Perfect Illusion",
               "description": "When you touch someone or something with your skin, you may roll +Mythos:",
               "outcomes": {
+                "13+": "Hold 4",
                 "10+": "Hold 3",
-                "7-9": "Hold 1"
+                "7-9": "Hold 2",
+                "6-": "Hold 1"
               },
               "hold": [
                 "Take his/her/its perfect likeness for the rest of the scene",
@@ -77,7 +81,30 @@
             }
           ]
         }
-      }
+      },
+      "equipment": [
+        {
+          "name": "Pocket Knife",
+          "type": "weapon",
+          "coin": 1,
+          "harm": 1,
+          "tags": "hand, discrete"
+        },
+        {
+          "name": "Street Clothes",
+          "type": "armor",
+          "coin": 1,
+          "harm": 0,
+          "tags": "0-armor, worn, discrete"
+        },
+        {
+          "name": "Lockpick Set",
+          "type": "tool",
+          "coin": 2,
+          "harm": 0,
+          "tags": "useful, discrete"
+        }
+      ]
     }
   ]
 }
