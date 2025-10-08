@@ -25,7 +25,6 @@ function formatMove(move) {
 
   // Format outcomes
   if (move.outcomes) {
-    output += '**Outcomes:**\n\n';
     const outcomeOrder = ['13+', '10+', '7-9', '6-'];
     outcomeOrder.forEach(key => {
       if (move.outcomes[key]) {
@@ -37,7 +36,7 @@ function formatMove(move) {
 
   // Format hold options
   if (move.hold && move.hold.length > 0) {
-    output += '**Hold Options:**\n\n';
+    output += '_Options:_\n\n';
     move.hold.forEach(option => {
       output += `- ${option}\n`;
     });
@@ -59,7 +58,7 @@ Object.entries(movesData.AttributeMoves).forEach(([attribute, moves]) => {
 // Multi-Attribute Moves
 markdown += '## Multi-Attribute Moves\n\n';
 movesData.MultiAttributeMoves.forEach(section => {
-  markdown += `### ${section.Name}\n\n`;
+  markdown += `#### ${section.Name}\n\n`;
   if (section.Attributes) {
     markdown += `*Attributes: ${section.Attributes.join(', ')}*\n\n`;
   }
@@ -79,11 +78,25 @@ movesData.ClockMoves.forEach(move => {
   if (move.description) {
     markdown += `${move.description}\n\n`;
   }
-  if (move.clock) {
-    markdown += `- **Clock:** ${move.clock}\n`;
+  if (move.advance && move.advance.length > 0) {
+    markdown += '\n**Advance:**\n\n';
+    move.advance.forEach(action => {
+      markdown += `- **${action.name}**`;
+      if (action.description) {
+        markdown += `: ${action.description}`;
+      }
+      markdown += '\n';
+    });
   }
-  if (move.action) {
-    markdown += `- **Action:** ${move.action}\n`;
+  if (move.rollback && move.rollback.length > 0) {
+    markdown += '\n**Rollback:**\n\n';
+    move.rollback.forEach(action => {
+      markdown += `- **${action.name}**`;
+      if (action.description) {
+        markdown += `: ${action.description}`;
+      }
+      markdown += '\n';
+    });
   }
   markdown += '\n';
 });
