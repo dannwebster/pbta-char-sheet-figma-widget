@@ -3,6 +3,20 @@
     {
       "name": "Silas Echo",
       "subtitle": "The Changeling",
+      "concept": [
+        {
+          "type": "Mythos",
+          "name": "Ceridwen",
+          "concept": "The Welsh goddess of Change and Rebirth",
+          "tenet": "What parts are truly me anymore?"
+        },
+        {
+          "type": "Logos",
+          "name": "Couch surfer",
+          "concept": "Underachieving student that lives off her charisma",
+          "tenet": "I am the life of the party"
+        }
+      ],
       "attributes": [
         { "name": "Muscle", "value": 0 },
         { "name": "Finesse", "value": 1 },

@@ -3,6 +3,20 @@
     {
       "name": "The Warrior",
       "subtitle": "Master of Combat",
+      "concept": [
+        {
+          "type": "Mythos",
+          "name": "",
+          "concept": "",
+          "tenet": ""
+        },
+        {
+          "type": "Logos",
+          "name": "",
+          "concept": "",
+          "tenet": ""
+        }
+      ],
       "attributes": [
         { "name": "Muscle", "value": 3 },
         { "name": "Finesse", "value": 1 },
@@ -150,6 +164,20 @@
     {
       "name": "The Mystic",
       "subtitle": "Seeker of Hidden Knowledge",
+      "concept": [
+        {
+          "type": "Mythos",
+          "name": "",
+          "concept": "",
+          "tenet": ""
+        },
+        {
+          "type": "Logos",
+          "name": "",
+          "concept": "",
+          "tenet": ""
+        }
+      ],
       "attributes": [
         { "name": "Muscle", "value": -1 },
         { "name": "Finesse", "value": 2 },

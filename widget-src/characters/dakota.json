@@ -3,6 +3,20 @@
     {
       "name": "Dakota Boone",
       "subtitle": "Frontierswoman",
+      "concept": [
+        {
+          "type": "Mythos",
+          "name": "Spirit of the Frontier",
+          "concept": "Found the mythic rifle that belonged to Wynona Earp",
+          "tenet": "Who does this power want me to find… and maybe kill?"
+        },
+        {
+          "type": "Logos",
+          "name": "Former Mob Hitwoman",
+          "concept": "Got out of the game by eliminating her former 'co-workers'",
+          "tenet": "Never let anyone get too close"
+        }
+      ],
       "attributes": [
         { "name": "Muscle", "value": 1 },
         { "name": "Finesse", "value": 3 },

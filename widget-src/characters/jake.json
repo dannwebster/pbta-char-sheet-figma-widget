@@ -3,6 +3,20 @@
     {
       "name": "Jake Conley",
       "subtitle": "Private Eye",
+      "concept": [
+        {
+          "type": "Mythos",
+          "name": "Spirit of Vengeance",
+          "concept": "Unkillable and haunted by past detectives",
+          "tenet": "What will it take to finally end this?"
+        },
+        {
+          "type": "Logos",
+          "name": "Private Eye",
+          "concept": "Former corrupt cop who went private",
+          "tenet": "Rules only serve the rulers"
+        }
+      ],
       "attributes": [
         { "name": "Muscle", "value": 1 },
         { "name": "Finesse", "value": 1 },
