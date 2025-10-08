@@ -65,7 +65,47 @@
             }
           ]
         }
-      }
+      },
+      "equipment": [
+        {
+          "name": "Brass knuckles",
+          "type": "melee",
+          "coin": -1,
+          "harm": 2,
+          "tags": "Intimate, messy"
+        },
+        {
+          "name": "\"Trusty\" Colt .45",
+          "type": "ranged",
+          "coin": -1,
+          "harm": 2,
+          "tags": "close, loud, reload, unreliable"
+        },
+        {
+          "name": "Used Nissan Sentra",
+          "type": "vehicle",
+          "coin": -1,
+          "tags": "inconspicuous, slow, ugly"
+        },
+        {
+          "name": "Cot in the Office",
+          "type": "domicile",
+          "coin": -1,
+          "tags": "Inconvenient"
+        },
+        {
+          "name": "Lockpicks",
+          "type": "accessory",
+          "coin": -1,
+          "tags": "Concealable, fragile, missing a few"
+        },
+        {
+          "name": "Phonebooks",
+          "type": "accessory",
+          "coin": -1,
+          "tags": "Bulky, versatile"
+        }
+      ]
     }
   ]
 }

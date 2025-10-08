@@ -94,7 +94,53 @@
             }
           ]
         }
-      }
+      },
+      "equipment": [
+        {
+          "name": "Bowie Knife",
+          "type": "melee",
+          "coin": 1,
+          "harm": 1,
+          "tags": "Intimate, hand, concealable, messy"
+        },
+        {
+          "name": "Suppressed 9mm",
+          "type": "ranged",
+          "coin": 1,
+          "harm": 2,
+          "tags": "Close, quiet"
+        },
+        {
+          "name": "Mustang",
+          "type": "vehicle",
+          "coin": 1,
+          "tags": "fast, impressive, loud"
+        },
+        {
+          "name": "Nice Apt",
+          "type": "domicile",
+          "coin": 1,
+          "tags": ""
+        },
+        {
+          "name": "Climbing Gear",
+          "type": "accessory",
+          "coin": 1,
+          "tags": "versatile, bulky"
+        },
+        {
+          "name": "Infiltration Gear",
+          "type": "accessory",
+          "coin": 1,
+          "tags": "versatile, concealable"
+        },
+        {
+          "name": "Winchester Model 1876",
+          "type": "ranged",
+          "harm": 3,
+          "tags": "intimate, close, far, melee, concealable, loud, reload"
+        }
+      ]
     }
   ]
 }

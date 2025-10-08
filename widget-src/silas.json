@@ -1,7 +1,7 @@
 {
   "characters": [
     {
-      "name": "Silis Echo",
+      "name": "Silas Echo",
       "subtitle": "The Changeling",
       "moves": {
         "mythosMoves": {
@@ -84,25 +84,48 @@
       },
       "equipment": [
         {
-          "name": "Pocket Knife",
-          "type": "weapon",
-          "coin": 1,
-          "harm": 1,
-          "tags": "hand, discrete"
+          "name": "Taser",
+          "type": "melee",
+          "coin": -1,
+          "harm": "+2",
+          "tags": "Intimate, hand, stress, stun"
         },
         {
-          "name": "Street Clothes",
-          "type": "armor",
-          "coin": 1,
-          "harm": 0,
-          "tags": "0-armor, worn, discrete"
+          "name": "Mace",
+          "type": "ranged",
+          "coin": -1,
+          "harm": "+2",
+          "tags": "close, stress, stun, silent"
         },
         {
-          "name": "Lockpick Set",
-          "type": "tool",
-          "coin": 2,
-          "harm": 0,
-          "tags": "useful, discrete"
+          "name": "Used Vespa",
+          "type": "vehicle",
+          "coin": -1,
+          "tags": "unreliable, slow, unprotected"
+        },
+        {
+          "name": "Couch Surfing",
+          "type": "domicile",
+          "coin": -1,
+          "tags": "temporary, inconvenient"
+        },
+        {
+          "name": "Hydration Bottle",
+          "type": "accessory",
+          "coin": -1,
+          "tags": "1 liter, metal, insulated"
+        },
+        {
+          "name": "Snacks",
+          "type": "accessory",
+          "coin": -1,
+          "tags": "tasty, nutritious"
+        },
+        {
+          "name": "Backpack",
+          "type": "accessory",
+          "coin": 0,
+          "tags": "See It's All In My Backpack Move"
         }
       ]
     }

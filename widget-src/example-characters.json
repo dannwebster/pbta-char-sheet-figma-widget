@@ -114,7 +114,30 @@
             }
           ]
         }
-      }
+      },
+      "equipment": [
+        {
+          "name": "Longsword",
+          "type": "weapon",
+          "coin": 3,
+          "harm": 3,
+          "tags": "close, messy"
+        },
+        {
+          "name": "Chain Mail",
+          "type": "armor",
+          "coin": 3,
+          "harm": 0,
+          "tags": "2-armor, worn, heavy"
+        },
+        {
+          "name": "Shield",
+          "type": "armor",
+          "coin": 2,
+          "harm": 0,
+          "tags": "1-armor, protective"
+        }
+      ]
     },
     {
       "name": "The Mystic",
@@ -184,7 +207,30 @@
             }
           ]
         }
-      }
+      },
+      "equipment": [
+        {
+          "name": "Ritual Dagger",
+          "type": "weapon",
+          "coin": 2,
+          "harm": 1,
+          "tags": "hand, magic"
+        },
+        {
+          "name": "Protective Robes",
+          "type": "armor",
+          "coin": 2,
+          "harm": 0,
+          "tags": "1-armor, worn, magic"
+        },
+        {
+          "name": "Crystal Focus",
+          "type": "tool",
+          "coin": 3,
+          "harm": 0,
+          "tags": "magic, useful"
+        }
+      ]
     }
   ]
 }
