@@ -515,55 +515,6 @@ function pbta_character() {
   return (
       <AutoLayout direction="vertical" spacing={16}>
         <AutoLayout direction="horizontal" spacing={16}>
-      {/* Tooltip Panel */}
-      <AutoLayout
-          direction="vertical"
-          spacing={12}
-          padding={16}
-          width={350}
-          height="fill-parent"
-          fill="#F5F5F5"
-          stroke="#333333"
-          strokeWidth={2}
-          cornerRadius={8}
-      >
-        <Text fontSize={24} fontWeight={700}>Move Info</Text>
-        {selectedTooltipMove ? (
-          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <Text fontSize={20} fontWeight={700}>{selectedTooltipMove.name || "Move"}</Text>
-            {selectedTooltipMove.description ? (
-              <Text fontSize={16}>{selectedTooltipMove.description}</Text>
-            ) : null}
-            {selectedTooltipMove.outcomes ? (
-              <AutoLayout direction="vertical" spacing={4} width="fill-parent">
-                <Text fontSize={16} fontWeight={600}>Outcomes:</Text>
-                {selectedTooltipMove.outcomes["13+"] ? (
-                  <Text fontSize={14}>13+: {selectedTooltipMove.outcomes["13+"]}</Text>
-                ) : null}
-                {selectedTooltipMove.outcomes["10+"] ? (
-                  <Text fontSize={14}>10+: {selectedTooltipMove.outcomes["10+"]}</Text>
-                ) : null}
-                {selectedTooltipMove.outcomes["7-9"] ? (
-                  <Text fontSize={14}>7-9: {selectedTooltipMove.outcomes["7-9"]}</Text>
-                ) : null}
-                {selectedTooltipMove.outcomes["6-"] ? (
-                  <Text fontSize={14}>6-: {selectedTooltipMove.outcomes["6-"]}</Text>
-                ) : null}
-              </AutoLayout>
-            ) : null}
-            {selectedTooltipMove.hold && selectedTooltipMove.hold.length > 0 ? (
-              <AutoLayout direction="vertical" spacing={4} width="fill-parent">
-                <Text fontSize={16} fontWeight={600}>Hold Options:</Text>
-                {selectedTooltipMove.hold.map((option, idx) =>
-                  option ? <Text key={idx} fontSize={14}>• {option}</Text> : null
-                )}
-              </AutoLayout>
-            ) : null}
-          </AutoLayout>
-        ) : (
-          <Text fontSize={16} fill="#666666">Hover over a move to see details</Text>
-        )}
-      </AutoLayout>
       <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={1200}>
         <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF" spacing={16} verticalAlignItems="center">
           <AutoLayout

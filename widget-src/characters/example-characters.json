@@ -159,6 +159,48 @@
           "harm": 0,
           "tags": "1-armor, protective"
         }
+      ],
+      "contacts": [
+        {
+          "name": "Master Sergeant Kane",
+          "type": "Logos",
+          "rating": 1,
+          "expertise": "Military Tactics",
+          "relationship": "Former commanding officer and mentor",
+          "description": "Retired special forces operator who trained the warrior"
+        },
+        {
+          "name": "Elena Brightblade",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "Ancient Warrior Lore",
+          "relationship": "Priestess who studies legendary warriors",
+          "description": "Keeper of the temple dedicated to warrior spirits"
+        },
+        {
+          "name": "Marcus \"Reaper\" Stone",
+          "type": "Logos",
+          "rating": -1,
+          "expertise": "Arms Dealer",
+          "relationship": "Rival turned reluctant ally",
+          "description": "Former competitor who now supplies weapons and intel"
+        },
+        {
+          "name": "The Phantom Knight",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Combat Spirit",
+          "relationship": "Ancestral spirit that guides in battle",
+          "description": "Spectral warrior from ages past, appears in times of need"
+        },
+        {
+          "name": "",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "",
+          "relationship": "",
+          "description": ""
+        }
       ]
     },
     {
@@ -273,6 +315,48 @@
           "coin": 3,
           "harm": 0,
           "tags": "magic, useful"
+        }
+      ],
+      "contacts": [
+        {
+          "name": "Professor Aldrich Webb",
+          "type": "Logos",
+          "rating": 1,
+          "expertise": "Occult Research",
+          "relationship": "Academic colleague and research partner",
+          "description": "Elderly professor who provides access to rare manuscripts"
+        },
+        {
+          "name": "Cassandra Nightveil",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "Divination",
+          "relationship": "Fellow seer who shares visions",
+          "description": "Another oracle touched by otherworldly forces"
+        },
+        {
+          "name": "Lord Ashford Gray",
+          "type": "Logos",
+          "rating": -1,
+          "expertise": "Wealth and Influence",
+          "relationship": "Demanding patron who funds research",
+          "description": "Wealthy collector obsessed with artifacts and forbidden knowledge"
+        },
+        {
+          "name": "Ezra the Wanderer",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Mystical Secrets",
+          "relationship": "Mysterious mentor from the other side",
+          "description": "Enigmatic guide who appears in dreams and visions"
+        },
+        {
+          "name": "",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "",
+          "relationship": "",
+          "description": ""
         }
       ]
     }
