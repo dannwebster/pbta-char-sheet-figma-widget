@@ -4,11 +4,11 @@
       "name": "The Warrior",
       "subtitle": "Master of Combat",
       "attributes": [
-        { "name": "Muscle", "value": 0 },
-        { "name": "Finesse", "value": 0 },
-        { "name": "Grit", "value": 0 },
-        { "name": "Moxie", "value": 0 },
-        { "name": "Smarts", "value": 0 },
+        { "name": "Muscle", "value": 3 },
+        { "name": "Finesse", "value": 1 },
+        { "name": "Grit", "value": 2 },
+        { "name": "Moxie", "value": 1 },
+        { "name": "Smarts", "value": -1 },
         { "name": "Coin", "value": 0 }
       ],
       "moves": {
@@ -151,12 +151,12 @@
       "name": "The Mystic",
       "subtitle": "Seeker of Hidden Knowledge",
       "attributes": [
-        { "name": "Muscle", "value": 0 },
-        { "name": "Finesse", "value": 0 },
+        { "name": "Muscle", "value": -1 },
+        { "name": "Finesse", "value": 2 },
         { "name": "Grit", "value": 0 },
-        { "name": "Moxie", "value": 0 },
-        { "name": "Smarts", "value": 0 },
-        { "name": "Coin", "value": 0 }
+        { "name": "Moxie", "value": 1 },
+        { "name": "Smarts", "value": 3 },
+        { "name": "Coin", "value": 1 }
       ],
       "moves": {
         "mythosMoves": {

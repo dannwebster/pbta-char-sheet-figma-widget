@@ -394,6 +394,7 @@ function pbta_character() {
     figma.widget.waitForTask(() => new Promise(async resolve => {
       if (!initialized) {
         roll()
+        loadAttributesFromCharacter(characterName)
         setInitialized(true)
       }
 
@@ -473,6 +474,21 @@ function pbta_character() {
     setContactDescriptions(descriptions)
   }
 
+  // Helper function to load attributes from character data
+  const loadAttributesFromCharacter = (charName) => {
+    const currentCharacter = characterData.characters.find(c => c.name === charName)
+
+    if (currentCharacter && currentCharacter.attributes) {
+      const newAttributeValues = { ...attributeValues }
+      currentCharacter.attributes.forEach(attr => {
+        if (attr.name && attr.value !== undefined) {
+          newAttributeValues[attr.name] = attr.value
+        }
+      })
+      setAttributeValues(newAttributeValues)
+    }
+  }
+
   return (
       <AutoLayout direction="vertical" spacing={16}>
         <AutoLayout direction="horizontal" spacing={16}>
@@ -547,6 +563,7 @@ function pbta_character() {
                 setCharacterName(newCharacterName)
                 loadEquipmentFromCharacter(newCharacterName)
                 loadContactsFromCharacter(newCharacterName)
+                loadAttributesFromCharacter(newCharacterName)
               }}
               width="fill-parent"
               direction="vertical"
