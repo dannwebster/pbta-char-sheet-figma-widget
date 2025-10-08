@@ -1210,11 +1210,11 @@ function pbta_character() {
           <Text fontSize={36} fontWeight={700}>Equipment</Text>
           {/* Header Row */}
           <AutoLayout spacing={4} width="fill-parent">
-            <Text fontSize={21} fontWeight={700} width={210}>Name</Text>
-            <Text fontSize={21} fontWeight={700} width={105}>Type</Text>
-            <Text fontSize={21} fontWeight={700} width={75}>Coin</Text>
-            <Text fontSize={21} fontWeight={700} width={75}>Harm</Text>
-            <Text fontSize={21} fontWeight={700} width={225}>Tags</Text>
+            <Text fontSize={21} fontWeight={700} width={320}>Name</Text>
+            <Text fontSize={21} fontWeight={700} width={150}>Type</Text>
+            <Text fontSize={21} fontWeight={700} width={100}>Coin</Text>
+            <Text fontSize={21} fontWeight={700} width={100}>Harm</Text>
+            <Text fontSize={21} fontWeight={700} width={620}>Tags</Text>
           </AutoLayout>
           {/* Equipment Rows */}
           {equipmentTypes.map((equipType, idx) => (
@@ -1229,13 +1229,13 @@ function pbta_character() {
                   }}
                   fontSize={21}
                   placeholder="Name"
-                  width={idx < 6 ? 180 : 210}
+                  width={idx < 6 ? 290 : 320}
               />
               <AutoLayout
                   fill={attributesLocked ? "#FFCCCC" : "#E6E6E6"}
                   padding={9}
                   cornerRadius={4}
-                  width={105}
+                  width={150}
                   horizontalAlignItems="center"
                   onClick={() => {
                     if (!attributesLocked) {
@@ -1296,7 +1296,7 @@ function pbta_character() {
                       }
                     }}
                     fontSize={21}
-                    width={52}
+                    width={72}
                     horizontalAlignText="center"
                 />
               </AutoLayout>
@@ -1356,7 +1356,7 @@ function pbta_character() {
                       }
                     }}
                     fontSize={21}
-                    width={37}
+                    width={72}
                     horizontalAlignText="center"
                 />
               </AutoLayout>
@@ -1369,7 +1369,7 @@ function pbta_character() {
                   }}
                   fontSize={21}
                   placeholder="Tags"
-                  width={225}
+                  width={620}
               />
             </AutoLayout>
           ))}
