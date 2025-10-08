@@ -437,6 +437,38 @@ function pbta_character() {
     }
   }
 
+  // Helper function to load contacts from character data
+  const loadContactsFromCharacter = (charName) => {
+    const currentCharacter = characterData.characters.find(c => c.name === charName)
+    const maxContacts = 5
+
+    const names = Array(maxContacts).fill("")
+    const types = Array(maxContacts).fill("Mythos")
+    const ratings = Array(maxContacts).fill(0)
+    const expertise = Array(maxContacts).fill("")
+    const relationships = Array(maxContacts).fill("")
+
+    if (currentCharacter && currentCharacter.contacts) {
+      const contacts = currentCharacter.contacts
+
+      contacts.forEach((contact, idx) => {
+        if (idx < maxContacts) {
+          names[idx] = contact.name || ""
+          types[idx] = contact.type || "Mythos"
+          ratings[idx] = contact.rating !== undefined && contact.rating !== null ? contact.rating : 0
+          expertise[idx] = contact.expertise || ""
+          relationships[idx] = contact.relationship || ""
+        }
+      })
+    }
+
+    setContactNames(names)
+    setContactTypes(types)
+    setContactRatings(ratings)
+    setContactExpertise(expertise)
+    setContactRelationships(relationships)
+  }
+
   return (
       <AutoLayout direction="vertical" spacing={16}>
         <AutoLayout direction="horizontal" spacing={16}>
@@ -510,6 +542,7 @@ function pbta_character() {
                 const newCharacterName = characterData.characters[nextIndex].name
                 setCharacterName(newCharacterName)
                 loadEquipmentFromCharacter(newCharacterName)
+                loadContactsFromCharacter(newCharacterName)
               }}
               width="fill-parent"
               direction="vertical"

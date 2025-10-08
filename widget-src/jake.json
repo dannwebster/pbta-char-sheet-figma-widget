@@ -105,6 +105,43 @@
           "coin": -1,
           "tags": "Bulky, versatile"
         }
+      ],
+      "contacts": [
+        {
+          "name": "Vanessa Li, RN",
+          "type": "Logos",
+          "rating": -1,
+          "expertise": "Trauma Nurse",
+          "relationship": "Ex-wife, left him while he was still a cop"
+        },
+        {
+          "name": "Dexter White, Magical Librarian",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "The Occult",
+          "relationship": "Jake always brings him interesting puzzles, Keeper of the mystic archive, Rift who can shapechange into animals, Tends to work late into the night"
+        },
+        {
+          "name": "Marcus Telfair, Party Animal",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "Criminal Underworld",
+          "relationship": "They trade favors and information, casual drug dealer, occasional prostitute, rift - bacchus, ageless, can literally go all night, totally unreliable and selfish"
+        },
+        {
+          "name": "",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "",
+          "relationship": ""
+        },
+        {
+          "name": "",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "",
+          "relationship": ""
+        }
       ]
     }
   ]

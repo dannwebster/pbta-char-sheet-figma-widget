@@ -140,6 +140,43 @@
           "harm": 3,
           "tags": "intimate, close, far, melee, concealable, loud, reload"
         }
+      ],
+      "contacts": [
+        {
+          "name": "El Raton",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Stool Pigeon",
+          "relationship": "Former capo, now in witsec"
+        },
+        {
+          "name": "Ma Boone",
+          "type": "Logos",
+          "rating": 0,
+          "expertise": "Social Sciences",
+          "relationship": "Mother, School Teacher"
+        },
+        {
+          "name": "Pa Boone",
+          "type": "Logos",
+          "rating": -1,
+          "expertise": "Engineering",
+          "relationship": "Father, Shop Teacher"
+        },
+        {
+          "name": "",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "",
+          "relationship": ""
+        },
+        {
+          "name": "",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "",
+          "relationship": ""
+        }
       ]
     }
   ]
