@@ -147,35 +147,40 @@
           "type": "Mythos",
           "rating": 1,
           "expertise": "Stool Pigeon",
-          "relationship": "Former capo, now in witsec"
+          "relationship": "Former capo, now in witsec",
+          "description": ""
         },
         {
           "name": "Ma Boone",
           "type": "Logos",
           "rating": 0,
           "expertise": "Social Sciences",
-          "relationship": "Mother, School Teacher"
+          "relationship": "Mother, School Teacher",
+          "description": ""
         },
         {
           "name": "Pa Boone",
           "type": "Logos",
           "rating": -1,
           "expertise": "Engineering",
-          "relationship": "Father, Shop Teacher"
+          "relationship": "Father, Shop Teacher",
+          "description": ""
         },
         {
           "name": "",
           "type": "Mythos",
           "rating": 0,
           "expertise": "",
-          "relationship": ""
+          "relationship": "",
+          "description": ""
         },
         {
           "name": "",
           "type": "Mythos",
           "rating": 0,
           "expertise": "",
-          "relationship": ""
+          "relationship": "",
+          "description": ""
         }
       ]
     }

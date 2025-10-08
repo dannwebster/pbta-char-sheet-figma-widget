@@ -202,6 +202,7 @@ function pbta_character() {
   const [contactRatings, setContactRatings] = useSyncedState("contactRatings", Array(5).fill(0))
   const [contactExpertise, setContactExpertise] = useSyncedState("contactExpertise", Array(5).fill(""))
   const [contactRelationships, setContactRelationships] = useSyncedState("contactRelationships", Array(5).fill(""))
+  const [contactDescriptions, setContactDescriptions] = useSyncedState("contactDescriptions", Array(5).fill(""))
 
   // Equipment tracking
   const equipmentTypeOptions = ["melee", "ranged", "vehicle", "domicile", "accessory", ""]
@@ -447,6 +448,7 @@ function pbta_character() {
     const ratings = Array(maxContacts).fill(0)
     const expertise = Array(maxContacts).fill("")
     const relationships = Array(maxContacts).fill("")
+    const descriptions = Array(maxContacts).fill("")
 
     if (currentCharacter && currentCharacter.contacts) {
       const contacts = currentCharacter.contacts
@@ -458,6 +460,7 @@ function pbta_character() {
           ratings[idx] = contact.rating !== undefined && contact.rating !== null ? contact.rating : 0
           expertise[idx] = contact.expertise || ""
           relationships[idx] = contact.relationship || ""
+          descriptions[idx] = contact.description || ""
         }
       })
     }
@@ -467,6 +470,7 @@ function pbta_character() {
     setContactRatings(ratings)
     setContactExpertise(expertise)
     setContactRelationships(relationships)
+    setContactDescriptions(descriptions)
   }
 
   return (
@@ -1105,11 +1109,12 @@ function pbta_character() {
           <Text fontSize={36} fontWeight={700}>Contacts</Text>
           {/* Header Row */}
           <AutoLayout spacing={4} width="fill-parent">
-            <Text fontSize={21} fontWeight={700} width={320}>Name</Text>
+            <Text fontSize={21} fontWeight={700} width={160}>Name</Text>
             <Text fontSize={21} fontWeight={700} width={120}>Type</Text>
             <Text fontSize={21} fontWeight={700} width={90}>Rating</Text>
-            <Text fontSize={21} fontWeight={700} width={320}>Expertise</Text>
+            <Text fontSize={21} fontWeight={700} width={160}>Expertise</Text>
             <Text fontSize={21} fontWeight={700} width={320}>Relationship</Text>
+            <Text fontSize={21} fontWeight={700} width={320}>Description</Text>
             <Text fontSize={21} fontWeight={700} width={150}>Action</Text>
           </AutoLayout>
           {/* Contact Rows */}
@@ -1124,7 +1129,7 @@ function pbta_character() {
                   }}
                   fontSize={21}
                   placeholder="Name"
-                  width={320}
+                  width={160}
               />
               <AutoLayout
                   fill={attributesLocked ? "#FFCCCC" : "#E6E6E6"}
@@ -1203,7 +1208,7 @@ function pbta_character() {
                   }}
                   fontSize={21}
                   placeholder="Expertise"
-                  width={320}
+                  width={160}
               />
               <Input
                   value={contactRelationships[idx]}
@@ -1214,6 +1219,17 @@ function pbta_character() {
                   }}
                   fontSize={21}
                   placeholder="Relationship"
+                  width={320}
+              />
+              <Input
+                  value={contactDescriptions[idx]}
+                  onTextEditEnd={(e) => {
+                    const newDescriptions = [...contactDescriptions]
+                    newDescriptions[idx] = e.characters
+                    setContactDescriptions(newDescriptions)
+                  }}
+                  fontSize={21}
+                  placeholder="Description"
                   width={320}
               />
               <AutoLayout
