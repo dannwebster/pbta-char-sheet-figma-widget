@@ -95,6 +95,9 @@ export function MoveHistory(props) {
                      </Frame>
                      <Text fontSize={22.5} fontWeight={700} width="fill-parent">{entry.move.name}</Text>
                    </AutoLayout>
+                   {entry.subtitle && (
+                     <Text fontSize={18} fontWeight={600} fill="#666666" width="fill-parent">{entry.subtitle}</Text>
+                   )}
                    {entry.rollText && (
                      <AutoLayout spacing={4} verticalAlignItems="center" width="fill-parent" wrap={true}>
                        <Text fontSize={20} fontWeight={600}>Roll:</Text>

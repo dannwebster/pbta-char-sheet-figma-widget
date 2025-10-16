@@ -175,7 +175,7 @@ function pbta_character() {
   })
   const [attributeValues, setAttributeValues] = useSyncedState("attributeValues", initialAttributeValues)
 
-  let roll = (mod, name, moveData = null, forwardMod = 0, ongoingMod = 0, harmMod = 0, stressMod = 0) => {
+  let roll = (mod, name, moveData = null, forwardMod = 0, ongoingMod = 0, harmMod = 0, stressMod = 0, subtitle = null) => {
     let number1 = Math.floor(Math.random() * 6) + 1
     let number2 = Math.floor(Math.random() * 6) + 1
     let total = number1 + number2 + mod + forwardMod + ongoingMod + harmMod + stressMod
@@ -216,6 +216,7 @@ function pbta_character() {
           ...moveData,
           description: moveData.description || null
         },
+        subtitle: subtitle,
         total: total,
         dice: [number1, number2],
         modifier: mod,
@@ -1180,11 +1181,14 @@ function pbta_character() {
                   padding={9}
                   cornerRadius={4}
                   onClick={() => {
+                    const contactName = contactNames[idx] || "Unknown"
+                    const contactExp = contactExpertise[idx] || ""
+                    const subtitle = contactExp ? `${contactName}: ${contactExp}` : contactName
                     const contactRoll = {
-                      name: "Contact: " + (contactNames[idx] || "Unknown"),
+                      name: "Work Your Connections",
                       ...movesData.ContactMove
                     }
-                    setPendingRoll({ modifier: contactRatings[idx], modifierName: "+Rating", move: contactRoll })
+                    setPendingRoll({ modifier: contactRatings[idx], modifierName: "+Rating", move: contactRoll, subtitle: subtitle })
                   }}
                   onPointerEnter={() => setSelectedTooltipMove({
                     name: "Contact: " + (contactNames[idx] || "Unknown"),
@@ -2117,7 +2121,7 @@ function pbta_character() {
                 onClick={() => {
                   const appliedHarm = popupApplyHarm ? harmMod : 0
                   const appliedStress = popupApplyStress ? stressMod : 0
-                  roll(pendingRoll.modifier, pendingRoll.modifierName, pendingRoll.move, popupForward, popupOngoing, appliedHarm, appliedStress)
+                  roll(pendingRoll.modifier, pendingRoll.modifierName, pendingRoll.move, popupForward, popupOngoing, appliedHarm, appliedStress, pendingRoll.subtitle || null)
                   setPendingRoll(null)
                   setPopupForward(0)
                   setPopupOngoing(0)
