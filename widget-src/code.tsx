@@ -1112,6 +1112,7 @@ function pbta_character() {
           {/* Contact Rows */}
           {[0, 1, 2, 3, 4].map((idx) => (
             <AutoLayout key={idx} spacing={4} width="fill-parent" verticalAlignItems="center">
+              {idx < 3 && <Text fontSize={24}>⭐</Text>}
               <Input
                   value={contactNames[idx]}
                   onTextEditEnd={(e) => {
@@ -1121,7 +1122,7 @@ function pbta_character() {
                   }}
                   fontSize={21}
                   placeholder="Name"
-                  width={160}
+                  width={idx < 3 ? 130 : 160}
               />
               <AutoLayout
                   fill={attributesLocked ? "#FFCCCC" : "#E6E6E6"}
