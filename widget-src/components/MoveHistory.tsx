@@ -60,7 +60,6 @@ export function MoveHistory(props) {
               // Regular move with dice roll
               let outcomeText = ""
               let holdOptions = entry.move.hold || []
-              console.log('holdOptions:', holdOptions, 'entry.move.hold:', entry.move.hold)
               if (entry.move.outcomes?.["13+"] && entry.total >= 13) {
                 outcomeText = `13+: ${entry.move.outcomes["13+"]}`
               } else if (entry.total >= 10) {
@@ -71,9 +70,7 @@ export function MoveHistory(props) {
                 outcomeText = `6-: ${entry.move.outcomes["6-"]}`
               } else {
                 outcomeText = "fake outcome"
-                console.log("ERROR: No OutcomeText: '", outcomeText, "'")
               }
-              console.log("OutcomeText: '", outcomeText, "'")
 
               return (
                 <AutoLayout
