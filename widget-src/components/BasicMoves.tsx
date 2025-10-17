@@ -1,7 +1,7 @@
 const { widget } = figma
-const { AutoLayout, Frame, Text } = widget
+const { AutoLayout, Text } = widget
 
-import { Grid } from '../Grid'
+import { MoveDescriptor } from './MoveDescriptor'
 import { CollapsibleSection } from './CollapsibleSection'
 
 export function BasicMoves(props) {
@@ -37,50 +37,13 @@ export function BasicMoves(props) {
                     {attribute} Moves
                   </Text>
                   {movesData.AttributeMoves[attribute].map((move, idx) => (
-                    <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
-                      <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
-                        <Text fontSize={22} fontWeight={700} width="fill-parent">
-                          {move.name}
-                        </Text>
-                        <AutoLayout
-                            fill="#333333"
-                            padding={6}
-                            cornerRadius={4}
-                            onClick={() => {
-                              setPendingRoll({ modifier: attributeValues[attribute], modifierName: "+" + attribute, move: move })
-                            }}
-                        >
-                          <Frame width={18} height={18} fill="#FFFFFF" cornerRadius={3}>
-                            <AutoLayout
-                                horizontalAlignItems="center"
-                                verticalAlignItems="center"
-                                width={18}
-                                height={18}
-                                padding={4}
-                            >
-                              <Grid sides={6} size={3} fill="#333333" spacing={2} />
-                            </AutoLayout>
-                          </Frame>
-                        </AutoLayout>
-                      </AutoLayout>
-                      <Text fontSize={19} width="fill-parent">
-                        {move.description}
-                      </Text>
-                      {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
-                        <Text key={key} fontSize={19} width="fill-parent">
-                          • On {key}: {value}
-                        </Text>
-                      ))}
-                      {move.hold && move.hold.length > 0 && (
-                        <AutoLayout direction="vertical" spacing={3} width="fill-parent">
-                          {move.hold.map((option, optIdx) => (
-                            <Text key={optIdx} fontSize={19} width="fill-parent">
-                              • {option}
-                            </Text>
-                          ))}
-                        </AutoLayout>
-                      )}
-                    </AutoLayout>
+                    <MoveDescriptor
+                      key={idx}
+                      move={move}
+                      onRollClick={() => {
+                        setPendingRoll({ modifier: attributeValues[attribute], modifierName: "+" + attribute, move: move })
+                      }}
+                    />
                   ))}
                 </AutoLayout>
               ))}
@@ -106,50 +69,13 @@ export function BasicMoves(props) {
               {movesData.MultiAttributeMoves.find(section => section.Name === "Global Moves")?.Moves.map((move, idx) => {
                 const section = movesData.MultiAttributeMoves.find(s => s.Name === "Global Moves")
                 return (
-                  <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
-                    <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
-                      <Text fontSize={22} fontWeight={700} width="fill-parent">
-                        {move.name}
-                      </Text>
-                      <AutoLayout
-                          fill="#333333"
-                          padding={6}
-                          cornerRadius={4}
-                          onClick={() => {
-                            setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
-                          }}
-                      >
-                        <Frame width={18} height={18} fill="#FFFFFF" cornerRadius={3}>
-                          <AutoLayout
-                              horizontalAlignItems="center"
-                              verticalAlignItems="center"
-                              width={18}
-                              height={18}
-                              padding={4}
-                          >
-                            <Grid sides={6} size={3} fill="#333333" spacing={2} />
-                          </AutoLayout>
-                        </Frame>
-                      </AutoLayout>
-                    </AutoLayout>
-                    <Text fontSize={19} width="fill-parent">
-                      {move.description}
-                    </Text>
-                    {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
-                      <Text key={key} fontSize={19} width="fill-parent">
-                        • On {key}: {value}
-                      </Text>
-                    ))}
-                    {move.hold && move.hold.length > 0 && (
-                      <AutoLayout direction="vertical" spacing={3} width="fill-parent">
-                        {move.hold.map((option, optIdx) => (
-                          <Text key={optIdx} fontSize={19} width="fill-parent">
-                            • {option}
-                          </Text>
-                        ))}
-                      </AutoLayout>
-                    )}
-                  </AutoLayout>
+                  <MoveDescriptor
+                    key={idx}
+                    move={move}
+                    onRollClick={() => {
+                      setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
+                    }}
+                  />
                 )
               })}
             </AutoLayout>
@@ -171,50 +97,13 @@ export function BasicMoves(props) {
               {movesData.MultiAttributeMoves.find(section => section.Name === "Mythos/Logos Moves")?.Moves.map((move, idx) => {
                 const section = movesData.MultiAttributeMoves.find(s => s.Name === "Mythos/Logos Moves")
                 return (
-                  <AutoLayout key={idx} direction="vertical" spacing={6} width="fill-parent">
-                    <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
-                      <Text fontSize={22} fontWeight={700} width="fill-parent">
-                        {move.name}
-                      </Text>
-                      <AutoLayout
-                          fill="#333333"
-                          padding={6}
-                          cornerRadius={4}
-                          onClick={() => {
-                            setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
-                          }}
-                      >
-                        <Frame width={18} height={18} fill="#FFFFFF" cornerRadius={3}>
-                          <AutoLayout
-                              horizontalAlignItems="center"
-                              verticalAlignItems="center"
-                              width={18}
-                              height={18}
-                              padding={4}
-                          >
-                            <Grid sides={6} size={3} fill="#333333" spacing={2} />
-                          </AutoLayout>
-                        </Frame>
-                      </AutoLayout>
-                    </AutoLayout>
-                    <Text fontSize={19} width="fill-parent">
-                      {move.description}
-                    </Text>
-                    {move.outcomes && Object.entries(move.outcomes).map(([key, value]) => (
-                      <Text key={key} fontSize={19} width="fill-parent">
-                        • On {key}: {value}
-                      </Text>
-                    ))}
-                    {move.hold && move.hold.length > 0 && (
-                      <AutoLayout direction="vertical" spacing={3} width="fill-parent">
-                        {move.hold.map((option, optIdx) => (
-                          <Text key={optIdx} fontSize={19} width="fill-parent">
-                            • {option}
-                          </Text>
-                        ))}
-                      </AutoLayout>
-                    )}
-                  </AutoLayout>
+                  <MoveDescriptor
+                    key={idx}
+                    move={move}
+                    onRollClick={() => {
+                      setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
+                    }}
+                  />
                 )
               })}
             </AutoLayout>
@@ -290,50 +179,12 @@ export function BasicMoves(props) {
               <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
                 Contact Moves
               </Text>
-              <AutoLayout direction="vertical" spacing={6} width="fill-parent">
-                <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center">
-                  <Text fontSize={22} fontWeight={700} width="fill-parent">
-                    {movesData.ContactMove.name}
-                  </Text>
-                  <AutoLayout
-                      fill="#333333"
-                      padding={6}
-                      cornerRadius={4}
-                      onClick={() => {
-                        setPendingRoll({ modifier: 0, modifierName: "+Rating", move: movesData.ContactMove })
-                      }}
-                  >
-                    <Frame width={18} height={18} fill="#FFFFFF" cornerRadius={3}>
-                      <AutoLayout
-                          horizontalAlignItems="center"
-                          verticalAlignItems="center"
-                          width={18}
-                          height={18}
-                          padding={4}
-                      >
-                        <Grid sides={6} size={3} fill="#333333" spacing={2} />
-                      </AutoLayout>
-                    </Frame>
-                  </AutoLayout>
-                </AutoLayout>
-                <Text fontSize={19} width="fill-parent">
-                  {movesData.ContactMove.description}
-                </Text>
-                {movesData.ContactMove.outcomes && Object.entries(movesData.ContactMove.outcomes).map(([key, value]) => (
-                  <Text key={key} fontSize={19} width="fill-parent">
-                    • On {key}: {value}
-                  </Text>
-                ))}
-                {movesData.ContactMove.hold && movesData.ContactMove.hold.length > 0 && (
-                  <AutoLayout direction="vertical" spacing={3} width="fill-parent">
-                    {movesData.ContactMove.hold.map((option, optIdx) => (
-                      <Text key={optIdx} fontSize={19} width="fill-parent">
-                        • {option}
-                      </Text>
-                    ))}
-                  </AutoLayout>
-                )}
-              </AutoLayout>
+              <MoveDescriptor
+                move={movesData.ContactMove}
+                onRollClick={() => {
+                  setPendingRoll({ modifier: 0, modifierName: "+Rating", move: movesData.ContactMove })
+                }}
+              />
             </AutoLayout>
           </AutoLayout>
         </AutoLayout>
