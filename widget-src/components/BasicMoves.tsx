@@ -2,6 +2,7 @@ const { widget } = figma
 const { AutoLayout, Frame, Text } = widget
 
 import { Grid } from '../Grid'
+import { CollapsibleSection } from './CollapsibleSection'
 
 export function BasicMoves(props) {
   const {
@@ -15,39 +16,7 @@ export function BasicMoves(props) {
     setSelectedTooltipMove
   } = props
 
-  return (
-    <AutoLayout
-        direction="vertical"
-        width={2250}
-        fill="#FFFFFF"
-        stroke="#333333"
-        strokeWidth={2}
-        padding={16}
-        spacing={12}
-        cornerRadius={8}
-    >
-      <AutoLayout
-          direction="horizontal"
-          width="fill-parent"
-          verticalAlignItems="center"
-          spacing={12}
-      >
-        <AutoLayout
-            fill="#333333"
-            padding={8}
-            cornerRadius={4}
-            onClick={() => setBasicMovesExpanded(!basicMovesExpanded)}
-        >
-          <Text fontSize={25} fontWeight={700} fill="#FFFFFF">
-            {basicMovesExpanded ? "▼" : "▶"}
-          </Text>
-        </AutoLayout>
-        <Text fontSize={30} fontWeight={700} width="fill-parent" horizontalAlignText="center">
-          Basic Moves
-        </Text>
-      </AutoLayout>
-
-      {basicMovesExpanded && (
+  const renderContent = () => (
         <AutoLayout direction="vertical" spacing={12} width="fill-parent">
           {/* Attribute Moves - dynamically create rows of 3 */}
           {[0, 1].map(rowIdx => (
@@ -368,7 +337,14 @@ export function BasicMoves(props) {
             </AutoLayout>
           </AutoLayout>
         </AutoLayout>
-      )}
-    </AutoLayout>
+  )
+
+  return (
+    <CollapsibleSection
+      title="Basic Moves"
+      expanded={basicMovesExpanded}
+      setExpanded={setBasicMovesExpanded}
+      renderContent={renderContent}
+    />
   )
 }
