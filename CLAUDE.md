@@ -87,14 +87,14 @@ widget-src/
     GameLoader.ts           # Central game registry (static imports)
     heroes-of-the-mist/     # Example game system
       moves.json            # Game moves and mechanics
-      character-loader.ts   # Character imports
+      CharacterLoader.ts    # Character imports
       characters/           # Character JSON files
         dakota.json
         jake.json
         silas.json
     monster-of-the-week/    # Example game system
       moves.json
-      character-loader.ts
+      CharacterLoader.ts
       characters/
         sam-winchester.json
         buffy-summers.json
@@ -106,7 +106,7 @@ widget-src/
 - **`lib/GameDefinition.ts`**: Contains the `GameData` interface and helper functions (`getGameData()`, `getAvailableGames()`, `getDefaultGame()`)
 - **`games/GameLoader.ts`**: Imports all game data and exports the `GAMES` object. This is the only file that needs modification when adding a new game.
 - **`games/[game-name]/moves.json`**: Defines the game's moves, attributes, clocks, and mechanics
-- **`games/[game-name]/character-loader.ts`**: Imports and exports all character files for the game
+- **`games/[game-name]/CharacterLoader.ts`**: Imports and exports all character files for the game
 - **`games/[game-name]/characters/*.json`**: Individual character definitions
 
 ### Adding a New Game System
@@ -121,7 +121,7 @@ mkdir -p widget-src/games/your-game-name/characters
 
 #### 2. Create `moves.json`
 
-Define your game's moves and mechanics. Required structure:
+In `widget-src/games/your-game-name/moves.json`, define your game's moves and mechanics. Required structure:
 
 ```json
 {
@@ -169,7 +169,7 @@ Define your game's moves and mechanics. Required structure:
 
 #### 3. Create character JSON files
 
-In the `characters/` folder, create character files:
+In `widget-src/games/your-game-name/characters/`, create character files:
 
 ```json
 {
@@ -204,9 +204,9 @@ In the `characters/` folder, create character files:
 }
 ```
 
-#### 4. Create `character-loader.ts`
+#### 4. Create `CharacterLoader.ts`
 
-Import all your character files:
+In `widget-src/games/your-game-name/CharacterLoader.ts`, import all your character files:
 
 ```typescript
 import character1 from './characters/character1.json'
@@ -220,12 +220,12 @@ export const characterModules = {
 
 #### 5. Update `games/GameLoader.ts`
 
-Add your game to the central registry:
+In `widget-src/games/GameLoader.ts`, add your game to the central registry:
 
 ```typescript
 // Add import at the top
 import yourGameMovesData from './your-game-name/moves.json'
-import { characterModules as yourGameCharacters } from './your-game-name/character-loader'
+import { characterModules as yourGameCharacters } from './your-game-name/CharacterLoader'
 
 // Add to the GAMES object
 export const GAMES: Record<string, GameData> = {

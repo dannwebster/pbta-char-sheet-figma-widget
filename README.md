@@ -58,9 +58,11 @@ In `widget-src/games/your-game-name/moves.json`, define your game's moves and me
 
 ### 3. Create character files
 
-Create character JSON files in `characters/` folder with attributes, equipment, and contacts.
+Create character JSON files in `widget-src/games/your-game-name/characters/` folder with attributes, equipment, and contacts.
 
-### 4. Create `character-loader.ts`
+### 4. Create `CharacterLoader.ts`
+
+In `widget-src/games/your-game-name/CharacterLoader.ts`:
 
 ```typescript
 import character1 from './characters/character1.json'
@@ -74,12 +76,12 @@ export const characterModules = {
 
 ### 5. Update `games/GameLoader.ts`
 
-Add your game to the registry:
+In `widget-src/games/GameLoader.ts`, add your game to the registry:
 
 ```typescript
 // Add import
 import yourGameMovesData from './your-game-name/moves.json'
-import { characterModules as yourGameCharacters } from './your-game-name/character-loader'
+import { characterModules as yourGameCharacters } from './your-game-name/CharacterLoader'
 
 // Add to GAMES object
 export const GAMES: Record<string, GameData> = {
