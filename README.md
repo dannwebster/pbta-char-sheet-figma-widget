@@ -1,16 +1,106 @@
-# Figma Widget: Powered by the Apocalypse Character Sheet 
+# Figma Widget: Powered by the Apocalypse Character Sheet
 
-### This allows you to run a Powered by the Apocalypse game entirely in Figma
 ## Purpose
+
 This allows you to run a Powered by the Apocalypse game entirely in Figma, by making an editable, interactable Figma Widget that allows editing character stats, and making rolls.
 
-Currently, this is version is configured to run my own hack of Monster of the Week and City of Mist call Mysteries of the Mist.
+The widget supports **multiple game systems** that can be switched between during play. Currently includes:
+- **Heroes of the Mist** - A hack combining Monster of the Week and City of Mist mechanics
+- **Monster of the Week** - Classic supernatural investigation
+
+## Features
+
+- **Multiple game system support** - Switch between different PbtA games
+- **Character management** - Track stats, equipment, contacts, and conditions
+- **Dice rolling** - Click to roll with modifiers (forward, ongoing, harm, stress)
+- **Move history** - Track all rolls and outcomes
+- **Character-specific moves** - Each character has their own special moves
+- **Clocks and conditions** - Track harm, stress, and other game-specific clocks
 
 ## Source Code
 [Source Code is on github](https://github.com/dannwebster/pbta-char-sheet-figma-widget)
 
-### Key Files
-The key file is moves.json, which defines all the moves. Modifying this file should auto-adjust the Attribute Buttons and names, the moves buttons, and the basic moves sheet.
+## Adding a New Game System
+
+Want to add your own PbtA game? Follow these steps:
+
+### 1. Create game folder structure
+
+```bash
+mkdir -p widget-src/games/your-game-name/characters
+```
+
+### 2. Create `moves.json`
+
+In `widget-src/games/your-game-name/moves.json`, define your game's moves and mechanics:
+
+```json
+{
+  "AttributeMoves": {
+    "AttributeName": [
+      {
+        "name": "Move Name",
+        "description": "When you do something..., roll +Attribute",
+        "outcomes": {
+          "10+": "Success description",
+          "7-9": "Partial success description",
+          "6-": "Failure description"
+        }
+      }
+    ]
+  },
+  "AdditionalAttributes": [],
+  "MultiAttributeMoves": [],
+  "ClockMoves": [],
+  "ContactMove": {}
+}
+```
+
+### 3. Create character files
+
+Create character JSON files in `characters/` folder with attributes, equipment, and contacts.
+
+### 4. Create `character-loader.ts`
+
+```typescript
+import character1 from './characters/character1.json'
+import character2 from './characters/character2.json'
+
+export const characterModules = {
+  character1,
+  character2
+}
+```
+
+### 5. Update `games/GameLoader.ts`
+
+Add your game to the registry:
+
+```typescript
+// Add import
+import yourGameMovesData from './your-game-name/moves.json'
+import { characterModules as yourGameCharacters } from './your-game-name/character-loader'
+
+// Add to GAMES object
+export const GAMES: Record<string, GameData> = {
+  // ... existing games
+  'your-game-name': {
+    id: 'your-game-name',
+    name: 'Your Game Display Name',
+    moves: yourGameMovesData,
+    characters: Object.values(yourGameCharacters).flatMap(module => module.characters),
+    isDefault: true  // Optional: make this the default game
+  }
+}
+```
+
+### 6. Rebuild
+
+```bash
+npm run build
+```
+
+For detailed documentation, see [CLAUDE.md](./CLAUDE.md).
 
 ## Ackhowledgements
 
