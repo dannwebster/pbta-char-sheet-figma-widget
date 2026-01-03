@@ -1,24 +1,27 @@
 const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
-import movesData from './games/heroes-of-the-mist/moves.json'
 import { charts as chartsData } from './charts.js'
-import { characterModules } from './games/heroes-of-the-mist/character-loader'
+import { getGameData, getAvailableGames } from './games/game-loader'
+import { DEFAULT_GAME } from './games/game-registry'
 import { Grid } from './Grid'
 import { MoveHistory } from './components/MoveHistory'
 import { BasicMoves } from './components/BasicMoves'
 import { CharacterMoves } from './components/CharacterMoves'
 
-// Merge all character data from character-loader
-const characterData = {
-  characters: Object.values(characterModules).flatMap(module => module.characters)
-}
-
-// Build attributes array dynamically from AttributeMoves keys
-const moves = movesData.AttributeMoves
-const attributes = Object.keys(moves)
-
 function pbta_character() {
+  // Game selection state
+  const [selectedGame, setSelectedGame] = useSyncedState("selectedGame", DEFAULT_GAME)
+
+  // Load game data based on selected game
+  const gameData = getGameData(selectedGame)
+  const movesData = gameData.moves
+  const characterData = { characters: gameData.characters }
+
+  // Build attributes array dynamically from AttributeMoves keys
+  const moves = movesData.AttributeMoves
+  const attributes = Object.keys(moves)
+
   const [initialized, setInitialized] = useSyncedState("initialized", false)
   const [sides1, setSides1] = useSyncedState("side1", null)
   const [sides2, setSides2] = useSyncedState("side2", null)
@@ -26,7 +29,7 @@ function pbta_character() {
   const [modifierName, setModifierName] = useSyncedState("modifierName", "")
   const [forward, setForward] = useSyncedState("forward", 0)
   const [ongoing, setOngoing] = useSyncedState("ongoing", 0)
-  const [characterName, setCharacterName] = useSyncedState("characterName", characterData.characters[0].name)
+  const [characterName, setCharacterName] = useSyncedState("characterName", characterData.characters[0]?.name || "")
   const [selectedMove, setSelectedMove] = useSyncedState("selectedMove", null)
   const [moveHistory, setMoveHistory] = useSyncedState("moveHistory", [])
   const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
@@ -469,6 +472,38 @@ function pbta_character() {
       <AutoLayout direction="vertical" spacing={16}>
         <AutoLayout direction="horizontal" spacing={16}>
       <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={1200}>
+        {/* Game Selection Header */}
+        <AutoLayout padding={16} width="fill-parent" fill="#F0F0F0" spacing={16} verticalAlignItems="center">
+          <Text fontSize={32} fontWeight={700}>Game: </Text>
+          <AutoLayout
+              fill="#333333"
+              padding={12}
+              cornerRadius={8}
+              onClick={() => {
+                const availableGames = getAvailableGames()
+                const currentIndex = availableGames.findIndex(g => g.id === selectedGame)
+                const nextIndex = (currentIndex + 1) % availableGames.length
+                const newGame = availableGames[nextIndex].id
+                setSelectedGame(newGame)
+                // Reset character to first character of new game
+                const newGameData = getGameData(newGame)
+                if (newGameData.characters.length > 0) {
+                  setCharacterName(newGameData.characters[0].name)
+                  loadEquipmentFromCharacter(newGameData.characters[0].name)
+                  loadContactsFromCharacter(newGameData.characters[0].name)
+                  loadAttributesFromCharacter(newGameData.characters[0].name)
+                  loadConceptFromCharacter(newGameData.characters[0].name)
+                }
+              }}
+              width="fill-parent"
+              horizontalAlignItems="center"
+          >
+            <Text fontSize={32} fontWeight={700} fill="#FFFFFF">
+              {getAvailableGames().find(g => g.id === selectedGame)?.name || selectedGame}
+            </Text>
+          </AutoLayout>
+        </AutoLayout>
+        {/* Character Selection Header */}
         <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF" spacing={16} verticalAlignItems="center">
           <AutoLayout
               fill={attributesLocked ? "#FF5555" : "#55FF55"}
