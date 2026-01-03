@@ -1,7 +1,7 @@
 const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
-import movesData from './moves.json'
+import movesData from './games/heroes-of-the-mist/moves.json'
 import { charts as chartsData } from './charts.js'
 import { characterModules } from './character-loader'
 import { Grid } from './Grid'

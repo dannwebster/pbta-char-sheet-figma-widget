@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Read moves.json
-const movesData = JSON.parse(fs.readFileSync(path.join(__dirname, 'widget-src', 'moves.json'), 'utf8'));
+const movesData = JSON.parse(fs.readFileSync(path.join(__dirname, 'widget-src', 'games', 'heroes-of-the-mist', 'moves.json'), 'utf8'));
 
 let markdown = '# PbtA Moves Reference\n\n';
 
