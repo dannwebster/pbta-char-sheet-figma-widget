@@ -2,8 +2,8 @@ const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
 import { charts as chartsData } from './charts.js'
-import { getGameData, getAvailableGames } from './games/game-loader'
-import { DEFAULT_GAME } from './games/game-registry'
+import { GAMES } from './games/GameLoader'
+import { getGameData, getAvailableGames, getDefaultGame } from './lib/GameDefinition'
 import { Grid } from './Grid'
 import { MoveHistory } from './components/MoveHistory'
 import { BasicMoves } from './components/BasicMoves'
@@ -11,10 +11,10 @@ import { CharacterMoves } from './components/CharacterMoves'
 
 function pbta_character() {
   // Game selection state
-  const [selectedGame, setSelectedGame] = useSyncedState("selectedGame", DEFAULT_GAME)
+  const [selectedGame, setSelectedGame] = useSyncedState("selectedGame", getDefaultGame(GAMES).id)
 
   // Load game data based on selected game
-  const gameData = getGameData(selectedGame)
+  const gameData = getGameData(GAMES, selectedGame)
   const movesData = gameData.moves
   const characterData = { characters: gameData.characters }
 
@@ -480,13 +480,13 @@ function pbta_character() {
               padding={12}
               cornerRadius={8}
               onClick={() => {
-                const availableGames = getAvailableGames()
+                const availableGames = getAvailableGames(GAMES)
                 const currentIndex = availableGames.findIndex(g => g.id === selectedGame)
                 const nextIndex = (currentIndex + 1) % availableGames.length
                 const newGame = availableGames[nextIndex].id
                 setSelectedGame(newGame)
                 // Reset character to first character of new game
-                const newGameData = getGameData(newGame)
+                const newGameData = getGameData(GAMES, newGame)
                 if (newGameData.characters.length > 0) {
                   setCharacterName(newGameData.characters[0].name)
                   loadEquipmentFromCharacter(newGameData.characters[0].name)
@@ -499,7 +499,7 @@ function pbta_character() {
               horizontalAlignItems="center"
           >
             <Text fontSize={32} fontWeight={700} fill="#FFFFFF">
-              {getAvailableGames().find(g => g.id === selectedGame)?.name || selectedGame}
+              {getAvailableGames(GAMES).find(g => g.id === selectedGame)?.name || selectedGame}
             </Text>
           </AutoLayout>
         </AutoLayout>
