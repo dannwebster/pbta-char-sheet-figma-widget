@@ -1,0 +1,100 @@
+{
+  "characters": [
+    {
+      "name": "Fox Mulder",
+      "subtitle": "The Believer",
+      "attributes": [
+        { "name": "Charm", "value": 0 },
+        { "name": "Cool", "value": 1 },
+        { "name": "Sharp", "value": 2 },
+        { "name": "Tough", "value": 0 },
+        { "name": "Weird", "value": 2 }
+      ],
+      "contacts": [
+        {
+          "name": "Dana Scully",
+          "type": "Logos",
+          "rating": 1,
+          "expertise": "Medical Doctor & FBI Agent",
+          "relationship": "Partner",
+          "description": "Skeptical scientist and trusted partner"
+        },
+        {
+          "name": "The Lone Gunmen",
+          "type": "Logos",
+          "rating": 0,
+          "expertise": "Hackers & Conspiracy Theorists",
+          "relationship": "Informants",
+          "description": "Tech-savvy conspiracy investigators"
+        }
+      ],
+      "equipment": [
+        {
+          "name": "FBI Badge",
+          "type": "accessory",
+          "coin": 1,
+          "harm": null,
+          "tags": "authority, investigation"
+        },
+        {
+          "name": "Service Pistol",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, loud"
+        },
+        {
+          "name": "Paranormal Files",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "knowledge, X-files"
+        }
+      ]
+    },
+    {
+      "name": "Dana Scully",
+      "subtitle": "The Skeptic",
+      "attributes": [
+        { "name": "Charm", "value": 0 },
+        { "name": "Cool", "value": 2 },
+        { "name": "Sharp", "value": 2 },
+        { "name": "Tough", "value": 1 },
+        { "name": "Weird", "value": -1 }
+      ],
+      "contacts": [
+        {
+          "name": "Fox Mulder",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "FBI Profiler",
+          "relationship": "Partner",
+          "description": "Brilliant but obsessed investigator"
+        }
+      ],
+      "equipment": [
+        {
+          "name": "FBI Badge",
+          "type": "accessory",
+          "coin": 1,
+          "harm": null,
+          "tags": "authority, investigation"
+        },
+        {
+          "name": "Service Pistol",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, loud"
+        },
+        {
+          "name": "Medical Kit",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "healing, science"
+        }
+      ]
+    }
+  ]
+}

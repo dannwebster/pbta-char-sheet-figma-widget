@@ -1,0 +1,63 @@
+{
+  "characters": [
+    {
+      "name": "Sam Winchester",
+      "subtitle": "The Professional",
+      "attributes": [
+        { "name": "Charm", "value": 1 },
+        { "name": "Cool", "value": 1 },
+        { "name": "Sharp", "value": 2 },
+        { "name": "Tough", "value": 0 },
+        { "name": "Weird", "value": -1 }
+      ],
+      "contacts": [
+        {
+          "name": "Bobby Singer",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Monster Lore",
+          "relationship": "Father Figure",
+          "description": "Veteran hunter with extensive knowledge"
+        },
+        {
+          "name": "Castiel",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Angel of the Lord",
+          "relationship": "Celestial Ally",
+          "description": "Angel who helps on tough cases"
+        }
+      ],
+      "equipment": [
+        {
+          "name": "Demon-Killing Knife",
+          "type": "melee",
+          "coin": 0,
+          "harm": 2,
+          "tags": "silver, close"
+        },
+        {
+          "name": "Colt Pistol",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 2,
+          "tags": "far, loud"
+        },
+        {
+          "name": "1967 Chevy Impala",
+          "type": "vehicle",
+          "coin": 1,
+          "harm": null,
+          "tags": "mobile base, fast"
+        },
+        {
+          "name": "Research Library",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "knowledge, lore"
+        }
+      ]
+    }
+  ]
+}

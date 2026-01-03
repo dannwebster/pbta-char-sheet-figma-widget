@@ -3,7 +3,7 @@ const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, use
 
 import movesData from './games/heroes-of-the-mist/moves.json'
 import { charts as chartsData } from './charts.js'
-import { characterModules } from './character-loader'
+import { characterModules } from './games/heroes-of-the-mist/character-loader'
 import { Grid } from './Grid'
 import { MoveHistory } from './components/MoveHistory'
 import { BasicMoves } from './components/BasicMoves'

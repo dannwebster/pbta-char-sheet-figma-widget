@@ -1,0 +1,71 @@
+{
+  "characters": [
+    {
+      "name": "Buffy Summers",
+      "subtitle": "The Chosen",
+      "attributes": [
+        { "name": "Charm", "value": 1 },
+        { "name": "Cool", "value": 2 },
+        { "name": "Sharp", "value": 0 },
+        { "name": "Tough", "value": 2 },
+        { "name": "Weird", "value": -1 }
+      ],
+      "contacts": [
+        {
+          "name": "Rupert Giles",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Watcher & Researcher",
+          "relationship": "Mentor",
+          "description": "British librarian and supernatural expert"
+        },
+        {
+          "name": "Willow Rosenberg",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Witch",
+          "relationship": "Best Friend",
+          "description": "Powerful witch and loyal companion"
+        },
+        {
+          "name": "Xander Harris",
+          "type": "Logos",
+          "rating": 0,
+          "expertise": "Comic Relief & Heart",
+          "relationship": "Best Friend",
+          "description": "Normal guy who always has your back"
+        }
+      ],
+      "equipment": [
+        {
+          "name": "Mr. Pointy",
+          "type": "melee",
+          "coin": 0,
+          "harm": 3,
+          "tags": "wooden stake, close, anti-vampire"
+        },
+        {
+          "name": "Crossbow",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 2,
+          "tags": "near, reload"
+        },
+        {
+          "name": "Holy Water",
+          "type": "accessory",
+          "coin": 0,
+          "harm": 1,
+          "tags": "anti-demon, thrown"
+        },
+        {
+          "name": "Slayer Strength",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "supernatural, enhanced"
+        }
+      ]
+    }
+  ]
+}
