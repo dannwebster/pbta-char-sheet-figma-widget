@@ -6,7 +6,8 @@ import { Grid } from '../Grid'
 export function MoveDescriptor(props) {
   const {
     move,
-    onRollClick
+    onRollClick,
+    attributeError
   } = props
 
   return (
@@ -21,6 +22,7 @@ export function MoveDescriptor(props) {
               padding={6}
               cornerRadius={4}
               onClick={onRollClick}
+              tooltip="Roll dice"
           >
             <Frame width={18} height={18} fill="#FFFFFF" cornerRadius={3}>
               <AutoLayout
@@ -33,6 +35,16 @@ export function MoveDescriptor(props) {
                 <Grid sides={6} size={3} fill="#333333" spacing={2} />
               </AutoLayout>
             </Frame>
+          </AutoLayout>
+        )}
+        {attributeError && (
+          <AutoLayout
+              fill="#FF5555"
+              padding={6}
+              cornerRadius={4}
+              tooltip={attributeError}
+          >
+            <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⚠</Text>
           </AutoLayout>
         )}
       </AutoLayout>

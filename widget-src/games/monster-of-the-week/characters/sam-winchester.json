@@ -57,7 +57,10 @@
           "harm": null,
           "tags": "knowledge, lore"
         }
-      ]
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
     }
   ]
 }

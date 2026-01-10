@@ -1,0 +1,23 @@
+﻿{
+  "characterMoveGroups": [
+    {
+      "type": "Mythos Moves",
+      "anchorMove":  {},
+      "additionalMoves": []
+
+    },
+    {
+      "type": "Logos Moves",
+      "anchorMove":  {},
+      "additionalMoves": []
+
+    },
+    {
+      "type": "Other Moves",
+      "anchorMove":  {},
+      "additionalMoves": []
+
+    }
+  ]
+
+}

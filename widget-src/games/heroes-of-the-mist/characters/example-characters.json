@@ -26,116 +26,126 @@
         { "name": "Coin", "value": 0 }
       ],
       "moves": {
-        "mythosMoves": {
-          "anchorMove": {
-            "name": "Mythos Anchor Move",
-            "description": "This is the anchor move description for Mythos",
-            "outcomes": {
-              "13+": "Critical Success outcome",
-              "10+": "Great Success outcome",
-              "7-9": "Partial Success outcome",
-              "6-": "Failure outcome"
-            },
-            "hold": [
-              "First hold option",
-              "Second hold option",
-              "Third hold option"
-            ],
-            "flaw": {
-              "name": "Placeholder Mythos Anchor Flaw",
-              "description": "This is a placeholder flaw for the Mythos anchor move"
-            }
-          },
-          "additionalMoves": [
-            {
-              "name": "Mythos Additional Move 1",
-              "description": "Description for first additional Mythos move",
+        "characterMoveGroups": [
+          {
+            "type": "Mythos Moves",
+            "anchorMove": {
+              "name": "Mythos Anchor Move",
+              "attribute": "Mythos",
+              "description": "This is the anchor move description for Mythos",
               "outcomes": {
-                "13+": "Critical Success",
-                "10+": "Great Success",
-                "7-9": "Partial Success",
-                "6-": "Failure"
-              },
-              "flaw": {
-                "name": "Placeholder Flaw 1",
-                "description": "This is a placeholder flaw for the first additional Mythos move"
-              }
-            },
-            {
-              "name": "Mythos Additional Move 2",
-              "description": "Description for second additional Mythos move",
-              "outcomes": {
-                "13+": "Critical Success",
-                "10+": "Great Success",
-                "7-9": "Partial Success",
-                "6-": "Failure"
+                "13+": "Critical Success outcome",
+                "10+": "Great Success outcome",
+                "7-9": "Partial Success outcome",
+                "6-": "Failure outcome"
               },
               "hold": [
-                "Hold option 1",
-                "Hold option 2"
+                "First hold option",
+                "Second hold option",
+                "Third hold option"
               ],
               "flaw": {
-                "name": "Placeholder Flaw 2",
-                "description": "This is a placeholder flaw for the second additional Mythos move"
+                "name": "Placeholder Mythos Anchor Flaw",
+                "description": "This is a placeholder flaw for the Mythos anchor move"
               }
-            }
-          ]
-        },
-        "logosMoves": {
-          "anchorMove": {
-            "name": "Logos Anchor Move",
-            "description": "This is the anchor move description for Logos",
-            "outcomes": {
-              "13+": "Critical Success outcome",
-              "10+": "Great Success outcome",
-              "7-9": "Partial Success outcome",
-              "6-": "Failure outcome"
             },
-            "hold": [
-              "First hold option",
-              "Second hold option",
-              "Third hold option"
-            ],
-            "flaw": {
-              "name": "Placeholder Logos Anchor Flaw",
-              "description": "This is a placeholder flaw for the Logos anchor move"
-            }
-          },
-          "additionalMoves": [
-            {
-              "name": "Logos Additional Move 1",
-              "description": "Description for first additional Logos move",
-              "outcomes": {
-                "13+": "Critical Success",
-                "10+": "Great Success",
-                "7-9": "Partial Success",
-                "6-": "Failure"
+            "additionalMoves": [
+              {
+                "name": "Mythos Additional Move 1",
+                "attribute": "Mythos",
+                "description": "Description for first additional Mythos move",
+                "outcomes": {
+                  "13+": "Critical Success",
+                  "10+": "Great Success",
+                  "7-9": "Partial Success",
+                  "6-": "Failure"
+                },
+                "flaw": {
+                  "name": "Placeholder Flaw 1",
+                  "description": "This is a placeholder flaw for the first additional Mythos move"
+                }
               },
-              "flaw": {
-                "name": "Placeholder Flaw 3",
-                "description": "This is a placeholder flaw for the first additional Logos move"
+              {
+                "name": "Mythos Additional Move 2",
+                "attribute": "Mythos",
+                "description": "Description for second additional Mythos move",
+                "outcomes": {
+                  "13+": "Critical Success",
+                  "10+": "Great Success",
+                  "7-9": "Partial Success",
+                  "6-": "Failure"
+                },
+                "hold": [
+                  "Hold option 1",
+                  "Hold option 2"
+                ],
+                "flaw": {
+                  "name": "Placeholder Flaw 2",
+                  "description": "This is a placeholder flaw for the second additional Mythos move"
+                }
               }
-            },
-            {
-              "name": "Logos Additional Move 2",
-              "description": "Description for second additional Logos move",
+            ]
+          },
+          {
+            "type": "Logos Moves",
+            "anchorMove": {
+              "name": "Logos Anchor Move",
+              "attribute": "Logos",
+              "description": "This is the anchor move description for Logos",
               "outcomes": {
-                "13+": "Critical Success",
-                "10+": "Great Success",
-                "7-9": "Partial Success",
-                "6-": "Failure"
+                "13+": "Critical Success outcome",
+                "10+": "Great Success outcome",
+                "7-9": "Partial Success outcome",
+                "6-": "Failure outcome"
               },
               "hold": [
-                "Hold option 1",
-                "Hold option 2"
+                "First hold option",
+                "Second hold option",
+                "Third hold option"
               ],
               "flaw": {
-                "name": "Placeholder Flaw 4",
-                "description": "This is a placeholder flaw for the second additional Logos move"
+                "name": "Placeholder Logos Anchor Flaw",
+                "description": "This is a placeholder flaw for the Logos anchor move"
               }
-            }
-          ]
-        }
+            },
+            "additionalMoves": [
+              {
+                "name": "Logos Additional Move 1",
+                "attribute": "Logos",
+                "description": "Description for first additional Logos move",
+                "outcomes": {
+                  "13+": "Critical Success",
+                  "10+": "Great Success",
+                  "7-9": "Partial Success",
+                  "6-": "Failure"
+                },
+                "flaw": {
+                  "name": "Placeholder Flaw 3",
+                  "description": "This is a placeholder flaw for the first additional Logos move"
+                }
+              },
+              {
+                "name": "Logos Additional Move 2",
+                "attribute": "Logos",
+                "description": "Description for second additional Logos move",
+                "outcomes": {
+                  "13+": "Critical Success",
+                  "10+": "Great Success",
+                  "7-9": "Partial Success",
+                  "6-": "Failure"
+                },
+                "hold": [
+                  "Hold option 1",
+                  "Hold option 2"
+                ],
+                "flaw": {
+                  "name": "Placeholder Flaw 4",
+                  "description": "This is a placeholder flaw for the second additional Logos move"
+                }
+              }
+            ]
+          }
+        ]
       },
       "equipment": [
         {
@@ -229,70 +239,78 @@
         { "name": "Coin", "value": 1 }
       ],
       "moves": {
-        "mythosMoves": {
-          "anchorMove": {
-            "name": "Channel the Unknown",
-            "description": "Tap into mysterious forces beyond mortal understanding",
-            "outcomes": {
-              "13+": "The forces obey your will completely",
-              "10+": "You successfully channel the power",
-              "7-9": "You channel the power, but at a cost",
-              "6-": "The forces overwhelm you"
-            },
-            "flaw": {
-              "name": "Otherworldly Connection",
-              "description": "The forces you channel leave their mark on you, making it hard to relate to normal people"
-            }
-          },
-          "additionalMoves": [
-            {
-              "name": "Pierce the Veil",
-              "description": "See through illusions and deceptions",
+        "characterMoveGroups": [
+          {
+            "type": "Mythos Moves",
+            "anchorMove": {
+              "name": "Channel the Unknown",
+              "attribute": "Mythos",
+              "description": "Tap into mysterious forces beyond mortal understanding",
               "outcomes": {
-                "13+": "Complete clarity",
-                "10+": "You see the truth",
-                "7-9": "Partial understanding",
-                "6-": "Confusion deepens"
+                "13+": "The forces obey your will completely",
+                "10+": "You successfully channel the power",
+                "7-9": "You channel the power, but at a cost",
+                "6-": "The forces overwhelm you"
               },
               "flaw": {
-                "name": "Too Much Truth",
-                "description": "Sometimes seeing through all deceptions reveals truths you wish you didn't know"
+                "name": "Otherworldly Connection",
+                "description": "The forces you channel leave their mark on you, making it hard to relate to normal people"
               }
-            }
-          ]
-        },
-        "logosMoves": {
-          "anchorMove": {
-            "name": "Rational Mind",
-            "description": "Use logic and reason to solve problems",
-            "outcomes": {
-              "13+": "Brilliant deduction",
-              "10+": "Sound reasoning prevails",
-              "7-9": "A workable solution",
-              "6-": "Flawed logic"
             },
-            "flaw": {
-              "name": "Overthinking",
-              "description": "Your logical mind sometimes paralyzes you with too many possibilities"
-            }
+            "additionalMoves": [
+              {
+                "name": "Pierce the Veil",
+                "attribute": "Mythos",
+                "description": "See through illusions and deceptions",
+                "outcomes": {
+                  "13+": "Complete clarity",
+                  "10+": "You see the truth",
+                  "7-9": "Partial understanding",
+                  "6-": "Confusion deepens"
+                },
+                "flaw": {
+                  "name": "Too Much Truth",
+                  "description": "Sometimes seeing through all deceptions reveals truths you wish you didn't know"
+                }
+              }
+            ]
           },
-          "additionalMoves": [
-            {
-              "name": "Analyze Pattern",
-              "description": "Identify patterns and connections",
+          {
+            "type": "Logos Moves",
+            "anchorMove": {
+              "name": "Rational Mind",
+              "attribute": "Logos",
+              "description": "Use logic and reason to solve problems",
               "outcomes": {
-                "13+": "Perfect pattern recognition",
-                "10+": "Pattern identified",
-                "7-9": "Partial pattern",
-                "6-": "Pattern eludes you"
+                "13+": "Brilliant deduction",
+                "10+": "Sound reasoning prevails",
+                "7-9": "A workable solution",
+                "6-": "Flawed logic"
               },
               "flaw": {
-                "name": "Pattern Obsession",
-                "description": "You sometimes see patterns where none exist, leading you astray"
+                "name": "Overthinking",
+                "description": "Your logical mind sometimes paralyzes you with too many possibilities"
               }
-            }
-          ]
-        }
+            },
+            "additionalMoves": [
+              {
+                "name": "Analyze Pattern",
+                "attribute": "Logos",
+                "description": "Identify patterns and connections",
+                "outcomes": {
+                  "13+": "Perfect pattern recognition",
+                  "10+": "Pattern identified",
+                  "7-9": "Partial pattern",
+                  "6-": "Pattern eludes you"
+                },
+                "flaw": {
+                  "name": "Pattern Obsession",
+                  "description": "You sometimes see patterns where none exist, leading you astray"
+                }
+              }
+            ]
+          }
+        ]
       },
       "equipment": [
         {

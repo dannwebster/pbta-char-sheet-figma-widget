@@ -26,31 +26,13 @@
         { "name": "Coin", "value": -1 }
       ],
       "moves": {
-        "mythosMoves": {
-          "anchorMove": {
-            "name": "Power Thief",
-            "description": "When you touch someone skin to skin, you may roll +Mythos:",
-            "outcomes": {
-              "13+": "Hold 4",
-              "10+": "Hold 3",
-              "7-9": "Hold 2",
-              "6-": "Hold 1"
-            },
-            "hold": [
-              "Use an expert mundane skill or language they possess for the rest of the scene",
-              "Make 1 use of one of their Mythos or Logos moves",
-              "Prevent them from using their Mythos or Logos move",
-              "Make another Mythos roll for Power Thief without needing to touch them again"
-            ],
-            "flaw": {
-              "name": "A bit more than I bargained for",
-              "description": "You may adopt one of the target's personality quirks to take a -1 ongoing to any relevant rolls for the scene to mark Attention on your Mythos"
-            }
-          },
-          "additionalMoves": [
-            {
-              "name": "Perfect Illusion",
-              "description": "When you touch someone or something with your skin, you may roll +Mythos:",
+        "characterMoveGroups": [
+          {
+            "type": "Mythos Moves",
+            "anchorMove": {
+              "name": "Power Thief",
+              "attribute": "Mythos",
+              "description": "When you touch someone skin to skin, you may roll +Mythos:",
               "outcomes": {
                 "13+": "Hold 4",
                 "10+": "Hold 3",
@@ -58,51 +40,77 @@
                 "6-": "Hold 1"
               },
               "hold": [
-                "Take his/her/its perfect likeness for the rest of the scene",
-                "Mimic their voice, speech patterns, and mannerisms for the rest of the scene",
-                "Make the size of the illusion bigger or smaller than human sized",
-                "Make another Mythos roll for Perfect Illusion without needing to touch them again"
+                "Use an expert mundane skill or language they possess for the rest of the scene",
+                "Make 1 use of one of their Mythos or Logos moves",
+                "Prevent them from using their Mythos or Logos move",
+                "Make another Mythos roll for Power Thief without needing to touch them again"
               ],
               "flaw": {
-                "name": "Look, but don't touch!",
-                "description": "If the shape of an Illusion does not match the shape of the caster, touching the Illusion will dispel it with a shock"
-              }
-            }
-          ]
-        },
-        "logosMoves": {
-          "anchorMove": {
-            "name": "I Know a Guy/Gal",
-            "description": "Once per session, you may Work your Connections without choosing a contact already on your sheet. Pick a name and expertise, then roll +Logos, and follow the outcomes as per Work your Connections. On a 10+, you may add that Connection to your sheet as though you had rolled a 7 on Cultivate a Contact.",
-            "flaw": {
-              "name": "You hurt those you are no longer interested in",
-              "description": "On any interaction with someone you've used in the past, you may describe the bad blood between you and the person. Take -1 ongoing for any interactions in this scene to mark Attention on your Logos."
-            }
-          },
-          "additionalMoves": [
-            {
-              "name": "It's All In My Backpack",
-              "description": "Anytime you need a mundane item that could reasonably fit in a backpack, roll +Logos:",
-              "outcomes": {
-                "10+": "You have just the thing",
-                "7-9": "You have the thing, but it is slightly off somehow. The MC will tell you how",
-                "6-": "You have it, but it is very off. The MC will tell you how at the worst possible moment"
-              },
-              "flaw": {
-                "name": "Bit of a Klepto",
-                "description": "Anytime something shiny crosses your path that seems like you should have it, either take it to feed the need, or take 1 Stress to suppress the urge. In either case, mark 1 Attention to your Logos"
+                "name": "A bit more than I bargained for",
+                "description": "You may adopt one of the target's personality quirks to take a -1 ongoing to any relevant rolls for the scene to mark Attention on your Mythos"
               }
             },
-            {
-              "name": "I Know Every Part of this City (Skillset: Area Knowledge)",
-              "description": "On any roll where you can justify how knowledge of the city would be relevant, roll the better of +Logos or (+Attribute+1)",
-              "flaw": {
-                "name": "Old Haunts",
-                "description": "When visiting familiar places that remind you of your past, you may take 1 Stress to mark Attention on your Logos"
+            "additionalMoves": [
+              {
+                "name": "Perfect Illusion",
+                "attribute": "Mythos",
+                "description": "When you touch someone or something with your skin, you may roll +Mythos:",
+                "outcomes": {
+                  "13+": "Hold 4",
+                  "10+": "Hold 3",
+                  "7-9": "Hold 2",
+                  "6-": "Hold 1"
+                },
+                "hold": [
+                  "Take his/her/its perfect likeness for the rest of the scene",
+                  "Mimic their voice, speech patterns, and mannerisms for the rest of the scene",
+                  "Make the size of the illusion bigger or smaller than human sized",
+                  "Make another Mythos roll for Perfect Illusion without needing to touch them again"
+                ],
+                "flaw": {
+                  "name": "Look, but don't touch!",
+                  "description": "If the shape of an Illusion does not match the shape of the caster, touching the Illusion will dispel it with a shock"
+                }
               }
-            }
-          ]
-        }
+            ]
+          },
+          {
+            "type": "Logos Moves",
+            "anchorMove": {
+              "name": "I Know a Guy/Gal",
+              "attribute": "Logos",
+              "description": "Once per session, you may Work your Connections without choosing a contact already on your sheet. Pick a name and expertise, then roll +Logos, and follow the outcomes as per Work your Connections. On a 10+, you may add that Connection to your sheet as though you had rolled a 7 on Cultivate a Contact.",
+              "flaw": {
+                "name": "You hurt those you are no longer interested in",
+                "description": "On any interaction with someone you've used in the past, you may describe the bad blood between you and the person. Take -1 ongoing for any interactions in this scene to mark Attention on your Logos."
+              }
+            },
+            "additionalMoves": [
+              {
+                "name": "It's All In My Backpack",
+                "attribute": "Logos",
+                "description": "Anytime you need a mundane item that could reasonably fit in a backpack, roll +Logos:",
+                "outcomes": {
+                  "10+": "You have just the thing",
+                  "7-9": "You have the thing, but it is slightly off somehow. The MC will tell you how",
+                  "6-": "You have it, but it is very off. The MC will tell you how at the worst possible moment"
+                },
+                "flaw": {
+                  "name": "Bit of a Klepto",
+                  "description": "Anytime something shiny crosses your path that seems like you should have it, either take it to feed the need, or take 1 Stress to suppress the urge. In either case, mark 1 Attention to your Logos"
+                }
+              },
+              {
+                "name": "I Know Every Part of this City (Skillset: Area Knowledge)",
+                "description": "On any roll where you can justify how knowledge of the city would be relevant, roll the better of +Logos or (+Attribute+1)",
+                "flaw": {
+                  "name": "Old Haunts",
+                  "description": "When visiting familiar places that remind you of your past, you may take 1 Stress to mark Attention on your Logos"
+                }
+              }
+            ]
+          }
+        ]
       },
       "equipment": [
         {

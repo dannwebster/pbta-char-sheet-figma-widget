@@ -14,6 +14,9 @@ import { characterModules as heroesCharacters } from './heroes-of-the-mist/Chara
 import monsterMovesData from './monster-of-the-week/moves.json'
 import { characterModules as monsterCharacters } from './monster-of-the-week/CharacterLoader'
 
+import invisibleMovesData from './invisible-orders/moves.json'
+import { characterModules as invisibleCharacters } from './invisible-orders/CharacterLoader'
+
 // All available games (static list)
 export const GAMES: Record<string, GameData> = {
   'heroes-of-the-mist': {
@@ -27,6 +30,12 @@ export const GAMES: Record<string, GameData> = {
     id: 'monster-of-the-week',
     name: 'Monster of the Week',
     moves: monsterMovesData,
-    characters: Object.values(monsterCharacters).flatMap(module => module.characters)
+    characters: Object.values(monsterCharacters).flatMap(module => module.characters),
+  },
+  'invisible-orders': {
+    id: 'invisible-orders',
+    name: 'Invisible Orders',
+    moves: invisibleMovesData,
+    characters: Object.values(invisibleCharacters).flatMap(module => module.characters),
   }
 }

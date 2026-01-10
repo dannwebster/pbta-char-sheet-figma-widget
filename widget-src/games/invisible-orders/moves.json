@@ -1,9 +1,9 @@
 {
   "AttributeMoves": {
-    "Charm": [
+    "Presence": [
       {
         "name": "Manipulate Someone",
-        "description": "When you manipulate someone, roll +Charm. On a hit, they'll do what you want if you promise them something they want.",
+        "description": "When you manipulate someone, roll +Presence. On a hit, they'll do what you want if you promise them something they want.",
         "outcomes": {
           "10+": "They'll do it if you promise them something they want",
           "7-9": "They'll do it, but only if you do what they ask right now",
@@ -11,10 +11,10 @@
         }
       }
     ],
-    "Cool": [
+    "Composure": [
       {
         "name": "Act Under Pressure",
-        "description": "When you act under pressure, roll +Cool.",
+        "description": "When you act under pressure, roll +Composure.",
         "outcomes": {
           "10+": "You do what you set out to do",
           "7-9": "You stumble, hesitate, or flinch: the Keeper will offer you a worse outcome, hard bargain, or ugly choice",
@@ -23,7 +23,7 @@
       },
       {
         "name": "Help Out",
-        "description": "When you help another hunter, roll +Cool.",
+        "description": "When you help another hunter, roll +Composure.",
         "outcomes": {
           "10+": "They get +1 on their roll",
           "7-9": "They get +1 on their roll, but you expose yourself to danger, cost, or trouble",
@@ -31,10 +31,10 @@
         }
       }
     ],
-    "Sharp": [
+    "Perception": [
       {
         "name": "Investigate a Mystery",
-        "description": "When you investigate a mystery, roll +Sharp.",
+        "description": "When you investigate a mystery, roll +Perception.",
         "outcomes": {
           "10+": "Hold 2",
           "7-9": "Hold 1",
@@ -52,7 +52,7 @@
       },
       {
         "name": "Read a Bad Situation",
-        "description": "When you look around and read a bad situation, roll +Sharp.",
+        "description": "When you look around and read a bad situation, roll +Perception.",
         "outcomes": {
           "10+": "Hold 3",
           "7-9": "Hold 1",
@@ -68,10 +68,10 @@
         ]
       }
     ],
-    "Tough": [
+    "Fortitude": [
       {
         "name": "Kick Some Ass",
-        "description": "When you get into a fight and kick some ass, roll +Tough.",
+        "description": "When you get into a fight and kick some ass, roll +Fortitude.",
         "outcomes": {
           "10+": "You and your allies inflict harm on (and suffer harm from) your enemies",
           "7-9": "You inflict harm but choose whether you suffer harm, you lose your weapon, or you have to hold back (i.e., don't inflict harm)",
@@ -80,7 +80,7 @@
       },
       {
         "name": "Protect Someone",
-        "description": "When you prevent harm to another person, roll +Tough.",
+        "description": "When you prevent harm to another person, roll +Fortitude.",
         "outcomes": {
           "10+": "You protect them okay, but you'll suffer some or all of the harm they were going to get",
           "7-9": "You protect them, but it's going to cost you: either you take all the harm, or you take little harm but also take -1 forward, or you suffer some other cost",
@@ -88,10 +88,10 @@
         }
       }
     ],
-    "Weird": [
+    "Occult": [
       {
         "name": "Use Magic",
-        "description": "When you use magic, say what you're trying to achieve and how you do the spell, then roll +Weird.",
+        "description": "When you use magic, say what you're trying to achieve and how you do the spell, then roll +Occult.",
         "outcomes": {
           "10+": "The magic works without issues: you do what you wanted",
           "7-9": "The magic works, but choose one: the effect is unstable or weak, it draws unwanted attention, or it has a problematic side effect",
@@ -104,7 +104,7 @@
   "MultiAttributeMoves": [
     {
       "Name": "General Moves",
-      "Attributes": ["Charm", "Cool", "Sharp", "Tough", "Weird"],
+      "Attributes": ["Presence", "Composure", "Perception", "Fortitude", "Occult"],
       "Moves": [
         {
           "name": "Take the Risk",

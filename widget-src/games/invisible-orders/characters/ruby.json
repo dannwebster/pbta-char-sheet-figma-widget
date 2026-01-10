@@ -1,0 +1,99 @@
+{
+  "characters": [
+    {
+      "name": "Ruby Braithwaite",
+      "subtitle": "The Spell-Slinger",
+      "attributes": [
+        { "name": "Presence", "value": 1 },
+        { "name": "Composure", "value": 0 },
+        { "name": "Perception", "value": 1 },
+        { "name": "Fortitude", "value": -1 },
+        { "name": "Occult", "value": 2 }
+      ],
+      "contacts": [
+        {
+          "name": "Morgana Blackwood",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Dark Arts",
+          "relationship": "Former Mentor",
+          "description": "Powerful sorceress who taught you the craft, but your paths diverged"
+        },
+        {
+          "name": "Samuel Croft",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "Artifact Trading",
+          "relationship": "Dealer",
+          "description": "Black market supplier of rare magical components"
+        },
+        {
+          "name": "Eliza Thornton",
+          "type": "Logos",
+          "rating": 1,
+          "expertise": "Herbalism & Potions",
+          "relationship": "Apothecary Friend",
+          "description": "Runs a shop that's a front for magical supplies"
+        }
+      ],
+      "equipment": [
+        {
+          "name": "Derringer",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, loud, reload"
+        },
+        {
+          "name": "Spell Components",
+          "type": "accessory",
+          "coin": 1,
+          "harm": null,
+          "tags": "reagents, versatile"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": [
+          {
+            "type": "Spell-Slinger Moves",
+            "anchorMove": {
+              "name": "Combat Magic",
+              "attribute": "Occult",
+              "description": "You have a few attack spells you can use as weapons. When you use these spells to kick some ass, roll +Weird instead of +Tough. Sometimes the situation may require you to act under pressure to cast your spell without problems. Your combat spells can combine any of your base spells with any of your effects.",
+              "bases": [
+                "Ball: 1-harm magic area close obvious loud",
+                "Contact Agent: 2-harm intimate ignore-armor"
+              ],
+              "effects": [
+                "Fire: Add '+2 harm fire' to a base. If you get a 10+ on a combat magic roll, the fire won't spread."
+              ]
+            },
+            "additionalMoves": [
+              {
+                "name": "Tools and Techniques",
+                "description": "To use your combat magic effectively, you rely on a collection of tools and techniques. Cross off one; you'll need the rest.",
+                "options": [
+                  "Consumables: You need certain supplies—powders, oils, etc—on hand, some will be used up each cast. If you don't have them, take 1-harm ignore-armour when you cast.",
+                  "Foci: You need wands, staves, and other obvious props to focus. If you don't have what you need, your combat magic does 1 less harm.",
+                  "Gestures: You need to wave your hands around to use combat magic. If you're restrained, take -1 ongoing for combat magic."
+                ]
+              },
+              {
+                "name": "Advanced Arcane Training",
+                "description": "If you have two of your three Tools and Techniques at the ready, you may ignore the third one."
+              },
+              {
+                "name": "Practitioner",
+                "description": "Choose two effects available to you under use magic. Take +1 to use magic whenever you choose one of those effects."
+              },
+              {
+                "name": "Shield Spell",
+                "description": "When you protect someone, gain 2-armour against any harm that is transferred to you. This doesn't stack with your other armour, if any."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

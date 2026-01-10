@@ -50,7 +50,10 @@
           "harm": null,
           "tags": "knowledge, X-files"
         }
-      ]
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
     },
     {
       "name": "Dana Scully",
@@ -94,7 +97,10 @@
           "harm": null,
           "tags": "healing, science"
         }
-      ]
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
     }
   ]
 }

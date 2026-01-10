@@ -65,7 +65,10 @@
           "harm": null,
           "tags": "supernatural, enhanced"
         }
-      ]
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
     }
   ]
 }

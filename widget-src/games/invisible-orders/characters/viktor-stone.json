@@ -1,0 +1,59 @@
+{
+  "characters": [
+    {
+      "name": "Viktor Stone",
+      "subtitle": "The Monstrous",
+      "attributes": [
+        { "name": "Presence", "value": -1 },
+        { "name": "Composure", "value": 1 },
+        { "name": "Perception", "value": 1 },
+        { "name": "Fortitude", "value": 2 },
+        { "name": "Occult", "value": 1 }
+      ],
+      "contacts": [
+        {
+          "name": "Dr. Frankenstein",
+          "type": "Mythos",
+          "rating": -1,
+          "expertise": "Mad Science",
+          "relationship": "Creator",
+          "description": "The one who made you, for better or worse"
+        },
+        {
+          "name": "Marcus Grey",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Underground Network",
+          "relationship": "Fellow Outcast",
+          "description": "Vampire who helped you survive in the shadows"
+        }
+      ],
+      "equipment": [
+        {
+          "name": "Enhanced Strength",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "supernatural, powerful"
+        },
+        {
+          "name": "Heavy Chain",
+          "type": "melee",
+          "coin": 0,
+          "harm": 3,
+          "tags": "close, brutal, heavy"
+        },
+        {
+          "name": "Patched Coat",
+          "type": "armor",
+          "coin": 0,
+          "harm": null,
+          "tags": "concealment, 1-armor"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    }
+  ]
+}

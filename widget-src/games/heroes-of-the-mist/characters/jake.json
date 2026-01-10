@@ -26,67 +26,74 @@
         { "name": "Coin", "value": -1 }
       ],
       "moves": {
-        "mythosMoves": {
-          "anchorMove": {
-            "name": "Unkillable",
-            "description": "Unless your body is completely destroyed (incinerated, etc), you will come back to life from beyond death. Additionally, you heal very rapidly. Every 4 hours, no matter what the circumstances, roll +Mythos:",
-            "outcomes": {
-              "10+": "You heal 1 Harm",
-              "7-9": "You heal 1 Harm, but are at a -1 ongoing on any physical activities until your next Rapid Healing roll",
-              "6-": "You heal 1 Harm, but mark Fade against your Mythos"
+        "characterMoveGroups": [
+          {
+            "type": "Mythos Moves",
+            "anchorMove": {
+              "name": "Unkillable",
+              "attribute": "Mythos",
+              "description": "Unless your body is completely destroyed (incinerated, etc), you will come back to life from beyond death. Additionally, you heal very rapidly. Every 4 hours, no matter what the circumstances, roll +Mythos:",
+              "outcomes": {
+                "10+": "You heal 1 Harm",
+                "7-9": "You heal 1 Harm, but are at a -1 ongoing on any physical activities until your next Rapid Healing roll",
+                "6-": "You heal 1 Harm, but mark Fade against your Mythos"
+              },
+              "flaw": {
+                "name": "Everything Hurts",
+                "description": "Describe a past injury that killed you, and how scars from it are hindering your current action. Take -1 ongoing on any related rolls for this scene to mark Attention on your Mythos."
+              }
             },
-            "flaw": {
-              "name": "Everything Hurts",
-              "description": "Describe a past injury that killed you, and how scars from it are hindering your current action. Take -1 ongoing on any related rolls for this scene to mark Attention on your Mythos."
-            }
+            "additionalMoves": [
+              {
+                "name": "Get Behind Me!",
+                "description": "Roll against the better of +Mythos or (+Attribute+1) on the Protect and Serve move. You count as having an additional 1-Armor against any Harm taken from that Move.",
+                "flaw": {
+                  "name": "Martyr",
+                  "description": "Any time one of your Crew takes Harm that you feel you could have prevented, take 1 Stress to mark Attention on your Mythos"
+                }
+              },
+              {
+                "name": "New Faces, Same People (Empath)",
+                "attribute": "Smarts",
+                "description": "When you take time to closely observe someone (MCs call on what counts), you can always roll +Smarts to Change the Game on any Moxie move, and you always get +1 hold, even on a roll of 6-",
+                "flaw": {
+                  "name": "Voices in my Head",
+                  "description": "The emotions and thoughts of others sometimes overwhelm you, causing confusion and stress"
+                }
+              }
+            ]
           },
-          "additionalMoves": [
-            {
-              "name": "Get Behind Me!",
-              "description": "Roll against the better of +Mythos or (+Attribute+1) on the Protect and Serve move. You count as having an additional 1-Armor against any Harm taken from that Move.",
+          {
+            "type": "Logos Moves",
+            "anchorMove": {
+              "name": "Investigator",
+              "description": "Whenever Taking the Investigate a Mystery move, you always take 1 additional hold, even on a 6-. Additionally, your Investigate a Mystery Hold does not have to be spent within a scene, and can be used at any time. You can always spend your hold from Investigate a Mystery to Ask Any Question.",
               "flaw": {
-                "name": "Martyr",
-                "description": "Any time one of your Crew takes Harm that you feel you could have prevented, take 1 Stress to mark Attention on your Mythos"
+                "name": "Curiosity... well, you know",
+                "description": "Any time that it would be wiser not to investigate something, you may investigate it anyway to mark Attention on your Logos."
               }
             },
-            {
-              "name": "New Faces, Same People (Empath)",
-              "description": "When you take time to closely observe someone (MCs call on what counts), you can always roll +Smarts to Change the Game on any Moxie move, and you always get +1 hold, even on a roll of 6-",
-              "flaw": {
-                "name": "Voices in my Head",
-                "description": "The emotions and thoughts of others sometimes overwhelm you, causing confusion and stress"
+            "additionalMoves": [
+              {
+                "name": "I Used to be a Cop (Skillset: Law Enforcement)",
+                "description": "On any roll where you can justify how police skills would be relevant, roll the better of +Logos or (+Attribute+1). Examples would include (but are not limited to) aggressive driving, breaking and entering, and interrogation",
+                "flaw": {
+                  "name": "To Harass and to Harm",
+                  "description": "Any time your police instincts would cause you to bully, act corrupt, or bend the rules, either give in to your baser instincts and do something terrible, or take 1 Stress to avoid doing so. In either case mark Attention to your Logos."
+                }
+              },
+              {
+                "name": "Friends on the Force",
+                "attribute": "Logos",
+                "description": "Once per Session, you may Work your Connections to contact a Law Enforcement Officer without choosing a contact already on your sheet. Pick a name and expertise",
+                "flaw": {
+                  "name": "Badge of Honor",
+                  "description": "When asking favors from police contacts, you may be asked to help with something questionable. Take 1 Stress to refuse or mark Attention on your Logos"
+                }
               }
-            }
-          ]
-        },
-        "logosMoves": {
-          "anchorMove": {
-            "name": "Investigator",
-            "description": "Whenever Taking the Investigate a Mystery move, you always take 1 additional hold, even on a 6-. Additionally, your Investigate a Mystery Hold does not have to be spent within a scene, and can be used at any time. You can always spend your hold from Investigate a Mystery to Ask Any Question.",
-            "flaw": {
-              "name": "Curiosity... well, you know",
-              "description": "Any time that it would be wiser not to investigate something, you may investigate it anyway to mark Attention on your Logos."
-            }
-          },
-          "additionalMoves": [
-            {
-              "name": "I Used to be a Cop (Skillset: Law Enforcement)",
-              "description": "On any roll where you can justify how police skills would be relevant, roll the better of +Logos or (+Attribute+1). Examples would include (but are not limited to) aggressive driving, breaking and entering, and interrogation",
-              "flaw": {
-                "name": "To Harass and to Harm",
-                "description": "Any time your police instincts would cause you to bully, act corrupt, or bend the rules, either give in to your baser instincts and do something terrible, or take 1 Stress to avoid doing so. In either case mark Attention to your Logos."
-              }
-            },
-            {
-              "name": "Friends on the Force",
-              "description": "Once per Session, you may Work your Connections to contact a Law Enforcement Officer without choosing a contact already on your sheet. Pick a name and expertise",
-              "flaw": {
-                "name": "Badge of Honor",
-                "description": "When asking favors from police contacts, you may be asked to help with something questionable. Take 1 Stress to refuse or mark Attention on your Logos"
-              }
-            }
-          ]
-        }
+            ]
+          }
+        ]
       },
       "equipment": [
         {

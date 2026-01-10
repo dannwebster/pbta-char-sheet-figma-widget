@@ -1,0 +1,81 @@
+{
+  "characters": [
+    {
+      "name": "Florinda \"Peeps\" Ponsonby",
+      "subtitle": "The Expert",
+      "attributes": [
+        { "name": "Presence", "value": 0 },
+        { "name": "Composure", "value": -1 },
+        { "name": "Perception", "value": 2 },
+        { "name": "Fortitude", "value": 1 },
+        { "name": "Occult", "value": 1 }
+      ],
+      "contacts": [
+        {
+          "name": "Professor Aldridge",
+          "type": "Mythos",
+          "rating": 1,
+          "expertise": "Cryptozoology",
+          "relationship": "Academic Colleague",
+          "description": "Leading expert on supernatural creatures and their habits"
+        },
+        {
+          "name": "Madame Zara",
+          "type": "Mythos",
+          "rating": 0,
+          "expertise": "Fortune Telling & Divination",
+          "relationship": "Information Broker",
+          "description": "Sees more than she lets on, knows everyone's secrets"
+        },
+        {
+          "name": "Inspector Wallace",
+          "type": "Logos",
+          "rating": 0,
+          "expertise": "Police Resources",
+          "relationship": "Reluctant Ally",
+          "description": "Skeptical cop who occasionally needs your expertise"
+        }
+      ],
+      "equipment": [
+        {
+          "name": "Research Library",
+          "type": "accessory",
+          "coin": 1,
+          "harm": null,
+          "tags": "knowledge, extensive"
+        },
+        {
+          "name": "Specimen Collection",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "proof, analysis"
+        },
+        {
+          "name": "Field Journal",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "notes, detailed"
+        },
+        {
+          "name": "Protective Charms",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "warding, collection"
+        },
+        {
+          "name": "Revolver",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, loud, reload"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    }
+  ]
+}
