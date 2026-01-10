@@ -120,6 +120,23 @@
   ],
   "ClockMoves": [
     {
+      "name": "Luck",
+      "clock": "luck",
+      "description": "Your hunter's luck - spend it to change outcomes",
+      "advance": [
+        {
+          "name": "Use Luck",
+          "description": "Mark luck when you spend it to change a roll or avoid harm"
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Restore Luck",
+          "description": "Between mysteries, your luck may be restored"
+        }
+      ]
+    },
+    {
       "name": "Harm",
       "clock": "harm",
       "description": "Physical damage taken by the hunter",
@@ -137,48 +154,59 @@
       ]
     },
     {
-      "name": "Stress",
-      "clock": "stress",
-      "description": "Mental and emotional trauma",
+      "name": "Experience",
+      "clock": "experience",
+      "description": "Your hunter's growth and advancement",
       "advance": [
         {
-          "name": "Take Stress",
-          "description": "Mark stress when you witness something terrible"
+          "name": "Gain Experience",
+          "description": "Mark experience when you fail a roll or complete a mystery"
         }
       ],
       "rollback": [
         {
-          "name": "Recover from Stress",
-          "description": "Talking it out or rest can reduce stress"
+          "name": "Spend Experience",
+          "description": "When you fill the experience track, take an advancement and reset"
         }
       ]
     }
   ],
   "Clocks": [
     {
+      "title": "Luck",
+      "clockId": "luck",
+      "entries": [
+        { "icon": "☆", "name": "Ok", "modifier": "" },
+        { "icon": "○", "name": "Fortunate", "modifier": "" },
+        { "icon": "◔", "name": "Risky", "modifier": "" },
+        { "icon": "◑", "name": "Unlucky", "modifier": "" },
+        { "icon": "◕", "name": "Desperate", "modifier": "" },
+        { "icon": "●", "name": "Cursed", "modifier": "" },
+        { "icon": "☠", "name": "Doomed", "modifier": "" }
+      ]
+    },
+    {
       "title": "Harm",
       "clockId": "harm",
       "entries": [
-        { "icon": "☆", "name": "Healthy", "modifier": "" },
-        { "icon": "○", "name": "Marked", "modifier": "" },
-        { "icon": "◔", "name": "Injured", "modifier": "" },
+        { "icon": "☆", "name": "OK", "modifier": "" },
+        { "icon": "○", "name": "Bruised", "modifier": "" },
+        { "icon": "◔", "name": "Hurt", "modifier": "-1" },
         { "icon": "◑", "name": "Wounded", "modifier": "-1" },
-        { "icon": "◕", "name": "Gasping", "modifier": "-2" },
-        { "icon": "●", "name": "Out of It", "modifier": "-3" },
+        { "icon": "◕", "name": "Badly Wounded", "modifier": "-2" },
+        { "icon": "●", "name": "Critical", "modifier": "-3" },
         { "icon": "☠", "name": "Dying", "modifier": "" }
       ]
     },
     {
-      "title": "Stress",
-      "clockId": "stress",
+      "title": "Experience",
+      "clockId": "experience",
       "entries": [
-        { "icon": "☆", "name": "Grounded", "modifier": "" },
-        { "icon": "○", "name": "Shaken", "modifier": "" },
-        { "icon": "◔", "name": "Disturbed", "modifier": "" },
-        { "icon": "◑", "name": "Unraveled", "modifier": "-1" },
-        { "icon": "◕", "name": "Haunted", "modifier": "-2" },
-        { "icon": "●", "name": "Broken", "modifier": "-3" },
-        { "icon": "☠", "name": "Shattered", "modifier": "" }
+        { "icon": "☆", "name": "Novice", "modifier": "" },
+        { "icon": "○", "name": "Learning", "modifier": "" },
+        { "icon": "◔", "name": "Experienced", "modifier": "" },
+        { "icon": "◑", "name": "Veteran", "modifier": "" },
+        { "icon": "●", "name": "Expert", "modifier": "" }
       ]
     }
   ],

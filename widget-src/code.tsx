@@ -8,6 +8,7 @@ import { Grid } from './Grid'
 import { MoveHistory } from './components/MoveHistory'
 import { BasicMoves } from './components/BasicMoves'
 import { CharacterMoves } from './components/CharacterMoves'
+import { Clocks } from './components/Clocks'
 
 function pbta_character() {
   // Game selection state
@@ -85,54 +86,35 @@ function pbta_character() {
     return attributeValues[attrName] || 0
   }
 
-  // Helper function to get current Harm modifier
-  const getHarmModifier = (): number => {
+  // Load clock definitions from game data
+  const clockDefinitions = movesData.Clocks || []
+
+  // Helper function to get modifier from a clock by clockId
+  const getClockModifier = (clockId: string, clockState: boolean[]): number => {
+    const clockDef = clockDefinitions.find(c => c.clockId === clockId)
+    if (!clockDef) return 0
+
     let lastCheckedIndex = -1
-    for (let i = harmChecked.length - 1; i >= 0; i--) {
-      if (harmChecked[i]) {
+    for (let i = clockState.length - 1; i >= 0; i--) {
+      if (clockState[i]) {
         lastCheckedIndex = i
         break
       }
     }
     if (lastCheckedIndex === -1) return 0
-    const modStr = harmLevels[lastCheckedIndex]?.modifier || ""
+    const modStr = clockDef.entries[lastCheckedIndex]?.modifier || ""
     return modStr ? parseInt(modStr) : 0
+  }
+
+  // Helper function to get current Harm modifier
+  const getHarmModifier = (): number => {
+    return getClockModifier('harm', harmChecked)
   }
 
   // Helper function to get current Stress modifier
   const getStressModifier = (): number => {
-    let lastCheckedIndex = -1
-    for (let i = stressChecked.length - 1; i >= 0; i--) {
-      if (stressChecked[i]) {
-        lastCheckedIndex = i
-        break
-      }
-    }
-    if (lastCheckedIndex === -1) return 0
-    const modStr = stressLevels[lastCheckedIndex]?.modifier || ""
-    return modStr ? parseInt(modStr) : 0
+    return getClockModifier('stress', stressChecked)
   }
-
-  // Harm and Stress tracking
-  const harmLevels = [
-    { name: "Healthy",   symbol: "☆", modifier: "" },   // White Star
-    { name: "Marked",    symbol: "○", modifier: "" },   // White Circle
-    { name: "Injured",   symbol: "◔", modifier: "" },   // Circle 1/4 Black
-    { name: "Wounded",   symbol: "◑", modifier: "-1" }, // Circle Right Half Black
-    { name: "Gasping",   symbol: "◕", modifier: "-2" }, // Circle 3/4 Black
-    { name: "Out of It", symbol: "●", modifier: "-3" }, // Black Circle
-    { name: "Dying",     symbol: "☠", modifier: "" }    // Skull and Crossbones
-  ]
-
-  const stressLevels = [
-    { name: "Grounded",  symbol: "☆", modifier: "" },   // White Star
-    { name: "Shaken",    symbol: "○", modifier: "" },   // White Circle
-    { name: "Disturbed", symbol: "◔", modifier: "" },   // Circle 1/4 Black
-    { name: "Unraveled", symbol: "◑", modifier: "-1" }, // Circle Right Half Black
-    { name: "Haunted",   symbol: "◕", modifier: "-2" }, // Circle 3/4 Black
-    { name: "Broken",    symbol: "●", modifier: "-3" }, // Black Circle
-    { name: "Shattered", symbol: "☠", modifier: "" }    // Skull and Crossbones
-  ]
 
   // Standard outcomes for basic rolls
   const STANDARD_OUTCOMES = {
@@ -146,6 +128,8 @@ function pbta_character() {
 
   const [harmChecked, setHarmChecked] = useSyncedState("harmChecked", Array(7).fill(false))
   const [stressChecked, setStressChecked] = useSyncedState("stressChecked", Array(7).fill(false))
+  const [luckChecked, setLuckChecked] = useSyncedState("luckChecked", Array(7).fill(false))
+  const [experienceChecked, setExperienceChecked] = useSyncedState("experienceChecked", Array(5).fill(false))
   const [harmSymbols, setHarmSymbols] = useSyncedState("harmSymbols", Array(7).fill(""))
   const [stressSymbols, setStressSymbols] = useSyncedState("stressSymbols", Array(7).fill(""))
   const [harmModifiers, setHarmModifiers] = useSyncedState("harmModifiers", Array(7).fill(""))
@@ -248,7 +232,9 @@ function pbta_character() {
     'mythosAttention': { state: mythosAttention, setter: setMythosAttention, size: 5 },
     'logosAttention': { state: logosAttention, setter: setLogosAttention, size: 5 },
     'harm': { state: harmChecked, setter: setHarmChecked, size: 7 },
-    'stress': { state: stressChecked, setter: setStressChecked, size: 7 }
+    'stress': { state: stressChecked, setter: setStressChecked, size: 7 },
+    'luck': { state: luckChecked, setter: setLuckChecked, size: 7 },
+    'experience': { state: experienceChecked, setter: setExperienceChecked, size: 5 }
   }
 
   // Fix corrupted clock states
@@ -284,7 +270,9 @@ function pbta_character() {
       'mythosAttention': 'Mythos Attention',
       'logosAttention': 'Logos Attention',
       'harm': 'Harm',
-      'stress': 'Stress'
+      'stress': 'Stress',
+      'luck': 'Luck',
+      'experience': 'Experience'
     }
 
     let didChange = false
@@ -1030,61 +1018,10 @@ function pbta_character() {
         </AutoLayout>
       </AutoLayout>
       <AutoLayout direction="vertical" spacing={16} padding={16} width={1350} height="fill-parent" fill="#F5F5F5" stroke="#333333" strokeWidth={2} cornerRadius={8}>
-        <Text fontSize={36} fontWeight={700}>Clocks</Text>
-        <AutoLayout direction="horizontal" spacing={16} width="fill-parent">
-          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <Text fontSize={30} fontWeight={700}>Harm</Text>
-            {harmLevels.map((level, idx) => (
-              <AutoLayout key={idx} spacing={8} verticalAlignItems="center" width="fill-parent">
-                <AutoLayout
-                    width={30}
-                    height={30}
-                    fill={harmChecked[idx] ? "#333333" : "#FFFFFF"}
-                    stroke="#333333"
-                    strokeWidth={2}
-                    cornerRadius={15}
-                    horizontalAlignItems="center"
-                    verticalAlignItems="center"
-                    onClick={() => {
-                      const newChecked = [...harmChecked]
-                      newChecked[idx] = !newChecked[idx]
-                      setHarmChecked(newChecked)
-                    }}
-                >
-                  <Text fontSize={18} fill={harmChecked[idx] ? "#FFFFFF" : "#333333"}>{level.symbol}</Text>
-                </AutoLayout>
-                <Text fontSize={21} width={120}>{level.name}</Text>
-                <Text fontSize={21} width={30}>{level.modifier || null}</Text>
-              </AutoLayout>
-            ))}
-          </AutoLayout>
-          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <Text fontSize={30} fontWeight={700}>Stress</Text>
-            {stressLevels.map((level, idx) => (
-              <AutoLayout key={idx} spacing={8} verticalAlignItems="center" width="fill-parent">
-                <AutoLayout
-                    width={30}
-                    height={30}
-                    fill={stressChecked[idx] ? "#333333" : "#FFFFFF"}
-                    stroke="#333333"
-                    strokeWidth={2}
-                    cornerRadius={15}
-                    horizontalAlignItems="center"
-                    verticalAlignItems="center"
-                    onClick={() => {
-                      const newChecked = [...stressChecked]
-                      newChecked[idx] = !newChecked[idx]
-                      setStressChecked(newChecked)
-                    }}
-                >
-                  <Text fontSize={18} fill={stressChecked[idx] ? "#FFFFFF" : "#333333"}>{level.symbol}</Text>
-                </AutoLayout>
-                <Text fontSize={21} width={120}>{level.name}</Text>
-                <Text fontSize={21} width={30}>{level.modifier || null}</Text>
-              </AutoLayout>
-            ))}
-          </AutoLayout>
-        </AutoLayout>
+        <Clocks
+          clockDefinitions={clockDefinitions}
+          clocks={clocks}
+        />
         <AutoLayout direction="vertical" spacing={8} width="fill-parent">
           <Text fontSize={36} fontWeight={700}>Contacts</Text>
           {/* Header Row */}
