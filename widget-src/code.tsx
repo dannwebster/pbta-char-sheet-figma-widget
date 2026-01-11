@@ -971,6 +971,8 @@ function pbta_character() {
         setMoveHistory={setMoveHistory}
         historyPage={historyPage}
         setHistoryPage={setHistoryPage}
+        experienceChecked={experienceChecked}
+        setExperienceChecked={setExperienceChecked}
       />
         </AutoLayout>
 

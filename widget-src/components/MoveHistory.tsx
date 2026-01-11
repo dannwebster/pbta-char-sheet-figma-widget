@@ -4,7 +4,7 @@ const { AutoLayout, Frame, Text } = widget
 import { Grid } from '../Grid'
 
 export function MoveHistory(props) {
-  const { moveHistory, setMoveHistory, historyPage, setHistoryPage } = props
+  const { moveHistory, setMoveHistory, historyPage, setHistoryPage, experienceChecked, setExperienceChecked } = props
 
   return (
     <AutoLayout
@@ -130,6 +130,43 @@ export function MoveHistory(props) {
                    <Text fontSize={17.5} width="fill-parent">{entry.move.description}</Text>
                    {outcomeText && (
                      <Text fontSize={17.5} fontWeight={600} width="fill-parent">{outcomeText}</Text>
+                   )}
+                   {entry.total <= 6 && (
+                     <AutoLayout spacing={8} verticalAlignItems="center">
+                       <AutoLayout
+                           width={20}
+                           height={20}
+                           fill={entry.experienceMarked ? "#333333" : "#FFFFFF"}
+                           stroke="#333333"
+                           strokeWidth={2}
+                           cornerRadius={4}
+                           horizontalAlignItems="center"
+                           verticalAlignItems="center"
+                           onClick={() => {
+                             const entryIndex = historyPage * 5 + idx
+                             const updatedHistory = [...moveHistory]
+                             const wasMarked = updatedHistory[entryIndex].experienceMarked || false
+
+                             // Toggle the checkbox state
+                             updatedHistory[entryIndex].experienceMarked = !wasMarked
+
+                             // If checking (not unchecking), mark the first unchecked experience box
+                             if (!wasMarked) {
+                               const firstUncheckedIndex = experienceChecked.findIndex(checked => !checked)
+                               if (firstUncheckedIndex !== -1) {
+                                 const newExperienceChecked = [...experienceChecked]
+                                 newExperienceChecked[firstUncheckedIndex] = true
+                                 setExperienceChecked(newExperienceChecked)
+                               }
+                             }
+
+                             setMoveHistory(updatedHistory)
+                           }}
+                       >
+                         {entry.experienceMarked && <Text fontSize={14} fill="#FFFFFF">✓</Text>}
+                       </AutoLayout>
+                       <Text fontSize={17.5} fontWeight={600}>Mark Experience</Text>
+                     </AutoLayout>
                    )}
                    {moveArrays.length > 0 && moveArrays.map((array, arrayIdx) => (
                      <AutoLayout key={arrayIdx} direction="vertical" spacing={4} width="fill-parent">
