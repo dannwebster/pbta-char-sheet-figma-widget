@@ -82,10 +82,10 @@
         ]
       }
     ],
-    "Fortitude": [
+    "Vigor": [
       {
-        "name": "Kick Some Ass",
-        "description": "When you get into a fight and kick some ass, roll +Fortitude.",
+        "name": "Necessary Violence",
+        "description": "When you get into a fight and use necessary violence, roll +Vigor.",
         "outcomes": {
           "10+": "You and your allies inflict harm on (and suffer harm from) your enemies",
           "7-9": "You inflict harm but choose whether you suffer harm, you lose your weapon, or you have to hold back (i.e., don't inflict harm)",
@@ -94,7 +94,7 @@
       },
       {
         "name": "Protect Someone",
-        "description": "When you prevent harm to another person, roll +Fortitude.",
+        "description": "When you prevent harm to another person, roll +Vigor.",
         "outcomes": {
           "10+": "You protect them okay, but you'll suffer some or all of the harm they were going to get",
           "7-9": "You protect them, but it's going to cost you: either you take all the harm, or you take little harm but also take -1 forward, or you suffer some other cost",

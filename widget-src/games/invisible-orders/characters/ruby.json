@@ -7,7 +7,7 @@
         { "name": "Presence", "value": 1 },
         { "name": "Nerve", "value": 0 },
         { "name": "Insight", "value": 1 },
-        { "name": "Fortitude", "value": -1 },
+        { "name": "Vigor", "value": -1 },
         { "name": "Occult", "value": 2 }
       ],
       "equipment": [
@@ -38,7 +38,7 @@
               {
                 "name": "Combat Magic",
                 "attribute": "Occult",
-                "description": "You have a few attack spells you can use as weapons. When you use these spells to kick some ass, roll +Weird instead of +Tough. Sometimes the situation may require you to act under pressure to cast your spell without problems. Your combat spells can combine any of your base spells with any of your effects.",
+                "description": "You have a few attack spells you can use as weapons. When you use these spells for necessary violence, roll +Weird instead of +Vigor. Sometimes the situation may require you to act under pressure to cast your spell without problems. Your combat spells can combine any of your base spells with any of your effects.",
                 "arrays": [
                   {
                     "id": "bases",

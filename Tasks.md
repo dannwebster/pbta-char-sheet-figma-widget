@@ -3,9 +3,6 @@
 *[ ] Submit to Figma 
 
 ## BUGS
-*[ ] make MultiAttributes Empty/nullableThe error indicates that the BasicMoves component is trying to access the name property of an undefined move. This is likely happening because invisible-orders and monster-of-the-week have empty MultiAttributeMoves arrays.
-*[ ] Widen the Attribute names
-*[ ] Widen the Attribute names
 *[ ] Why do attributes not load initially
 
 ## Visual/UI
@@ -44,6 +41,8 @@
 
 
 ## Completed
+*[x] make MultiAttributes Empty/nullableThe error indicates that the BasicMoves component is trying to access the name property of an undefined move. This is likely happening because invisible-orders and monster-of-the-week have empty MultiAttributeMoves arrays.
+*[x] Widen the Attribute names
 *[x] Make Clocks a list per game
   *[x] Harm
   *[x] Stress
