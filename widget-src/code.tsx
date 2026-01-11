@@ -11,6 +11,7 @@ import { CharacterMoves } from './components/CharacterMoves'
 import { Clocks } from './components/Clocks'
 import { Contacts } from './components/Contacts'
 import { MythosAndLogos } from './components/MythosAndLogos'
+import { Dialog } from './components/Dialog'
 
 function pbta_character() {
   // Game selection state
@@ -126,6 +127,8 @@ function pbta_character() {
   const [luckChecked, setLuckChecked] = useSyncedState("luckChecked", Array(7).fill(false))
   const [experienceChecked, setExperienceChecked] = useSyncedState("experienceChecked", Array(5).fill(false))
   const [showLevelUpPopup, setShowLevelUpPopup] = useSyncedState("showLevelUpPopup", false)
+  const [showMarkExperiencePopup, setShowMarkExperiencePopup] = useSyncedState("showMarkExperiencePopup", false)
+  const [pendingExperienceRollIndex, setPendingExperienceRollIndex] = useSyncedState("pendingExperienceRollIndex", -1)
   const [harmSymbols, setHarmSymbols] = useSyncedState("harmSymbols", Array(7).fill(""))
   const [stressSymbols, setStressSymbols] = useSyncedState("stressSymbols", Array(7).fill(""))
   const [harmModifiers, setHarmModifiers] = useSyncedState("harmModifiers", Array(7).fill(""))
@@ -215,6 +218,12 @@ function pbta_character() {
       }
       console.log('HISTORY ENTRY:', JSON.stringify(historyEntry, null, 2))
       setMoveHistory([historyEntry, ...moveHistory])
+
+      // Show mark experience popup if roll is 6 or less
+      if (total <= 6) {
+        setPendingExperienceRollIndex(0) // New entry is at index 0
+        setShowMarkExperiencePopup(true)
+      }
     }
 
     console.log(number1, number2, mod, forwardMod, ongoingMod, harmMod, stressMod)
@@ -1326,45 +1335,57 @@ function pbta_character() {
 
       {/* Level Up Popup */}
       {showLevelUpPopup && (
-        <AutoLayout
-            positioning="absolute"
-            x={300}
-            y={200}
-            width={900}
-            height={600}
-            fill="#CCFFCC"
-            stroke="#333333"
-            strokeWidth={3}
-            cornerRadius={8}
-            padding={24}
-            direction="vertical"
-            spacing={16}
-            verticalAlignItems="center"
-            horizontalAlignItems="center"
-            effect={[
-              {
-                type: 'drop-shadow',
-                color: { r: 0, g: 0, b: 0, a: 0.5 },
-                offset: { x: 0, y: 4 },
-                blur: 20,
-                spread: 0,
-              },
-            ]}
-        >
-          <AutoLayout direction="vertical" spacing={12} width="fill-parent" horizontalAlignItems="center" verticalAlignItems="center">
-            <Text fontSize={32} fontWeight={700}>Level Up!</Text>
-            <Text fontSize={20}>pick an improvement</Text>
-            <AutoLayout
-                fill="#333333"
-                padding={12}
-                cornerRadius={4}
-                onClick={() => setShowLevelUpPopup(false)}
-                horizontalAlignItems="center"
-            >
-              <Text fontSize={18} fontWeight={600} fill="#FFFFFF">OK</Text>
-            </AutoLayout>
-          </AutoLayout>
-        </AutoLayout>
+        <Dialog
+          title="Level Up!"
+          message="When you have filled all five experience boxes, you level up. Erase the marks and pick an improvement from your Playbook"
+          buttons={[
+            {
+              label: "OK",
+              onClick: () => setShowLevelUpPopup(false)
+            }
+          ]}
+          backgroundColor="#CCFFCC"
+        />
+      )}
+
+      {/* Mark Experience Popup */}
+      {showMarkExperiencePopup && (
+        <Dialog
+          title="Mark Experience?"
+          message="Whenever you roll and get a total of 6 or less, or when a move tells you to, mark an experience box."
+          backgroundColor="#FFCCCC"
+          buttons={[
+            {
+              label: "Yes",
+              onClick: () => {
+                // Mark the experience checkbox in move history
+                const updatedHistory = [...moveHistory]
+                updatedHistory[pendingExperienceRollIndex].experienceMarked = true
+                setMoveHistory(updatedHistory)
+
+                // Mark the first unchecked experience box
+                const firstUncheckedIndex = experienceChecked.findIndex(checked => !checked)
+                if (firstUncheckedIndex !== -1) {
+                  const newExperienceChecked = [...experienceChecked]
+                  newExperienceChecked[firstUncheckedIndex] = true
+                  setExperienceChecked(newExperienceChecked)
+                }
+
+                // Close popup
+                setShowMarkExperiencePopup(false)
+                setPendingExperienceRollIndex(-1)
+              }
+            },
+            {
+              label: "No",
+              backgroundColor: "#FF5555",
+              onClick: () => {
+                setShowMarkExperiencePopup(false)
+                setPendingExperienceRollIndex(-1)
+              }
+            }
+          ]}
+        />
       )}
       </AutoLayout>
   )
