@@ -3,6 +3,7 @@
     {
       "name": "Buffy Summers",
       "subtitle": "The Chosen",
+      "look": "Long blonde hair pulled into a practical ponytail. Athletic wear—tank top, cargo pants, cross-trainers ready for action. A few visible scars on her arms. Bright, determined eyes with hints of weariness. Quick smile that doesn't quite hide the weight of destiny. Moves with supernatural grace and barely contained power.",
       "attributes": [
         { "name": "Charm", "value": 1 },
         { "name": "Cool", "value": 2 },

@@ -3,6 +3,7 @@
     {
       "name": "Fox Mulder",
       "subtitle": "The Believer",
+      "look": "Perpetually mussed dark hair. Cheap suit that's seen better days, loosened tie. Intense hazel eyes that light up when discussing conspiracies. The eager, slightly manic expression of someone chasing the truth. Leans forward when talking, gestures enthusiastically. Always looks like he hasn't slept enough.",
       "attributes": [
         { "name": "Charm", "value": 0 },
         { "name": "Cool", "value": 1 },
@@ -58,6 +59,7 @@
     {
       "name": "Dana Scully",
       "subtitle": "The Skeptic",
+      "look": "Neat red hair, professional cut. Crisp pantsuit, sensible heels, FBI badge on her belt. Sharp blue eyes behind a skeptical gaze. The composed expression of a medical examiner who's seen it all—and questions everything. Stands with arms crossed when unconvinced. Moves with clinical precision.",
       "attributes": [
         { "name": "Charm", "value": 0 },
         { "name": "Cool", "value": 2 },

@@ -3,6 +3,7 @@
     {
       "name": "Ruby Braithwaite",
       "subtitle": "The Spell-Slinger",
+      "look": "Sharp bob of auburn hair framing intense green eyes. Tailored wool suit with a knee-length skirt, practical oxford heels. Silver pendant at throat. Expression switches between scholarly concentration and reckless determination. Moves with the confidence of someone who's memorized every incantation.",
       "attributes": [
         { "name": "Presence", "value": 1 },
         { "name": "Nerve", "value": 0 },

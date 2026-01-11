@@ -3,6 +3,7 @@
     {
       "name": "The Warrior",
       "subtitle": "Master of Combat",
+      "look": "Military buzzcut, scarred knuckles. Faded military fatigues, combat boots that have seen a thousand miles. Dog tags hang beneath a worn tank top. Steely eyes that assess every room for threats and exits. The hard-set jaw of absolute discipline. Battle scars trace arms and face. Moves with the controlled economy of a trained soldier.",
       "concept": [
         {
           "type": "Mythos",
@@ -240,6 +241,7 @@
     {
       "name": "The Mystic",
       "subtitle": "Seeker of Hidden Knowledge",
+      "look": "Long gray-streaked hair, often tangled from sleepless nights of study. Flowing layers of dark fabrics, occult jewelry from a dozen traditions. Ink-stained fingers from transcribing ancient texts. Distant eyes that see beyond the mundane. The distracted air of someone whose mind dwells in other realms. Crystal pendants, tarot cards, and talismans worn openly. Moves with dreamlike fluidity.",
       "concept": [
         {
           "type": "Mythos",

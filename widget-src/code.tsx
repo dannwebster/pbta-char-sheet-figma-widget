@@ -34,6 +34,7 @@ function pbta_character() {
   const [forward, setForward] = useSyncedState("forward", 0)
   const [ongoing, setOngoing] = useSyncedState("ongoing", 0)
   const [characterName, setCharacterName] = useSyncedState("characterName", characterData.characters[0]?.name || "")
+  const [characterLook, setCharacterLook] = useSyncedState("characterLook", characterData.characters[0]?.look || "")
   const [selectedMove, setSelectedMove] = useSyncedState("selectedMove", null)
   const [moveHistory, setMoveHistory] = useSyncedState("moveHistory", [])
   const [historyPage, setHistoryPage] = useSyncedState("historyPage", 0)
@@ -358,6 +359,7 @@ function pbta_character() {
         roll()
         loadAttributesFromCharacter(characterName)
         loadConceptFromCharacter(characterName)
+        loadLookFromCharacter(characterName)
         setInitialized(true)
       }
 
@@ -474,6 +476,14 @@ function pbta_character() {
     }
   }
 
+  // Helper function to load look from character data
+  const loadLookFromCharacter = (charName) => {
+    const currentCharacter = characterData.characters.find(c => c.name === charName)
+    if (currentCharacter) {
+      setCharacterLook(currentCharacter.look || "")
+    }
+  }
+
   return (
       <AutoLayout direction="vertical" spacing={16}>
         <AutoLayout direction="horizontal" spacing={16}>
@@ -506,6 +516,7 @@ function pbta_character() {
                   loadContactsFromCharacter(newGameData.characters[0].name)
                   loadAttributesFromCharacter(newGameData.characters[0].name)
                   loadConceptFromCharacter(newGameData.characters[0].name)
+                  loadLookFromCharacter(newGameData.characters[0].name)
                 }
               }}
               horizontalAlignItems="center"
@@ -525,6 +536,7 @@ function pbta_character() {
                 loadContactsFromCharacter(newCharacterName)
                 loadAttributesFromCharacter(newCharacterName)
                 loadConceptFromCharacter(newCharacterName)
+                loadLookFromCharacter(newCharacterName)
               }}
               horizontalAlignItems="center"
           >
@@ -561,6 +573,24 @@ function pbta_character() {
             <Text fontSize={40} fontWeight={700}>{characterName}</Text>
             <Text fontSize={28} fill="#666666">{characterData.characters.find(c => c.name === characterName)?.subtitle || null}</Text>
           </AutoLayout>
+        </AutoLayout>
+        {/* Look Section */}
+        <AutoLayout padding={16} width="fill-parent" fill="#F8F8F8" direction="vertical" spacing={8}>
+          <Text fontSize={24} fontWeight={700}>Look</Text>
+          <Input
+              value={characterLook}
+              onTextEditEnd={(e) => setCharacterLook(e.characters)}
+              fontSize={20}
+              width="fill-parent"
+              placeholder="Describe your character's appearance..."
+              inputFrameProps={{
+                fill: "#FFFFFF",
+                stroke: "#CCCCCC",
+                strokeWidth: 1,
+                cornerRadius: 4,
+                padding: 8
+              }}
+          />
         </AutoLayout>
         {movesData.usesMythosAndLogos && (
           <MythosAndLogos

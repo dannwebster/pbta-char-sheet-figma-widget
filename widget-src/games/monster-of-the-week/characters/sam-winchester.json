@@ -3,6 +3,7 @@
     {
       "name": "Sam Winchester",
       "subtitle": "The Professional",
+      "look": "Shaggy brown hair that could use a trim. Rumpled button-down shirt, dark jeans, worn boots. Five o'clock shadow. Kind eyes that have seen too much darkness. The tired but determined expression of someone who won't quit until the job's done. Carries himself with quiet strength and constant vigilance.",
       "attributes": [
         { "name": "Charm", "value": 1 },
         { "name": "Cool", "value": 1 },
