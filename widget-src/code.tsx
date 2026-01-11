@@ -1,7 +1,6 @@
 const { widget } = figma
 const { Rectangle, AutoLayout, Frame, Text, useSyncedState, usePropertyMenu, useEffect, Ellipse, Input } = widget
 
-import { charts as chartsData } from './charts.js'
 import { GAMES } from './games/GameLoader'
 import { getGameData, getAvailableGames, getDefaultGame } from './lib/GameDefinition'
 import { Grid } from './Grid'
@@ -23,6 +22,7 @@ function pbta_character() {
   const gameData = getGameData(GAMES, selectedGame)
   const movesData = gameData.moves
   const characterData = { characters: gameData.characters }
+  const chartsData = gameData.charts || []
 
   // Build attributes array dynamically from AttributeMoves keys
   const moves = movesData.AttributeMoves
@@ -1062,6 +1062,7 @@ function pbta_character() {
       />
 
       {/* Charts Section */}
+      {chartsData.length > 0 && (
       <AutoLayout
           direction="vertical"
           width={2250}
@@ -1141,6 +1142,7 @@ function pbta_character() {
           </AutoLayout>
         )}
       </AutoLayout>
+      )}
 
       {pendingRoll && (() => {
         const harmMod = getHarmModifier()

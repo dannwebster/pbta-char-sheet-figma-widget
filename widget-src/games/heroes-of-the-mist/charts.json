@@ -1,4 +1,4 @@
-export const charts = [
+[
   {
     "title": "Price Chart",
     "columns": [

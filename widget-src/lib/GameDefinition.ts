@@ -5,6 +5,7 @@ export interface GameData {
   name: string
   moves: any
   characters: any[]
+  charts?: any[]
   isDefault?: boolean
 }
 
