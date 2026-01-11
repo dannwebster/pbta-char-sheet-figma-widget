@@ -2,14 +2,15 @@ const { widget } = figma
 const { AutoLayout, Text } = widget
 
 interface ClockEntry {
-  icon: string
-  name: string
+  icon?: string
+  name?: string
   modifier: string
 }
 
 interface ClockDefinition {
   title: string
   clockId: string
+  shape?: "circle" | "square"
   entries: ClockEntry[]
 }
 
@@ -21,6 +22,8 @@ interface ClockProps {
 
 export function Clock(props: ClockProps) {
   const { clockDefinition, clockState, setClockState } = props
+  const shape = clockDefinition.shape || "circle"
+  const cornerRadius = shape === "circle" ? 15 : 4
 
   return (
     <AutoLayout direction="vertical" spacing={8} width="fill-parent">
@@ -33,7 +36,7 @@ export function Clock(props: ClockProps) {
               fill={clockState[idx] ? "#333333" : "#FFFFFF"}
               stroke="#333333"
               strokeWidth={2}
-              cornerRadius={15}
+              cornerRadius={cornerRadius}
               horizontalAlignItems="center"
               verticalAlignItems="center"
               onClick={() => {
@@ -42,10 +45,10 @@ export function Clock(props: ClockProps) {
                 setClockState(newChecked)
               }}
           >
-            <Text fontSize={18} fill={clockState[idx] ? "#FFFFFF" : "#333333"}>{entry.icon}</Text>
+            {entry.icon && <Text fontSize={18} fill={clockState[idx] ? "#FFFFFF" : "#333333"}>{entry.icon}</Text>}
           </AutoLayout>
-          <Text fontSize={21} width={120}>{entry.name}</Text>
           <Text fontSize={21} width={30}>{entry.modifier || null}</Text>
+          {entry.name && <Text fontSize={21} width={120}>{entry.name}</Text>}
         </AutoLayout>
       ))}
     </AutoLayout>

@@ -56,6 +56,18 @@ export function MoveDescriptor(props) {
           • On {key}: {value}
         </Text>
       ))}
+      {move.arrays && move.arrays.length > 0 && move.arrays.map((array, arrayIdx) => (
+        <AutoLayout key={arrayIdx} direction="vertical" spacing={3} width="fill-parent">
+          <Text fontSize={20} fontWeight={600} width="fill-parent">
+            {array.title}:
+          </Text>
+          {array.values && array.values.map((value, valueIdx) => (
+            <Text key={valueIdx} fontSize={19} width="fill-parent">
+              • {value}
+            </Text>
+          ))}
+        </AutoLayout>
+      ))}
       {move.hold && move.hold.length > 0 && (
         <AutoLayout direction="vertical" spacing={3} width="fill-parent">
           {move.hold.map((option, optIdx) => (

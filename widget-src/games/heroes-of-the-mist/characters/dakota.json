@@ -49,14 +49,20 @@
                   "7-9": "You have the ammo, but the MC will choose a drawback or flaw",
                   "6-": "You have Just One Bullet of the type you need and it is deeply flawed. The MC will tell you how"
                 },
-                "hold": [
-                  "Armor Piercing - gains ignore armor",
-                  "Buckshot - hits more than one target",
-                  "Chain Shot - can entangle targets",
-                  "Explosive - blows up on impact",
-                  "Ghost Shot - can hurt incorporeal entities",
-                  "Incendiary - starts fires",
-                  "Trick Shot - can ricochet off hard surfaces to shoot around corners"
+                "arrays": [
+                  {
+                    "id": "hold",
+                    "title": "Hold Options",
+                    "values": [
+                      "Armor Piercing - gains ignore armor",
+                      "Buckshot - hits more than one target",
+                      "Chain Shot - can entangle targets",
+                      "Explosive - blows up on impact",
+                      "Ghost Shot - can hurt incorporeal entities",
+                      "Incendiary - starts fires",
+                      "Trick Shot - can ricochet off hard surfaces to shoot around corners"
+                    ]
+                  }
                 ],
                 "flaw": {
                   "name": "Ammo Grab Bag",
@@ -83,11 +89,17 @@
                 "10+": "Gain 3 hold.",
                 "7-9": "Gain 1 hold."
               },
-              "hold": [
-                "bypass a security system or guard",
-                "disable a guard",
-                "disable a security system you have bypassed",
-                "give an advantage (+1 forward) to a member of your crew"
+              "arrays": [
+                {
+                  "id": "hold",
+                  "title": "Hold Options",
+                  "values": [
+                    "bypass a security system or guard",
+                    "disable a guard",
+                    "disable a security system you have bypassed",
+                    "give an advantage (+1 forward) to a member of your crew"
+                  ]
+                }
               ],
               "flaw": {
                 "name": "Under Cover of Darkness",
@@ -111,10 +123,16 @@
                   "10+": "Hold 3",
                   "7-9": "Hold 1"
                 },
-                "hold": [
-                  "Inflict Stress on all enemies in the scene equal to the Harm inflicted by the attack",
-                  "Ask a question as per Read a Bad Situation",
-                  "Create Juice as per Change the Game"
+                "arrays": [
+                  {
+                    "id": "hold",
+                    "title": "Hold Options",
+                    "values": [
+                      "Inflict Stress on all enemies in the scene equal to the Harm inflicted by the attack",
+                      "Ask a question as per Read a Bad Situation",
+                      "Create Juice as per Change the Game"
+                    ]
+                  }
                 ],
                 "flaw": {
                   "name": "I've Made Some Enemies",

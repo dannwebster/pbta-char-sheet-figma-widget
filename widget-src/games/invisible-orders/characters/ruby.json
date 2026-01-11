@@ -60,22 +60,38 @@
               "name": "Combat Magic",
               "attribute": "Occult",
               "description": "You have a few attack spells you can use as weapons. When you use these spells to kick some ass, roll +Weird instead of +Tough. Sometimes the situation may require you to act under pressure to cast your spell without problems. Your combat spells can combine any of your base spells with any of your effects.",
-              "bases": [
-                "Ball: 1-harm magic area close obvious loud",
-                "Contact Agent: 2-harm intimate ignore-armor"
-              ],
-              "effects": [
-                "Fire: Add '+2 harm fire' to a base. If you get a 10+ on a combat magic roll, the fire won't spread."
+              "arrays": [
+                {
+                  "id": "bases",
+                  "title": "Bases",
+                  "values": [
+                    "Ball: 1-harm magic area close obvious loud",
+                    "Contact Agent: 2-harm intimate ignore-armor"
+                  ]
+                },
+                {
+                  "id": "effects",
+                  "title": "Effects",
+                  "values": [
+                    "Fire: Add '+2 harm fire' to a base. If you get a 10+ on a combat magic roll, the fire won't spread."
+                  ]
+                }
               ]
             },
             "additionalMoves": [
               {
                 "name": "Tools and Techniques",
                 "description": "To use your combat magic effectively, you rely on a collection of tools and techniques. Cross off one; you'll need the rest.",
-                "options": [
-                  "Consumables: You need certain supplies—powders, oils, etc—on hand, some will be used up each cast. If you don't have them, take 1-harm ignore-armour when you cast.",
-                  "Foci: You need wands, staves, and other obvious props to focus. If you don't have what you need, your combat magic does 1 less harm.",
-                  "Gestures: You need to wave your hands around to use combat magic. If you're restrained, take -1 ongoing for combat magic."
+                "arrays": [
+                  {
+                    "id": "options",
+                    "title": "Options",
+                    "values": [
+                      "Consumables: You need certain supplies—powders, oils, etc—on hand, some will be used up each cast. If you don't have them, take 1-harm ignore-armour when you cast.",
+                      "Foci: You need wands, staves, and other obvious props to focus. If you don't have what you need, your combat magic does 1 less harm.",
+                      "Gestures: You need to wave your hands around to use combat magic. If you're restrained, take -1 ongoing for combat magic."
+                    ]
+                  }
                 ]
               },
               {

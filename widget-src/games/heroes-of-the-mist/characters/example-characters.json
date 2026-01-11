@@ -39,10 +39,16 @@
                 "7-9": "Partial Success outcome",
                 "6-": "Failure outcome"
               },
-              "hold": [
-                "First hold option",
-                "Second hold option",
-                "Third hold option"
+              "arrays": [
+                {
+                  "id": "hold",
+                  "title": "Hold Options",
+                  "values": [
+                    "First hold option",
+                    "Second hold option",
+                    "Third hold option"
+                  ]
+                }
               ],
               "flaw": {
                 "name": "Placeholder Mythos Anchor Flaw",
@@ -75,9 +81,15 @@
                   "7-9": "Partial Success",
                   "6-": "Failure"
                 },
-                "hold": [
-                  "Hold option 1",
-                  "Hold option 2"
+                "arrays": [
+                  {
+                    "id": "hold",
+                    "title": "Hold Options",
+                    "values": [
+                      "Hold option 1",
+                      "Hold option 2"
+                    ]
+                  }
                 ],
                 "flaw": {
                   "name": "Placeholder Flaw 2",
@@ -98,10 +110,16 @@
                 "7-9": "Partial Success outcome",
                 "6-": "Failure outcome"
               },
-              "hold": [
-                "First hold option",
-                "Second hold option",
-                "Third hold option"
+              "arrays": [
+                {
+                  "id": "hold",
+                  "title": "Hold Options",
+                  "values": [
+                    "First hold option",
+                    "Second hold option",
+                    "Third hold option"
+                  ]
+                }
               ],
               "flaw": {
                 "name": "Placeholder Logos Anchor Flaw",
@@ -134,9 +152,15 @@
                   "7-9": "Partial Success",
                   "6-": "Failure"
                 },
-                "hold": [
-                  "Hold option 1",
-                  "Hold option 2"
+                "arrays": [
+                  {
+                    "id": "hold",
+                    "title": "Hold Options",
+                    "values": [
+                      "Hold option 1",
+                      "Hold option 2"
+                    ]
+                  }
                 ],
                 "flaw": {
                   "name": "Placeholder Flaw 4",

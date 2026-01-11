@@ -59,7 +59,8 @@ export function MoveHistory(props) {
 
               // Regular move with dice roll
               let outcomeText = ""
-              let holdOptions = entry.move.hold || []
+              const moveArrays = entry.move.arrays || []
+              const holdOptions = entry.move.hold || []
               if (entry.move.outcomes?.["13+"] && entry.total >= 13) {
                 outcomeText = `13+: ${entry.move.outcomes["13+"]}`
               } else if (entry.total >= 10) {
@@ -131,6 +132,14 @@ export function MoveHistory(props) {
                    {outcomeText && (
                      <Text fontSize={17.5} fontWeight={600} width="fill-parent">{outcomeText}</Text>
                    )}
+                   {moveArrays.length > 0 && moveArrays.map((array, arrayIdx) => (
+                     <AutoLayout key={arrayIdx} direction="vertical" spacing={4} width="fill-parent">
+                       <Text fontSize={18} fontWeight={600} width="fill-parent">{array.title}:</Text>
+                       {array.values && array.values.map((value, valueIdx) => (
+                         <Text key={valueIdx} fontSize={17.5} width="fill-parent">• {value}</Text>
+                       ))}
+                     </AutoLayout>
+                   ))}
                    {holdOptions.length > 0 && (
                      <AutoLayout direction="vertical" spacing={4} width="fill-parent">
                        {holdOptions.map((option, optIdx) => (

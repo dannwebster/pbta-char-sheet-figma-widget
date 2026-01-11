@@ -175,38 +175,41 @@
     {
       "title": "Luck",
       "clockId": "luck",
+      "shape": "square",
       "entries": [
-        { "icon": "☆", "name": "Ok", "modifier": "" },
-        { "icon": "○", "name": "Fortunate", "modifier": "" },
-        { "icon": "◔", "name": "Risky", "modifier": "" },
-        { "icon": "◑", "name": "Unlucky", "modifier": "" },
-        { "icon": "◕", "name": "Desperate", "modifier": "" },
-        { "icon": "●", "name": "Cursed", "modifier": "" },
+        { "icon": "☆", "name": "OK", "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
         { "icon": "☠", "name": "Doomed", "modifier": "" }
       ]
     },
     {
       "title": "Harm",
       "clockId": "harm",
+      "shape": "square",
       "entries": [
         { "icon": "☆", "name": "OK", "modifier": "" },
-        { "icon": "○", "name": "Bruised", "modifier": "" },
-        { "icon": "◔", "name": "Hurt", "modifier": "-1" },
-        { "icon": "◑", "name": "Wounded", "modifier": "-1" },
-        { "icon": "◕", "name": "Badly Wounded", "modifier": "-2" },
-        { "icon": "●", "name": "Critical", "modifier": "-3" },
-        { "icon": "☠", "name": "Dying", "modifier": "" }
+        { "modifier": "" },
+        { "modifier": "-1" },
+        { "modifier": "-1" },
+        { "modifier": "-2" },
+        { "modifier": "-3" },
+        { "icon": "☠", "name": "Dying", "modifier": "-4" }
       ]
     },
     {
       "title": "Experience",
       "clockId": "experience",
+      "shape": "square",
       "entries": [
-        { "icon": "☆", "name": "Novice", "modifier": "" },
-        { "icon": "○", "name": "Learning", "modifier": "" },
-        { "icon": "◔", "name": "Experienced", "modifier": "" },
-        { "icon": "◑", "name": "Veteran", "modifier": "" },
-        { "icon": "●", "name": "Expert", "modifier": "" }
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" }
       ]
     }
   ],

@@ -39,11 +39,17 @@
                 "7-9": "Hold 2",
                 "6-": "Hold 1"
               },
-              "hold": [
-                "Use an expert mundane skill or language they possess for the rest of the scene",
-                "Make 1 use of one of their Mythos or Logos moves",
-                "Prevent them from using their Mythos or Logos move",
-                "Make another Mythos roll for Power Thief without needing to touch them again"
+              "arrays": [
+                {
+                  "id": "hold",
+                  "title": "Hold Options",
+                  "values": [
+                    "Use an expert mundane skill or language they possess for the rest of the scene",
+                    "Make 1 use of one of their Mythos or Logos moves",
+                    "Prevent them from using their Mythos or Logos move",
+                    "Make another Mythos roll for Power Thief without needing to touch them again"
+                  ]
+                }
               ],
               "flaw": {
                 "name": "A bit more than I bargained for",
@@ -61,11 +67,17 @@
                   "7-9": "Hold 2",
                   "6-": "Hold 1"
                 },
-                "hold": [
-                  "Take his/her/its perfect likeness for the rest of the scene",
-                  "Mimic their voice, speech patterns, and mannerisms for the rest of the scene",
-                  "Make the size of the illusion bigger or smaller than human sized",
-                  "Make another Mythos roll for Perfect Illusion without needing to touch them again"
+                "arrays": [
+                  {
+                    "id": "hold",
+                    "title": "Hold Options",
+                    "values": [
+                      "Take his/her/its perfect likeness for the rest of the scene",
+                      "Mimic their voice, speech patterns, and mannerisms for the rest of the scene",
+                      "Make the size of the illusion bigger or smaller than human sized",
+                      "Make another Mythos roll for Perfect Illusion without needing to touch them again"
+                    ]
+                  }
                 ],
                 "flaw": {
                   "name": "Look, but don't touch!",

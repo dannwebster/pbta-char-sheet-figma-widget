@@ -5,18 +5,19 @@
 *[ ]  Make Dropdown for Characters
 
 ## Functionality
-*[x] Use Move Sections rather than logos and mythos moves
+*[ ] Make Moves allow named arrays
 *[ ] Make sections Optional
   *[ ] Logos/Mythos
   *[ ] Contacts
   *[ ] General Moves
-*[ ] Make Clocks a list per game
-  *[ ] Harm
-  *[ ] Stress
-  *[ ] Luck
-  *[ ] Experience
+*[x] Make Clocks a list per game
+  *[x] Harm
+  *[x] Stress
+  *[x] Luck
+  *[x] Experience
 
 ## Data
 
 
 ## Completed
+*[x] Use Move Sections rather than logos and mythos moves
