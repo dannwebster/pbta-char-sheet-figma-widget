@@ -58,11 +58,11 @@
         "characterMoveGroups": [
           {
             "type": "Spell-Slinger Moves",
-            "anchorMove": {
-              "name": "Spell-Slinger Luck Special",
-              "description": "When you spend Luck, the official council of wizards is going to poke their nose into your business."
-            },
             "additionalMoves": [
+              {
+                "name": "Spell-Slinger Luck Special",
+                "description": "When you spend Luck, the official council of wizards is going to poke their nose into your business."
+              },
               {
                 "name": "Combat Magic",
                 "attribute": "Occult",

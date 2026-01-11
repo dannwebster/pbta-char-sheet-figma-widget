@@ -55,11 +55,11 @@
         "characterMoveGroups": [
           {
             "type": "Expert Moves",
-            "anchorMove": {
-              "name": "Expert Luck Special",
-              "description": "When you spend Luck, you discover something happening now is related to something you were involved in years ago."
-            },
             "additionalMoves": [
+              {
+                "name": "Expert Luck Special",
+                "description": "When you spend Luck, you discover something happening now is related to something you were involved in years ago."
+              },
               {
                 "name": "I've Read About This Sort Of Thing",
                 "attribute": "Insight",
