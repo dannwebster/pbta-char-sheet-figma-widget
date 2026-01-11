@@ -25,9 +25,10 @@
 *[ ] Refactor Charts into the Game
 *[ ] make array values into checkboxes (for haven, tools and techniques, etc)
 *[ ] Make sections Optional
-  *[ ] Logos/Mythos
+  *[x] Logos/Mythos
     * BUG: Move Mythos/Logos chart into MythosAndLogos widget
   *[x] Contacts
+  *[ ] Charts
   *[ ] General Moves
 
 ## Data

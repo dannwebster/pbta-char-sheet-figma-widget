@@ -5,8 +5,8 @@
       "subtitle": "The Expert",
       "attributes": [
         { "name": "Presence", "value": 0 },
-        { "name": "Composure", "value": -1 },
-        { "name": "Perception", "value": 2 },
+        { "name": "Nerve", "value": -1 },
+        { "name": "Insight", "value": 2 },
         { "name": "Fortitude", "value": 1 },
         { "name": "Occult", "value": 1 }
       ],

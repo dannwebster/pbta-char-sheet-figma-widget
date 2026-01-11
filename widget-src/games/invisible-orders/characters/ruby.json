@@ -5,8 +5,8 @@
       "subtitle": "The Spell-Slinger",
       "attributes": [
         { "name": "Presence", "value": 1 },
-        { "name": "Composure", "value": 0 },
-        { "name": "Perception", "value": 1 },
+        { "name": "Nerve", "value": 0 },
+        { "name": "Insight", "value": 1 },
         { "name": "Fortitude", "value": -1 },
         { "name": "Occult", "value": 2 }
       ],

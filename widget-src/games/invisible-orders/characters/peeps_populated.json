@@ -9,11 +9,11 @@
           "value": 0
         },
         {
-          "name": "Composure",
+          "name": "Nerve",
           "value": -1
         },
         {
-          "name": "Perception",
+          "name": "Insight",
           "value": 2
         },
         {
@@ -61,9 +61,9 @@
             },
             "additionalMoves": [
               {
-                "name": "I’ve Read About This Sort Of Thing",
-                "attribute": "Perception",
-                "description": "Roll +Sharp instead of +Cool when you act under pressure.",
+                "name": "I've Read About This Sort Of Thing",
+                "attribute": "Insight",
+                "description": "Roll +Insight instead of +Nerve when you act under pressure.",
                 "picked": true
               },
               {

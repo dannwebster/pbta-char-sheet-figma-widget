@@ -13,10 +13,10 @@
         }
       }
     ],
-    "Composure": [
+    "Nerve": [
       {
         "name": "Act Under Pressure",
-        "description": "When you act under pressure, roll +Composure.",
+        "description": "When you act under pressure, roll +Nerve.",
         "outcomes": {
           "10+": "You do what you set out to do",
           "7-9": "You stumble, hesitate, or flinch: the Keeper will offer you a worse outcome, hard bargain, or ugly choice",
@@ -25,7 +25,7 @@
       },
       {
         "name": "Help Out",
-        "description": "When you help another hunter, roll +Composure.",
+        "description": "When you help another hunter, roll +Nerve.",
         "outcomes": {
           "10+": "They get +1 on their roll",
           "7-9": "They get +1 on their roll, but you expose yourself to danger, cost, or trouble",
@@ -33,10 +33,10 @@
         }
       }
     ],
-    "Perception": [
+    "Insight": [
       {
         "name": "Investigate a Mystery",
-        "description": "When you investigate a mystery, roll +Perception.",
+        "description": "When you investigate a mystery, roll +Insight.",
         "outcomes": {
           "10+": "Hold 2",
           "7-9": "Hold 1",
@@ -60,7 +60,7 @@
       },
       {
         "name": "Read a Bad Situation",
-        "description": "When you look around and read a bad situation, roll +Perception.",
+        "description": "When you look around and read a bad situation, roll +Insight.",
         "outcomes": {
           "10+": "Hold 3",
           "7-9": "Hold 1",
