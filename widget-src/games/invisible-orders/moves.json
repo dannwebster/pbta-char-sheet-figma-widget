@@ -5,7 +5,7 @@
     "Presence": [
       {
         "name": "Manipulate Someone",
-        "description": "When you manipulate someone, roll +Presence. On a hit, they'll do what you want if you promise them something they want.",
+        "description": "When you Manipulate Someone, roll +Presence. On a hit, they'll do what you want if you promise them something they want.",
         "outcomes": {
           "10+": "They'll do it if you promise them something they want",
           "7-9": "They'll do it, but only if you do what they ask right now",
@@ -16,7 +16,7 @@
     "Nerve": [
       {
         "name": "Act Under Pressure",
-        "description": "When you act under pressure, roll +Nerve.",
+        "description": "When you Act Under Pressure, roll +Nerve.",
         "outcomes": {
           "10+": "You do what you set out to do",
           "7-9": "You stumble, hesitate, or flinch: the Keeper will offer you a worse outcome, hard bargain, or ugly choice",
@@ -25,7 +25,7 @@
       },
       {
         "name": "Help Out",
-        "description": "When you help another hunter, roll +Nerve.",
+        "description": "When you Help Out another hunter, roll +Nerve.",
         "outcomes": {
           "10+": "They get +1 on their roll",
           "7-9": "They get +1 on their roll, but you expose yourself to danger, cost, or trouble",
@@ -36,7 +36,7 @@
     "Insight": [
       {
         "name": "Investigate a Mystery",
-        "description": "When you investigate a mystery, roll +Insight.",
+        "description": "When you Investigate A Mystery, roll +Insight.",
         "outcomes": {
           "10+": "Hold 2",
           "7-9": "Hold 1",
@@ -60,7 +60,7 @@
       },
       {
         "name": "Read a Bad Situation",
-        "description": "When you look around and read a bad situation, roll +Insight.",
+        "description": "When you look around and Read A Bad Situation, roll +Insight.",
         "outcomes": {
           "10+": "Hold 3",
           "7-9": "Hold 1",
@@ -85,7 +85,7 @@
     "Vigor": [
       {
         "name": "Necessary Violence",
-        "description": "When you get into a fight and use necessary violence, roll +Vigor.",
+        "description": "When you get into a fight and use Necessary Violence, roll +Vigor.",
         "outcomes": {
           "10+": "You and your allies inflict harm on (and suffer harm from) your enemies",
           "7-9": "You inflict harm but choose whether you suffer harm, you lose your weapon, or you have to hold back (i.e., don't inflict harm)",
@@ -94,7 +94,7 @@
       },
       {
         "name": "Protect Someone",
-        "description": "When you prevent harm to another person, roll +Vigor.",
+        "description": "When you Protect Someone, roll +Vigor.",
         "outcomes": {
           "10+": "You protect them okay, but you'll suffer some or all of the harm they were going to get",
           "7-9": "You protect them, but it's going to cost you: either you take all the harm, or you take little harm but also take -1 forward, or you suffer some other cost",
@@ -105,7 +105,7 @@
     "Occult": [
       {
         "name": "Use Magic",
-        "description": "When you use magic, say what you're trying to achieve and how you do the spell, then roll +Occult.",
+        "description": "When you Use Magic, say what you're trying to achieve and how you do the spell, then roll +Occult.",
         "outcomes": {
           "10+": "The magic works without issues: you do what you wanted",
           "7-9": "The magic works, but choose one: the effect is unstable or weak, it draws unwanted attention, or it has a problematic side effect",

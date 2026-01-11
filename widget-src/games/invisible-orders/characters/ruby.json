@@ -38,7 +38,7 @@
               {
                 "name": "Combat Magic",
                 "attribute": "Occult",
-                "description": "You have a few attack spells you can use as weapons. When you use these spells for necessary violence, roll +Weird instead of +Vigor. Sometimes the situation may require you to act under pressure to cast your spell without problems. Your combat spells can combine any of your base spells with any of your effects.",
+                "description": "You have a few attack spells you can use as weapons. When you use these spells for Necessary Violence, roll +Occult instead of +Vigor. Sometimes the situation may require you to Act Under Pressure to cast your spell without problems. Your combat spells can combine any of your base spells with any of your effects.",
                 "arrays": [
                   {
                     "id": "bases",
@@ -78,11 +78,11 @@
               },
               {
                 "name": "Practitioner",
-                "description": "Choose two effects available to you under use magic. Take +1 to use magic whenever you choose one of those effects."
+                "description": "Choose two effects available to you under Use Magic. Take +1 to Use Magic whenever you choose one of those effects."
               },
               {
                 "name": "Shield Spell",
-                "description": "When you protect someone, gain 2-armour against any harm that is transferred to you. This doesn't stack with your other armour, if any."
+                "description": "When you Protect Someone, gain 2-armour against any harm that is transferred to you. This doesn't stack with your other armour, if any."
               }
             ]
           }
