@@ -125,6 +125,7 @@ function pbta_character() {
   const [stressChecked, setStressChecked] = useSyncedState("stressChecked", Array(7).fill(false))
   const [luckChecked, setLuckChecked] = useSyncedState("luckChecked", Array(7).fill(false))
   const [experienceChecked, setExperienceChecked] = useSyncedState("experienceChecked", Array(5).fill(false))
+  const [showLevelUpPopup, setShowLevelUpPopup] = useSyncedState("showLevelUpPopup", false)
   const [harmSymbols, setHarmSymbols] = useSyncedState("harmSymbols", Array(7).fill(""))
   const [stressSymbols, setStressSymbols] = useSyncedState("stressSymbols", Array(7).fill(""))
   const [harmModifiers, setHarmModifiers] = useSyncedState("harmModifiers", Array(7).fill(""))
@@ -229,7 +230,17 @@ function pbta_character() {
     'harm': { state: harmChecked, setter: setHarmChecked, size: 7 },
     'stress': { state: stressChecked, setter: setStressChecked, size: 7 },
     'luck': { state: luckChecked, setter: setLuckChecked, size: 7 },
-    'experience': { state: experienceChecked, setter: setExperienceChecked, size: 5 }
+    'experience': {
+      state: experienceChecked,
+      setter: setExperienceChecked,
+      size: 5,
+      onCheckboxChange: (index: number, newState: boolean[]) => {
+        // Check if the 5th checkbox (index 4) was just checked
+        if (index === 4 && newState[4] === true) {
+          setShowLevelUpPopup(true)
+        }
+      }
+    }
   }
 
   // Fix corrupted clock states
@@ -1308,6 +1319,49 @@ function pbta_character() {
                 horizontalAlignItems="center"
             >
               <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Cancel</Text>
+            </AutoLayout>
+          </AutoLayout>
+        </AutoLayout>
+      )}
+
+      {/* Level Up Popup */}
+      {showLevelUpPopup && (
+        <AutoLayout
+            positioning="absolute"
+            x={300}
+            y={200}
+            width={900}
+            height={600}
+            fill="#CCFFCC"
+            stroke="#333333"
+            strokeWidth={3}
+            cornerRadius={8}
+            padding={24}
+            direction="vertical"
+            spacing={16}
+            verticalAlignItems="center"
+            horizontalAlignItems="center"
+            effect={[
+              {
+                type: 'drop-shadow',
+                color: { r: 0, g: 0, b: 0, a: 0.5 },
+                offset: { x: 0, y: 4 },
+                blur: 20,
+                spread: 0,
+              },
+            ]}
+        >
+          <AutoLayout direction="vertical" spacing={12} width="fill-parent" horizontalAlignItems="center" verticalAlignItems="center">
+            <Text fontSize={32} fontWeight={700}>Level Up!</Text>
+            <Text fontSize={20}>pick an improvement</Text>
+            <AutoLayout
+                fill="#333333"
+                padding={12}
+                cornerRadius={4}
+                onClick={() => setShowLevelUpPopup(false)}
+                horizontalAlignItems="center"
+            >
+              <Text fontSize={18} fontWeight={600} fill="#FFFFFF">OK</Text>
             </AutoLayout>
           </AutoLayout>
         </AutoLayout>

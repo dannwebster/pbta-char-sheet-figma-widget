@@ -18,10 +18,11 @@ interface ClockProps {
   clockDefinition: ClockDefinition
   clockState: boolean[]
   setClockState: (state: boolean[]) => void
+  onCheckboxChange?: (index: number, newState: boolean[]) => void
 }
 
 export function Clock(props: ClockProps) {
-  const { clockDefinition, clockState, setClockState } = props
+  const { clockDefinition, clockState, setClockState, onCheckboxChange } = props
   const shape = clockDefinition.shape || "circle"
   const cornerRadius = shape === "circle" ? 15 : 4
 
@@ -43,6 +44,9 @@ export function Clock(props: ClockProps) {
                 const newChecked = [...clockState]
                 newChecked[idx] = !newChecked[idx]
                 setClockState(newChecked)
+                if (onCheckboxChange) {
+                  onCheckboxChange(idx, newChecked)
+                }
               }}
           >
             {entry.icon && <Text fontSize={18} fill={clockState[idx] ? "#FFFFFF" : "#333333"}>{entry.icon}</Text>}

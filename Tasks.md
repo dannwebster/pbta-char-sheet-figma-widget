@@ -32,7 +32,6 @@
 *[ ] Refactor Export Luck Special into Additional Moves, so that there is no anchormove/additionalmove
   *[ ] for ruby.json
   *[ ] for peeps.json
-*[ ] add combat magic options into Ruby's equipment lest
 *[ ] Remove "Gear Options" in peeps.json
 *[ ] Replace Composure with Nerve
   *[ ] Make sure Composure or Cool doesnt show up in any move (Nerve instead)
@@ -41,6 +40,7 @@
 
 
 ## Completed
+*[x] add combat magic options into Ruby's equipment lest
 *[x] make MultiAttributes Empty/nullableThe error indicates that the BasicMoves component is trying to access the name property of an undefined move. This is likely happening because invisible-orders and monster-of-the-week have empty MultiAttributeMoves arrays.
 *[x] Widen the Attribute names
 *[x] Make Clocks a list per game

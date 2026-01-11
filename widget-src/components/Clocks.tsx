@@ -17,7 +17,7 @@ interface ClockDefinition {
 
 interface ClocksProps {
   clockDefinitions: ClockDefinition[]
-  clocks: Record<string, { state: boolean[], setter: (state: boolean[]) => void, size: number }>
+  clocks: Record<string, { state: boolean[], setter: (state: boolean[]) => void, size: number, onCheckboxChange?: (index: number, newState: boolean[]) => void }>
 }
 
 export function Clocks(props: ClocksProps) {
@@ -38,6 +38,7 @@ export function Clocks(props: ClocksProps) {
               clockDefinition={clockDef}
               clockState={clockData.state}
               setClockState={clockData.setter}
+              onCheckboxChange={clockData.onCheckboxChange}
             />
           )
         })}

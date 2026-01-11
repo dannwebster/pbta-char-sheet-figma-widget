@@ -92,41 +92,6 @@
                     ]
                   }
                 ]
-              },
-              {
-                "name": "Gear Options",
-                "description": "Options shown on the playbook sheet.",
-                "arrays": [
-                  {
-                    "id": "monster_slaying_weapons",
-                    "title": "Monster-slaying Weapons (pick three)",
-                    "values": [
-                      "Mallet and wooden stakes (3 harm, intimate, slow, wooden)",
-                      "Silver sword (2 harm, hand, messy, silver) [PICKED]",
-                      "Cold iron sword (2 harm, hand, messy, iron)",
-                      "Blessed knife (2 harm, hand, holy)",
-                      "Magical dagger (2 harm, hand, magic)",
-                      "Juju bag (1 harm, far, magic)",
-                      "Flamethrower (3 harm, close, fire, heavy, volatile)",
-                      "Magnum (3 harm, close, reload, loud)",
-                      "Shotgun (3 harm, close, messy, loud)"
-                    ]
-                  },
-                  {
-                    "id": "nonlethal_gear_options",
-                    "title": "Non-lethal Gear Options",
-                    "values": [
-                      "Furious struggle (0-harm hand, 1-armour)",
-                      "Martial arts (1-harm intimate/hand) [PICKED]",
-                      "Martial arts master (2-harm intimate/hand, 1-armour)",
-                      "Traps (1-harm hand/close/far, slow capture; elaborate traps might do 2–3 harm)",
-                      "Stun-gun (1-harm hand, stun recharge)",
-                      "Hockey stick/bat/etc. (2-harm hand)",
-                      "Slingshot (2-harm close, reload)",
-                      "Net or blanket (0-harm hand/close, bulky capture)"
-                    ]
-                  }
-                ]
               }
             ]
           }
