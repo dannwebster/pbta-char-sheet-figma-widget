@@ -1,0 +1,116 @@
+{
+  "characters": [
+    {
+      "name": "Ruby Braithwaite",
+      "subtitle": "The Spell-Slinger",
+      "attributes": [
+        {
+          "name": "Presence",
+          "value": 1
+        },
+        {
+          "name": "Composure",
+          "value": 0
+        },
+        {
+          "name": "Perception",
+          "value": 1
+        },
+        {
+          "name": "Fortitude",
+          "value": -1
+        },
+        {
+          "name": "Occult",
+          "value": 2
+        }
+      ],
+      "equipment": [
+        {
+          "name": "Silver sword",
+          "type": "melee",
+          "harm": 2,
+          "tags": "hand, messy, silver",
+          "picked": true
+        },
+        {
+          "name": "Martial arts",
+          "type": "training",
+          "harm": 1,
+          "tags": "intimate, hand",
+          "picked": true
+        },
+        {
+          "name": "Martial arts",
+          "type": "training",
+          "harm": 1,
+          "tags": "intimate, hand",
+          "picked": true
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": [
+          {
+            "type": "Luck Special",
+            "anchorMove": {
+              "name": "Luck Special",
+              "description": "When you spend Luck, you discover something happening now is related to something you were involved in years ago."
+            },
+            "additionalMoves": []
+          },
+          {
+            "type": "Haven",
+            "anchorMove": {
+              "name": "Haven",
+              "description": "You have a haven, a safe place to work (pick three)."
+            },
+            "additionalMoves": [
+              {
+                "name": "Lore Library"
+              },
+              {
+                "name": "Mystical Library"
+              },
+              {
+                "name": "Protection Spells"
+              },
+              {
+                "name": "Armory"
+              },
+              {
+                "name": "Infirmary"
+              },
+              {
+                "name": "Workshop"
+              },
+              {
+                "name": "Oubliette"
+              },
+              {
+                "name": "Panic Room"
+              },
+              {
+                "name": "Magical Laboratory"
+              }
+            ]
+          },
+          {
+            "type": "Moves",
+            "additionalMoves": [
+              {
+                "name": "I’ve Read About This Sort Of Thing",
+                "description": "Roll +Sharp instead of +Cool when you act under pressure.",
+                "picked": true
+              },
+              {
+                "name": "Precise Strike",
+                "description": "When you inflict harm on a monster, you can aim for a weak spot. Roll +Tough.",
+                "picked": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

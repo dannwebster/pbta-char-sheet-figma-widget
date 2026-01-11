@@ -226,14 +226,5 @@
         { "modifier": "" }
       ]
     }
-  ],
-  "ContactMove": {
-    "name": "Contact an Ally",
-    "description": "When you contact an ally for help, roll +their relationship rating.",
-    "outcomes": {
-      "10+": "They're available and helpful",
-      "7-9": "They're available, but choose one: they want something in return, they're not quite as helpful as you'd like, or their help comes at an awkward time",
-      "6-": "They can't or won't help right now"
-    }
-  }
+  ]
 }

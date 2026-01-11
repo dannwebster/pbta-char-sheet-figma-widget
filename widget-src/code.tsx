@@ -748,10 +748,10 @@ function pbta_character() {
             ))}
           </AutoLayout>
           <AutoLayout direction="vertical" spacing={8}>
-            {movesData.MultiAttributeMoves.map((section, sectionIdx) => (
+            {movesData.MultiAttributeMoves?.map((section, sectionIdx) => (
               <AutoLayout key={sectionIdx} direction="vertical" spacing={8} padding={12} fill="#FFFFFF" cornerRadius={8}>
                 <Text fontSize={24} fontWeight={700}>{section.Name}</Text>
-                {section.Moves.map((move, idx) => (
+                {section.Moves?.map((move, idx) => (
                   <AutoLayout
                       key={idx}
                       fill="#E6E6E6"

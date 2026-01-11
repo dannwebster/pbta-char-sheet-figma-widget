@@ -52,61 +52,65 @@ export function BasicMoves(props) {
 
           {/* Third row: Global Moves, Mythos/Logos Moves, Clock Moves */}
           <AutoLayout direction="horizontal" spacing={12} width="fill-parent">
-            {/* Global Moves */}
-            <AutoLayout
-                direction="vertical"
-                width="fill-parent"
-                fill="#F5F5F5"
-                stroke="#333333"
-                strokeWidth={2}
-                padding={16}
-                cornerRadius={8}
-                spacing={12}
-            >
-              <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
-                Global Moves
-              </Text>
-              {movesData.MultiAttributeMoves.find(section => section.Name === "Global Moves")?.Moves.map((move, idx) => {
-                const section = movesData.MultiAttributeMoves.find(s => s.Name === "Global Moves")
-                return (
-                  <MoveDescriptor
-                    key={idx}
-                    move={move}
-                    onRollClick={() => {
-                      setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
-                    }}
-                  />
-                )
-              })}
-            </AutoLayout>
+            {/* Global Moves - only render if section exists */}
+            {movesData.MultiAttributeMoves?.find(section => section.Name === "Global Moves") && (
+              <AutoLayout
+                  direction="vertical"
+                  width="fill-parent"
+                  fill="#F5F5F5"
+                  stroke="#333333"
+                  strokeWidth={2}
+                  padding={16}
+                  cornerRadius={8}
+                  spacing={12}
+              >
+                <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                  Global Moves
+                </Text>
+                {movesData.MultiAttributeMoves.find(section => section.Name === "Global Moves")?.Moves?.map((move, idx) => {
+                  const section = movesData.MultiAttributeMoves.find(s => s.Name === "Global Moves")
+                  return (
+                    <MoveDescriptor
+                      key={idx}
+                      move={move}
+                      onRollClick={() => {
+                        setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
+                      }}
+                    />
+                  )
+                })}
+              </AutoLayout>
+            )}
 
-            {/* Mythos/Logos Moves */}
-            <AutoLayout
-                direction="vertical"
-                width="fill-parent"
-                fill="#F5F5F5"
-                stroke="#333333"
-                strokeWidth={2}
-                padding={16}
-                cornerRadius={8}
-                spacing={12}
-            >
-              <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
-                Mythos/Logos Moves
-              </Text>
-              {movesData.MultiAttributeMoves.find(section => section.Name === "Mythos/Logos Moves")?.Moves.map((move, idx) => {
-                const section = movesData.MultiAttributeMoves.find(s => s.Name === "Mythos/Logos Moves")
-                return (
-                  <MoveDescriptor
-                    key={idx}
-                    move={move}
-                    onRollClick={() => {
-                      setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
-                    }}
-                  />
-                )
-              })}
-            </AutoLayout>
+            {/* Mythos/Logos Moves - only render if section exists */}
+            {movesData.MultiAttributeMoves?.find(section => section.Name === "Mythos/Logos Moves") && (
+              <AutoLayout
+                  direction="vertical"
+                  width="fill-parent"
+                  fill="#F5F5F5"
+                  stroke="#333333"
+                  strokeWidth={2}
+                  padding={16}
+                  cornerRadius={8}
+                  spacing={12}
+              >
+                <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                  Mythos/Logos Moves
+                </Text>
+                {movesData.MultiAttributeMoves.find(section => section.Name === "Mythos/Logos Moves")?.Moves?.map((move, idx) => {
+                  const section = movesData.MultiAttributeMoves.find(s => s.Name === "Mythos/Logos Moves")
+                  return (
+                    <MoveDescriptor
+                      key={idx}
+                      move={move}
+                      onRollClick={() => {
+                        setPendingMultiAttributeMove({ move: move, attributes: section.Attributes })
+                      }}
+                    />
+                  )
+                })}
+              </AutoLayout>
+            )}
 
             {/* Clock Moves */}
             <AutoLayout
@@ -164,29 +168,31 @@ export function BasicMoves(props) {
             </AutoLayout>
           </AutoLayout>
 
-          {/* Fourth row: Contact Moves */}
-          <AutoLayout direction="horizontal" spacing={12} width="fill-parent">
-            <AutoLayout
-                direction="vertical"
-                width="fill-parent"
-                fill="#F5F5F5"
-                stroke="#333333"
-                strokeWidth={2}
-                padding={16}
-                cornerRadius={8}
-                spacing={12}
-            >
-              <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
-                Contact Moves
-              </Text>
-              <MoveDescriptor
-                move={movesData.ContactMove}
-                onRollClick={() => {
-                  setPendingRoll({ modifier: 0, modifierName: "+Rating", move: movesData.ContactMove })
-                }}
-              />
+          {/* Fourth row: Contact Moves - only render if ContactMove exists */}
+          {movesData.ContactMove && (
+            <AutoLayout direction="horizontal" spacing={12} width="fill-parent">
+              <AutoLayout
+                  direction="vertical"
+                  width="fill-parent"
+                  fill="#F5F5F5"
+                  stroke="#333333"
+                  strokeWidth={2}
+                  padding={16}
+                  cornerRadius={8}
+                  spacing={12}
+              >
+                <Text fontSize={27} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                  Contact Moves
+                </Text>
+                <MoveDescriptor
+                  move={movesData.ContactMove}
+                  onRollClick={() => {
+                    setPendingRoll({ modifier: 0, modifierName: "+Rating", move: movesData.ContactMove })
+                  }}
+                />
+              </AutoLayout>
             </AutoLayout>
-          </AutoLayout>
+          )}
         </AutoLayout>
   )
 
