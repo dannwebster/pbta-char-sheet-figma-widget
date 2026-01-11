@@ -16,6 +16,7 @@ export function MythosAndLogos(props) {
     mythosFade,
     setMythosFade,
     mythosValue,
+    setMythosValue,
     logosName,
     setLogosName,
     logosConcept,
@@ -27,12 +28,76 @@ export function MythosAndLogos(props) {
     logosCrack,
     setLogosCrack,
     logosValue,
+    setLogosValue,
+    selectedArchetype,
+    setSelectedArchetype,
     setPendingRoll,
     STANDARD_OUTCOMES
   } = props
 
+  // Archetype selection
+  const archetypes = {
+    "Avatar": { mythos: 4, logos: 0 },
+    "Legendary": { mythos: 3, logos: 1 },
+    "Borderliner": { mythos: 2, logos: 2 },
+    "Touched": { mythos: 1, logos: 3 },
+    "Sleeper": { mythos: 0, logos: 4 }
+  }
+
   return (
-    <AutoLayout direction="horizontal" spacing={16} padding={16} width="fill-parent" fill="#FFFFFF">
+    <AutoLayout direction="vertical" spacing={8} width="fill-parent">
+      {/* Archetype Selection Table */}
+      <AutoLayout direction="vertical" spacing={8} padding={16} width="fill-parent" fill="#FFFFFF">
+        <AutoLayout direction="horizontal" spacing={8} width="fill-parent">
+          <Text fontSize={16} fontWeight={700} width={100}></Text>
+          {Object.keys(archetypes).map(archetype => (
+            <AutoLayout
+                key={archetype}
+                fill={selectedArchetype === archetype ? "#333333" : "#E6E6E6"}
+                padding={8}
+                cornerRadius={4}
+                width="fill-parent"
+                horizontalAlignItems="center"
+                onClick={() => {
+                  setSelectedArchetype(archetype)
+                  setMythosValue(archetypes[archetype].mythos)
+                  setLogosValue(archetypes[archetype].logos)
+                }}
+            >
+              <Text fontSize={16} fontWeight={600} fill={selectedArchetype === archetype ? "#FFFFFF" : "#333333"}>{archetype}</Text>
+            </AutoLayout>
+          ))}
+        </AutoLayout>
+        <AutoLayout direction="horizontal" spacing={8} width="fill-parent">
+          <Text fontSize={16} fontWeight={700} width={100}>Mythos</Text>
+          {Object.keys(archetypes).map(archetype => (
+            <AutoLayout
+                key={archetype}
+                padding={8}
+                width="fill-parent"
+                horizontalAlignItems="center"
+            >
+              <Text fontSize={16}>+{archetypes[archetype].mythos}</Text>
+            </AutoLayout>
+          ))}
+        </AutoLayout>
+        <AutoLayout direction="horizontal" spacing={8} width="fill-parent">
+          <Text fontSize={16} fontWeight={700} width={100}>Logos</Text>
+          {Object.keys(archetypes).map(archetype => (
+            <AutoLayout
+                key={archetype}
+                padding={8}
+                width="fill-parent"
+                horizontalAlignItems="center"
+            >
+              <Text fontSize={16}>+{archetypes[archetype].logos}</Text>
+            </AutoLayout>
+          ))}
+        </AutoLayout>
+      </AutoLayout>
+
+      {/* Mythos and Logos Fields */}
+      <AutoLayout direction="horizontal" spacing={16} padding={16} width="fill-parent" fill="#FFFFFF">
       <AutoLayout direction="vertical" spacing={8} width="fill-parent">
         <AutoLayout
             onClick={() => {
@@ -254,6 +319,7 @@ export function MythosAndLogos(props) {
             ))}
           </AutoLayout>
         </AutoLayout>
+      </AutoLayout>
       </AutoLayout>
     </AutoLayout>
   )

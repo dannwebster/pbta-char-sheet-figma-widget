@@ -49,13 +49,6 @@ function pbta_character() {
   const [selectedTooltipMove, setSelectedTooltipMove] = useSyncedState("selectedTooltipMove", null)
 
   // Archetype selection
-  const archetypes = {
-    "Avatar": { mythos: 4, logos: 0 },
-    "Legendary": { mythos: 3, logos: 1 },
-    "Borderliner": { mythos: 2, logos: 2 },
-    "Touched": { mythos: 1, logos: 3 },
-    "Sleeper": { mythos: 0, logos: 4 }
-  }
   const [selectedArchetype, setSelectedArchetype] = useSyncedState("selectedArchetype", "Borderliner")
 
   // Mythos and Logos fields
@@ -64,13 +57,13 @@ function pbta_character() {
   const [mythosQuestion, setMythosQuestion] = useSyncedState("mythosQuestion", "")
   const [mythosAttention, setMythosAttention] = useSyncedState("mythosAttention", [false, false, false, false, false])
   const [mythosFade, setMythosFade] = useSyncedState("mythosFade", [false, false, false])
-  const [mythosValue, setMythosValue] = useSyncedState("mythosValue", archetypes["Borderliner"].mythos)
+  const [mythosValue, setMythosValue] = useSyncedState("mythosValue", 2)
   const [logosName, setLogosName] = useSyncedState("logosName", "")
   const [logosConcept, setLogosConcept] = useSyncedState("logosConcept", "")
   const [logosStatement, setLogosStatement] = useSyncedState("logosStatement", "")
   const [logosAttention, setLogosAttention] = useSyncedState("logosAttention", [false, false, false, false, false])
   const [logosCrack, setLogosCrack] = useSyncedState("logosCrack", [false, false, false])
-  const [logosValue, setLogosValue] = useSyncedState("logosValue", archetypes["Borderliner"].logos)
+  const [logosValue, setLogosValue] = useSyncedState("logosValue", 2)
 
   // Helper function to get attribute value from any source
   const getAttributeValue = (attrName: string): number => {
@@ -528,54 +521,6 @@ function pbta_character() {
             <Text fontSize={28} fill="#666666">{characterData.characters.find(c => c.name === characterName)?.subtitle || null}</Text>
           </AutoLayout>
         </AutoLayout>
-        <AutoLayout direction="vertical" spacing={8} padding={16} width="fill-parent" fill="#FFFFFF">
-          <AutoLayout direction="horizontal" spacing={8} width="fill-parent">
-            <Text fontSize={16} fontWeight={700} width={100}></Text>
-            {Object.keys(archetypes).map(archetype => (
-              <AutoLayout
-                  key={archetype}
-                  fill={selectedArchetype === archetype ? "#333333" : "#E6E6E6"}
-                  padding={8}
-                  cornerRadius={4}
-                  width="fill-parent"
-                  horizontalAlignItems="center"
-                  onClick={() => {
-                    setSelectedArchetype(archetype)
-                    setMythosValue(archetypes[archetype].mythos)
-                    setLogosValue(archetypes[archetype].logos)
-                  }}
-              >
-                <Text fontSize={16} fontWeight={600} fill={selectedArchetype === archetype ? "#FFFFFF" : "#333333"}>{archetype}</Text>
-              </AutoLayout>
-            ))}
-          </AutoLayout>
-          <AutoLayout direction="horizontal" spacing={8} width="fill-parent">
-            <Text fontSize={16} fontWeight={700} width={100}>Mythos</Text>
-            {Object.keys(archetypes).map(archetype => (
-              <AutoLayout
-                  key={archetype}
-                  padding={8}
-                  width="fill-parent"
-                  horizontalAlignItems="center"
-              >
-                <Text fontSize={16}>+{archetypes[archetype].mythos}</Text>
-              </AutoLayout>
-            ))}
-          </AutoLayout>
-          <AutoLayout direction="horizontal" spacing={8} width="fill-parent">
-            <Text fontSize={16} fontWeight={700} width={100}>Logos</Text>
-            {Object.keys(archetypes).map(archetype => (
-              <AutoLayout
-                  key={archetype}
-                  padding={8}
-                  width="fill-parent"
-                  horizontalAlignItems="center"
-              >
-                <Text fontSize={16}>+{archetypes[archetype].logos}</Text>
-              </AutoLayout>
-            ))}
-          </AutoLayout>
-        </AutoLayout>
         {movesData.usesMythosAndLogos && (
           <MythosAndLogos
             mythosName={mythosName}
@@ -589,6 +534,7 @@ function pbta_character() {
             mythosFade={mythosFade}
             setMythosFade={setMythosFade}
             mythosValue={mythosValue}
+            setMythosValue={setMythosValue}
             logosName={logosName}
             setLogosName={setLogosName}
             logosConcept={logosConcept}
@@ -600,6 +546,9 @@ function pbta_character() {
             logosCrack={logosCrack}
             setLogosCrack={setLogosCrack}
             logosValue={logosValue}
+            setLogosValue={setLogosValue}
+            selectedArchetype={selectedArchetype}
+            setSelectedArchetype={setSelectedArchetype}
             setPendingRoll={setPendingRoll}
             STANDARD_OUTCOMES={STANDARD_OUTCOMES}
           />
