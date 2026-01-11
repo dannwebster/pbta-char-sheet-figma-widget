@@ -12,6 +12,8 @@ import { Clocks } from './components/Clocks'
 import { Contacts } from './components/Contacts'
 import { MythosAndLogos } from './components/MythosAndLogos'
 import { Dialog } from './components/Dialog'
+import { GameSelector } from './components/GameSelector'
+import { CharacterSelector } from './components/CharacterSelector'
 
 function pbta_character() {
   // Game selection state
@@ -133,6 +135,10 @@ function pbta_character() {
   const [showLevelUpPopup, setShowLevelUpPopup] = useSyncedState("showLevelUpPopup", false)
   const [showMarkExperiencePopup, setShowMarkExperiencePopup] = useSyncedState("showMarkExperiencePopup", false)
   const [pendingExperienceRollIndex, setPendingExperienceRollIndex] = useSyncedState("pendingExperienceRollIndex", -1)
+  const [showGameSelector, setShowGameSelector] = useSyncedState("showGameSelector", false)
+  const [pendingGameSelection, setPendingGameSelection] = useSyncedState("pendingGameSelection", selectedGame)
+  const [showCharacterSelector, setShowCharacterSelector] = useSyncedState("showCharacterSelector", false)
+  const [pendingCharacterSelection, setPendingCharacterSelection] = useSyncedState("pendingCharacterSelection", characterName)
   const [harmSymbols, setHarmSymbols] = useSyncedState("harmSymbols", Array(7).fill(""))
   const [stressSymbols, setStressSymbols] = useSyncedState("stressSymbols", Array(7).fill(""))
   const [harmModifiers, setHarmModifiers] = useSyncedState("harmModifiers", Array(7).fill(""))
@@ -499,24 +505,13 @@ function pbta_character() {
             <Text fontSize={32} fontWeight={700}>{attributesLocked ? "🔒" : "🔓"}</Text>
           </AutoLayout>
           <AutoLayout
-              fill="#333333"
+              fill={attributesLocked ? "#AA0000" : "#008800"}
               padding={12}
               cornerRadius={8}
               onClick={() => {
-                const availableGames = getAvailableGames(GAMES)
-                const currentIndex = availableGames.findIndex(g => g.id === selectedGame)
-                const nextIndex = (currentIndex + 1) % availableGames.length
-                const newGame = availableGames[nextIndex].id
-                setSelectedGame(newGame)
-                // Reset character to first character of new game
-                const newGameData = getGameData(GAMES, newGame)
-                if (newGameData.characters.length > 0) {
-                  setCharacterName(newGameData.characters[0].name)
-                  loadEquipmentFromCharacter(newGameData.characters[0].name)
-                  loadContactsFromCharacter(newGameData.characters[0].name)
-                  loadAttributesFromCharacter(newGameData.characters[0].name)
-                  loadConceptFromCharacter(newGameData.characters[0].name)
-                  loadLookFromCharacter(newGameData.characters[0].name)
+                if (!attributesLocked) {
+                  setPendingGameSelection(selectedGame)
+                  setShowGameSelector(true)
                 }
               }}
               horizontalAlignItems="center"
@@ -524,19 +519,14 @@ function pbta_character() {
             <Text fontSize={24} fontWeight={700} fill="#FFFFFF">Select Game</Text>
           </AutoLayout>
           <AutoLayout
-              fill="#333333"
+              fill={attributesLocked ? "#AA0000" : "#008800"}
               padding={12}
               cornerRadius={8}
               onClick={() => {
-                const currentIndex = characterData.characters.findIndex(c => c.name === characterName)
-                const nextIndex = (currentIndex + 1) % characterData.characters.length
-                const newCharacterName = characterData.characters[nextIndex].name
-                setCharacterName(newCharacterName)
-                loadEquipmentFromCharacter(newCharacterName)
-                loadContactsFromCharacter(newCharacterName)
-                loadAttributesFromCharacter(newCharacterName)
-                loadConceptFromCharacter(newCharacterName)
-                loadLookFromCharacter(newCharacterName)
+                if (!attributesLocked) {
+                  setPendingCharacterSelection(characterName)
+                  setShowCharacterSelector(true)
+                }
               }}
               horizontalAlignItems="center"
           >
@@ -1437,6 +1427,57 @@ function pbta_character() {
               }
             }
           ]}
+        />
+      )}
+
+      {/* Game Selector */}
+      {showGameSelector && (
+        <GameSelector
+          availableGames={getAvailableGames(GAMES)}
+          selectedGame={pendingGameSelection}
+          onSelect={(gameId) => setPendingGameSelection(gameId)}
+          onCancel={() => {
+            setShowGameSelector(false)
+            setPendingGameSelection(selectedGame)
+          }}
+          onConfirm={() => {
+            const newGame = pendingGameSelection
+            setSelectedGame(newGame)
+            // Reset character to first character of new game
+            const newGameData = getGameData(GAMES, newGame)
+            if (newGameData.characters.length > 0) {
+              setCharacterName(newGameData.characters[0].name)
+              loadEquipmentFromCharacter(newGameData.characters[0].name)
+              loadContactsFromCharacter(newGameData.characters[0].name)
+              loadAttributesFromCharacter(newGameData.characters[0].name)
+              loadConceptFromCharacter(newGameData.characters[0].name)
+              loadLookFromCharacter(newGameData.characters[0].name)
+            }
+            setShowGameSelector(false)
+          }}
+        />
+      )}
+
+      {/* Character Selector */}
+      {showCharacterSelector && (
+        <CharacterSelector
+          availableCharacters={characterData.characters}
+          selectedCharacter={pendingCharacterSelection}
+          onSelect={(characterName) => setPendingCharacterSelection(characterName)}
+          onCancel={() => {
+            setShowCharacterSelector(false)
+            setPendingCharacterSelection(characterName)
+          }}
+          onConfirm={() => {
+            const newCharacterName = pendingCharacterSelection
+            setCharacterName(newCharacterName)
+            loadEquipmentFromCharacter(newCharacterName)
+            loadContactsFromCharacter(newCharacterName)
+            loadAttributesFromCharacter(newCharacterName)
+            loadConceptFromCharacter(newCharacterName)
+            loadLookFromCharacter(newCharacterName)
+            setShowCharacterSelector(false)
+          }}
         />
       )}
       </AutoLayout>
