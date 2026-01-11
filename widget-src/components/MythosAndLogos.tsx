@@ -113,7 +113,7 @@ export function MythosAndLogos(props) {
             cornerRadius={4}
             horizontalAlignItems="start"
             spacing={6}
-            width={150}
+            width={188}
         >
           <Frame width={27} height={27} fill="#FFFFFF" cornerRadius={4}>
             <AutoLayout
@@ -224,7 +224,7 @@ export function MythosAndLogos(props) {
             cornerRadius={4}
             horizontalAlignItems="start"
             spacing={6}
-            width={150}
+            width={188}
         >
           <Frame width={27} height={27} fill="#FFFFFF" cornerRadius={4}>
             <AutoLayout
