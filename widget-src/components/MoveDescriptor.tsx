@@ -68,15 +68,6 @@ export function MoveDescriptor(props) {
           ))}
         </AutoLayout>
       ))}
-      {move.hold && move.hold.length > 0 && (
-        <AutoLayout direction="vertical" spacing={3} width="fill-parent">
-          {move.hold.map((option, optIdx) => (
-            <Text key={optIdx} fontSize={19} width="fill-parent">
-              • {option}
-            </Text>
-          ))}
-        </AutoLayout>
-      )}
     </AutoLayout>
   )
 }

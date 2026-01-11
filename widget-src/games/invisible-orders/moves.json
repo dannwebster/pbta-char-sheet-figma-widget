@@ -40,14 +40,20 @@
           "7-9": "Hold 1",
           "6-": "Hold 1, but you reveal some information to the monster or whoever you are questioning"
         },
-        "hold": [
-          "What happened here?",
-          "What sort of creature is it?",
-          "What can it do?",
-          "What can hurt it?",
-          "Where did it go?",
-          "What was it going to do?",
-          "What is being concealed here?"
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "What happened here?",
+              "What sort of creature is it?",
+              "What can it do?",
+              "What can hurt it?",
+              "Where did it go?",
+              "What was it going to do?",
+              "What is being concealed here?"
+            ]
+          }
         ]
       },
       {
@@ -58,13 +64,19 @@
           "7-9": "Hold 1",
           "6-": "The Keeper will tell you what trouble you're walking into"
         },
-        "hold": [
-          "What's my best way in?",
-          "What's my best way out?",
-          "Are there any dangers we haven't noticed?",
-          "What's the biggest threat?",
-          "What's most vulnerable to me?",
-          "What's the best way to protect the victims?"
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "What's my best way in?",
+              "What's my best way out?",
+              "Are there any dangers we haven't noticed?",
+              "What's the biggest threat?",
+              "What's most vulnerable to me?",
+              "What's the best way to protect the victims?"
+            ]
+          }
         ]
       }
     ],

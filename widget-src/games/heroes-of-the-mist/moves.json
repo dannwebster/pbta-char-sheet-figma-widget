@@ -10,10 +10,16 @@
           "7-9": "Choose 1:",
           "6-": "You fail to accomplish your goal, and take Harm or Stress as established"
         },
-        "hold": [
-          "You manage to achieve your goal, e.g., take something they hold.",
-          "You get them good, giving your opponent harm as established by your attacks",
-          "You block, dodge, or counter their best attempts.(If you don't choose this, they will do Harm to you as established)."
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "You manage to achieve your goal, e.g., take something they hold.",
+              "You get them good, giving your opponent harm as established by your attacks",
+              "You block, dodge, or counter their best attempts.(If you don't choose this, they will do Harm to you as established)."
+            ]
+          }
         ]
       },
       {
@@ -25,12 +31,18 @@
           "7-9": "Choose 1:",
           "6-": "You fail to hit them and, and take Harm or Stress as established"
         },
-        "hold": [
-          "You take cover or secure a superior position. If you don't choose this, they can give you Harm",
-          "You get them good (+1 Harm).",
-          "You control the collateral damage.",
-          "You hold the target's attention, if possible.",
-          "You gain the upper hand. Take 1 Juice."
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "You take cover or secure a superior position. If you don't choose this, they can give you Harm",
+              "You get them good (+1 Harm).",
+              "You control the collateral damage.",
+              "You hold the target's attention, if possible.",
+              "You gain the upper hand. Take 1 Juice."
+            ]
+          }
         ]
       }
     ],
@@ -44,10 +56,16 @@
           "7-9": "As above, but it's complicated. The MC chooses 1:",
           "6-": "You are noticed, but still have a chance to escape"
         },
-        "hold": [
-          "Someone unimportant noticed you, but that just made them important, right?",
-          "You are perceived only by a secondary sense (someone picks up your scent while you're stalking them; you're seen whispering a message but the message is not heard).",
-          "You must leave something important behind or be discovered"
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "Someone unimportant noticed you, but that just made them important, right?",
+              "You are perceived only by a secondary sense (someone picks up your scent while you're stalking them; you're seen whispering a message but the message is not heard).",
+              "You must leave something important behind or be discovered"
+            ]
+          }
         ]
       },
       {
@@ -59,10 +77,16 @@
           "7-9": "You deal damage but lose your position; you must move to take another shot.",
           "6-": "You miss and the MC makes a move against you"
         },
-        "hold": [
-          "You keep your position for another shot",
-          "You create an advantage. Take 1 Juice",
-          "Do 1 more harm"
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "You keep your position for another shot",
+              "You create an advantage. Take 1 Juice",
+              "Do 1 more harm"
+            ]
+          }
         ]
       }
     ],
@@ -76,10 +100,16 @@
           "7-9": "Hold 1",
           "6-": "The original target takes harm as established, and your attempts backfires. You take -1 forward, 1 Harm, or 1 Stress, or the target takes 1 more Harm or Stress"
         },
-        "hold": [
-          "Redirect an attack to yourself",
-          "Reduce the Harm or Stress of the attack by 1",
-          "Create an advantage. Create 1 Juice"
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "Redirect an attack to yourself",
+              "Reduce the Harm or Stress of the attack by 1",
+              "Create an advantage. Create 1 Juice"
+            ]
+          }
         ]
       },
       {
@@ -113,12 +143,18 @@
           "7-9": "Hold 1",
           "6-": "Hold 1, but the target becomes hostile, or the MC will answer give you an answer that you wish wasn't true"
         },
-        "hold": [
-          "What do you or an associate want?",
-          "What do you or an associate plan to do?",
-          "What are you or an associate hiding?",
-          "What is you or an associate's greatest power?",
-          "What is you or an associate's greatest weakness"
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "What do you or an associate want?",
+              "What do you or an associate plan to do?",
+              "What are you or an associate hiding?",
+              "What is you or an associate's greatest power?",
+              "What is you or an associate's greatest weakness"
+            ]
+          }
         ]
       }
     ],
@@ -132,16 +168,22 @@
           "7-9": "Hold 1. Hold can be spent 1-for-1 to ask Keeper one of the following questions",
           "6-": "The MC will give you an answer you don't want to hear."
         },
-        "hold": [
-          "Who should I next talk?",
-          "Is there a pattern here that's important?",
-          "What is being concealed here?",
-          "Was a Rift involved?",
-          "What happened here?",
-          "What are it's powers?",
-          "What are it's weaknesses?",
-          "Where did it go?",
-          "What was it going to do?"
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "Who should I next talk?",
+              "Is there a pattern here that's important?",
+              "What is being concealed here?",
+              "Was a Rift involved?",
+              "What happened here?",
+              "What are it's powers?",
+              "What are it's weaknesses?",
+              "Where did it go?",
+              "What was it going to do?"
+            ]
+          }
         ]
       },
       {
@@ -153,13 +195,19 @@
           "7-9": "Hold 1",
           "6-": "Hold 1, and the MC will give you an answer you don't want to hear."
         },
-        "hold": [
-          "What's my best way in?",
-          "What's my best way out?",
-          "Are there any dangers we haven't noticed?",
-          "What's the biggest threat?",
-          "What's most vulnerable to me?",
-          "What's the best way to protect the Victims?"
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "What's my best way in?",
+              "What's my best way out?",
+              "Are there any dangers we haven't noticed?",
+              "What's the biggest threat?",
+              "What's most vulnerable to me?",
+              "What's the best way to protect the Victims?"
+            ]
+          }
         ]
       }
     ],
@@ -201,11 +249,17 @@
             "7-9": "Take 1 Juice",
             "6-": "It backfires. You take -1 forward, 1 Harm, or 1 Stress"
           },
-          "hold": [
-            "Give a +1 forward to yourself or one of your Crew",
-            "Advance a Clock",
-            "Roll back a Clock",
-            "Inflict 1 Stress on a target"
+          "arrays": [
+            {
+              "id": "hold",
+              "title": "Hold Options",
+              "values": [
+                "Give a +1 forward to yourself or one of your Crew",
+                "Advance a Clock",
+                "Roll back a Clock",
+                "Inflict 1 Stress on a target"
+              ]
+            }
           ]
         },
         {
@@ -242,10 +296,16 @@
             "7-9": "Minor. Choose 1 of the following options:",
             "6-": "Searing: The MC will tell you why this knowledge is traumatizing. Mark Attention on your Logos/Mythos, but also mark Crack/Fade as appropriate."
           },
-          "hold": [
-            "Mark 1 Attention to your Mythos/Logos as appropriate",
-            "Heal 1 Fade/Crack as appropriate",
-            "Take +1 ongoing when acting on the answer to the question using your Mythos or Logos, as appropriate"
+          "arrays": [
+            {
+              "id": "hold",
+              "title": "Hold Options",
+              "values": [
+                "Mark 1 Attention to your Mythos/Logos as appropriate",
+                "Heal 1 Fade/Crack as appropriate",
+                "Take +1 ongoing when acting on the answer to the question using your Mythos or Logos, as appropriate"
+              ]
+            }
           ]
         }
       ]
@@ -398,11 +458,17 @@
       "7-9": "You get what you want, but choose 2 from the list below:",
       "6-": "You get what you want, but choose 2 from the list below, and the MC will choose 1 more"
     },
-    "hold": [
-      "Your request is going to cost you extra. Mark 1 Loot",
-      "Your request is going to attract unwanted attention, complications, consequences, or take extra time",
-      "Your contact needs you to help them out with something. If you turn them down, take -1 to their contact rating until you make it right",
-      "They give you what you think you should want"
+    "arrays": [
+      {
+        "id": "hold",
+        "title": "Hold Options",
+        "values": [
+          "Your request is going to cost you extra. Mark 1 Loot",
+          "Your request is going to attract unwanted attention, complications, consequences, or take extra time",
+          "Your contact needs you to help them out with something. If you turn them down, take -1 to their contact rating until you make it right",
+          "They give you what you think you should want"
+        ]
+      }
     ]
   }
 }
