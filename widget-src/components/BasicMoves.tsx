@@ -129,38 +129,55 @@ export function BasicMoves(props) {
               {movesData.ClockMoves.map((clockMove, idx) => (
                 <AutoLayout key={idx} direction="vertical" spacing={4} width="fill-parent">
                   <Text fontSize={18} fontWeight={600} fill="#666666">{clockMove.name}</Text>
+                  {clockMove.description && (
+                    <Text fontSize={16} fill="#666666">{clockMove.description}</Text>
+                  )}
                   {clockMove.advance.map((advanceMove, advIdx) => (
-                    <AutoLayout key={`advance-${advIdx}`} direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center" onPointerEnter={() => setSelectedTooltipMove(advanceMove)}>
-                      <AutoLayout
-                          fill="#333333"
-                          padding={6}
-                          cornerRadius={4}
-                          onClick={() => {
-                            handleClockMove(clockMove.clock, "advance", advanceMove.name)
-                          }}
-                      >
-                        <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
+                    <AutoLayout key={`advance-${advIdx}`} direction="vertical" spacing={4} width="fill-parent">
+                      <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center" onPointerEnter={() => setSelectedTooltipMove(advanceMove)}>
+                        <AutoLayout
+                            fill="#333333"
+                            padding={6}
+                            cornerRadius={4}
+                            onClick={() => {
+                              handleClockMove(clockMove.clock, "advance", advanceMove.name)
+                            }}
+                        >
+                          <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
+                        </AutoLayout>
+                        <Text fontSize={22} fontWeight={700} width="fill-parent">
+                          → {advanceMove.name}
+                        </Text>
                       </AutoLayout>
-                      <Text fontSize={22} fontWeight={700} width="fill-parent">
-                        → {advanceMove.name}
-                      </Text>
+                      {advanceMove.description && (
+                        <Text fontSize={16} fill="#666666" width="fill-parent">
+                          {advanceMove.description}
+                        </Text>
+                      )}
                     </AutoLayout>
                   ))}
                   {clockMove.rollback.map((rollbackMove, rbIdx) => (
-                    <AutoLayout key={`rollback-${rbIdx}`} direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center" onPointerEnter={() => setSelectedTooltipMove(rollbackMove)}>
-                      <AutoLayout
-                          fill="#333333"
-                          padding={6}
-                          cornerRadius={4}
-                          onClick={() => {
-                            handleClockMove(clockMove.clock, "rollback", rollbackMove.name)
-                          }}
-                      >
-                        <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
+                    <AutoLayout key={`rollback-${rbIdx}`} direction="vertical" spacing={4} width="fill-parent">
+                      <AutoLayout direction="horizontal" spacing={8} width="fill-parent" verticalAlignItems="center" onPointerEnter={() => setSelectedTooltipMove(rollbackMove)}>
+                        <AutoLayout
+                            fill="#333333"
+                            padding={6}
+                            cornerRadius={4}
+                            onClick={() => {
+                              handleClockMove(clockMove.clock, "rollback", rollbackMove.name)
+                            }}
+                        >
+                          <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
+                        </AutoLayout>
+                        <Text fontSize={22} fontWeight={700} width="fill-parent">
+                          ← {rollbackMove.name}
+                        </Text>
                       </AutoLayout>
-                      <Text fontSize={22} fontWeight={700} width="fill-parent">
-                        ← {rollbackMove.name}
-                      </Text>
+                      {rollbackMove.description && (
+                        <Text fontSize={16} fill="#666666" width="fill-parent">
+                          {rollbackMove.description}
+                        </Text>
+                      )}
                     </AutoLayout>
                   ))}
                 </AutoLayout>
