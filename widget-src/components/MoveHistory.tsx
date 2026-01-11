@@ -4,7 +4,7 @@ const { AutoLayout, Frame, Text } = widget
 import { Grid } from '../Grid'
 
 export function MoveHistory(props) {
-  const { moveHistory, setMoveHistory, historyPage, setHistoryPage, experienceChecked, setExperienceChecked } = props
+  const { moveHistory, setMoveHistory, historyPage, setHistoryPage, experienceChecked, setExperienceChecked, usesExperience } = props
 
   return (
     <AutoLayout
@@ -131,7 +131,7 @@ export function MoveHistory(props) {
                    {outcomeText && (
                      <Text fontSize={17.5} fontWeight={600} width="fill-parent">{outcomeText}</Text>
                    )}
-                   {entry.total <= 6 && (
+                   {usesExperience && entry.total <= 6 && (
                      <AutoLayout spacing={8} verticalAlignItems="center">
                        <AutoLayout
                            width={20}

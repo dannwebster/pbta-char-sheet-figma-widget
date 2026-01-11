@@ -85,6 +85,9 @@ function pbta_character() {
   // Load clock definitions from game data
   const clockDefinitions = movesData.Clocks || []
 
+  // Check if this game uses experience
+  const usesExperience = clockDefinitions.some(clock => clock.clockId === 'experience')
+
   // Helper function to get modifier from a clock by clockId
   const getClockModifier = (clockId: string, clockState: boolean[]): number => {
     const clockDef = clockDefinitions.find(c => c.clockId === clockId)
@@ -219,8 +222,8 @@ function pbta_character() {
       console.log('HISTORY ENTRY:', JSON.stringify(historyEntry, null, 2))
       setMoveHistory([historyEntry, ...moveHistory])
 
-      // Show mark experience popup if roll is 6 or less
-      if (total <= 6) {
+      // Show mark experience popup if roll is 6 or less (only if game uses experience)
+      if (usesExperience && total <= 6) {
         setPendingExperienceRollIndex(0) // New entry is at index 0
         setShowMarkExperiencePopup(true)
       }
@@ -244,8 +247,8 @@ function pbta_character() {
       setter: setExperienceChecked,
       size: 5,
       onCheckboxChange: (index: number, newState: boolean[]) => {
-        // Check if the 5th checkbox (index 4) was just checked
-        if (index === 4 && newState[4] === true) {
+        // Check if the 5th checkbox (index 4) was just checked (only if game uses experience)
+        if (usesExperience && index === 4 && newState[4] === true) {
           setShowLevelUpPopup(true)
         }
       }
@@ -993,6 +996,7 @@ function pbta_character() {
         setHistoryPage={setHistoryPage}
         experienceChecked={experienceChecked}
         setExperienceChecked={setExperienceChecked}
+        usesExperience={usesExperience}
       />
         </AutoLayout>
 
