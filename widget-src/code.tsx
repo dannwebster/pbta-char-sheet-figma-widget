@@ -478,9 +478,16 @@ function pbta_character() {
       <AutoLayout direction="vertical" spacing={16}>
         <AutoLayout direction="horizontal" spacing={16}>
       <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={1200}>
-        {/* Game Selection Header */}
-        <AutoLayout padding={16} width="fill-parent" fill="#F0F0F0" spacing={16} verticalAlignItems="center">
-          <Text fontSize={32} fontWeight={700}>Game: </Text>
+        {/* Top Row Section */}
+        <AutoLayout padding={16} width="fill-parent" fill="#E8E8E8" spacing={16} verticalAlignItems="center">
+          <AutoLayout
+              fill={attributesLocked ? "#FF5555" : "#55FF55"}
+              padding={12}
+              cornerRadius={8}
+              onClick={() => setAttributesLocked(!attributesLocked)}
+          >
+            <Text fontSize={32} fontWeight={700}>{attributesLocked ? "🔒" : "🔓"}</Text>
+          </AutoLayout>
           <AutoLayout
               fill="#333333"
               padding={12}
@@ -501,6 +508,18 @@ function pbta_character() {
                   loadConceptFromCharacter(newGameData.characters[0].name)
                 }
               }}
+              horizontalAlignItems="center"
+          >
+            <Text fontSize={24} fontWeight={700} fill="#FFFFFF">Select Game</Text>
+          </AutoLayout>
+        </AutoLayout>
+
+        {/* Game Selection Header */}
+        <AutoLayout padding={16} width="fill-parent" fill="#F0F0F0" spacing={16} verticalAlignItems="center">
+          <AutoLayout
+              fill="#333333"
+              padding={12}
+              cornerRadius={8}
               width="fill-parent"
               horizontalAlignItems="center"
           >
@@ -511,15 +530,6 @@ function pbta_character() {
         </AutoLayout>
         {/* Character Selection Header */}
         <AutoLayout padding={16} width="fill-parent" fill="#FFFFFF" spacing={16} verticalAlignItems="center">
-          <AutoLayout
-              fill={attributesLocked ? "#FF5555" : "#55FF55"}
-              padding={12}
-              cornerRadius={8}
-              onClick={() => setAttributesLocked(!attributesLocked)}
-          >
-            <Text fontSize={32} fontWeight={700}>{attributesLocked ? "🔒" : "🔓"}</Text>
-          </AutoLayout>
-          <Text fontSize={40} fontWeight={700}>Character: </Text>
           <AutoLayout
               fill="#E6E6E6"
               padding={12}
