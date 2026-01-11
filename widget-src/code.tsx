@@ -512,6 +512,24 @@ function pbta_character() {
           >
             <Text fontSize={24} fontWeight={700} fill="#FFFFFF">Select Game</Text>
           </AutoLayout>
+          <AutoLayout
+              fill="#333333"
+              padding={12}
+              cornerRadius={8}
+              onClick={() => {
+                const currentIndex = characterData.characters.findIndex(c => c.name === characterName)
+                const nextIndex = (currentIndex + 1) % characterData.characters.length
+                const newCharacterName = characterData.characters[nextIndex].name
+                setCharacterName(newCharacterName)
+                loadEquipmentFromCharacter(newCharacterName)
+                loadContactsFromCharacter(newCharacterName)
+                loadAttributesFromCharacter(newCharacterName)
+                loadConceptFromCharacter(newCharacterName)
+              }}
+              horizontalAlignItems="center"
+          >
+            <Text fontSize={24} fontWeight={700} fill="#FFFFFF">Select Character</Text>
+          </AutoLayout>
         </AutoLayout>
 
         {/* Game Selection Header */}
@@ -534,16 +552,6 @@ function pbta_character() {
               fill="#E6E6E6"
               padding={12}
               cornerRadius={8}
-              onClick={() => {
-                const currentIndex = characterData.characters.findIndex(c => c.name === characterName)
-                const nextIndex = (currentIndex + 1) % characterData.characters.length
-                const newCharacterName = characterData.characters[nextIndex].name
-                setCharacterName(newCharacterName)
-                loadEquipmentFromCharacter(newCharacterName)
-                loadContactsFromCharacter(newCharacterName)
-                loadAttributesFromCharacter(newCharacterName)
-                loadConceptFromCharacter(newCharacterName)
-              }}
               width="fill-parent"
               direction="vertical"
               horizontalAlignItems="center"
