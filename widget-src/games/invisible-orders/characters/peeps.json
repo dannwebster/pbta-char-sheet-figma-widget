@@ -10,32 +10,6 @@
         { "name": "Fortitude", "value": 1 },
         { "name": "Occult", "value": 1 }
       ],
-      "contacts": [
-        {
-          "name": "Professor Aldridge",
-          "type": "Mythos",
-          "rating": 1,
-          "expertise": "Cryptozoology",
-          "relationship": "Academic Colleague",
-          "description": "Leading expert on supernatural creatures and their habits"
-        },
-        {
-          "name": "Madame Zara",
-          "type": "Mythos",
-          "rating": 0,
-          "expertise": "Fortune Telling & Divination",
-          "relationship": "Information Broker",
-          "description": "Sees more than she lets on, knows everyone's secrets"
-        },
-        {
-          "name": "Inspector Wallace",
-          "type": "Logos",
-          "rating": 0,
-          "expertise": "Police Resources",
-          "relationship": "Reluctant Ally",
-          "description": "Skeptical cop who occasionally needs your expertise"
-        }
-      ],
       "equipment": [
         {
           "name": "Research Library",

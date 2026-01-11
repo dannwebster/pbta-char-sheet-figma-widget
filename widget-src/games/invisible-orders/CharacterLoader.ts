@@ -7,9 +7,6 @@ import ruby from './characters/ruby.json'
 
 // Export as a map
 export const characterModules = {
-  agentSmith,
-  sisterMaria,
-  viktorStone,
   peeps,
   ruby
 }

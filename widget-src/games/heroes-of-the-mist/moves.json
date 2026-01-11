@@ -1,5 +1,6 @@
 {
   "usesContacts": true,
+  "usesMythosAndLogos": true,
   "AttributeMoves": {
     "Muscle": [
       {

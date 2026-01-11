@@ -10,6 +10,7 @@ import { BasicMoves } from './components/BasicMoves'
 import { CharacterMoves } from './components/CharacterMoves'
 import { Clocks } from './components/Clocks'
 import { Contacts } from './components/Contacts'
+import { MythosAndLogos } from './components/MythosAndLogos'
 
 function pbta_character() {
   // Game selection state
@@ -575,230 +576,34 @@ function pbta_character() {
             ))}
           </AutoLayout>
         </AutoLayout>
-        <AutoLayout direction="horizontal" spacing={16} padding={16} width="fill-parent" fill="#FFFFFF">
-          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <AutoLayout
-                onClick={() => {
-                  const mythosRoll = {
-                    name: "+Mythos",
-                    description: null,
-                    ...STANDARD_OUTCOMES
-                  }
-                  setPendingRoll({ modifier: mythosValue, modifierName: "+Mythos", move: mythosRoll })
-                }}
-                fill="#333333"
-                padding={8}
-                cornerRadius={4}
-                horizontalAlignItems="start"
-                spacing={6}
-                width={150}
-            >
-              <Frame width={27} height={27} fill="#FFFFFF" cornerRadius={4}>
-                <AutoLayout
-                    horizontalAlignItems="center"
-                    verticalAlignItems="center"
-                    width={27}
-                    height={27}
-                    padding={6}
-                >
-                  <Grid sides={6} size={4.5} fill="#333333" spacing={3} />
-                </AutoLayout>
-              </Frame>
-              <Text fontSize={24} fontWeight={700} fill="#FFFFFF">+Mythos</Text>
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Name:</Text>
-              <Input
-                  value={mythosName}
-                  onTextEditEnd={(e) => setMythosName(e.characters)}
-                  fontSize={16}
-                  placeholder="Mythos Name"
-                  width="fill-parent"
-              />
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Concept:</Text>
-              <Input
-                  value={mythosConcept}
-                  onTextEditEnd={(e) => setMythosConcept(e.characters)}
-                  fontSize={16}
-                  placeholder="Mythos Concept"
-                  width="fill-parent"
-              />
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Question:</Text>
-              <Input
-                  value={mythosQuestion}
-                  onTextEditEnd={(e) => setMythosQuestion(e.characters)}
-                  fontSize={16}
-                  placeholder="Mythos Question"
-                  width="fill-parent"
-              />
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Attention:</Text>
-              <AutoLayout spacing={8} direction="horizontal">
-                {[0, 1, 2, 3, 4].map((idx) => (
-                  <AutoLayout
-                      key={idx}
-                      width={18}
-                      height={18}
-                      fill={mythosAttention[idx] ? "#333333" : "#FFFFFF"}
-                      stroke="#333333"
-                      strokeWidth={2}
-                      cornerRadius={4}
-                      horizontalAlignItems="center"
-                      verticalAlignItems="center"
-                      onClick={() => {
-                        const newAttention = [...mythosAttention]
-                        newAttention[idx] = !newAttention[idx]
-                        setMythosAttention(newAttention)
-                      }}
-                  >
-                    {mythosAttention[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
-                  </AutoLayout>
-                ))}
-              </AutoLayout>
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Fade:</Text>
-              <AutoLayout spacing={8} direction="horizontal">
-                {[0, 1, 2].map((idx) => (
-                  <AutoLayout
-                      key={idx}
-                      width={18}
-                      height={18}
-                      fill={mythosFade[idx] ? "#333333" : "#FFFFFF"}
-                      stroke="#333333"
-                      strokeWidth={2}
-                      cornerRadius={4}
-                      horizontalAlignItems="center"
-                      verticalAlignItems="center"
-                      onClick={() => {
-                        const newFade = [...mythosFade]
-                        newFade[idx] = !newFade[idx]
-                        setMythosFade(newFade)
-                      }}
-                  >
-                    {mythosFade[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
-                  </AutoLayout>
-                ))}
-              </AutoLayout>
-            </AutoLayout>
-          </AutoLayout>
-          <AutoLayout direction="vertical" spacing={8} width="fill-parent">
-            <AutoLayout
-                onClick={() => {
-                  const logosRoll = {
-                    name: "+Logos",
-                    description: null,
-                    ...STANDARD_OUTCOMES
-                  }
-                  setPendingRoll({ modifier: logosValue, modifierName: "+Logos", move: logosRoll })
-                }}
-                fill="#333333"
-                padding={8}
-                cornerRadius={4}
-                horizontalAlignItems="start"
-                spacing={6}
-                width={150}
-            >
-              <Frame width={27} height={27} fill="#FFFFFF" cornerRadius={4}>
-                <AutoLayout
-                    horizontalAlignItems="center"
-                    verticalAlignItems="center"
-                    width={27}
-                    height={27}
-                    padding={6}
-                >
-                  <Grid sides={6} size={4.5} fill="#333333" spacing={3} />
-                </AutoLayout>
-              </Frame>
-              <Text fontSize={24} fontWeight={700} fill="#FFFFFF">+Logos</Text>
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Name:</Text>
-              <Input
-                  value={logosName}
-                  onTextEditEnd={(e) => setLogosName(e.characters)}
-                  fontSize={16}
-                  placeholder="Logos Name"
-                  width="fill-parent"
-              />
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Concept:</Text>
-              <Input
-                  value={logosConcept}
-                  onTextEditEnd={(e) => setLogosConcept(e.characters)}
-                  fontSize={16}
-                  placeholder="Logos Concept"
-                  width="fill-parent"
-              />
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Statement:</Text>
-              <Input
-                  value={logosStatement}
-                  onTextEditEnd={(e) => setLogosStatement(e.characters)}
-                  fontSize={16}
-                  placeholder="Logos Statement"
-                  width="fill-parent"
-              />
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Attention:</Text>
-              <AutoLayout spacing={8} direction="horizontal">
-                {[0, 1, 2, 3, 4].map((idx) => (
-                  <AutoLayout
-                      key={idx}
-                      width={18}
-                      height={18}
-                      fill={logosAttention[idx] ? "#333333" : "#FFFFFF"}
-                      stroke="#333333"
-                      strokeWidth={2}
-                      cornerRadius={4}
-                      horizontalAlignItems="center"
-                      verticalAlignItems="center"
-                      onClick={() => {
-                        const newAttention = [...logosAttention]
-                        newAttention[idx] = !newAttention[idx]
-                        setLogosAttention(newAttention)
-                      }}
-                  >
-                    {logosAttention[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
-                  </AutoLayout>
-                ))}
-              </AutoLayout>
-            </AutoLayout>
-            <AutoLayout spacing={8} width="fill-parent" verticalAlignItems="center">
-              <Text fontSize={16} width={100}>Crack:</Text>
-              <AutoLayout spacing={8} direction="horizontal">
-                {[0, 1, 2].map((idx) => (
-                  <AutoLayout
-                      key={idx}
-                      width={18}
-                      height={18}
-                      fill={logosCrack[idx] ? "#333333" : "#FFFFFF"}
-                      stroke="#333333"
-                      strokeWidth={2}
-                      cornerRadius={4}
-                      horizontalAlignItems="center"
-                      verticalAlignItems="center"
-                      onClick={() => {
-                        const newCrack = [...logosCrack]
-                        newCrack[idx] = !newCrack[idx]
-                        setLogosCrack(newCrack)
-                      }}
-                  >
-                    {logosCrack[idx] && <Text fontSize={12} fill="#FFFFFF">✓</Text>}
-                  </AutoLayout>
-                ))}
-              </AutoLayout>
-            </AutoLayout>
-          </AutoLayout>
-        </AutoLayout>
+        {movesData.usesMythosAndLogos && (
+          <MythosAndLogos
+            mythosName={mythosName}
+            setMythosName={setMythosName}
+            mythosConcept={mythosConcept}
+            setMythosConcept={setMythosConcept}
+            mythosQuestion={mythosQuestion}
+            setMythosQuestion={setMythosQuestion}
+            mythosAttention={mythosAttention}
+            setMythosAttention={setMythosAttention}
+            mythosFade={mythosFade}
+            setMythosFade={setMythosFade}
+            mythosValue={mythosValue}
+            logosName={logosName}
+            setLogosName={setLogosName}
+            logosConcept={logosConcept}
+            setLogosConcept={setLogosConcept}
+            logosStatement={logosStatement}
+            setLogosStatement={setLogosStatement}
+            logosAttention={logosAttention}
+            setLogosAttention={setLogosAttention}
+            logosCrack={logosCrack}
+            setLogosCrack={setLogosCrack}
+            logosValue={logosValue}
+            setPendingRoll={setPendingRoll}
+            STANDARD_OUTCOMES={STANDARD_OUTCOMES}
+          />
+        )}
         <AutoLayout direction="horizontal" spacing={24} padding={24} horizontalAlignItems="start">
           <AutoLayout direction="vertical" spacing={8}>
             {attributes.map(attr => (
