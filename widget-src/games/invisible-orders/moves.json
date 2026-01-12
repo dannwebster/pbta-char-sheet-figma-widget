@@ -1,4 +1,6 @@
 {
+  "color": "#1A1A1A",
+  "icon": "./img/io.svg",
   "usesContacts": false,
   "usesMythosAndLogos": false,
   "AttributeMoves": {

@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Your Figma widget",
   "scripts": {
-    "build": "esbuild widget-src/code.tsx --bundle --outfile=dist/code.js --target=es6 && npm run generate-docs",
+    "build": "node build.js && npm run generate-docs",
     "generate-docs": "node generate-moves-markdown.js",
     "lint": "eslint --ext .ts,.tsx --ignore-pattern node_modules .",
     "lint:fix": "eslint --ext .ts,.tsx --ignore-pattern node_modules --fix .",
     "tsc": "tsc --noEmit -p widget-src",
-    "watch": "esbuild widget-src/code.tsx --bundle --outfile=dist/code.js --target=es6 --watch"
+    "watch": "node watch.js"
   },
   "author": "",
   "license": "",

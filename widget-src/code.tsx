@@ -13,6 +13,7 @@ import { MythosAndLogos } from './components/MythosAndLogos'
 import { Dialog } from './components/Dialog'
 import { GameSelector } from './components/GameSelector'
 import { CharacterSelector } from './components/CharacterSelector'
+import { GameIcon } from './components/GameIcon'
 
 function pbta_character() {
   // Game selection state
@@ -537,15 +538,23 @@ function pbta_character() {
         {/* Game Selection Header */}
         <AutoLayout padding={16} width="fill-parent" fill="#F0F0F0" spacing={16} verticalAlignItems="center">
           <AutoLayout
-              fill="#333333"
+              fill={movesData.color || "#333333"}
               padding={12}
               cornerRadius={8}
               width="fill-parent"
               horizontalAlignItems="center"
+              spacing={12}
+              verticalAlignItems="center"
           >
+            {gameData.iconSvg && (
+              <GameIcon svgContent={gameData.iconSvg} />
+            )}
             <Text fontSize={32} fontWeight={700} fill="#FFFFFF">
               {getAvailableGames(GAMES).find(g => g.id === selectedGame)?.name || selectedGame}
             </Text>
+            {gameData.iconSvg && (
+                <GameIcon svgContent={gameData.iconSvg} />
+            )}
           </AutoLayout>
         </AutoLayout>
         {/* Character Selection Header */}
@@ -1061,89 +1070,6 @@ function pbta_character() {
         setSelectedTooltipMove={setSelectedTooltipMove}
       />
 
-      {/* Charts Section */}
-      {chartsData.length > 0 && (
-      <AutoLayout
-          direction="vertical"
-          width={2250}
-          fill="#FFFFFF"
-          stroke="#333333"
-          strokeWidth={2}
-          padding={16}
-          spacing={12}
-          cornerRadius={8}
-      >
-        <AutoLayout
-            direction="horizontal"
-            width="fill-parent"
-            verticalAlignItems="center"
-            spacing={12}
-        >
-          <AutoLayout
-              fill="#333333"
-              padding={8}
-              cornerRadius={4}
-              onClick={() => setChartsExpanded(!chartsExpanded)}
-          >
-            <Text fontSize={25} fontWeight={700} fill="#FFFFFF">
-              {chartsExpanded ? "▼" : "▶"}
-            </Text>
-          </AutoLayout>
-          <Text fontSize={30} fontWeight={700} width="fill-parent" horizontalAlignText="center">
-            Charts
-          </Text>
-        </AutoLayout>
-
-        {chartsExpanded && (
-          <AutoLayout direction="vertical" spacing={24} width="fill-parent">
-            {chartsData.map((chart, chartIdx) => (
-              <AutoLayout key={chartIdx} direction="vertical" spacing={8} width="fill-parent">
-                <Text fontSize={28} fontWeight={700}>{chart.title}</Text>
-                <AutoLayout direction="vertical" width="fill-parent" stroke="#333333" strokeWidth={2}>
-                  {/* Header Row */}
-                  <AutoLayout direction="horizontal" width="fill-parent" fill="#E6E6E6">
-                    {chart.columns.map((col, colIdx) => (
-                      <AutoLayout
-                          key={col.id}
-                          width="fill-parent"
-                          padding={8}
-                          stroke="#333333"
-                          strokeWidth={1}
-                          verticalAlignItems="center"
-                      >
-                        <Text fontSize={18} fontWeight={700} width="fill-parent" horizontalAlignText="center">
-                          {col.header}
-                        </Text>
-                      </AutoLayout>
-                    ))}
-                  </AutoLayout>
-                  {/* Data Rows */}
-                  {chart.columns[0].values.map((_, rowIdx) => (
-                    <AutoLayout key={rowIdx} direction="horizontal" width="fill-parent" fill="#FFFFFF">
-                      {chart.columns.map((col) => (
-                        <AutoLayout
-                            key={col.id}
-                            width="fill-parent"
-                            padding={8}
-                            stroke="#333333"
-                            strokeWidth={1}
-                            verticalAlignItems="center"
-                        >
-                          <Text fontSize={16} width="fill-parent" horizontalAlignText="center">
-                            {col.values[rowIdx]}
-                          </Text>
-                        </AutoLayout>
-                      ))}
-                    </AutoLayout>
-                  ))}
-                </AutoLayout>
-              </AutoLayout>
-            ))}
-          </AutoLayout>
-        )}
-      </AutoLayout>
-      )}
-
       {pendingRoll && (() => {
         const harmMod = getHarmModifier()
         const stressMod = getStressModifier()
@@ -1481,6 +1407,89 @@ function pbta_character() {
             setShowCharacterSelector(false)
           }}
         />
+      )}
+
+      {/* Charts Section */}
+      {chartsData.length > 0 && (
+      <AutoLayout
+          direction="vertical"
+          width={2250}
+          fill="#FFFFFF"
+          stroke="#333333"
+          strokeWidth={2}
+          padding={16}
+          spacing={12}
+          cornerRadius={8}
+      >
+        <AutoLayout
+            direction="horizontal"
+            width="fill-parent"
+            verticalAlignItems="center"
+            spacing={12}
+        >
+          <AutoLayout
+              fill="#333333"
+              padding={8}
+              cornerRadius={4}
+              onClick={() => setChartsExpanded(!chartsExpanded)}
+          >
+            <Text fontSize={25} fontWeight={700} fill="#FFFFFF">
+              {chartsExpanded ? "▼" : "▶"}
+            </Text>
+          </AutoLayout>
+          <Text fontSize={30} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+            Charts
+          </Text>
+        </AutoLayout>
+
+        {chartsExpanded && (
+          <AutoLayout direction="vertical" spacing={24} width="fill-parent">
+            {chartsData.map((chart, chartIdx) => (
+              <AutoLayout key={chartIdx} direction="vertical" spacing={8} width="fill-parent">
+                <Text fontSize={28} fontWeight={700}>{chart.title}</Text>
+                <AutoLayout direction="vertical" width="fill-parent" stroke="#333333" strokeWidth={2}>
+                  {/* Header Row */}
+                  <AutoLayout direction="horizontal" width="fill-parent" fill="#E6E6E6">
+                    {chart.columns.map((col, colIdx) => (
+                      <AutoLayout
+                          key={col.id}
+                          width="fill-parent"
+                          padding={8}
+                          stroke="#333333"
+                          strokeWidth={1}
+                          verticalAlignItems="center"
+                      >
+                        <Text fontSize={18} fontWeight={700} width="fill-parent" horizontalAlignText="center">
+                          {col.header}
+                        </Text>
+                      </AutoLayout>
+                    ))}
+                  </AutoLayout>
+                  {/* Data Rows */}
+                  {chart.columns[0].values.map((_, rowIdx) => (
+                    <AutoLayout key={rowIdx} direction="horizontal" width="fill-parent" fill="#FFFFFF">
+                      {chart.columns.map((col) => (
+                        <AutoLayout
+                            key={col.id}
+                            width="fill-parent"
+                            padding={8}
+                            stroke="#333333"
+                            strokeWidth={1}
+                            verticalAlignItems="center"
+                        >
+                          <Text fontSize={16} width="fill-parent" horizontalAlignText="center">
+                            {col.values[rowIdx]}
+                          </Text>
+                        </AutoLayout>
+                      ))}
+                    </AutoLayout>
+                  ))}
+                </AutoLayout>
+              </AutoLayout>
+            ))}
+          </AutoLayout>
+        )}
+      </AutoLayout>
       )}
       </AutoLayout>
   )

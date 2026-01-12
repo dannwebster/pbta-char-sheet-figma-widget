@@ -6,6 +6,7 @@ export interface GameData {
   moves: any
   characters: any[]
   charts?: any[]
+  iconSvg?: string
   isDefault?: boolean
 }
 

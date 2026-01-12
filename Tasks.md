@@ -3,37 +3,45 @@
 *[ ] Submit to Figma 
 
 ## BUGS
-*[ ] Why do attributes not load initially
+*[ ] Charts moves to the top when you go back to a game with charts (otherwise it stays at the bottom)
 
 ## Visual/UI
 *[ ] Make Clocks potentially horizontal
 *[ ] make star not there for i-o equipment
 *[ ] add a color for each game
-*[ ] Make Dropdown for Game
-*[ ] Make Dropdown for Characters
 
 ## Correctness/Quality
 *[ ] refactor all declarations in code.tsx that are game specific into the character loader
-*[ ] rename moves.json to rules.json
+
  
 ## Functionality
-*[ ] Make Lock icon lock game and character
-*[ ] Made descriptions in Clock moves added to move history in addition to the basic stuff
-*[ ] Refactor Charts into the Game
+*[ ] Make Popups appear near mouse
+*[ ] Make descriptions in Clock moves added to move history in addition to the basic stuff
 *[ ] make array values into checkboxes (for haven, tools and techniques, etc)
-*[ ] Make sections Optional
+*[ ] separate out Playbook funcitonality
+  [ ] define attributes as per moves.json
+  [ ] create a playbooks/ folder
+  [ ] charactes should just be unique data, and names of icons and options that are checked
+
+## Data
+
+## Completed
+*[x] Make sections Optional
   *[x] Logos/Mythos
     * BUG: Move Mythos/Logos chart into MythosAndLogos widget
   *[x] Contacts
-  *[ ] Charts
-  *[ ] General Moves
-
-## Data
-*[ ] Refactor Export Luck Special into Additional Moves, so that there is no anchormove/additionalmove
-  *[ ] for ruby.json
-  *[ ] for peeps.json
-
-## Completed
+  *[x] Charts
+    *[x] Refactor Charts into the Game, and make them optional
+  *[x] General Moves
+*[x] Make Dropdown for Game
+*[x] Make Dropdown for Characters
+*[x] Make Experience optional
+*[x] add a Look section
+*[x] Make Lock icon lock game and character
+*[x] Add popup when you need to Mark Experience. make Experience optional
+*[x] Refactor Export Luck Special into Additional Moves, so that there is no anchormove/additionalmove
+  *[x] for ruby.json
+  *[x] for peeps.json
 *[x] Replace Composure with Nerve
   *[x] Make sure Composure or Cool doesnt show up in any move (Nerve instead)
 *[x] Replace Fortitude with Vigor
@@ -52,3 +60,10 @@
   *[x] Experience
 *[x] Make Moves allow named arrays
 *[x] Use Move Sections rather than logos and mythos moves
+
+# Not Doing
+## Cleanliness/Code Quality
+*[ ] rename moves.json to rules.json
+
+## Bugs
+*[ ] Why do attributes not load initially

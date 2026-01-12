@@ -12,12 +12,15 @@ import type { GameData } from '../lib/GameDefinition'
 import heroesMovesData from './heroes-of-the-mist/moves.json'
 import { characterModules as heroesCharacters } from './heroes-of-the-mist/CharacterLoader'
 import heroesChartsData from './heroes-of-the-mist/charts.json'
+import heroesIconSvg from './heroes-of-the-mist/img/hotm.svg'
 
 import monsterMovesData from './monster-of-the-week/moves.json'
 import { characterModules as monsterCharacters } from './monster-of-the-week/CharacterLoader'
+import monsterIconSvg from './monster-of-the-week/img/motw.svg'
 
 import invisibleMovesData from './invisible-orders/moves.json'
 import { characterModules as invisibleCharacters } from './invisible-orders/CharacterLoader'
+import invisibleIconSvg from './invisible-orders/img/io.svg'
 
 // All available games (static list)
 export const GAMES: Record<string, GameData> = {
@@ -27,6 +30,7 @@ export const GAMES: Record<string, GameData> = {
     moves: heroesMovesData,
     characters: Object.values(heroesCharacters).flatMap(module => module.characters),
     charts: heroesChartsData,
+    iconSvg: heroesIconSvg,
     isDefault: true
   },
   'monster-of-the-week': {
@@ -34,11 +38,13 @@ export const GAMES: Record<string, GameData> = {
     name: 'Monster of the Week',
     moves: monsterMovesData,
     characters: Object.values(monsterCharacters).flatMap(module => module.characters),
+    iconSvg: monsterIconSvg,
   },
   'invisible-orders': {
     id: 'invisible-orders',
     name: 'Invisible Orders',
     moves: invisibleMovesData,
     characters: Object.values(invisibleCharacters).flatMap(module => module.characters),
+    iconSvg: invisibleIconSvg,
   }
 }

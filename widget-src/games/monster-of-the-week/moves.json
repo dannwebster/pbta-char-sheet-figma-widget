@@ -1,4 +1,6 @@
 {
+  "color": "#1B4D3E",
+  "icon": "./img/motw.svg",
   "usesContacts": false,
   "usesMythosAndLogos": false,
   "AttributeMoves": {
