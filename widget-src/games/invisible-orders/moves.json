@@ -29,8 +29,8 @@
         "name": "Help Out",
         "description": "When you Help Out another hunter, roll +Nerve.",
         "outcomes": {
-          "10+": "They get +1 on their roll",
-          "7-9": "They get +1 on their roll, but you expose yourself to danger, cost, or trouble",
+          "10+": "Their role goes up by one success rank (from 6- to 7-9; from 7-9 to 10+)",
+          "7-9": "Their role goes up by one success rank (from 6- to 7-9; from 7-9 to 10+), but you expose yourself to danger, cost, or trouble",
           "6-": "Your help makes things worse"
         }
       }
@@ -122,10 +122,51 @@
         "name": "Use Magic",
         "description": "When you Use Magic, say what you're trying to achieve and how you do the spell, then roll +Occult.",
         "outcomes": {
-          "10+": "The magic works without issues: you do what you wanted",
-          "7-9": "The magic works, but choose one: the effect is unstable or weak, it draws unwanted attention, or it has a problematic side effect",
+          "10+": "The magic works without issues: choose your effect.",
+          "7-9": "The magic works works imperfectly: choose your effect and a glitch. The Keeper will decide what effect the glitch has.",
           "6-": "The magic goes wrong in some terrible way"
-        }
+        },
+        "arrays": [
+          {
+            "id": "effects",
+            "title": "Effects",
+            "values": [
+              "Inflict harm (1-harm ignore-armour magic obvious).",
+              "Enchant a weapon. It gets +1 harm and +magic.",
+              "Do one thing that is beyond human limitations.",
+              "Bar a place or portal to a specific person or a type of creature.",
+              "Trap a specific person, minion, or monster.",
+              "Banish a spirit or curse from the person, object, or place it inhabits.",
+              "Summon a monster into the world.",
+              "Communicate with something that you do not share a language with.",
+              "Observe another place or time.",
+              "Heal 1-harm from an injury, or cure a disease, or neutralize a poison."
+            ]
+          },
+          {
+            "id": "glitches",
+            "title": "Glitches",
+            "values": [
+              "The effect is weakened.",
+              "The effect is of short duration.",
+              "You take 1-harm ignore-armour.",
+              "The magic draws immediate, unwelcome attention.",
+              "It has a problematic side effect."
+            ]
+          },
+          {
+            "id": "keeper_may_say",
+            "title": "The Keeper may say that...",
+            "values": [
+              "The spell requires weird materials.",
+              "The spell will take 10 seconds, 30 seconds, or 1 minute to cast.",
+              "The spell requires ritual chanting and gestures.",
+              "The spell requires you to draw arcane symbols.",
+              "You need one or two people to help cast the spell.",
+              "You need to refer to a tome of magic for the details."
+            ]
+          }
+        ]
       }
     ]
   },
