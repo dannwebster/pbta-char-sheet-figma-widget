@@ -42,27 +42,28 @@
         "outcomes": {
           "10+": "Hold 2",
           "7-9": "Hold 1",
-          "6-": "Hold 1, but you reveal some information to the monster or whoever you are questioning"
+          "6-": "Hold 1, but you reveal some information to whoever you are questioning, or learn something you wish wasn't true"
         },
         "arrays": [
           {
             "id": "hold",
             "title": "Hold Options",
             "values": [
-              "What happened here?",
-              "What sort of creature is it?",
-              "What can it do?",
-              "What can hurt it?",
-              "Where did it go?",
-              "What was it going to do?",
-              "What is being concealed here?"
+                "What happened here, in the real sequence of events?",
+                "What force or influence is at work (human, occult, institutional, etc)?",
+                "What person, organization, or faction is implicated?",
+                "What can it do (capabilities, reach, constraints)?",
+                "What is the vulnerability (what disrupts, binds, exposes, or hurts it)?",
+                "Where does this lead next?",
+                "What is being concealed, and who benefits from the concealment?",
+                "What hidden history or suppressed scholarship underlies this (an old rite, a censored paper, a destroyed painting, etc)?"
             ]
           }
         ]
       },
       {
         "name": "Read a Bad Situation",
-        "description": "When you look around and Read A Bad Situation, roll +Insight.",
+        "description": "When you look around and Read A Bad Situation, roll +Insight. If you act on the answers, you get +1 ongoing while the information is relevant.",
         "outcomes": {
           "10+": "Hold 3",
           "7-9": "Hold 1",
@@ -89,10 +90,22 @@
         "name": "Necessary Violence",
         "description": "When you get into a fight and use Necessary Violence, roll +Vigor.",
         "outcomes": {
-          "10+": "You and your allies inflict harm on (and suffer harm from) your enemies",
-          "7-9": "You inflict harm but choose whether you suffer harm, you lose your weapon, or you have to hold back (i.e., don't inflict harm)",
-          "6-": "You get your ass kicked instead"
-        }
+          "10+": "You and inflict harm on (and suffer harm from) your enemies, and gain one Option from the Combat Choices",
+          "7-9": "7+, you and whatever you’re fighting inflict harm on each other. The amount of harm is based on the established dangers in the game. That usually means you inflict the harm rating of your weapon and your enemy inflicts their attack’s harm rating on you.",
+          "6-": "Your opponent inflicts harm on you as established"
+        },
+        "arrays": [
+          {
+            "id": "combat_choices",
+            "title": "Combat Choices",
+            "values": [
+              "You gain the advantage: take +1 forward, or give +1 forward to another hunter.",
+              "You inflict terrible harm (+1 harm).",
+              "You suffer less harm (-1 harm).",
+              "You force them where you want them."
+            ]
+          }
+        ]
       },
       {
         "name": "Protect Someone",
