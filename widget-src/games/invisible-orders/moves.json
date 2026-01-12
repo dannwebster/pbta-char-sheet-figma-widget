@@ -32,8 +32,8 @@
         "description": "When you Help Out another hunter, roll +Nerve.",
         "outcomes": {
           "13+": "Your help lets them act as if they just rolled a 13+, regardless of what they actually got.",
-          "10+": "Their role goes up by one success rank (from 6- to 7-9; from 7-9 to 10+)",
-          "7-9": "Their role goes up by one success rank (from 6- to 7-9; from 7-9 to 10+), but you expose yourself to danger, cost, or trouble",
+          "10+": "Their outcome goes up by one success rank (from 6- to 7-9; from 7-9 to 10+)",
+          "7-9": "Their outcome goes up by one success rank (from 6- to 7-9; from 7-9 to 10+), but you expose yourself to danger, cost, or trouble",
           "6-": "Your help makes things worse"
         }
       }
