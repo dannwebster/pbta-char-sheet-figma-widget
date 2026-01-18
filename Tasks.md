@@ -4,6 +4,7 @@
 
 ## BUGS
 *[ ] Charts moves to the top when you go back to a game with charts (otherwise it stays at the bottom)
+*[ ] the XP popup should only happen when all 5 XP boxes are checked (not when the 5th box is checked)
 
 ## Visual/UI
 *[ ] Make Clocks potentially horizontal

@@ -8,17 +8,14 @@ const buildOptions = {
   loader: {
     '.svg': 'text',  // Load SVG files as text strings
   },
+  logLevel: 'info',
 }
 
-// Watch mode
-esbuild.build({
-  ...buildOptions,
-  watch: {
-    onRebuild(error, result) {
-      if (error) console.error('watch build failed:', error)
-      else console.log('watch build succeeded:', result)
-    },
-  },
-}).then(result => {
+// Watch mode using context API (esbuild 0.17+)
+async function watch() {
+  const ctx = await esbuild.context(buildOptions)
+  await ctx.watch()
   console.log('watching...')
-})
+}
+
+watch().catch(() => process.exit(1))

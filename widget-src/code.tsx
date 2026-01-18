@@ -492,8 +492,17 @@ function pbta_character() {
   }
 
   return (
-      <AutoLayout direction="vertical" spacing={16}>
+      <AutoLayout direction="vertical" spacing={16} horizontalAlignItems="end">
         <AutoLayout direction="horizontal" spacing={16}>
+      <MoveHistory
+        moveHistory={moveHistory}
+        setMoveHistory={setMoveHistory}
+        historyPage={historyPage}
+        setHistoryPage={setHistoryPage}
+        experienceChecked={experienceChecked}
+        setExperienceChecked={setExperienceChecked}
+        usesExperience={usesExperience}
+      />
       <AutoLayout direction="vertical" spacing={0} horizontalAlignItems="center" stroke="#333333" strokeWidth={2} cornerRadius={8} width={1200}>
         {/* Top Row Section */}
         <AutoLayout padding={16} width="fill-parent" fill="#E8E8E8" spacing={16} verticalAlignItems="center">
@@ -1036,15 +1045,6 @@ function pbta_character() {
           ))}
         </AutoLayout>
       </AutoLayout>
-      <MoveHistory
-        moveHistory={moveHistory}
-        setMoveHistory={setMoveHistory}
-        historyPage={historyPage}
-        setHistoryPage={setHistoryPage}
-        experienceChecked={experienceChecked}
-        setExperienceChecked={setExperienceChecked}
-        usesExperience={usesExperience}
-      />
         </AutoLayout>
 
       {/* Character Moves Section */}
