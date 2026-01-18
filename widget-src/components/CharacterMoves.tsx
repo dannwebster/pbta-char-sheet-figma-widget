@@ -64,7 +64,7 @@ export function CharacterMoves(props) {
                   onClick={() => {
                     const attribute = move.attribute || "Mythos" // fallback for flaw clock
                     const clockName = attribute === "Mythos" ? "mythosAttention" : "logosAttention"
-                    handleClockMove(clockName, "advance", `Invoke ${attribute} Flaw`)
+                    handleClockMove(clockName, "advance", `Invoke ${attribute} Flaw`, `${move.flaw.name}: ${move.flaw.description}`)
                   }}
               >
                 <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>

@@ -273,7 +273,7 @@ function pbta_character() {
     })
   })
 
-  const handleClockMove = (clockName, action, moveName) => {
+  const handleClockMove = (clockName, action, moveName, moveDescription = null) => {
     console.log('handleClockMove called:', clockName, action)
     const clock = clocks[clockName]
     console.log('clock:', clock)
@@ -343,7 +343,10 @@ function pbta_character() {
     if (didChange) {
       const actionText = action === 'advance' ? 'Advanced' : 'Rolled back'
       const clockDisplayName = clockDisplayNames[clockName] || clockName
-      const description = `${actionText} the ${clockDisplayName} clock by 1. ${clockDisplayName} now at ${newClockValue}`
+      let description = `${actionText} the ${clockDisplayName} clock by 1. ${clockDisplayName} now at ${newClockValue}`
+      if (moveDescription) {
+        description += `\n\n${moveDescription}`
+      }
 
       console.log('Logging Description for Clock Value:', description)
       const historyEntry = {
@@ -820,7 +823,7 @@ function pbta_character() {
                         padding={8}
                         cornerRadius={4}
                         onClick={() => {
-                          handleClockMove(clockMove.clock, "advance", advanceMove.name)
+                          handleClockMove(clockMove.clock, "advance", advanceMove.name, advanceMove.description)
                         }}
                         onPointerEnter={() => setSelectedTooltipMove(advanceMove)}
                         spacing={6}
@@ -836,7 +839,7 @@ function pbta_character() {
                         padding={8}
                         cornerRadius={4}
                         onClick={() => {
-                          handleClockMove(clockMove.clock, "rollback", rollbackMove.name)
+                          handleClockMove(clockMove.clock, "rollback", rollbackMove.name, rollbackMove.description)
                         }}
                         onPointerEnter={() => setSelectedTooltipMove(rollbackMove)}
                         spacing={6}

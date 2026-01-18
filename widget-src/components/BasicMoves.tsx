@@ -140,7 +140,7 @@ export function BasicMoves(props) {
                             padding={6}
                             cornerRadius={4}
                             onClick={() => {
-                              handleClockMove(clockMove.clock, "advance", advanceMove.name)
+                              handleClockMove(clockMove.clock, "advance", advanceMove.name, advanceMove.description)
                             }}
                         >
                           <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
@@ -164,7 +164,7 @@ export function BasicMoves(props) {
                             padding={6}
                             cornerRadius={4}
                             onClick={() => {
-                              handleClockMove(clockMove.clock, "rollback", rollbackMove.name)
+                              handleClockMove(clockMove.clock, "rollback", rollbackMove.name, rollbackMove.description)
                             }}
                         >
                           <Text fontSize={18} fontWeight={700} fill="#FFFFFF">⏱</Text>
