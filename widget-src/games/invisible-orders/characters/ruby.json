@@ -27,28 +27,28 @@
           "tags": "reagents, versatile"
         },
         {
-          "name": "Pandora's Box (Concussion Grenade)",
+          "name": "The Dempsey\n[aka Pandora's Box]\n(Concussion Grenade)",
           "type": "thrown",
           "coin": 1,
           "harm": 1,
           "tags": "close, magic, area, obvious, loud"
         },
         {
-          "name": "Hydra's Bile (Molotov Cocktail)",
+          "name": "The Guy Fawkes\n[aka Hydra's Bile]\n(Molotov Cocktail)",
           "type": "thrown",
           "coin": 1,
           "harm": 3,
           "tags": "close, magic, fire, area, obvious, loud"
         },
         {
-          "name": "Circe's Touch (Poison)",
+          "name": "The Friar Lawrence\n[aka Circe's Touch]\n(Poison)",
           "type": "contact agent",
           "coin": 1,
           "harm": 1,
           "tags": "intimate, ignore-armor"
         },
         {
-          "name": "Glauce's Gift (Incendiary Poison)",
+          "name": "The O'Leary\n[aka Glauce's Gift]\n(Incendiary Poison)",
           "type": "contact agent",
           "coin": 1,
           "harm": 3,
