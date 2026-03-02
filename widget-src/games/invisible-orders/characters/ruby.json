@@ -138,7 +138,17 @@
               },
               {
                 "name": "Practitioner",
-                "description": "Choose two effects available to you under Use Magic. Take +1 to Use Magic whenever you choose one of those effects."
+                "description": "Choose two effects available to you under Use Magic. Take +1 to Use Magic whenever you choose one of those effects.",
+                "arrays": [
+                  {
+                    "id": "effects",
+                    "title": "Favored Effects",
+                    "values": [
+                      "Do one thing that is beyond human limitations.",
+                      "Heal 1-harm from an injury, or cure a disease, or neutralize a poison."
+                    ]
+                  }
+                ]
               },
               {
                 "name": "Shield Spell",

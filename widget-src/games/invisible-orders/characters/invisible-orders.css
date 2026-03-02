@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #888;
+  padding: 24px;
+}
+
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  background: #fff;
+  margin: 0 auto;
+  font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+  font-size: 9.2pt;
+  line-height: 1.35;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+.page-header {
+  background: #111;
+  color: #fff;
+  padding: 14px 28px 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.header-title {
+  font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+  font-size: 50pt;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.header-tagline {
+  font-style: italic;
+  font-size: 11pt;
+  color: #bbb;
+  align-self: center;
+}
+
+/* ── BODY COLUMNS ── */
+.page-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.col {
+  padding: 14px 18px;
+}
+
+.col-left {
+  border-right: 1px solid #bbb;
+}
+
+/* ── SECTION ── */
+.section {
+  margin-bottom: 13px;
+}
+
+.section-head {
+  font-size: 7.5pt;
+  font-weight: bold;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid #111;
+  padding-bottom: 2px;
+  margin-bottom: 7px;
+}
+
+/* ── HUNTER BLOCK ── */
+.hunter-name {
+  font-size: 15pt;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.hunter-look {
+  font-style: italic;
+  font-size: 8.8pt;
+  color: #333;
+}
+
+/* ── ATTRIBUTES ── */
+.attr-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.attr-circle {
+  width: 34px;
+  height: 34px;
+  border: 2px solid #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11pt;
+  font-weight: bold;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.attr-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.attr-name {
+  font-size: 9.5pt;
+  font-weight: bold;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+}
+
+.attr-moves {
+  font-size: 8pt;
+  font-style: italic;
+  color: #444;
+}
+
+/* ── TRACKS ── */
+.track {
+  margin-bottom: 11px;
+}
+
+.track-note {
+  font-size: 8pt;
+  font-style: italic;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.track-boxes {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.track-label {
+  font-size: 8pt;
+  font-style: italic;
+}
+
+.box {
+  width: 15px;
+  height: 15px;
+  border: 1.5px solid #111;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.track-sep {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #666;
+  line-height: 1;
+}
+
+.unstable-row {
+  margin-top: 4px;
+  font-size: 8.5pt;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ── LUCK SPECIAL ── */
+.luck-special {
+  margin-top: 6px;
+  padding: 4px 8px;
+  border-left: 3px solid #111;
+  background: #f7f7f7;
+  font-size: 8.5pt;
+  font-style: italic;
+}
+
+.luck-special strong {
+  font-style: normal;
+}
+
+/* ── EQUIPMENT ── */
+table.gear {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.3pt;
+}
+
+table.gear th {
+  text-align: left;
+  font-size: 7.5pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #111;
+  padding: 2px 5px 3px;
+}
+
+table.gear td {
+  padding: 3px 5px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+table.gear tr:last-child td {
+  border-bottom: none;
+}
+
+.item-name {
+  font-style: italic;
+}
+
+/* ── MOVES ── */
+.move {
+  margin-bottom: 11px;
+}
+
+.move-header {
+  margin-bottom: 3px;
+}
+
+.move-name {
+  font-weight: bold;
+  font-size: 9.5pt;
+}
+
+.move-attr {
+  font-size: 8.5pt;
+  font-style: italic;
+  color: #555;
+}
+
+.move-desc {
+  font-size: 8.8pt;
+  margin-bottom: 4px;
+}
+
+/* ── OUTCOMES ── */
+.outcomes {
+  margin: 3px 0 4px 6px;
+}
+
+.outcome {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 2px;
+  font-size: 8.8pt;
+}
+
+.outcome-key {
+  font-weight: bold;
+  min-width: 30px;
+  flex-shrink: 0;
+}
+
+/* ── ARRAYS ── */
+.array-block {
+  margin-top: 5px;
+}
+
+.array-title {
+  font-size: 8.2pt;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 3px;
+}
+
+.array-list {
+  list-style: none;
+  padding-left: 4px;
+}
+
+.array-list li {
+  display: flex;
+  gap: 5px;
+  align-items: baseline;
+  font-size: 8.5pt;
+  margin-bottom: 3px;
+}
+
+.array-list li::before {
+  content: "□";
+  flex-shrink: 0;
+  font-size: 10pt;
+  line-height: 1;
+}
+
+hr.rule {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 9px 0;
+}
+
+/* ── PRINT ── */
+@media print {
+  body { background: white; padding: 0; }
+  .page { box-shadow: none; }
+}

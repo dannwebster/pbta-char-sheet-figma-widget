@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ruby Braithwaite — The Spell-Slinger</title>
+  <link rel="stylesheet" href="invisible-orders.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="header-title">The Spell-Slinger</div>
+    <div class="header-tagline">Fight fire with fire magic.</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="page-body">
+
+    <!-- LEFT COLUMN -->
+    <div class="col col-left">
+
+      <!-- HUNTER -->
+      <div class="section">
+        <div class="section-head">Hunter</div>
+        <div class="hunter-name">Ruby Braithwaite</div>
+        <div class="hunter-look">Sharp bob of auburn hair framing intense green eyes. Tailored wool suit with a knee-length skirt, practical oxford heels. Silver pendant at throat. Expression switches between scholarly concentration and reckless determination. Moves with the confidence of someone who's memorized every incantation.</div>
+      </div>
+
+      <!-- ATTRIBUTES -->
+      <div class="section">
+        <div class="section-head">Attributes</div>
+
+        <div class="attr-row">
+          <div class="attr-circle">+1</div>
+          <div class="attr-info">
+            <div class="attr-name">Presence</div>
+            <div class="attr-moves">• Manipulate Someone</div>
+          </div>
+        </div>
+
+        <div class="attr-row">
+          <div class="attr-circle">0</div>
+          <div class="attr-info">
+            <div class="attr-name">Nerve</div>
+            <div class="attr-moves">• Act Under Pressure &nbsp;• Help Out</div>
+          </div>
+        </div>
+
+        <div class="attr-row">
+          <div class="attr-circle">+1</div>
+          <div class="attr-info">
+            <div class="attr-name">Insight</div>
+            <div class="attr-moves">• Investigate a Mystery &nbsp;• Read a Bad Situation</div>
+          </div>
+        </div>
+
+        <div class="attr-row">
+          <div class="attr-circle">0</div>
+          <div class="attr-info">
+            <div class="attr-name">Vigor</div>
+            <div class="attr-moves">• Necessary Violence &nbsp;• Protect Someone</div>
+          </div>
+        </div>
+
+        <div class="attr-row">
+          <div class="attr-circle">+2</div>
+          <div class="attr-info">
+            <div class="attr-name">Occult</div>
+            <div class="attr-moves">• Use Magic</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LUCK -->
+      <div class="section">
+        <div class="section-head">Luck</div>
+        <div class="track-note">Mark luck to change a roll to 12 <em>or</em> avoid all harm from an injury.</div>
+        <div class="track-boxes">
+          <span class="track-label">Okay</span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="track-label">Doomed</span>
+        </div>
+        <div class="luck-special">
+          <strong>Spell-Slinger special:</strong> When you spend Luck, the official council of wizards is going to poke their nose into your business.
+        </div>
+      </div>
+
+      <!-- HARM -->
+      <div class="section">
+        <div class="section-head">Harm</div>
+        <div class="track-note">When you reach 4 or more, mark unstable.</div>
+        <div class="track-boxes">
+          <span class="track-label">Okay</span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="track-sep">|</span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="track-label">Dying</span>
+        </div>
+        <div class="unstable-row">
+          Unstable: <span class="box"></span>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="section">
+        <div class="section-head">Experience</div>
+        <div class="track-note">Whenever you roll and get a total of 6 or less, or when a move tells you to, mark an experience box.</div>
+        <div class="track-boxes">
+          <span class="track-label" style="font-style:normal;">Experience:</span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+          <span class="box"></span>
+        </div>
+      </div>
+
+      <!-- EQUIPMENT -->
+      <div class="section">
+        <div class="section-head">Equipment</div>
+        <table class="gear">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Type</th>
+              <th>Harm</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="item-name">Derringer</td>
+              <td>ranged</td>
+              <td>2</td>
+              <td>close, loud, reload</td>
+            </tr>
+            <tr>
+              <td class="item-name">Spell Components</td>
+              <td>accessory</td>
+              <td>—</td>
+              <td>reagents, versatile</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="item-name">The Dempsey</span><br>
+                <span style="font-size:7.8pt;color:#555;">[aka Pandora's Box]</span><br>
+                <span style="font-size:7.8pt;">(Concussion Grenade)</span>
+              </td>
+              <td>thrown</td>
+              <td>1</td>
+              <td>close, magic, area, obvious, loud</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="item-name">The Guy Fawkes</span><br>
+                <span style="font-size:7.8pt;color:#555;">[aka Hydra's Bile]</span><br>
+                <span style="font-size:7.8pt;">(Molotov Cocktail)</span>
+              </td>
+              <td>thrown</td>
+              <td>3</td>
+              <td>close, magic, fire, area, obvious, loud</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="item-name">The Friar Lawrence</span><br>
+                <span style="font-size:7.8pt;color:#555;">[aka Circe's Touch]</span><br>
+                <span style="font-size:7.8pt;">(Poison)</span>
+              </td>
+              <td>contact agent</td>
+              <td>1</td>
+              <td>intimate, ignore-armor</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="item-name">The O'Leary</span><br>
+                <span style="font-size:7.8pt;color:#555;">[aka Glauce's Gift]</span><br>
+                <span style="font-size:7.8pt;">(Incendiary Poison)</span>
+              </td>
+              <td>contact agent</td>
+              <td>3</td>
+              <td>fire, intimate, ignore-armor</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /col-left -->
+
+    <!-- RIGHT COLUMN -->
+    <div class="col col-right">
+
+      <div class="section">
+        <div class="section-head">Spell-Slinger Moves</div>
+        <div style="font-size:8pt;font-style:italic;margin-bottom:10px;">You get all of the basic moves, plus four Spell-Slinger moves.</div>
+
+        <!-- COMBAT MAGIC -->
+        <div class="move">
+          <div class="move-header">
+            <span class="move-name">Combat Magic</span>
+            <span class="move-attr"> — roll +Occult instead of +Vigor</span>
+          </div>
+          <div class="move-desc">You have a few attack spells you can use as weapons. When you use these spells for Necessary Violence, roll +Occult instead of +Vigor. Sometimes the situation may require you to Act Under Pressure to cast your spell without problems. Your combat spells can combine any of your base spells with any of your effects.</div>
+
+          <div class="array-block">
+            <div class="array-title">Bases</div>
+            <ul class="array-list">
+              <li>Ball: 1-harm, magic, area, close, obvious, loud</li>
+              <li>Contact Agent: 1-harm, intimate, ignore-armor</li>
+            </ul>
+          </div>
+
+          <div class="array-block">
+            <div class="array-title">Effects</div>
+            <ul class="array-list">
+              <li>Fire: Add '+2 harm fire' to a base. If you get a 10+ on a combat magic roll, the fire won't spread.</li>
+            </ul>
+          </div>
+
+          <div class="array-block">
+            <div class="array-title">Combat Options (on a 10+, pick one)</div>
+            <ul class="array-list">
+              <li>You gain the advantage: take +1 forward, or give +1 forward to another hunter.</li>
+              <li>You inflict terrible harm (+1 harm).</li>
+              <li>You suffer less harm (-1 harm).</li>
+              <li>You force them where you want them.</li>
+              <li>You make them lose something important.</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="rule">
+
+        <!-- TOOLS AND TECHNIQUES -->
+        <div class="move">
+          <div class="move-header">
+            <span class="move-name">Tools and Techniques</span>
+          </div>
+          <div class="move-desc">To use your combat magic effectively, you rely on a collection of tools and techniques. Cross off one; you'll need the rest.</div>
+          <ul class="array-list">
+            <li><strong>Consumables:</strong> You need certain supplies—powders, oils, etc—on hand, some will be used up each cast. If you don't have them, take 1-harm ignore-armour when you cast.</li>
+            <li><strong>Foci:</strong> You need wands, staves, and other obvious props to focus. If you don't have what you need, your combat magic does 1 less harm.</li>
+            <li><strong>Gestures:</strong> You need to wave your hands around to use combat magic. If you're restrained, take -1 ongoing for combat magic.</li>
+          </ul>
+        </div>
+
+        <hr class="rule">
+
+        <!-- THIRD EYE -->
+        <div class="move">
+          <div class="move-header">
+            <span class="move-name">Third Eye</span>
+            <span class="move-attr"> — when you Read A Bad Situation</span>
+          </div>
+          <div class="move-desc">You can open up your third eye for a moment to take in extra information. You can see invisible things.</div>
+          <div class="outcomes">
+            <div class="outcome">
+              <span class="outcome-key">10+</span>
+              <span>Take +1 hold, for a total of 4 hold</span>
+            </div>
+            <div class="outcome">
+              <span class="outcome-key">7–9</span>
+              <span>Take +1 hold, for a total of 2 hold</span>
+            </div>
+            <div class="outcome">
+              <span class="outcome-key">6–</span>
+              <span>You may still get 1 hold, but you're exposed to supernatural danger. Unfiltered hidden reality is rough on the mind!</span>
+            </div>
+          </div>
+          <div class="array-block">
+            <div class="array-title">Hold Options</div>
+            <ul class="array-list">
+              <li>What's my best way in?</li>
+              <li>What's my best way out?</li>
+              <li>Are there any dangers we haven't noticed?</li>
+              <li>What's the biggest threat?</li>
+              <li>What's most vulnerable to me?</li>
+              <li>What's the best way to protect the victims?</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="rule">
+
+        <!-- PRACTITIONER -->
+        <div class="move">
+          <div class="move-header">
+            <span class="move-name">Practitioner</span>
+          </div>
+          <div class="move-desc">Choose two effects available to you under Use Magic. Take +1 to Use Magic whenever you choose one of those effects.</div>
+          <div class="array-block">
+            <div class="array-title">Favored Effects</div>
+            <ul class="array-list">
+              <li>Do one thing that is beyond human limitations.</li>
+              <li>Heal 1-harm from an injury, or cure a disease, or neutralize a poison.</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="rule">
+
+        <!-- SHIELD SPELL -->
+        <div class="move">
+          <div class="move-header">
+            <span class="move-name">Shield Spell</span>
+          </div>
+          <div class="move-desc">When you Protect Someone, gain 2-armour against any harm that is transferred to you. This doesn't stack with your other armour, if any.</div>
+        </div>
+
+      </div><!-- /section -->
+
+    </div><!-- /col-right -->
+
+  </div><!-- /page-body -->
+
+</div><!-- /page -->
+</body>
+</html>
