@@ -8,7 +8,7 @@
         { "name": "Presence", "value": 1 },
         { "name": "Nerve", "value": 0 },
         { "name": "Insight", "value": 1 },
-        { "name": "Vigor", "value": -1 },
+        { "name": "Vigor", "value": 0 },
         { "name": "Occult", "value": 2 }
       ],
       "equipment": [
@@ -83,6 +83,17 @@
                     "values": [
                       "Fire: Add '+2 harm fire' to a base. If you get a 10+ on a combat magic roll, the fire won't spread."
                     ]
+                  },
+                  {
+                    "id": "combat_choices",
+                    "title": "Combat Options",
+                    "values": [
+                      "You gain the advantage: take +1 forward, or give +1 forward to another hunter.",
+                      "You inflict terrible harm (+1 harm).",
+                      "You suffer less harm (-1 harm).",
+                      "You force them where you want them.",
+                      "You make them lose something important."
+                    ]
                   }
                 ]
               },
@@ -102,8 +113,28 @@
                 ]
               },
               {
-                "name": "Advanced Arcane Training",
-                "description": "If you have two of your three Tools and Techniques at the ready, you may ignore the third one."
+                "name": "Third Eye",
+                "attribute": "Sharp",
+                "description": "When you Read A Bad Situation, you can open up your third eye for a moment to take in extra information. You can see invisible things.",
+                "outcomes": {
+                  "10+": "Take +1 hold, for a total of 4 hold",
+                  "7-9": "Take +1 hold, for a total of 2 hold",
+                  "6-": "You may still get 1 hold, but you're exposed to supernatural danger. Unfiltered hidden reality is rough on the mind!"
+                },
+                "arrays": [
+                  {
+                    "id": "hold",
+                    "title": "Hold Options",
+                    "values": [
+                      "What's my best way in?",
+                      "What's my best way out?",
+                      "Are there any dangers we haven't noticed?",
+                      "What's the biggest threat?",
+                      "What's most vulnerable to me?",
+                      "What's the best way to protect the victims?"
+                    ]
+                  }
+                ]
               },
               {
                 "name": "Practitioner",
