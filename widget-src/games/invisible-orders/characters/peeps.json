@@ -70,8 +70,23 @@
               {
                 "name": "Precise Strike",
                 "attribute": "Vigor",
-                "description": "When you inflict harm, you can aim for a weak spot. Roll +Vigor. On a 10+, you inflict +2 harm. On a 7–9, you inflict +1 harm. On a miss, you leave yourself open to the foe.",
+                "description": "When you inflict harm, you can aim for a weak spot. Roll +Vigor.",
+                "outcomes": {
+                  "10+": "You inflict +2 harm",
+                  "7-9": "You inflict +1 harm",
+                  "6-": "You leave yourself open to the foe"
+                },
                 "picked": true
+              },
+              {
+                "name": "It Wasn't As Bad As It Looked",
+                "attribute": "Nerve",
+                "description": "Once per mystery, you may attempt to keep going despite your injuries. Roll +Nerve. On a 10+, heal 2 harm and stabilize your wounds. On a 7-9 you may either stabilize or heal 1 harm. On a miss, it was worse than it looked: the Keeper may inflict a harm move on you, or make your wounds unstable.",
+                "outcomes": {
+                  "10+": "Heal 2 harm and stabilize your wounds",
+                  "7-9": "Either stabilize or heal 1 harm",
+                  "6-": "The Keeper may inflict a harm move on you, or make your wounds unstable"
+                }
               },
               {
                 "name": "Haven",
