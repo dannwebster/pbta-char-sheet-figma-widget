@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&display=swap');
+
+.page {
+  font-family: 'IM Fell English', 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+}
+
+.page-header {
+  background: #111;
+}
+
+.header-title {
+  font-family: 'IM Fell English', 'Palatino Linotype', Palatino, serif;
+}
+
+.section-head {
+  border-bottom-color: #111;
+}
+
+.attr-circle {
+  border-color: #111;
+}
+
+.concept-block {
+  border-left-color: #111;
+}

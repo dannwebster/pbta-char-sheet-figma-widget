@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+
+.page {
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: 8.8pt;
+  background: #f5f0e8;
+}
+
+body {
+  background: #5c3a1e;
+}
+
+.page-header {
+  background: #6b2c2c;
+  border-bottom: 4px solid #c17f24;
+}
+
+.header-title {
+  font-family: 'Teko', 'Arial Narrow', Impact, sans-serif;
+  font-weight: 700;
+  font-size: 48pt;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.header-tagline {
+  font-family: 'Merriweather', Georgia, serif;
+  font-style: italic;
+  color: #e8c89a;
+  font-size: 10pt;
+}
+
+.section-head {
+  font-family: 'Teko', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: 9pt;
+  letter-spacing: 3px;
+  border-bottom-color: #6b2c2c;
+  color: #6b2c2c;
+}
+
+.attr-circle {
+  border-color: #6b2c2c;
+  background: #f5f0e8;
+  color: #6b2c2c;
+  font-family: 'Teko', sans-serif;
+  font-size: 13pt;
+}
+
+.attr-name {
+  color: #3d1a1a;
+  font-family: 'Teko', sans-serif;
+  font-size: 10.5pt;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.move-name {
+  font-family: 'Teko', sans-serif;
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.5px;
+}
+
+.outcome-key {
+  color: #6b2c2c;
+  font-family: 'Teko', sans-serif;
+  font-size: 10pt;
+}
+
+.concept-block {
+  border-left-color: #c17f24;
+  background: #ede8dc;
+}
+
+hr.rule {
+  border-top-color: #c17f24;
+  opacity: 0.5;
+}
+
+table.gear th {
+  border-bottom-color: #6b2c2c;
+  color: #6b2c2c;
+  font-family: 'Teko', sans-serif;
+  font-size: 8pt;
+  letter-spacing: 1.5px;
+}
+
+.col-left {
+  border-right: 1px solid #c17f24;
+}
+
+.move-flaw {
+  border-left-color: #c17f24;
+  color: #5c3a1e;
+}
+
+.hunter-name {
+  font-family: 'Teko', sans-serif;
+  font-weight: 600;
+  font-size: 18pt;
+  letter-spacing: 1px;
+}

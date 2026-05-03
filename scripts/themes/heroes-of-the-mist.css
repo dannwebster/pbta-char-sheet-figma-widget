@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+.page {
+  font-family: 'Lora', 'Palatino Linotype', Palatino, serif;
+  font-size: 9pt;
+}
+
+.page-header {
+  background: #0d1b3e;
+  border-bottom: 3px solid #c9a84c;
+}
+
+.header-title {
+  font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 40pt;
+  letter-spacing: 4px;
+  color: #f0d080;
+}
+
+.header-tagline {
+  font-family: 'Lora', Palatino, serif;
+  font-style: italic;
+  color: #a0b4d0;
+}
+
+.section-head {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border-bottom-color: #c9a84c;
+  color: #1a2e5c;
+}
+
+.attr-circle {
+  border-color: #0d1b3e;
+  background: #f5f0e8;
+  color: #0d1b3e;
+}
+
+.attr-name {
+  color: #0d1b3e;
+}
+
+.move-name {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 9.5pt;
+}
+
+.outcome-key {
+  color: #1a2e5c;
+}
+
+.concept-block {
+  border-left: 3px solid #c9a84c;
+  background: #f8f5ee;
+}
+
+.concept-type {
+  color: #8a6e1e;
+}
+
+.concept-name {
+  font-family: 'Cinzel', serif;
+  color: #0d1b3e;
+}
+
+hr.rule {
+  border-top-color: #c9a84c;
+  opacity: 0.6;
+}
+
+table.gear th {
+  border-bottom-color: #0d1b3e;
+  color: #1a2e5c;
+}
+
+.col-left {
+  border-right: 1px solid #c9a84c;
+}
+
+.move-flaw {
+  border-left-color: #c9a84c;
+  color: #5a4020;
+}

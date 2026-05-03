@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+.page {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 9.5pt;
+}
+
+.page-header {
+  background: #0d0d0d;
+  border-bottom: 3px solid #c0392b;
+}
+
+.header-title {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 42pt;
+}
+
+.header-tagline {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-style: italic;
+  color: #cc9999;
+}
+
+.section-head {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  letter-spacing: 3px;
+  border-bottom-color: #c0392b;
+  color: #8b0000;
+}
+
+.attr-circle {
+  border-color: #c0392b;
+  color: #8b0000;
+}
+
+.attr-name {
+  color: #1a0000;
+}
+
+.move-name {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 10pt;
+}
+
+.outcome-key {
+  color: #c0392b;
+}
+
+.concept-block {
+  border-left-color: #c0392b;
+  background: #fff8f8;
+}
+
+hr.rule {
+  border-top-color: #c0392b;
+  opacity: 0.4;
+}
+
+table.gear th {
+  border-bottom-color: #c0392b;
+  color: #8b0000;
+}
+
+.col-left {
+  border-right-color: #c0392b;
+  border-right-width: 1px;
+  border-right-style: solid;
+}
