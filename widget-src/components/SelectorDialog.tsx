@@ -97,15 +97,6 @@ export function SelectorDialog(props: SelectorDialogProps) {
       <AutoLayout width="fill-parent" horizontalAlignItems="center">
         <AutoLayout direction="horizontal" spacing={12}>
           <AutoLayout
-            fill="#333333"
-            padding={12}
-            cornerRadius={4}
-            onClick={onCancel}
-            horizontalAlignItems="center"
-          >
-            <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Cancel</Text>
-          </AutoLayout>
-          <AutoLayout
             fill="#4CAF50"
             padding={12}
             cornerRadius={4}
@@ -113,6 +104,15 @@ export function SelectorDialog(props: SelectorDialogProps) {
             horizontalAlignItems="center"
           >
             <Text fontSize={18} fontWeight={600} fill="#FFFFFF">OK</Text>
+          </AutoLayout>
+          <AutoLayout
+            fill="#333333"
+            padding={12}
+            cornerRadius={4}
+            onClick={onCancel}
+            horizontalAlignItems="center"
+          >
+            <Text fontSize={18} fontWeight={600} fill="#FFFFFF">Cancel</Text>
           </AutoLayout>
         </AutoLayout>
       </AutoLayout>
