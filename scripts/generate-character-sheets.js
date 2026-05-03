@@ -292,6 +292,54 @@ function getGameName(gameId) {
   return gameId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 }
 
+function gameIdFromFilePath(absFile) {
+  const rel = path.relative(GAMES_DIR, absFile)
+  // rel looks like "monster-of-the-week/characters/buffy-summers.json"
+  return rel.split(path.sep)[0]
+}
+
+function writeCharacter(character, movesData, gameName, css, outDir) {
+  if (!character.name) return null
+  const slug = slugify(character.name)
+  const outPath = path.join(outDir, `${slug}.html`)
+  fs.writeFileSync(outPath, buildHtml(character, movesData, gameName, css), 'utf8')
+  console.log(`  ✓ ${path.relative(process.cwd(), outPath)}`)
+  return outPath
+}
+
+function processFile(absFilePath, { characterName } = {}) {
+  const gameId = gameIdFromFilePath(absFilePath)
+  const gameDir = path.join(GAMES_DIR, gameId)
+  const movesPath = path.join(gameDir, 'moves.json')
+
+  if (!fs.existsSync(movesPath)) {
+    console.error(`  ✗ No moves.json found for game "${gameId}"`)
+    return []
+  }
+
+  const movesData = JSON.parse(fs.readFileSync(movesPath, 'utf8'))
+  const css = loadTheme(gameId)
+  const gameName = getGameName(gameId)
+  const outDir = path.join(OUT_DIR, gameId)
+  fs.mkdirSync(outDir, { recursive: true })
+
+  const data = JSON.parse(fs.readFileSync(absFilePath, 'utf8'))
+  let characters = data.characters || []
+
+  if (characterName) {
+    const needle = characterName.toLowerCase()
+    characters = characters.filter(c => c.name && c.name.toLowerCase() === needle)
+    if (characters.length === 0) {
+      console.error(`  ✗ No character named "${characterName}" found in ${path.basename(absFilePath)}`)
+      return []
+    }
+  }
+
+  return characters
+    .map(c => writeCharacter(c, movesData, gameName, css, outDir))
+    .filter(Boolean)
+}
+
 function processGame(gameId) {
   const gameDir = path.join(GAMES_DIR, gameId)
   const movesPath = path.join(gameDir, 'moves.json')
@@ -303,7 +351,6 @@ function processGame(gameId) {
   const movesData = JSON.parse(fs.readFileSync(movesPath, 'utf8'))
   const css = loadTheme(gameId)
   const gameName = getGameName(gameId)
-
   const outDir = path.join(OUT_DIR, gameId)
   fs.mkdirSync(outDir, { recursive: true })
 
@@ -311,34 +358,60 @@ function processGame(gameId) {
   const written = []
 
   for (const charFile of charFiles) {
-    const data = JSON.parse(
-      fs.readFileSync(path.join(charsDir, charFile), 'utf8')
-    )
-    const characters = data.characters || []
-    for (const character of characters) {
-      if (!character.name) continue
-      const slug = slugify(character.name)
-      const outPath = path.join(outDir, `${slug}.html`)
-      fs.writeFileSync(outPath, buildHtml(character, movesData, gameName, css), 'utf8')
-      written.push(outPath)
-      console.log(`  ✓ ${path.relative(process.cwd(), outPath)}`)
+    const data = JSON.parse(fs.readFileSync(path.join(charsDir, charFile), 'utf8'))
+    for (const character of data.characters || []) {
+      const out = writeCharacter(character, movesData, gameName, css, outDir)
+      if (out) written.push(out)
     }
   }
 
   return written
 }
 
+// ── Args ──────────────────────────────────────────────────────────────────────
+
+function parseArgs(argv) {
+  const flags = {}
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i].startsWith('--') && i + 1 < argv.length) {
+      flags[argv[i].slice(2)] = argv[++i]
+    }
+  }
+  return flags
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
-const games = fs.readdirSync(GAMES_DIR).filter(entry =>
-  fs.statSync(path.join(GAMES_DIR, entry)).isDirectory()
-)
-
+const flags = parseArgs(process.argv.slice(2))
 let total = 0
-for (const gameId of games) {
-  console.log(`\n${getGameName(gameId)}`)
-  const written = processGame(gameId)
-  total += written.length
+
+if (flags.file) {
+  const absFile = path.resolve(flags.file)
+  if (!fs.existsSync(absFile)) {
+    console.error(`File not found: ${absFile}`)
+    process.exit(1)
+  }
+  const gameId = gameIdFromFilePath(absFile)
+  console.log(`\n${getGameName(gameId)} — ${path.basename(absFile)}${flags.character ? ` — ${flags.character}` : ''}`)
+  total = processFile(absFile, { characterName: flags.character }).length
+
+} else if (flags.game) {
+  const gameDir = path.join(GAMES_DIR, flags.game)
+  if (!fs.existsSync(gameDir)) {
+    console.error(`Game not found: "${flags.game}"\nAvailable games: ${fs.readdirSync(GAMES_DIR).filter(e => fs.statSync(path.join(GAMES_DIR, e)).isDirectory()).join(', ')}`)
+    process.exit(1)
+  }
+  console.log(`\n${getGameName(flags.game)}`)
+  total = processGame(flags.game).length
+
+} else {
+  const games = fs.readdirSync(GAMES_DIR).filter(entry =>
+    fs.statSync(path.join(GAMES_DIR, entry)).isDirectory()
+  )
+  for (const gameId of games) {
+    console.log(`\n${getGameName(gameId)}`)
+    total += processGame(gameId).length
+  }
 }
 
 console.log(`\nDone — ${total} character sheet${total !== 1 ? 's' : ''} written to dist/character-sheets/`)
