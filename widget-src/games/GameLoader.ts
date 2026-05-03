@@ -22,6 +22,9 @@ import invisibleMovesData from './invisible-orders/moves.json'
 import { characterModules as invisibleCharacters } from './invisible-orders/CharacterLoader'
 import invisibleIconSvg from './invisible-orders/img/io.svg'
 
+import pathsMovesData from './paths-of-peril/moves.json'
+import { characterModules as pathsCharacters } from './paths-of-peril/CharacterLoader'
+
 // All available games (static list)
 export const GAMES: Record<string, GameData> = {
   'heroes-of-the-mist': {
@@ -46,5 +49,11 @@ export const GAMES: Record<string, GameData> = {
     moves: invisibleMovesData,
     characters: Object.values(invisibleCharacters).flatMap(module => module.characters),
     iconSvg: invisibleIconSvg,
+  },
+  'paths-of-peril': {
+    id: 'paths-of-peril',
+    name: 'Paths of Peril',
+    moves: pathsMovesData,
+    characters: Object.values(pathsCharacters).flatMap(module => module.characters),
   }
 }

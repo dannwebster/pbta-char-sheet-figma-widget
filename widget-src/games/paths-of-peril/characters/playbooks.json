@@ -1,0 +1,394 @@
+{
+  "characters": [
+    {
+      "name": "Correspondent",
+      "subtitle": "The Voice",
+      "look": "Rumpled press credentials around the neck, always. Ink-stained fingers and a notebook perpetually within reach. Quick eyes that miss nothing, and a recorder slipped into every pocket. Looks like someone who has seen too much but keeps showing up anyway.",
+      "attributes": [
+        { "name": "Moxie", "value": 2 },
+        { "name": "Dash", "value": 0 },
+        { "name": "Brains", "value": 2 },
+        { "name": "Brawn", "value": -1 },
+        { "name": "Weird", "value": 0 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Press Credentials",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "opens doors, gets you in the room"
+        },
+        {
+          "name": "Concealed Pistol",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, hidden"
+        },
+        {
+          "name": "Camera & Field Recorder",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "evidence, leverage"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    },
+    {
+      "name": "Daredevil",
+      "subtitle": "The Thrill-Seeker",
+      "look": "Scuffed leather jacket and a grin that says this isn't the first time they've jumped off something tall. A few healed-wrong bones. Moves like they're always sizing up a running start. The kind of person who reads danger as an invitation.",
+      "attributes": [
+        { "name": "Moxie", "value": 1 },
+        { "name": "Dash", "value": 2 },
+        { "name": "Brains", "value": -1 },
+        { "name": "Brawn", "value": 1 },
+        { "name": "Weird", "value": 0 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Grappling Hook & Line",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "climbing, escape, improvised weapon"
+        },
+        {
+          "name": "Combat Knife",
+          "type": "melee",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, quick"
+        },
+        {
+          "name": "Lucky Flask",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "morale, sharing opens doors"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    },
+    {
+      "name": "Explorer",
+      "subtitle": "The Pathfinder",
+      "look": "Well-worn boots and a jacket with too many pockets, all of them full. Sun-darkened skin and callused hands. Carries maps of places most people have never heard of. Always seems to know which way is north.",
+      "attributes": [
+        { "name": "Moxie", "value": 0 },
+        { "name": "Dash", "value": 1 },
+        { "name": "Brains", "value": 2 },
+        { "name": "Brawn", "value": 1 },
+        { "name": "Weird", "value": -1 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Machete",
+          "type": "melee",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, also a tool"
+        },
+        {
+          "name": "Expedition Pack",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "rope, rations, first aid, maps"
+        },
+        {
+          "name": "Bolt-Action Rifle",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 3,
+          "tags": "far, loud, reload"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    },
+    {
+      "name": "Fixer",
+      "subtitle": "The Operator",
+      "look": "Expensive watch, cheap shoes — priorities reveal themselves. Always on the phone, always half a step ahead. The kind of face that's hard to remember on purpose. Has a contact for everything, and everyone owes them something.",
+      "attributes": [
+        { "name": "Moxie", "value": 2 },
+        { "name": "Dash", "value": 1 },
+        { "name": "Brains", "value": 1 },
+        { "name": "Brawn", "value": -1 },
+        { "name": "Weird", "value": 0 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Burner Phones (3)",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "untraceable, network access"
+        },
+        {
+          "name": "Lockpick Set",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "opens locks, bypass security"
+        },
+        {
+          "name": "Concealed Blade",
+          "type": "melee",
+          "coin": 0,
+          "harm": 1,
+          "tags": "hidden, close, last resort"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    },
+    {
+      "name": "Merc",
+      "subtitle": "The Gun for Hire",
+      "look": "Built like trouble and dressed for it. Tactical vest with pouches worn down from real use. Eyes that scan exits before they scan faces. Talks less than most, means more than they say. Has a price for everything and doesn't apologize for it.",
+      "attributes": [
+        { "name": "Moxie", "value": -1 },
+        { "name": "Dash", "value": 1 },
+        { "name": "Brains", "value": 0 },
+        { "name": "Brawn", "value": 2 },
+        { "name": "Weird", "value": 1 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Assault Rifle",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 3,
+          "tags": "near, loud, auto"
+        },
+        {
+          "name": "Combat Knife",
+          "type": "melee",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, reliable"
+        },
+        {
+          "name": "Body Armor",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "1-armor, conspicuous"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    },
+    {
+      "name": "Mystic",
+      "subtitle": "The Seer",
+      "look": "Quiet and a little unsettling. Wears layers that don't quite match the season. Eyes that focus on things just past your shoulder. Smells faintly of herbs and smoke. People instinctively lower their voices around them without knowing why.",
+      "attributes": [
+        { "name": "Moxie", "value": 0 },
+        { "name": "Dash", "value": -1 },
+        { "name": "Brains", "value": 1 },
+        { "name": "Brawn", "value": 0 },
+        { "name": "Weird", "value": 2 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Ritual Components",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "arcane, consumable, required for magic"
+        },
+        {
+          "name": "Warding Tokens",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "protective, limited uses"
+        },
+        {
+          "name": "Ritual Dagger",
+          "type": "melee",
+          "coin": 0,
+          "harm": 1,
+          "tags": "close, arcane, ceremonial"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    },
+    {
+      "name": "Sawbones",
+      "subtitle": "The Healer",
+      "look": "Calm hands and a steady gaze that doesn't flinch at blood. Medical bag always over one shoulder, always a little heavy. An old stethoscope worn like a talisman. The person everyone looks for when things go wrong.",
+      "attributes": [
+        { "name": "Moxie", "value": 1 },
+        { "name": "Dash", "value": 0 },
+        { "name": "Brains", "value": 2 },
+        { "name": "Brawn", "value": 0 },
+        { "name": "Weird", "value": -1 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Medical Bag",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "heals 2 harm, surgical tools, drugs"
+        },
+        {
+          "name": "Stimulants",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "keep going, limited uses, consequences"
+        },
+        {
+          "name": "Sidearm",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, quick"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    },
+    {
+      "name": "Scholar",
+      "subtitle": "The Expert",
+      "look": "Glasses perpetually smudged. Carries at least one book that has nothing to do with the current situation, and one that has everything to do with it. Talks fast when excited, which is often. Looks soft until you realize how much they know.",
+      "attributes": [
+        { "name": "Moxie", "value": 0 },
+        { "name": "Dash", "value": -1 },
+        { "name": "Brains", "value": 2 },
+        { "name": "Brawn", "value": 0 },
+        { "name": "Weird", "value": 1 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Reference Library",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "lore, research, answers if you have time"
+        },
+        {
+          "name": "Translation Tools",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "languages, ciphers, dead scripts"
+        },
+        {
+          "name": "Pepper Spray",
+          "type": "accessory",
+          "coin": 0,
+          "harm": 1,
+          "tags": "close, stun, last resort"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    },
+    {
+      "name": "Star",
+      "subtitle": "The Famous",
+      "look": "Turns heads walking into a room — and knows it. Dressed to be seen, but there's something carefully unreadable behind the smile. More capable than anyone gives them credit for. The fame is real. So is everything underneath it.",
+      "attributes": [
+        { "name": "Moxie", "value": 2 },
+        { "name": "Dash", "value": 1 },
+        { "name": "Brains", "value": 0 },
+        { "name": "Brawn", "value": -1 },
+        { "name": "Weird", "value": 1 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Expense Account",
+          "type": "accessory",
+          "coin": 3,
+          "harm": null,
+          "tags": "opens doors, buys cooperation"
+        },
+        {
+          "name": "Disguise Kit",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "blend in, become someone else"
+        },
+        {
+          "name": "Hidden Derringer",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 1,
+          "tags": "close, hidden, 2 shots"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    },
+    {
+      "name": "Tracker",
+      "subtitle": "The Hunter",
+      "look": "Quiet in a way that takes practice. Moves without announcing themselves. Dressed in earth tones that blend into wherever they are. Reads the land the way others read text. Speaks rarely; when they do, it matters.",
+      "attributes": [
+        { "name": "Moxie", "value": -1 },
+        { "name": "Dash", "value": 1 },
+        { "name": "Brains", "value": 1 },
+        { "name": "Brawn", "value": 2 },
+        { "name": "Weird", "value": 0 }
+      ],
+      "contacts": [],
+      "equipment": [
+        {
+          "name": "Hunting Rifle",
+          "type": "ranged",
+          "coin": 0,
+          "harm": 3,
+          "tags": "far, precise, reload"
+        },
+        {
+          "name": "Hunting Knife",
+          "type": "melee",
+          "coin": 0,
+          "harm": 2,
+          "tags": "close, also a tool"
+        },
+        {
+          "name": "Tracker's Kit",
+          "type": "accessory",
+          "coin": 0,
+          "harm": null,
+          "tags": "follow trails, set snares, navigate wilderness"
+        }
+      ],
+      "moves": {
+        "characterMoveGroups": []
+      }
+    }
+  ]
+}

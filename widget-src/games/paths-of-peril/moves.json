@@ -1,0 +1,232 @@
+{
+  "color": "#4A1C1C",
+  "icon": "./img/pop.svg",
+  "usesContacts": false,
+  "usesMythosAndLogos": false,
+  "AttributeMoves": {
+    "Moxi": [
+      {
+        "name": "Manipulate Someone",
+        "description": "When you manipulate someone, roll +Moxi. On a hit, they'll do what you want if you promise them something they want.",
+        "outcomes": {
+          "10+": "They'll do it if you promise them something they want",
+          "7-9": "They'll do it, but only if you do what they ask right now",
+          "6-": "They won't do it, and they're probably pissed off"
+        }
+      }
+    ],
+    "Dash": [
+      {
+        "name": "Act Under Pressure",
+        "description": "When you act under pressure, roll +Dash.",
+        "outcomes": {
+          "10+": "You do what you set out to do",
+          "7-9": "You stumble, hesitate, or flinch: the Keeper will offer you a worse outcome, hard bargain, or ugly choice",
+          "6-": "Things go to hell"
+        }
+      },
+      {
+        "name": "Help Out",
+        "description": "When you help another hunter, roll +Dash.",
+        "outcomes": {
+          "10+": "They get +1 on their roll",
+          "7-9": "They get +1 on their roll, but you expose yourself to danger, cost, or trouble",
+          "6-": "Your help makes things worse"
+        }
+      }
+    ],
+    "Brains": [
+      {
+        "name": "Investigate a Mystery",
+        "description": "When you investigate a mystery, roll +Brains.",
+        "outcomes": {
+          "10+": "Hold 2",
+          "7-9": "Hold 1",
+          "6-": "Hold 1, but you reveal some information to the monster or whoever you are questioning"
+        },
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "What happened here?",
+              "What sort of creature is it?",
+              "What can it do?",
+              "What can hurt it?",
+              "Where did it go?",
+              "What was it going to do?",
+              "What is being concealed here?"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Read a Bad Situation",
+        "description": "When you look around and read a bad situation, roll +Brains.",
+        "outcomes": {
+          "10+": "Hold 3",
+          "7-9": "Hold 1",
+          "6-": "The Keeper will tell you what trouble you're walking into"
+        },
+        "arrays": [
+          {
+            "id": "hold",
+            "title": "Hold Options",
+            "values": [
+              "What's my best way in?",
+              "What's my best way out?",
+              "Are there any dangers we haven't noticed?",
+              "What's the biggest threat?",
+              "What's most vulnerable to me?",
+              "What's the best way to protect the victims?"
+            ]
+          }
+        ]
+      }
+    ],
+    "Brawn": [
+      {
+        "name": "Kick Some Ass",
+        "description": "When you get into a fight and kick some ass, roll +Brawn.",
+        "outcomes": {
+          "10+": "You and your allies inflict harm on (and suffer harm from) your enemies",
+          "7-9": "You inflict harm but choose whether you suffer harm, you lose your weapon, or you have to hold back (i.e., don't inflict harm)",
+          "6-": "You get your ass kicked instead"
+        }
+      },
+      {
+        "name": "Protect Someone",
+        "description": "When you prevent harm to another person, roll +Brawn.",
+        "outcomes": {
+          "10+": "You protect them okay, but you'll suffer some or all of the harm they were going to get",
+          "7-9": "You protect them, but it's going to cost you: either you take all the harm, or you take little harm but also take -1 forward, or you suffer some other cost",
+          "6-": "You don't manage to protect them"
+        }
+      }
+    ],
+    "Weird": [
+      {
+        "name": "Use Magic",
+        "description": "When you use magic, say what you're trying to achieve and how you do the spell, then roll +Weird.",
+        "outcomes": {
+          "10+": "The magic works without issues: you do what you wanted",
+          "7-9": "The magic works, but choose one: the effect is unstable or weak, it draws unwanted attention, or it has a problematic side effect",
+          "6-": "The magic goes wrong in some terrible way"
+        }
+      }
+    ]
+  },
+  "AdditionalAttributes": [],
+  "MultiAttributeMoves": [
+    {
+      "Name": "General Moves",
+      "Attributes": ["Moxi", "Dash", "Brains", "Brawn", "Weird"],
+      "Moves": [
+        {
+          "name": "Take the Risk",
+          "description": "When you do something risky that is not covered by another move, the Keeper will tell you what attribute to roll.",
+          "outcomes": {
+            "10+": "It goes off without a hitch",
+            "7-9": "It works, but with a complication or cost",
+            "6-": "Something goes wrong"
+          }
+        }
+      ]
+    }
+  ],
+  "ClockMoves": [
+    {
+      "name": "Luck",
+      "clock": "luck",
+      "description": "Your hunter's luck - spend it to change outcomes",
+      "advance": [
+        {
+          "name": "Use Luck",
+          "description": "Mark luck when you spend it to change a roll or avoid harm"
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Restore Luck",
+          "description": "Between mysteries, your luck may be restored"
+        }
+      ]
+    },
+    {
+      "name": "Harm",
+      "clock": "harm",
+      "description": "Physical damage taken by the hunter",
+      "advance": [
+        {
+          "name": "Take Harm",
+          "description": "Mark harm when you are injured"
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Heal Harm",
+          "description": "First aid heals 1 harm. Proper medical attention heals 2 harm. A full recovery heals all harm."
+        }
+      ]
+    },
+    {
+      "name": "Experience",
+      "clock": "experience",
+      "description": "Your hunter's growth and advancement",
+      "advance": [
+        {
+          "name": "Gain Experience",
+          "description": "Mark experience when you fail a roll or complete a mystery"
+        }
+      ],
+      "rollback": [
+        {
+          "name": "Spend Experience",
+          "description": "When you fill the experience track, take an advancement and reset"
+        }
+      ]
+    }
+  ],
+  "Clocks": [
+    {
+      "title": "Luck",
+      "clockId": "luck",
+      "shape": "square",
+      "entries": [
+        { "icon": "☆", "name": "OK", "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "icon": "☠", "name": "Doomed", "modifier": "" }
+      ]
+    },
+    {
+      "title": "Harm",
+      "clockId": "harm",
+      "shape": "square",
+      "entries": [
+        { "icon": "☆", "name": "OK", "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "-1" },
+        { "modifier": "-1" },
+        { "modifier": "-2" },
+        { "modifier": "-3" },
+        { "icon": "☠", "name": "Dying", "modifier": "-4" }
+      ]
+    },
+    {
+      "title": "Experience",
+      "clockId": "experience",
+      "shape": "square",
+      "entries": [
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" },
+        { "modifier": "" }
+      ]
+    }
+  ]
+}
